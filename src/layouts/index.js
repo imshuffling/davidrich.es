@@ -9,8 +9,8 @@ const Header = () => (
   <header id='Header'>
     <ul id="navigation">
       <li><Link to='/'>About me</Link></li>
-      <li><Link to='/services'>Services</Link></li>
-      <li><Link to='/contact'>Contact</Link></li>
+      <li><Link to='/services/'>Services</Link></li>
+      <li><Link to='/contact/'>Contact</Link></li>
     </ul>
     <div id="logo"><Link to='/'>David Riches</Link></div>
   </header>
