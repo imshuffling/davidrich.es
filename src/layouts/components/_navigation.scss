@@ -1,0 +1,75 @@
+#Header {
+  display: flex;
+  padding-top: 25px;
+  padding-bottom: 40px;
+  flex-direction: column-reverse;
+
+  @include breakpoint(medium) {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  @include breakpoint(large) {
+    position: relative;
+    background: none;
+    padding-top: 90px;
+    padding-bottom: 50px;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+#navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+
+  li {
+    padding: 10px 10px;
+    line-height: 1;
+    margin-bottom: 0;
+
+    @include breakpoint(medium) {
+      padding: 10px 10px;
+    }
+
+    @include breakpoint(large) {
+      padding: 10px 15px;
+    }
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+    a {
+      color: #4A4A4A;
+      font-size: 1.1764705882352942rem;
+    }
+  }
+}
+
+#logo {
+  //font-family: $bebas;
+  font-size: 1.8823529411764706rem;
+  letter-spacing: -1px;
+  margin-left: 0;
+  line-height: 1;
+
+  @include breakpoint(medium) {
+    font-size: 1.8823529411764706rem;
+    margin-left: auto;
+  }
+
+  @include breakpoint(large) {
+    font-size: 2.3529411764705883rem;
+    margin-left: auto;
+  }
+
+  a {
+    &:hover {
+      color: #000;
+      text-decoration: none;
+      box-shadow: none;
+    }
+  }
+}

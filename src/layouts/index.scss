@@ -1,0 +1,62 @@
+@import "reset.scss";
+@import "grid-settings.scss";
+@import "components/components";
+@import "variables/variables";
+
+// @import "grid-settings";
+
+@font-face {
+    font-family: 'BebasNeueRegular';
+    src: url('../fonts/BebasNeue-webfont.eot');
+    src: url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BebasNeue-webfont.woff') format('woff'),
+         url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
+         url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#logo {
+  font-family: $bebas;
+}
+
+html {
+  background-color: #E5E5E5;
+  background-position: 0 0;
+  background-repeat: repeat;
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-size: 17px;
+}
+
+body {
+  font-family: $karla;
+  font-weight: normal;
+  color: $black;
+  line-height: 1.42857;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  background: #fff;
+  min-height: 100vh;
+}
+
+#Header,
+#Footer,
+#Header + section,
+.control-width {
+  padding-left: 7%;
+  padding-right: 7%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section#home {
+  padding-left: 0;
+  padding-right: 0;
+}

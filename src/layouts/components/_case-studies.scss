@@ -1,0 +1,125 @@
+#case-studies {
+  list-style: none;
+  padding: 0;
+  margin-top: 70px;
+  margin-bottom: 40px;
+  display: flex;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  .item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    min-width: 100vw;
+    min-height: 50vh;
+    margin-right: 15px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    @include breakpoint(large) {
+      min-width: 50vw;
+      min-height: 500px;
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+
+    .item-inner {
+      padding: 25px 7% 25px 7%;
+      width: 100%;
+      transition: all .2s ease 0s;
+      @include breakpoint(large) {
+        padding: 36px;
+      }
+    }
+
+    &:hover {
+      p, a {
+        opacity: .7;
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+      }
+    }
+
+    a {
+      transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
+      -webkit-transform: translate3d(-5px,0,0);
+      transform: translate3d(-5px,0,0);
+      opacity: 0;
+    }
+
+    p {
+      transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
+      -webkit-transform: translate3d(-5px,0,0);
+      transform: translate3d(-5px,0,0);
+      opacity: 0;
+      max-width: 90%;
+      pointer-events: none;
+      @include breakpoint(medium) {
+        max-width: 80%;
+        font-size: 1.0588235294117647rem;
+      }
+
+      @include breakpoint(large) {
+        font-size: 1.1764705882352942rem;
+        max-width: 80%;
+      }
+    }
+
+    &#wateraid {
+      background-image: url('../images/Water_Aid_America1.jpg');
+      color: #fff;
+    }
+
+    &#mj-speechtherapy {
+      background-image: url('../images/04.jpg');
+      color: #fff;
+    }
+
+    &#hb-cleaning {
+      background-image: url('../images/hb-room.jpg');
+      color: #fff;
+    }
+
+    &#tbl {
+      background-image: url('../images/tbl-small.jpg');
+    }
+
+    &#southern-sports {
+      background-image: url('../images/hockey_player_large3.jpg');
+      background-position: center top;
+      color: #fff;
+    }
+
+    &#sarah {
+      background-image: url('../images/sarah-may-low.jpg');
+      color: #fff;
+    }
+
+    &#bailey {
+      background-image: url('../images/amy-low-res.jpg');
+    }
+
+    &#brand-hub {
+      background-image: url('../images/brand-hub_0.png');
+    }
+
+    &#thirsty-thursdays {
+      background-image: url('../images/thirstythursdays_620.png');
+      color: #fff;
+    }
+  }
+
+  .item-inner:hover,
+  .item-inner:active {
+    * {
+      color: #fff;
+    }
+      background: #232526;
+      background: linear-gradient(to left,#232526,#414345);
+  }
+
+}
