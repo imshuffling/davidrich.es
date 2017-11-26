@@ -23,10 +23,10 @@ const Footer = () => (
 const TemplateWrapper = ({ children }) => (
   <section>
     <Helmet
-      title="David Riches - Front-end developer, London UK"
+      title="David Riches - Front-end developer, London - UK"
       meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
+        { name: 'description', content: 'Personal portfolio website for David Riches.' },
+        { name: 'keywords', content: 'Front-end developer London, Drupal front-end developer, Drupal developer london' },
       ]}
     />
     <Header />
