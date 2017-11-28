@@ -11,7 +11,7 @@ const IndexPage = () => (
         </h2>
       </div>
 
-      <section id="case-studies">
+      <section id="case-studies" className="control-width">
         <div className="item" id="wateraid">
           <div className="item-inner">
             <span>Front end development | Drupal 8</span>
