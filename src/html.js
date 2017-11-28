@@ -41,7 +41,6 @@ module.exports = class HTML extends React.Component {
           <div
             key={`body`}
             id="___gatsby"
-            className="animated fadeIn"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
           {this.props.postBodyComponents}
