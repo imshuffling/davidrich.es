@@ -54,6 +54,7 @@
   letter-spacing: -1px;
   margin-left: 0;
   line-height: 1;
+  animation-play-state: paused;
 
   @include breakpoint(medium) {
     font-size: 1.8823529411764706rem;
@@ -71,5 +72,9 @@
       text-decoration: none;
       box-shadow: none;
     }
+  }
+
+  &:hover {
+    animation-play-state: running;
   }
 }
