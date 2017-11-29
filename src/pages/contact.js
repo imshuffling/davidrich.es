@@ -21,6 +21,29 @@ const Contact = () => (
     <span>e</span>
     <span>s</span></a>
     </p>
+
+    <section id="what-ive-been">
+      <h3>What have I been up to...</h3>
+      <ul>
+        <li>
+          <span className="tag">March 2017 - current</span>
+          <p>Mirum</p>
+        </li>
+        <li>
+          <span className="tag">November 2013 - February 2017</span>
+          <p>NDP - Drupal developer</p>
+        </li>
+        <li>
+          <span className="tag">July 2012 - November 2013</span>
+          <p>Tui travel - Front-end developer</p>
+        </li>
+        <li>
+          <span className="tag">March 2010 - July 2012</span>
+          <p>Tui travel - Junior Drupal developer</p>
+        </li>
+      </ul>
+    </section>
+
   </section>
 )
 
