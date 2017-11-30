@@ -7,8 +7,7 @@ const Services = () => (
     <ul>
       <li>
         <h3>Front-end Development</h3>
-        <p>I write clean, hand-coded HTML and CSS, I also have strong jQuery knowledge.<br />
-        This website is built React, react-router, Webpack and Express + Babel/SASS.</p>
+        <p>I write clean, hand-coded HTML and CSS, I also have strong jQuery knowledge.</p>
       </li>
       <li>
         <h3>UX Design</h3>
@@ -16,7 +15,7 @@ const Services = () => (
       </li>
       <li>
         <h3>Version control</h3>
-        <p>Active member of the Github community&nbsp;<a href="https://github.com/imshuffling">follow me</a>&nbsp;and I use SVN on a daily basis.</p>
+        <p>Active member of the Github community&nbsp;<a target="_blank" href="https://github.com/imshuffling">follow me</a>&nbsp;and I use SVN on a daily basis.</p>
       </li>
       <li>
         <h3>Content managment systems</h3>
