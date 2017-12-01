@@ -12,6 +12,7 @@ module.exports = {
         name: "David Riches - Front end Developer, London",
         short_name: "davidrich.es",
         start_url: "/",
+        display: "browser",
         background_color: "#ffffff",
         theme_color: "#A864A8",
         display: "minimal-ui",
