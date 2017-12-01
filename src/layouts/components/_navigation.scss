@@ -1,9 +1,8 @@
 #Header {
   display: flex;
   padding-top: 25px;
-  padding-bottom: 40px;
+  padding-bottom: 25px;
   flex-direction: column-reverse;
-
   @include breakpoint(medium) {
     flex-direction: row;
     align-items: center;

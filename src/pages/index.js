@@ -3,7 +3,7 @@ import Link from 'gatsby-link'
 
 const IndexPage = () => (
   <section id='home'>
-      <div className="control-width animated bounceInDown">
+      <div className="control-width animated fadeIn">
         <h1 className="page-title">Hello I'm David.</h1>
         <h2 className="strap-line">A Front-end developer&nbsp;&amp; part-time hockey player from London.<br />
           <span>I like making things on the web,&nbsp;<a href="#case-studies">view my portfolio</a>&nbsp;or&nbsp;
