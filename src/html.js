@@ -1,5 +1,6 @@
 import React from "react"
 import favicon from './favicon.png';
+import manifest from './manifest.json'
 
 let stylesStr
 if (process.env.NODE_ENV === `production`) {
@@ -32,9 +33,11 @@ module.exports = class HTML extends React.Component {
           />
           <meta name="theme-color" content="#A864A8" />
           <link rel="shortcut icon" type="image/png" href={favicon} />
+          <link rel="manifest" href={manifest} />
 
           {this.props.headComponents}
           {css}
+          <noscript>Your browser does not support JavaScript!</noscript>
         </head>
         <body {...this.props.bodyAttributes}>
           {this.props.preBodyComponents}
