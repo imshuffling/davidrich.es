@@ -15,7 +15,7 @@ const Services = () => (
       </li>
       <li>
         <h3>Version control</h3>
-        <p>Active member of the Github community&nbsp;<a target="_blank" href="https://github.com/imshuffling">follow me</a>&nbsp;and I use SVN on a daily basis.</p>
+        <p>Active member of the Github community&nbsp;<a target="_blank" rel="noopener" href="https://github.com/imshuffling">follow me</a>&nbsp;and I use SVN on a daily basis.</p>
       </li>
       <li>
         <h3>Content managment systems</h3>
