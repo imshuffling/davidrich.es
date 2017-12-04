@@ -1,15 +1,18 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import Scrollchor from 'react-scrollchor';
 
 const IndexPage = () => (
   <section id='home'>
       <div className="control-width animated fadeIn">
         <h1 className="page-title">Hello I'm David.</h1>
         <h2 className="strap-line">A Front-end developer&nbsp;&amp; part-time hockey player from London.<br />
-          <span>I like making things on the web,&nbsp;<a href="#case-studies">view my portfolio</a>&nbsp;or&nbsp;
+          <span>I like making things on the web,&nbsp;
+          <Scrollchor to="#case-studies" animate={{offset: -30, duration: 500}}>view my portfolio</Scrollchor>
+          &nbsp;or&nbsp;
           <a target="_blank" rel="noopener" href="https://www.github.com/imshuffling">follow me on Github.</a></span>
         </h2>
-        <h2>This site is built using Gatsby.js &amp; React.js.</h2>
+        <h2>This site is built using <a target="_blank" rel="noopener" href="https://www.gatsbyjs.org/">Gatsby.js.</a></h2>
       </div>
 
       <section id="case-studies" className="control-width">
