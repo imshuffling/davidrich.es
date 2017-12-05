@@ -34,8 +34,24 @@
       padding: 25px 7% 25px 7%;
       width: 100%;
       transition: all .2s ease 0s;
+      * {
+        color: #fff;
+      }
+      background:rgba(0,0,0,0.6);
+
+      @include breakpoint(medium) {
+        background: transparent;
+        * {
+          color: inherit;
+        }
+      }
+
       @include breakpoint(large) {
+        background: transparent;
         padding: 36px;
+        * {
+          color: inherit;
+        }
       }
     }
 
@@ -49,24 +65,40 @@
 
     a {
       transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
-      -webkit-transform: translate3d(-5px,0,0);
-      transform: translate3d(-5px,0,0);
-      opacity: 0;
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
+      opacity: .7;
+      @include breakpoint(medium) {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0);
+        opacity: 0;
+      }
+      @include breakpoint(large) {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0);
+        opacity: 0;
+      }
     }
 
     p {
       transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
-      -webkit-transform: translate3d(-5px,0,0);
-      transform: translate3d(-5px,0,0);
-      opacity: 0;
+      opacity: .7;
       max-width: 90%;
       pointer-events: none;
+      -webkit-transform: translate3d(0,0,0);
+      transform: translate3d(0,0,0);
       @include breakpoint(medium) {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0);
+        opacity: 0;
         max-width: 80%;
         font-size: 1.0588235294117647rem;
       }
 
       @include breakpoint(large) {
+        -webkit-transform: translate3d(-5px,0,0);
+        transform: translate3d(-5px,0,0);
+        opacity: 0;
         font-size: 1.1764705882352942rem;
         max-width: 80%;
       }
