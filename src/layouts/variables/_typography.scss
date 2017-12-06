@@ -78,6 +78,7 @@ a {
   transition: all .2s ease 0s;
   color: $purple;
   text-decoration: none;
+  display: inline-block;
   &:hover {
     box-shadow: 0 1px 0 #E5E5E5;
   }
@@ -92,7 +93,6 @@ ul, ol {
   margin: 0;
   list-style: none;
   li {
-    //margin-bottom: 50px;
     > * {
       margin-top: 0;
       margin-bottom: 0;
@@ -100,15 +100,9 @@ ul, ol {
   }
 }
 
-#what-ive-been {
-  margin-top: 60px;
-  h3 {
-    margin-bottom: 30px;
-  }
-}
-
 .tag {
   color: $altblack;
+  font-size: 0.9rem;
 }
 
 #Header {

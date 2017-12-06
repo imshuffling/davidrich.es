@@ -1,9 +1,19 @@
 #case-studies {
-  margin-top: 70px;
-  margin-bottom: 40px;
+  margin-top: 50px;
+  margin-bottom: 0;
   display: flex;
   -webkit-overflow-scrolling: touch;
   flex-wrap: wrap;
+
+  @include breakpoint(medium) {
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
 
   .item {
     background-size: cover;
@@ -22,7 +32,16 @@
     }
 
     &:last-of-type {
-      margin-right: 0;
+        margin-bottom: 0;
+      @include breakpoint(medium) {
+        margin-right: 0;
+        margin-bottom: 30px;
+      }
+
+      @include breakpoint(large) {
+        margin-right: 0;
+        margin-bottom: 30px;
+      }
     }
 
     @include breakpoint(large) {
@@ -38,6 +57,10 @@
         color: #fff;
       }
       background:rgba(0,0,0,0.6);
+
+      span {
+        font-size: .9rem;
+      }
 
       @include breakpoint(medium) {
         background: transparent;

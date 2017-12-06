@@ -1,10 +1,61 @@
+#contact {
+
+  display: flex;
+  flex-direction: column;
+
+  @include breakpoint(medium) {
+    flex-direction: column;
+  }
+
+  @include breakpoint(large) {
+    flex-direction: row;
+  }
+
+  section {
+    max-width: 100%;
+
+    @include breakpoint(medium) {
+      max-width: 100%
+    }
+
+    @include breakpoint(large) {
+      max-width: 60%;
+      padding-right: 30px;
+    }
+
+  }
+}
+
+
 #what-ive-been {
-  margin-top: 60px;
+  max-width: 100%;
+  margin-top: 30px;
+  padding: 30px;
+  background: #E5E5E5;
+
+  @include breakpoint(medium) {
+    margin-top: 30px;
+    max-width: 100%;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 10px;
+    max-width: 40%;
+    margin-left: auto;
+  }
+
   h3 {
+    margin-top: 0;
     margin-bottom: 30px;
   }
 
-  ul li {
-    margin-bottom: 50px;
+  ul {
+    margin-bottom: 10px;
+    li {
+      margin-bottom: 35px;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
   }
 }

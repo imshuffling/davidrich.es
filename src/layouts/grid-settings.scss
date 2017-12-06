@@ -10,14 +10,3 @@
         @media (min-width: $point) { @content; }
     }
 }
-
-/*
-  @include breakpoint(medium) {
-
-  }
-
-  @include breakpoint(large) {
-
-  }
-  
-*/

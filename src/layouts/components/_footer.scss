@@ -4,7 +4,22 @@
 
 .Footer-inner {
   border-top: 1px solid #E5E5E5;
-  margin-top: 75px;
+  margin-top: 30px;
   padding-top: 35px;
-  padding-bottom: 36px;
+  padding-bottom: 35px;
+  @include breakpoint(medium) {
+    margin-top: 75px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 75px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
 }

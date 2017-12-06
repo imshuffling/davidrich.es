@@ -7,8 +7,8 @@ const Contact = () => (
     <section>
       <h1 className="page-title">Contact me</h1>
       <h2>I am available for small projects and contract work.</h2>
-      <p>E-mail me at
-      <a href="mailto:hi@davidrich.es"> <span>hi</span>
+      <p>E-mail me at&nbsp;
+      <a href="mailto:hi@davidrich.es"><span>hi</span>
       <span>@</span>
       <span>d</span>
       <span>a</span>
@@ -25,7 +25,7 @@ const Contact = () => (
       </p>
     </section>
     <aside id="what-ive-been">
-      <h3>What have I been up to...</h3>
+      <h3>Where have I been?</h3>
       <ul>
         <li>
           <p>Mirum</p>
