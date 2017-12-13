@@ -130,6 +130,28 @@
     &#wateraid {
       background-image: url('../images/VFMAD63_029.jpg');
       color: #fff;
+
+      .item-inner {
+        position: relative;
+        overflow: hidden;
+
+        h3, span {
+          z-index: 4;
+          position: relative;
+        }
+
+        .case-study-video {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+        }
+      }
     }
 
     &#mj-speechtherapy {
