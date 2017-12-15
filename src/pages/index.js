@@ -18,14 +18,14 @@ const IndexPage = () => (
       <section id="case-studies" className="control-width">
         <div className="item" id="wateraid">
           <div className="item-inner">
-            <video autoPlay loop playsInline muted className="case-study-video">
-              <source src="https://player.vimeo.com/external/239986765.hd.?s=2502b606c4fd584dd00f0b0515456f5adeed5e35&amp;profile_id=175 " type="video/mp4" />
-            </video>
-            <span>Front end development | Drupal 8</span>
-            <h3>WaterAid</h3>
-            <p>Charity that works in partnership with local communities to establish water suppdives and toilets.</p>
-            <p>As part of Mirum I worked on the Front-end using Drupal 8.</p>
-            <a className="view-site" target="_blank" rel="noopener" href="https://www.wateraid.org/uk/">View site</a>
+          <video autoPlay loop playsInline muted className="case-study-video">
+            <source src="https://player.vimeo.com/external/239986765.hd.?s=2502b606c4fd584dd00f0b0515456f5adeed5e35&amp;profile_id=175 " type="video/mp4" />
+          </video>
+          <span>Front end development | Drupal 8</span>
+          <h3>WaterAid</h3>
+          <p>Charity that works in partnership with local communities to establish water suppdives and toilets.</p>
+          <p>As part of Mirum I worked on the Front-end using Drupal 8.</p>
+          <a className="view-site" target="_blank" rel="noopener" href="https://www.wateraid.org/uk/">View site</a>
           </div>
         </div>
         <div className="item" id="mj-speechtherapy">

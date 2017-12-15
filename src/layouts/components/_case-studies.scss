@@ -128,8 +128,19 @@
     }
 
     &#wateraid {
-      background-image: url('../images/VFMAD63_029.jpg');
+      background-image: url('../images/wateraid-video-bg.png');
       color: #fff;
+
+      .overlay {
+        height: 100%;
+width: 100%;
+position: absolute;
+top: 0px;
+left: 0px;
+z-index: 2;
+background: green;
+opacity: 0.5;
+      }
 
       .item-inner {
         position: relative;
