@@ -91,6 +91,8 @@
       -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
       opacity: .7;
+      z-index: 4;
+      position: relative;
       @include breakpoint(medium) {
         -webkit-transform: translate3d(-5px,0,0);
         transform: translate3d(-5px,0,0);
@@ -110,6 +112,8 @@
       pointer-events: none;
       -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
+      z-index: 4;
+      position: relative;
       @include breakpoint(medium) {
         -webkit-transform: translate3d(-5px,0,0);
         transform: translate3d(-5px,0,0);
@@ -133,13 +137,16 @@
 
       .overlay {
         height: 100%;
-width: 100%;
-position: absolute;
-top: 0px;
-left: 0px;
-z-index: 2;
-background: green;
-opacity: 0.5;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 2;
+        transition: all 0.2s;
+        &:hover, &:active, &:focus {
+          background:rgba(0,0,0,0.6);
+          transition: all 0.2s;
+        }
       }
 
       .item-inner {
