@@ -13,21 +13,11 @@
 
   section {
     max-width: 100%;
-
-    @include breakpoint(medium) {
-      max-width: 100%
-    }
-
-    @include breakpoint(large) {
-      max-width: 60%;
-      padding-right: 30px;
-    }
-
   }
 }
 
 
-#what-ive-been {
+/*#what-ive-been {
   max-width: 100%;
   margin-top: 30px;
   padding: 30px;
@@ -58,4 +48,4 @@
       }
     }
   }
-}
+}*/
