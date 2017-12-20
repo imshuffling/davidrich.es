@@ -8,7 +8,7 @@ import './index.scss'
 const Header = () => (
   <header id='Header'>
     <ul id="navigation">
-      <li><Link to='/' activeClassName="active">About me</Link></li>
+      <li><Link exact to='/'>About me</Link></li>
       <li><Link to='/services/' activeClassName="active">Services</Link></li>
       <li><Link to='/contact/' activeClassName="active">Contact</Link></li>
     </ul>
