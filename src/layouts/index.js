@@ -17,7 +17,7 @@ const Header = () => (
 )
 
 const Footer = () => (
-  <footer id="Footer"><div className="Footer-inner"><p>David Riches © 2017</p></div></footer>
+  <footer id="Footer"><div className="Footer-inner"><p>David Riches © 2018</p></div></footer>
 )
 
 const TemplateWrapper = ({ children }) => (
