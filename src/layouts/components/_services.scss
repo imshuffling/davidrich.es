@@ -1,7 +1,15 @@
 #services {
   ul {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     li {
-      margin-bottom: 50px;
+
+      h3 {
+        line-height: 1.1;
+        margin-bottom: 10px;
+      }
+
       p {
         margin-bottom: 0;
       }

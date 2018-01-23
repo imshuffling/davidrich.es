@@ -7,7 +7,7 @@ const Services = () => (
     <ul>
       <li>
         <h3>Front-end Development</h3>
-        <p>I write clean, hand-coded HTML and CSS, I also have strong jQuery knowledge.</p>
+        <p>I write clean, hand-coded HTML, CSS and JavaScript - This site is built using React with Gatsby.js</p>
       </li>
       <li>
         <h3>UX Design</h3>

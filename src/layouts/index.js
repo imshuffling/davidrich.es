@@ -12,12 +12,12 @@ const Header = () => (
       <li><Link to='/services' activeClassName="active">Services</Link></li>
       <li><Link to='/contact' activeClassName="active">Contact</Link></li>
     </ul>
-    <div id="logo" className="animated pulse"><Link to='/'>David Riches</Link></div>
+    <div id="logo"><Link to='/'>David Riches</Link></div>
   </header>
 )
 
 const Footer = () => (
-  <footer id="Footer"><div className="Footer-inner"><p>David Riches © 2018</p></div></footer>
+  <footer id="Footer"><div className="Footer-inner"><p>David Riches © 2018 💩</p></div></footer>
 )
 
 const TemplateWrapper = ({ children }) => (

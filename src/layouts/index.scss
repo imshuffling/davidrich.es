@@ -90,6 +90,7 @@ select {
   box-sizing: border-box;
   margin-bottom: 16px;
   font-size: 17px;
+  font-family: inherit;
 }
 
 textarea {
@@ -100,7 +101,7 @@ button {
   background-color: $purple;
   border: none;
   color: white;
-  padding: 8px 16px;
+  padding: 12px 30px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -110,4 +111,9 @@ button {
   &:hover, &:active, &:focus {
     opacity: .9;
   }
+}
+
+input:invalid,
+textarea:invalid {
+    box-shadow: none;
 }
