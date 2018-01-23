@@ -96,6 +96,7 @@ select {
 textarea {
   min-height: 200px;
   resize: vertical;
+  -webkit-appearance: none;
 }
 
 button {
@@ -117,4 +118,8 @@ button {
 input:invalid,
 textarea:invalid {
     box-shadow: none;
+}
+
+input[type="text"] {
+    -webkit-appearance: none;
 }
