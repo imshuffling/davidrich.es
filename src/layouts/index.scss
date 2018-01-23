@@ -120,6 +120,7 @@ textarea:invalid {
     box-shadow: none;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="email"] {
     -webkit-appearance: none;
 }
