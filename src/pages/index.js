@@ -31,7 +31,7 @@ const IndexPage = () => (
         </div>
         <div className="item" id="mj-speechtherapy">
           <div className="item-inner">
-            <span>Front end development | Drupal 7</span>
+            <span>Front end development | Gatsby.js</span>
             <h3>Mary Jane - Speech Therapy</h3>
             <p>Client wanted a fun looking website for her Speech therapy business based in Kent.</p>
             <a className="view-site" target="_blank" rel="noopener" href="http://mj-speechtherapy.co.uk/">View site</a>
@@ -39,15 +39,15 @@ const IndexPage = () => (
         </div>
         <div className="item" id="hb-cleaning">
           <div className="item-inner">
-            <span>Front end development | Drupal 7</span>
+            <span>Front end development | Branding | Drupal 7</span>
             <h3>HB Cleaning</h3>
-            <p>A carpet and upholstery cleaning company based in Portsmouth.</p>
+            <p>A carpet and upholstery cleaning company based in Portsmouth, the client wanted a brochure website and a logo designed.</p>
             <a className="view-site" target="_blank" rel="noopener" href="http://www.hb-cleaningltd.co.uk/">View site</a>
           </div>
         </div>
         <div className="item" id="brand-hub">
           <div className="item-inner">
-            <span>Branding | Front end development | Drupal 7</span>
+            <span>Front end development | Branding | Drupal 7</span>
             <h3>Brand Hub</h3>
             <p>The client needed a website and a logo for his startup business. The site is built was Drupal 7, using the omega boilerplate.</p>
           </div>

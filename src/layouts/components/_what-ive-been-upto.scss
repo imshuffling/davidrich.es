@@ -19,11 +19,6 @@
     margin: 20px 0;
     display: block;
 
-    /*@include breakpoint(medium) {
-      margin: 0;
-      display: inline;
-    }*/
-
     @include breakpoint(large) {
       margin: 0;
       display: inline;

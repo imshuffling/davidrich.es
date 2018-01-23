@@ -1,62 +1,58 @@
 #case-studies {
   margin-top: 50px;
   margin-bottom: 0;
-  display: flex;
   -webkit-overflow-scrolling: touch;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
 
   @include breakpoint(medium) {
     margin-top: 70px;
     margin-bottom: 30px;
+    grid-template-columns: 1fr;
   }
 
   @include breakpoint(large) {
     margin-top: 70px;
     margin-bottom: 40px;
+    grid-template-columns: 1fr 1fr;
   }
+
+
+  grid-auto-flow: dense;
+  grid-gap: 30px;
 
   .item {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    display: flex;
-    min-height: 50vh;
+    position: relative;
+    height: 100%;
     width: 100%;
-    margin-bottom: 30px;
+    grid-column: span 1;
+    overflow: hidden;
 
-    &:nth-child(odd) {
-      margin-right: 0;
-      @include breakpoint(large) {
-        margin-right: 30px;
-      }
-    }
-
-    &:last-of-type {
-        margin-bottom: 0;
-      @include breakpoint(medium) {
-        margin-right: 0;
-        margin-bottom: 30px;
-      }
-
-      @include breakpoint(large) {
-        margin-right: 0;
-        margin-bottom: 30px;
-      }
-    }
-
-    @include breakpoint(large) {
-      min-height: 500px;
-      width: calc(50% - 15px);
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 1px;
+      height: 0;
+      padding-bottom: calc(100% / 1/1);
     }
 
     .item-inner {
       padding: 25px 7% 25px 7%;
-      width: 100%;
       transition: all .2s ease 0s;
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background:rgba(0,0,0,0.6);
       * {
         color: #fff;
       }
-      background:rgba(0,0,0,0.6);
+
+      h3 {
+        line-height: 1.1;
+      }
 
       span {
         font-size: .9rem;
@@ -108,12 +104,13 @@
     p {
       transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
       opacity: .7;
-      max-width: 90%;
+      max-width: 100%;
       pointer-events: none;
       -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
       z-index: 4;
       position: relative;
+      font-size: 15px;
       @include breakpoint(medium) {
         -webkit-transform: translate3d(-5px,0,0);
         transform: translate3d(-5px,0,0);
@@ -131,6 +128,17 @@
       }
     }
 
+    .view-site {
+      font-size: 15px;
+      @include breakpoint(medium) {
+        font-size: 17px;
+      }
+
+      @include breakpoint(large) {
+        font-size: 17px;
+      }
+    }
+
     &#wateraid {
       background-image: url('../images/wateraid-video-bg.png');
       color: #fff;
@@ -143,6 +151,17 @@
         left: 0px;
         z-index: 2;
         transition: all 0.2s;
+        background:rgba(0,0,0,0.6);
+
+        @include breakpoint(medium) {
+          background: none;
+        }
+
+        @include breakpoint(large) {
+          background: none;
+        }
+
+
         &:hover, &:active, &:focus {
           background:rgba(0,0,0,0.6);
           transition: all 0.2s;
@@ -150,12 +169,12 @@
       }
 
       .item-inner {
-        position: relative;
         overflow: hidden;
 
         h3, span {
           z-index: 4;
           position: relative;
+          line-height: 1.1;
         }
 
         .case-study-video {
@@ -184,6 +203,8 @@
 
     &#brand-hub {
       background-image: url('../images/brand-hub_0.jpg');
+      background-size: contain;
+      background-color: #E9E9E9;
     }
   }
 
