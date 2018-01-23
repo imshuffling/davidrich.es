@@ -60,3 +60,53 @@ section#home {
   padding-left: 0;
   padding-right: 0;
 }
+
+
+form {
+  margin-top: 50px;
+  margin-bottom: 0;
+
+  @include breakpoint(medium) {
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  font-size: 17px;
+}
+
+textarea {
+  min-height: 200px;
+}
+
+button {
+  background-color: $purple;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover, &:active, &:focus {
+    opacity: .9;
+  }
+}

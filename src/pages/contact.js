@@ -25,6 +25,14 @@ const Contact = () => (
           <span>s</span></a>
         </span>
       </h2>
+
+      <form method="POST" action="https://formspree.io/hi@davidrich.es">
+        <input type="email" name="email" placeholder="Your email"/>
+        <textarea name="message" placeholder="Your message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+
+
     </section>
   </section>
 )
