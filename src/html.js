@@ -31,6 +31,7 @@ module.exports = class HTML extends React.Component {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <meta name="theme-color" content="#A864A8" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="shortcut icon" type="image/png" href={favicon} />
           {this.props.headComponents}
           {css}
