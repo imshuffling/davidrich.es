@@ -1,1 +1,3 @@
-# davidrich.es - personal portfolio using gatsby.js
+# David Riches portfolio site
+
+Made with Love
