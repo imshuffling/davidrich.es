@@ -1,3 +1,3 @@
 # David Riches portfolio site
 
-Made with Love
+Made with gatsby.js and Love 😍
