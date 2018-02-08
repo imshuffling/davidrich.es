@@ -24,7 +24,7 @@ const IndexPage = () => (
             </video>
           <span>Front end development | Drupal 8</span>
           <h3>WaterAid</h3>
-          <p>Charity that works in partnership with local communities to establish water suppdives and toilets.</p>
+          <p>A charity that works in partnership with local communities to establish water supplies and toilets.</p>
           <p>As part of Mirum I worked on the Front-end using Drupal 8.</p>
           <a className="view-site" target="_blank" rel="noopener" href="https://www.wateraid.org/uk/">View site</a>
           </div>
@@ -47,9 +47,8 @@ const IndexPage = () => (
         </div>
         <div className="item" id="brand-hub">
           <div className="item-inner">
-            <span>Front end development | Branding | Drupal 7</span>
+            <span>Front end development | Branding</span>
             <h3>Brand Hub</h3>
-            <p>The client needed a website and a logo for his startup business. The site is built was Drupal 7, using the omega boilerplate.</p>
           </div>
         </div>
       </section>

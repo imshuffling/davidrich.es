@@ -44,8 +44,9 @@
       transition: all .2s ease 0s;
       position: absolute;
       top: 0;
-      height: 100%;
+      height: calc(100% - 7%);
       background:rgba(0,0,0,0.6);
+      width: calc(100% - 14%);
       * {
         color: #fff;
       }
@@ -68,6 +69,8 @@
       @include breakpoint(large) {
         background: transparent;
         padding: 36px;
+        width: calc(100% - 72px);
+        height: calc(100% - 72px);
         * {
           color: inherit;
         }
