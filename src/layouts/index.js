@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import './index.scss'
 
 const Header = () => (
-  <header id='Header'>
+  <header>
     <ul id="navigation">
       <li><Link exact to='/'>About me</Link></li>
       <li><Link to='/services' activeClassName="active">Services</Link></li>
@@ -17,11 +17,11 @@ const Header = () => (
 )
 
 const Footer = () => (
-  <footer id="Footer"><div className="Footer-inner"><p>David Riches © 2018 🏑</p></div></footer>
+  <footer><div className="Footer-inner"><p>David Riches © 2018 🏑</p></div></footer>
 )
 
 const TemplateWrapper = ({ children }) => (
-  <section>
+  <section className="container-wrap">
     <Helmet
       title="David Riches - Front-end developer, London - UK"
       meta={[
