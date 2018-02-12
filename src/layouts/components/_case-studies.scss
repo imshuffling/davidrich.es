@@ -28,16 +28,25 @@
     position: relative;
     height: 100%;
     width: 100%;
+    min-height: 300px;
     grid-column: span 1;
     overflow: hidden;
 
-    &:before {
+    @include breakpoint(medium) {
+        min-height: 300px;
+    }
+
+    @include breakpoint(large) {
+        min-height: 460px;
+    }
+
+    /*&:before {
       content: "";
       display: inline-block;
       width: 1px;
       height: 0;
       padding-bottom: calc(100% / 1/1);
-    }
+    }*/
 
     .item-inner {
       padding: 25px 7% 25px 7%;
@@ -78,14 +87,14 @@
     }
 
     &:hover {
-      p, a {
+      .item-inner__content {
         opacity: .7;
         -webkit-transform: translate3d(0,0,0);
         transform: translate3d(0,0,0);
       }
     }
 
-    a {
+    /*.view-site {
       transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
       -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
@@ -102,13 +111,13 @@
         transform: translate3d(-5px,0,0);
         opacity: 0;
       }
-    }
+    }*/
 
-    p {
+    .item-inner__content {
       transition: opacity .3s ease-out .1s,transform .3s ease-out .1s,-webkit-transform .3s ease-out .1s;
       opacity: .7;
       max-width: 100%;
-      pointer-events: none;
+      //pointer-events: none;
       -webkit-transform: translate3d(0,0,0);
       transform: translate3d(0,0,0);
       z-index: 4;
@@ -129,20 +138,33 @@
         font-size: 1.1764705882352942rem;
         max-width: 90%;
       }
-    }
 
-    .view-site {
-      font-size: 15px;
-      @include breakpoint(medium) {
-        font-size: 17px;
+
+      p {
+        font-size: 15px;
+        @include breakpoint(medium) {
+          font-size: 1.0588235294117647rem;
+        }
+
+        @include breakpoint(large) {
+          font-size: 1.1764705882352942rem;
+        }
       }
 
-      @include breakpoint(large) {
-        font-size: 17px;
+      a {
+        font-size: 15px;
+        @include breakpoint(medium) {
+          font-size: 17px;
+        }
+
+        @include breakpoint(large) {
+          font-size: 17px;
+        }
       }
+
     }
 
-    &#wateraid {
+    /*&#wateraid {
       background-image: url('../images/wateraid-video-bg.png');
       color: #fff;
 
@@ -192,20 +214,21 @@
           height: auto;
         }
       }
+    }*/
+
+    &#mary-jane-speechtherapy {
+      color: #fff;
     }
 
-    &#mj-speechtherapy {
-      background-image: url('../images/mj-speechtherapy.jpg');
+    &#wateraid  {
       color: #fff;
     }
 
     &#hb-cleaning {
-      background-image: url('../images/hb-room.jpg');
       color: #fff;
     }
 
     &#brand-hub {
-      background-image: url('../images/brand-hub_0.jpg');
       background-size: contain;
       background-color: #E9E9E9;
     }

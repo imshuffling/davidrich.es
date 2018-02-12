@@ -6,6 +6,8 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    `gatsby-transformer-remark`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -40,5 +42,6 @@ module.exports = {
       spaceId: `anjlutb8dq3v`,
       accessToken: `4bf9314dc5bdfbf380247aa3ab84d7da0e86d33a6089168eb32558d4f7096cda`
     },
-  }, ],
+  },
+  ],
 }

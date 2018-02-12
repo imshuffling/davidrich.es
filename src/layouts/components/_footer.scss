@@ -3,6 +3,14 @@
   margin-top: 30px;
   padding-top: 35px;
   padding-bottom: 35px;
+
+  display: flex;
+  align-items: center;
+
+  .contentful {
+    margin-left: auto;
+  }
+
   @include breakpoint(medium) {
     margin-top: 75px;
     padding-top: 35px;
