@@ -4,7 +4,7 @@ import Scrollchor from 'react-scrollchor';
 import Img from "gatsby-image"
 
 const IndexPage = (props) => {
-    console.log(props)
+    //console.log(props)
     return (
       <section id='home' className="animated fadeIn">
         <div className="control-width">

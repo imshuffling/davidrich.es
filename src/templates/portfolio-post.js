@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 
 class PortfolioPost extends Component {
   render() {
-      console.log(this.props)
+      //console.log(this.props)
       const { title, image, tag, content, largeMedia } = this.props.data.contentfulPortfolio
       return (
           <section id="portfolio-item" className="animated fadeIn">
