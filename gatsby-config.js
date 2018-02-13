@@ -7,34 +7,35 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-catch-links`,
-      {
-        resolve: `gatsby-plugin-manifest`,
-        options: {
-          name: "David Riches - Front end Developer, London",
-          short_name: "davidrich.es",
-          start_url: "/",
-          background_color: "#ffffff",
-          theme_color: "#A864A8",
-          display: "standalone",
-          icons: [
-            {
-              // Everything in /static will be copied to an equivalent
-              // directory in /public during development and build, so
-              // assuming your favicons are in /static/favicons,
-              // you can reference them here
-              src: "/android-chrome-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
-            },
-            {
-              src: "/android-chrome-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
-            },
-          ],
-        },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: "David Riches 🏑",
+        short_name: "David Riches 🏑",
+        start_url: "/",
+        background_color: "#ffffff",
+        theme_color: "#A864A8",
+        display: "minimal-ui",
+        icons: [
+          {
+            src: `static/favicons/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `static/favicons/android-chrome-384x384.png`,
+            sizes: `384x384`,
+            type: `image/png`,
+          },
+          {
+            src: `static/favicons/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
       },
-      `gatsby-plugin-offline`,
+    },
+    `gatsby-plugin-offline`,
       {
         resolve: `gatsby-source-contentful`,
           options: {
