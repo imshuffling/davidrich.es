@@ -42,10 +42,7 @@ module.exports = {
         resolve: `gatsby-plugin-netlify`,
           options: {
             headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
-            allPageHeaders: [
-              "Link: </static/favicons/android-chrome-192x192.png>; rel=preload; as=image",
-              "Link: </static/favicons/android-chrome-512x512.png>; rel=preload; as=image",
-            ], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+            allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
             mergeSecurityHeaders: true, // boolean to turn off the default security headers
             mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
             mergeCachingHeaders: true, // boolean to turn off the default caching headers
