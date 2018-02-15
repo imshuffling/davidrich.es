@@ -1,5 +1,12 @@
 const path = require('path')
 
+exports.modifyWebpackConfig = ({ config, stage }) => {
+  if (stage === 'build-javascript') {
+    // turn off source-maps
+    config.merge({ devtool: false });
+  }
+};
+
 exports.createPages = ({graphql, boundActionCreators}) => {
     const {createPage} = boundActionCreators
     return new Promise((resolve, reject) => {
