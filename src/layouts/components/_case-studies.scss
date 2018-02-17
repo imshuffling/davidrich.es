@@ -37,7 +37,9 @@
     }
 
     @include breakpoint(large) {
-        min-height: 460px;
+        //min-height: 460px;
+        min-height: 340px;
+        margin-bottom: 90px;
     }
 
     /*&:before {
@@ -49,48 +51,50 @@
     }*/
 
     .item-inner {
-      padding: 25px 7% 25px 7%;
+      //padding: 25px 7% 25px 7%;
       transition: all .2s ease 0s;
-      position: absolute;
-      top: 0;
-      height: calc(100% - 7%);
-      background:rgba(0,0,0,0.6);
-      width: calc(100% - 14%);
+      margin-top: 20px;
+      //position: absolute;
+      //top: 0;
+      //height: calc(100% - 7%);
+      //background:rgba(0,0,0,0.6);
+      //width: calc(100% - 14%);
       * {
-        color: #fff;
+        //color: #fff;
       }
 
       h3 {
         line-height: 1.1;
+        margin-top: 0;
       }
 
       span {
-        font-size: .9rem;
+        //font-size: .9rem;
       }
 
       @include breakpoint(medium) {
-        background: transparent;
+        //background: transparent;
         * {
-          color: inherit;
+          //color: inherit;
         }
       }
 
       @include breakpoint(large) {
-        background: transparent;
-        padding: 36px;
-        width: calc(100% - 72px);
-        height: calc(100% - 72px);
+        //background: transparent;
+        //padding: 36px;
+        //width: calc(100% - 72px);
+        //height: calc(100% - 72px);
         * {
-          color: inherit;
+          //color: inherit;
         }
       }
     }
 
     &:hover {
       .item-inner__content {
-        opacity: .7;
-        -webkit-transform: translate3d(0,0,0);
-        transform: translate3d(0,0,0);
+        //opacity: .7;
+        //-webkit-transform: translate3d(0,0,0);
+        //transform: translate3d(0,0,0);
       }
     }
 
@@ -217,30 +221,30 @@
     }*/
 
     &#mary-jane-speechtherapy {
-      color: #fff;
+      //color: #fff;
     }
 
     &#wateraid  {
-      color: #fff;
+      //color: #fff;
     }
 
     &#hb-cleaning {
-      color: #fff;
+      //color: #fff;
     }
 
     &#brand-hub {
-      background-size: contain;
-      background-color: #E9E9E9;
+      //background-size: contain;
+      //background-color: #E9E9E9;
     }
   }
 
   .item-inner:hover,
   .item-inner:active {
     * {
-      color: #fff;
+      //color: #fff;
     }
-      background:rgba(0,0,0,0.6);
-      transition: all 0.2s;
+      //background:rgba(0,0,0,0.6);
+      //transition: all 0.2s;
   }
 
 }

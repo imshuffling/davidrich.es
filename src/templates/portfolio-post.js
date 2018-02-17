@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 class PortfolioPost extends Component {
   render() {
       //console.log(this.props)
-      const { title, image, tag, content, largeMedia } = this.props.data.contentfulPortfolio
+      const { title, image, tag, content } = this.props.data.contentfulPortfolio
       return (
           <section id="portfolio-item" className="animated fadeIn">
               <p className="tag">{tag}</p>
@@ -30,12 +30,6 @@ export const pageQuery = graphql`
             title
             tag
             createdAt(formatString: "MMMM DD, YYYY")
-            largeMedia {
-              id
-              file {
-                url
-              }
-            }
             image {
                 sizes(maxWidth: 999) {
                     ...GatsbyContentfulSizes
