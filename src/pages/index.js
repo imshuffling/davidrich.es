@@ -73,6 +73,7 @@ export const pageQuery = graphql`
                     title
                     tag
                     slug
+                    description
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
                         sizes(maxWidth: 999) {
