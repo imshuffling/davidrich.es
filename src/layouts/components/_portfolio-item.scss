@@ -1,16 +1,21 @@
 #portfolio-item {
-  max-width: 999px;
+  max-width: 960px;
+  margin: 0px auto;
 
   .gatsby-image-outer-wrapper {
     margin-bottom: 20px;
   }
 
+  .tag {
+    margin-bottom: 0;
+  }
+
   .Page-title {
     margin-top: 0;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
   }
 }
 
 .back-to-home {
-  margin-top: 40px;
+  margin: 20px 0;
 }

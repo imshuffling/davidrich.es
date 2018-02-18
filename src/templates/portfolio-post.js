@@ -4,15 +4,14 @@ import Img from "gatsby-image"
 
 class PortfolioPost extends Component {
   render() {
-      //console.log(this.props)
-      const { title, image, tag, content } = this.props.data.contentfulPortfolio
+      console.log(this.props)
+      const { title, image, tag, content, largeMedia } = this.props.data.contentfulPortfolio
       return (
-          <section id="portfolio-item" className="animated fadeIn">
-              <p className="tag">{tag}</p>
+          <section id="portfolio-item">
               <h1 className="Page-title">{title}</h1>
-              <Img sizes={image.sizes}/>
+              <p>{tag}</p>
+              <Img resolutions={image.resolutions}/>
               <div dangerouslySetInnerHTML={{__html:content.childMarkdownRemark.html}} />
-              <a className="back-to-home" href="/">Back to home</a>
           </section>
       )
   }
@@ -31,8 +30,8 @@ export const pageQuery = graphql`
             tag
             createdAt(formatString: "MMMM DD, YYYY")
             image {
-                sizes(maxWidth: 999) {
-                    ...GatsbyContentfulSizes
+                resolutions(width: 960) {
+                    ...GatsbyContentfulResolutions
                 }
                 file {
                   url
