@@ -54,6 +54,10 @@ html, body {
     height: 100%;
 }
 
+#home {
+  scroll-behavior: smooth;
+}
+
 .container-wrap {
   min-height: 100%;
   display: grid;
