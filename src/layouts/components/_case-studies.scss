@@ -229,7 +229,8 @@
     }
 
     &#brand-hub {
-
+      background-size: contain;
+      background-color: #E9E9E9;
     }
   }
 
@@ -259,6 +260,4 @@
 
 .no-webp #brand-hub {
   background-image: url('../images/brand-hub-logo.jpg') !important;
-  background-size: contain;
-  background-color: #E9E9E9;
 }
