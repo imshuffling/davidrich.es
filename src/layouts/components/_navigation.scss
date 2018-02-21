@@ -44,10 +44,10 @@ header {
       color: #4A4A4A;
       font-size: 1.1764705882352942rem;
       padding-bottom: 2px;
-      transition: all 0.2s;
+      transition: all 0.2s ease-in-out;
       &.active {
         box-shadow: 0 1px 0 rgba(168, 100, 168, 0.2901960784313726);
-        transition: all 0.2s;
+        transition: all 0.2s ease-in-out;
       }
     }
   }
