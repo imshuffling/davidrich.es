@@ -229,8 +229,7 @@
     }
 
     &#brand-hub {
-      background-size: contain;
-      background-color: #E9E9E9;
+
     }
   }
 
@@ -243,4 +242,23 @@
       transition: all 0.2s;
   }
 
+}
+
+
+.no-webp #mary-jane-speechtherapy {
+  background-image: url('../images/mj-speechtherapy.jpg') !important;
+}
+
+.no-webp #wateraid  {
+  background-image: url('../images/wateraid.jpg') !important;
+}
+
+.no-webp #hb-cleaning {
+  background-image: url('../images/carpet_cleaning_update.jpg') !important;
+}
+
+.no-webp #brand-hub {
+  background-image: url('../images/brand-hub-logo.jpg') !important;
+  background-size: contain;
+  background-color: #E9E9E9;
 }

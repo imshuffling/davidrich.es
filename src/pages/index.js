@@ -6,8 +6,6 @@ import Typist from 'react-typist'
 
 const IndexPage = (props) => {
     //console.log(props)
-
-
     return (
       <section id='home' className="animated fadeIn">
         <div className="control-width">
