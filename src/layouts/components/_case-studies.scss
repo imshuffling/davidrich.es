@@ -66,6 +66,7 @@
 
       span {
         font-size: .9rem;
+        display: inline-block;
       }
 
       @include breakpoint(medium) {
