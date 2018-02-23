@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "^1.9.194",
+    "gatsby": "^1.9.207",
     "gatsby-image": "^1.0.35",
     "gatsby-link": "^1.6.28",
     "gatsby-plugin-catch-links": "^1.0.15",
@@ -17,7 +17,6 @@
     "gatsby-source-contentful": "^1.3.23",
     "gatsby-transformer-remark": "^1.7.31",
     "react-anchor-link-smooth-scroll": "^1.0.5",
-    "react-typist": "^2.0.4",
     "smoothscroll-polyfill": "^0.4.0"
   },
   "keywords": [

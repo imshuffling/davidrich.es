@@ -17,4 +17,11 @@ window.onload = function() {
       document.querySelector("body").classList.add('no-webp');
     }
   })();
+
+
+  /*document.getElementById('toggle').onclick = function() {
+      this.classList.toggle('active');
+  }*/
+
+
 }

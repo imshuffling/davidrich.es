@@ -2,19 +2,13 @@ import React from 'react'
 import Link from 'gatsby-link'
 import Img from "gatsby-image"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import Typist from 'react-typist'
 
 const IndexPage = (props) => {
     //console.log(props)
     return (
-      <section id='home' className="animated fadeIn">
-        <div className="control-width">
-          <h1 className="page-title">Hello
-
-          <Typist
-            startDelay={200}
-            cursor={{ hideWhenDone: true }}
-            className="page-title"> I'm David. </Typist></h1>
+      <section id='home'>
+        <div className="heading-wrap">
+          <h1 className="page-title">Hello I'm David.</h1>
 
           <h2 className="strap-line">A Front-end developer&nbsp;&amp; part-time hockey player from London.<br />
             <span>I like making things on the web,&nbsp;

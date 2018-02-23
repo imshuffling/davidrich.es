@@ -16,6 +16,48 @@ header {
     flex-direction: row;
     align-items: center;
   }
+
+  /*    #toggle {
+        height: 50px;
+        width: 50px;
+        display: block;
+        background: red;
+        border-radius: 250px;
+        text-indent: -9999px;
+        z-index: 11;
+        position: fixed;
+
+        @include breakpoint(medium) {
+          display: none;
+        }
+
+        &.active {
+          + #navigation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #E5E5E5;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            visibility: visible;
+            li {
+              align-self: flex-start;
+              padding: 0;
+              margin-left: 7.2%;
+              margin-top: 25px;
+              margin-bottom: 25px;
+              a {
+                font-size: 4rem;
+              }
+            }
+          }
+        }
+      }*/
 }
 
 #navigation {
@@ -23,6 +65,11 @@ header {
   padding: 0;
   list-style: none;
   display: flex;
+  visibility: hidden;
+
+  @include breakpoint(medium) {
+    visibility: visible;
+  }
 
   li {
     padding: 10px 10px;
@@ -57,7 +104,7 @@ header {
   //font-family: $bebas;
   font-size: 1.8823529411764706rem;
   letter-spacing: -1px;
-  margin-left: 0;
+  margin-left: auto;
   line-height: 1;
   animation-play-state: paused;
 

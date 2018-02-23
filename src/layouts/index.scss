@@ -3,8 +3,6 @@
 @import "components/components";
 @import "variables/variables";
 
-// @import "grid-settings";
-
 @font-face {
     font-family: 'BebasNeueRegular';
     src: url('../fonts/BebasNeue-webfont.eot');
@@ -18,6 +16,12 @@
 
 #logo {
   font-family: $bebas;
+  a {
+    //color: #6b6b6b;
+    //&:hover, &:focus {
+      //color: #A864A8;
+    //}
+  }
 }
 
 html {
