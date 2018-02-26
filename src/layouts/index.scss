@@ -34,6 +34,7 @@ html {
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
 }
 
@@ -134,22 +135,20 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
-.animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
-
-@keyframes fadeIn {
-  from {
+@keyframes header__fadeIn {
+  0% {
     opacity: 0;
   }
 
-  to {
+  100% {
     opacity: 1;
   }
 }
 
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
+#logo {
+  //animation: header__fadeIn .5s ease 1.5s backwards;
+}
+
+#case-studies {
+  //animation: header__fadeIn 2s ease .3s backwards;
 }

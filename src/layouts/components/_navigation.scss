@@ -65,7 +65,8 @@ header {
   padding: 0;
   list-style: none;
   display: flex;
-  visibility: hidden;
+  //visibility: hidden;
+  visibility: visible;
 
   @include breakpoint(medium) {
     visibility: visible;
@@ -104,18 +105,20 @@ header {
   //font-family: $bebas;
   font-size: 1.8823529411764706rem;
   letter-spacing: -1px;
-  margin-left: auto;
+  margin-right: auto;
   line-height: 1;
   animation-play-state: paused;
 
   @include breakpoint(medium) {
     font-size: 1.8823529411764706rem;
     margin-left: auto;
+    margin-right: 0;
   }
 
   @include breakpoint(large) {
     font-size: 2.3529411764705883rem;
     margin-left: auto;
+    margin-right: 0;
   }
 
   a {
