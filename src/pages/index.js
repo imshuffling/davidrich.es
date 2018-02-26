@@ -9,7 +9,6 @@ const IndexPage = (props) => {
       <section id='home'>
         <div className="heading-wrap">
           <h1 className="page-title">Hello I'm David.</h1>
-
           <h2 className="strap-line">A Front-end developer&nbsp;&amp; part-time hockey player from London.<br />
             <span>I like making things on the web,&nbsp;
             <AnchorLink offset='30' href='#case-studies'>view my portfolio</AnchorLink>

@@ -1,5 +1,7 @@
-// browser check for webp support
+
 window.onload = function() {
+
+  // browser check for webp support
   async function supportsWebp() {
     if (!self.createImageBitmap) return false;
 
@@ -18,10 +20,12 @@ window.onload = function() {
     }
   })();
 
-
-  /*document.getElementById('toggle').onclick = function() {
-      this.classList.toggle('active');
-  }*/
-
+  // add target blank to a href
+  var anchors = document.getElementsByTagName('a');
+  for (var i=0; i<anchors.length; i++){
+    if (anchors[i].hostname != window.location.hostname) {
+        anchors[i].setAttribute('target', '_blank');
+    }
+  }
 
 }
