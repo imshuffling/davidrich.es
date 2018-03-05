@@ -24,6 +24,7 @@ const Footer = () => (
   </footer>
 )
 
+
 const TemplateWrapper = ({ children }) => (
   <section className="container-wrap">
     <Helmet

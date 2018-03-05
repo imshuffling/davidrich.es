@@ -1,8 +1,8 @@
 // Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Crimson+Text:400,400i|Karla:400,700);
+@import url(https://fonts.googleapis.com/css?family=Karla:400,700);
 
 // Font Variables
-$crimson: "Crimson Text", serif;
+//$crimson: "Crimson Text", serif;
 $karla: 'Karla', sans-serif;
 $bebas: 'BebasNeueRegular';
 
@@ -107,8 +107,4 @@ ul, ol {
 .tag {
   color: $altblack;
   font-size: 0.9rem;
-}
-
-header {
-  font-family: $crimson;
 }

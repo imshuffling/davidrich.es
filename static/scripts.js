@@ -1,4 +1,3 @@
-
 window.onload = function() {
 
   // browser check for webp support
@@ -12,10 +11,10 @@ window.onload = function() {
 
   (async () => {
     if(await supportsWebp()) {
-      //console.log('does support');
+      console.log('does support');
     }
     else {
-      //console.log('does not support');
+      console.log('does not support');
       document.querySelector("body").classList.add('no-webp');
     }
   })();
