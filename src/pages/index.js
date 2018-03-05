@@ -6,7 +6,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 const IndexPage = (props) => {
     //console.log(props)
     return (
-      <section id='home'>
+      <section id='home' className="animated fadeIn">
         <div className="heading-wrap">
           <h1 className="page-title">Hello I'm David.</h1>
           <h2 className="strap-line">A Front-end developer&nbsp;&amp; part-time hockey player from London.<br />

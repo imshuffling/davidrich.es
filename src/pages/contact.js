@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 const Contact = () => (
-  <section id='contact'>
+  <section id='contact' className="animated fadeIn">
 
     <section>
       <h1 className="page-title">Contact me</h1>

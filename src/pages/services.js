@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'gatsby-link'
 
 const Services = () => (
-  <section id='services'>
+  <section id='services' className="animated fadeIn">
     <h1 className="page-title">Services</h1>
     <ul>
       <li>

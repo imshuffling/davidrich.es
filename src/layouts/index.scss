@@ -42,7 +42,6 @@ body {
   margin-top: 0;
   margin-bottom: 0;
   background: #fff;
-  border-top: 3px solid #e5e5e5;
 }
 
 html {
@@ -135,7 +134,7 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
-@keyframes header__fadeIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -143,6 +142,15 @@ input[type="email"] {
   100% {
     opacity: 1;
   }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
 }
 
 #logo {
