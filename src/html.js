@@ -33,7 +33,6 @@ module.exports = class HTML extends React.Component {
           <meta name="theme-color" content="#A864A8" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="shortcut icon" type="image/png" href={favicon} />
-          <script type="text/javascript" src="scripts.js" />
           {this.props.headComponents}
           {css}
           <noscript>Your browser does not support JavaScript!</noscript>
