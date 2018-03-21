@@ -66,7 +66,7 @@ export const pageQuery = graphql`
                     slug
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
-                      sizes(maxWidth: 850) {
+                      sizes(maxWidth: 800) {
                           ...GatsbyContentfulSizes
                       }
                     }
