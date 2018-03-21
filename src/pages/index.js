@@ -24,25 +24,19 @@ const IndexPage = (props) => {
     )
 }
 
-/*const PortfolioPost = ({node}) => {
-  return (
-      <div className="item" id={node.slug} style={{
-          backgroundImage: `url(${node.image.file.url})`
-      }}>
-        <div className="item-inner">
-          <span>{node.tag}</span>
-          <h3><Link to={node.slug}>{node.title}</Link></h3>
-          <div className="item-inner__content" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
-        </div>
-      </div>
-  )
-}*/
-
 const PortfolioPost = ({node}) => {
   return (
-      <div className="item" id={node.slug} style={{
-          backgroundImage: `url(${node.image.file.url})`
-      }}>
+      <div className="item" id={node.slug}>
+
+      <Img style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%'
+      }}
+      sizes={node.image.sizes} />
+
         <div className="item-inner">
           <span>{node.tag}</span>
           <h3>{node.title}</h3>
@@ -72,12 +66,9 @@ export const pageQuery = graphql`
                     slug
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
-                      sizes(maxWidth: 999) {
+                      sizes(maxWidth: 850) {
                           ...GatsbyContentfulSizes
                       }
-                        file {
-                          url
-                        }
                     }
                     content {
                       childMarkdownRemark {
