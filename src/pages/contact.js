@@ -26,7 +26,7 @@ const Contact = () => (
         </span>
       </h2>
 
-      <form name="contact" method="POST" action="/thanks" data-netlify="true" data-netlify-honeypot="bot-field">
+      <form name="contact-form" method="POST" action="/thanks" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="email" name="email" placeholder="Your email" required/>
         <textarea name="message" placeholder="Your message" required></textarea>
         <button type="submit">Send</button>
