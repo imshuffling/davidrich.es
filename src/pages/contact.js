@@ -26,12 +26,12 @@ const Contact = () => (
         </span>
       </h2>
 
-      <form method="POST" action="https://formspree.io/hi@davidrich.es">
+      <form name="contact" method="POST" netlify>
         <input type="email" name="email" placeholder="Your email" required/>
         <textarea name="message" placeholder="Your message" required></textarea>
+        <div netlify-recaptcha></div>
         <button type="submit">Send</button>
       </form>
-
 
     </section>
   </section>
