@@ -26,10 +26,19 @@ const Contact = () => (
         </span>
       </h2>
 
-      <form name="contact-form" method="POST" action="/thanks" data-netlify="true" data-netlify-honeypot="bot-field">
-        <input type="email" name="email" placeholder="Your email" required/>
-        <textarea name="message" placeholder="Your message" required></textarea>
-        <button type="submit">Send</button>
+      <form name="contact-test" method="POST" netlify>
+        <p>
+          <label>Your Name: <input type="text" name="name" /></label>
+        </p>
+        <p>
+          <label>Your Email: <input type="email" name="email" /></label>
+        </p>
+        <p>
+          <label>Message: <textarea name="message"></textarea></label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
       </form>
 
     </section>
