@@ -26,19 +26,10 @@ const Contact = () => (
         </span>
       </h2>
 
-      <form name="contact-test" method="POST" netlify>
-        <p>
-          <label>Your Name: <input type="text" name="name" /></label>
-        </p>
-        <p>
-          <label>Your Email: <input type="email" name="email" /></label>
-        </p>
-        <p>
-          <label>Message: <textarea name="message"></textarea></label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
+      <form method="POST" action="https://formspree.io/hi@davidrich.es">
+        <input type="email" name="email" placeholder="Your email" required/>
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send</button>
       </form>
 
     </section>
