@@ -134,24 +134,24 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-    animation-name: fadeIn;
-}
-
-.animated {
-    animation-duration: 1s;
-    animation-fill-mode: both;
-}
+// @keyframes fadeIn {
+//   0% {
+//     opacity: 0;
+//   }
+//
+//   100% {
+//     opacity: 1;
+//   }
+// }
+//
+// .fadeIn {
+//     animation-name: fadeIn;
+// }
+//
+// .animated {
+//     animation-duration: 1s;
+//     animation-fill-mode: both;
+// }
 
 #logo {
   //animation: header__fadeIn .5s ease 1.5s backwards;
