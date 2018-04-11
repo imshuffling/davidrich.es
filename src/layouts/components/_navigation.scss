@@ -9,7 +9,7 @@ header {
   }
 
   @include breakpoint(large) {
-    position: relative;
+    //position: relative;
     background: none;
     padding-top: 90px;
     padding-bottom: 50px;

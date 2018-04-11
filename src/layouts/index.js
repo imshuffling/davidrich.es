@@ -5,6 +5,8 @@ import Helmet from 'react-helmet'
 
 import './index.scss'
 
+//
+
 const Header = () => (
   <header>
     <ul id="navigation">
@@ -12,7 +14,11 @@ const Header = () => (
       <li><Link to='/services' activeClassName="active">Services</Link></li>
       <li><Link to='/contact' activeClassName="active">Contact</Link></li>
     </ul>
-    <div id="logo"><Link to='/'>David Riches</Link></div>
+
+
+<div id="logo"><Link to='/' className="word">David Riches</Link></div>
+
+
   </header>
 )
 

@@ -1,6 +1,8 @@
 import React from "react"
 import favicon from './favicon.png';
 
+
+
 let stylesStr
 if (process.env.NODE_ENV === `production`) {
   try {
@@ -13,6 +15,7 @@ if (process.env.NODE_ENV === `production`) {
 module.exports = class HTML extends React.Component {
   render() {
     let css
+
     if (process.env.NODE_ENV === `production`) {
       css = (
         <style
@@ -44,6 +47,8 @@ module.exports = class HTML extends React.Component {
             id="___gatsby"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
+
+          <script type="text/javascript" src="scripts.js" />
           {this.props.postBodyComponents}
         </body>
       </html>

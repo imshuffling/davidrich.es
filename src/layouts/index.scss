@@ -42,19 +42,11 @@ body {
   margin-top: 0;
   margin-bottom: 0;
   background: #fff;
-}
-
-html {
-  background: #e5e5e5;
+  position: relative;
 }
 
 html, body {
     width: 100%;
-    //height: 100%;
-}
-
-#___gatsby {
-    //height: 100%;
 }
 
 #home {
@@ -134,29 +126,38 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
-// @keyframes fadeIn {
-//   0% {
-//     opacity: 0;
-//   }
-//
-//   100% {
-//     opacity: 1;
-//   }
-// }
-//
-// .fadeIn {
-//     animation-name: fadeIn;
-// }
-//
-// .animated {
-//     animation-duration: 1s;
-//     animation-fill-mode: both;
-// }
 
-#logo {
-  //animation: header__fadeIn .5s ease 1.5s backwards;
+#logo, #navigation {
+  animation: fadeIn 2s ease var(--delay,2.8s) backwards;
+}
+
+.heading-wrap span {
+  animation: fadeIn 1s ease var(--delay) backwards;
+}
+
+.heading-wrap .page-title {
+  animation: fadeIn 3s ease .3s backwards;
 }
 
 #case-studies {
-  //animation: header__fadeIn 2s ease .3s backwards;
+  animation: fadeIn 2s ease 2.8s backwards;
+}
+
+// page is loaded....
+body.loaded {
+  .heading-wrap span,
+  .heading-wrap .page-title,
+  #case-studies {
+    animation: none;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
