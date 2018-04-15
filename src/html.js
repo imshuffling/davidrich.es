@@ -48,7 +48,18 @@ module.exports = class HTML extends React.Component {
             dangerouslySetInnerHTML={{ __html: this.props.body }}
           />
 
-          <script type="text/javascript" src="scripts.js" />
+          <script
+              dangerouslySetInnerHTML={{ __html:
+                `
+                window.onload = function() {
+                  setTimeout(function() {
+                      document.body.classList.add('loaded');
+                  }, (4*1000)); //4 seconds
+                }
+
+                `,
+              }}
+          />
           {this.props.postBodyComponents}
         </body>
       </html>

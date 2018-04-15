@@ -139,15 +139,60 @@ input[type="email"] {
   animation: fadeIn 3s ease .3s backwards;
 }
 
-#case-studies {
-  animation: fadeIn 2s ease 2.8s backwards;
+#case-studies .item {
+  //animation: fadeIn 2s ease 2.8s backwards;
+  animation: card__moveIn 3s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
+
+
+  &:nth-child(1) {
+    --delay: 2s;
+  }
+
+  &:nth-child(2) {
+    --delay: 2.1666666666666665s;
+  }
+
+  &:nth-child(3) {
+    --delay: 2.3333333333333335s;
+  }
+
+  &:nth-child(4) {
+    --delay: 2.5s;
+  }
+
+  &:nth-child(5) {
+    --delay: 2.6666666666666665s;
+  }
+
+  &:nth-child(6) {
+    --delay: 2.8333333333333335s;
+  }
+
+  &:nth-child(7) {
+    --delay: 3s;
+  }
+
+  &:nth-child(8) {
+    --delay: 3.166666666666667s;
+  }
+}
+
+@keyframes card__moveIn {
+  0% {
+      opacity: 0;
+      transform: translateY(60px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
 }
 
 // page is loaded....
 body.loaded {
   .heading-wrap span,
   .heading-wrap .page-title,
-  #case-studies {
+  #case-studies .item {
     animation: none;
   }
 }
