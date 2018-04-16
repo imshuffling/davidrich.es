@@ -50,20 +50,6 @@ h2 {
   @include breakpoint(large) {
     font-size: 1.8823529411764706rem;
   }
-
-  &.strap-line {
-    span {
-      margin-top: 15px;
-      display: inline-block;
-      @include breakpoint(medium) {
-        margin-top: 0;
-      }
-      @include breakpoint(large) {
-        margin-top: 0;
-      }
-    }
-  }
-
 }
 
 h3 {
