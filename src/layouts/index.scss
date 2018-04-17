@@ -15,16 +15,11 @@
 }
 
 #logo {
-  font-family: $bebas;
+  font-family: var(--logo-font);
 }
 
 html {
   margin: 0px auto;
-  background-position: 0 0;
-  background-repeat: repeat;
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -33,20 +28,20 @@ html {
 }
 
 body {
-  font-family: $karla;
+  font-family: var(--base-font);
   font-weight: normal;
-  color: $black;
+  color: var(--black);
   line-height: 1.42857;
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  background: #fff;
+  background: white;
   position: relative;
 }
 
 html, body {
-    width: 100%;
+  width: 100%;
 }
 
 #home {
@@ -101,7 +96,7 @@ textarea {
 }
 
 button {
-  background-color: $purple;
+  background-color: var(--primary-colour);
   border: none;
   color: white;
   padding: 12px 30px;

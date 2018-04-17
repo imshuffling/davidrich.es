@@ -1,8 +1,6 @@
 import React from "react"
 import favicon from './favicon.png';
 
-
-
 let stylesStr
 if (process.env.NODE_ENV === `production`) {
   try {
@@ -51,12 +49,12 @@ module.exports = class HTML extends React.Component {
           <script
               dangerouslySetInnerHTML={{ __html:
                 `
+
                 window.onload = function() {
                   setTimeout(function() {
                       document.body.classList.add('loaded');
                   }, (4*1000)); //4 seconds
                 }
-
                 `,
               }}
           />

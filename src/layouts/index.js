@@ -5,7 +5,10 @@ import Helmet from 'react-helmet'
 
 import './index.scss'
 
-//
+if (typeof window !== 'undefined') {
+  // Make scroll behavior of internal links smooth
+  require('smooth-scroll')('a[href*="#"]');
+}
 
 const Header = () => (
   <header>
@@ -14,17 +17,13 @@ const Header = () => (
       <li><Link to='/services' activeClassName="active">Services</Link></li>
       <li><Link to='/contact' activeClassName="active">Contact</Link></li>
     </ul>
-
-
-<div id="logo"><Link to='/' className="word">David Riches</Link></div>
-
-
+    <div id="logo"><Link to='/' className="word">David Riches</Link></div>
   </header>
 )
 
 const Footer = () => (
   <footer>
-    <div className="Footer-inner">
+    <div>
       <p>David Riches © 2018 🏑</p>
     </div>
   </footer>

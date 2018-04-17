@@ -1,13 +1,18 @@
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Karla:400,700|Crimson+Text);
 
-// Font Variables
-$crimson: "Crimson Text", serif;
-$karla: 'Karla', sans-serif;
-$bebas: 'BebasNeueRegular';
+:root {
+  --base-font:             'Karla', sans-serif;
+  --secondary-font:        'Crimson Text', serif;
+  --logo-font:             'BebasNeueRegular';
+
+  --primary-colour:        #A864A8;
+  --black:                 rgb(57, 53, 49);
+  --alt-black:             #9c9c9c;
+  --grey:                  #E5E5E5;
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $karla;
   margin: 10px 0 20px;
   font-weight: 400;
 }
@@ -62,11 +67,11 @@ h3 {
 
 a {
   transition: all .2s ease 0s;
-  color: $purple;
+  color: var(--primary-colour);
   text-decoration: none;
   display: inline-block;
   &:hover {
-    box-shadow: 0 1px 0 #E5E5E5;
+    box-shadow: 0 1px 0 var(--grey);
   }
 }
 
@@ -86,11 +91,7 @@ ul, ol {
   }
 }
 
-.Typist {
-  display: inline;
-}
-
 .tag {
-  color: $altblack;
+  color: var(--alt-black);
   font-size: 0.9rem;
 }
