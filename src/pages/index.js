@@ -39,7 +39,7 @@ const PortfolioPost = ({node}) => {
         width: '100%',
         height: '100%'
       }}
-      sizes={node.image.sizes} />
+      resolutions={node.image.resolutions} />
 
         <div className="item-inner">
           <span>{node.tag}</span>
@@ -70,8 +70,8 @@ export const pageQuery = graphql`
                     slug
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
-                      sizes(maxWidth: 800) {
-                          ...GatsbyContentfulSizes
+                      resolutions(width: 800) {
+                          ...GatsbyContentfulResolutions_withWebp
                       }
                     }
                     content {

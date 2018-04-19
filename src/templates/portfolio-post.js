@@ -31,7 +31,7 @@ export const pageQuery = graphql`
             createdAt(formatString: "MMMM DD, YYYY")
             image {
                 resolutions(width: 960) {
-                    ...GatsbyContentfulResolutions
+                    ...GatsbyContentfulResolutions_withWebp
                 }
                 file {
                   url
