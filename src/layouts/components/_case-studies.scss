@@ -134,73 +134,22 @@
 
       a {
         font-size: 15px;
+        box-shadow: 0 1px 0 var(--grey);
         @include breakpoint(medium) {
           font-size: 17px;
-        }
-
-        @include breakpoint(large) {
-          font-size: 17px;
+          box-shadow: none;
+          &:hover {
+            box-shadow: 0 1px 0 var(--grey);
+          }
         }
       }
     }
-
-    /*&#wateraid {
-      background-image: url('../images/wateraid-video-bg.png');
-      color: #fff;
-
-      .overlay {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        z-index: 2;
-        transition: all 0.2s;
-        background:rgba(0,0,0,0.6);
-
-        @include breakpoint(medium) {
-          background: none;
-        }
-
-        @include breakpoint(large) {
-          background: none;
-        }
-
-
-        &:hover, &:active, &:focus {
-          background:rgba(0,0,0,0.6);
-          transition: all 0.2s;
-        }
-      }
-
-      .item-inner {
-        overflow: hidden;
-
-        h3, span {
-          z-index: 4;
-          position: relative;
-          line-height: 1.1;
-        }
-
-        .case-study-video {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-          min-width: 100%;
-          min-height: 100%;
-          width: auto;
-          height: auto;
-        }
-      }
-    }*/
 
     &#mary-jane-speechtherapy {
       color: #fff;
     }
 
-    &#wateraid  {
+    &#wateraid {
       color: #fff;
     }
 
@@ -234,22 +183,4 @@
       background:rgba(0,0,0,0.6);
       transition: all 0.2s;
   }
-
 }
-
-
-// .no-webp #mary-jane-speechtherapy {
-//   background-image: url('../images/mj-speechtherapy.jpg') !important;
-// }
-//
-// .no-webp #wateraid  {
-//   background-image: url('../images/wateraid.jpg') !important;
-// }
-//
-// .no-webp #hb-cleaning {
-//   background-image: url('../images/carpet_cleaning_update.jpg') !important;
-// }
-//
-// .no-webp #brand-hub {
-//   background-image: url('../images/brand-hub-logo.jpg') !important;
-// }
