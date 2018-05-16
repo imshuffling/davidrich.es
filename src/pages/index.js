@@ -59,7 +59,7 @@ export const pageQuery = graphql`
                 node_locale: {eq: "en-GB"}
             },
             sort: {
-                fields: [createdAt], order: ASC
+                fields: [sortOrder], order: ASC
             }
         ) {
             edges {
@@ -68,6 +68,7 @@ export const pageQuery = graphql`
                     title
                     tag
                     slug
+                    sortOrder
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
                       resolutions(width: 800) {
