@@ -1,14 +1,23 @@
 const path = require('path')
 
-exports.modifyWebpackConfig = ({ config, stage }) => {
-  if (stage === 'build-javascript') {
-    // turn off source-maps
-    config.merge({ devtool: false });
-  }
-};
+// exports.onCreateWebpackConfig = ({ stage, actions }) => {
+//   if (stage === 'build-javascript') {
+//     // turn off source-maps
+//     config.merge({ devtool: false });
+//   }
+// };
 
-exports.createPages = ({graphql, boundActionCreators}) => {
-    const {createPage} = boundActionCreators
+// exports.onCreateWebpackConfig = ({ stage, actions }) => {
+//   switch (stage) {
+//     case `build-javascript`:
+//        actions.setWebpackConfig({
+//          plugins: [webpackFooPlugin],
+//        })
+//    }
+// }
+
+exports.createPages = ({graphql, actions}) => {
+    const {createPage} = actions
     return new Promise((resolve, reject) => {
         const PortfolioPostTemplate = path.resolve('src/templates/portfolio-post.js')
         resolve(

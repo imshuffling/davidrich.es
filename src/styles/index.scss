@@ -14,6 +14,7 @@
     font-style: normal;
 }
 
+
 #logo {
   font-family: var(--logo-font);
 }
@@ -123,7 +124,7 @@ input[type="email"] {
 
 
 #logo, #navigation {
-  animation: fadeIn 2s ease var(--delay,2.8s) backwards;
+  //animation: fadeIn 2s ease var(--delay,2.8s) backwards;
 }
 
 .heading-wrap span {

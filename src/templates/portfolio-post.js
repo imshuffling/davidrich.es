@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import Img from "gatsby-image"
 
-class PortfolioPost extends Component {
+class PortfolioPost extends React.Component {
   render() {
       console.log(this.props)
-      const { title, image, tag, content, largeMedia } = this.props.data.contentfulPortfolio
+      const { title, image, tag, content } = this.props.data.contentfulPortfolio
       return (
           <section id="portfolio-item">
               <h1 className="Page-title">{title}</h1>

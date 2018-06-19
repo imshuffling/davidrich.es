@@ -7,6 +7,8 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-catch-links`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -28,6 +30,15 @@ module.exports = {
             type: `image/png`,
           },
         ],
+      },
+    },
+    {
+    resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `#A864A8`,
+        // Disable the loading spinner.
+        showSpinner: false,
       },
     },
     `gatsby-plugin-offline`,

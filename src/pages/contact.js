@@ -1,6 +1,8 @@
 import React from 'react'
 import { navigateTo } from 'gatsby-link'
 
+import Layout from "../components/layout"
+
 function encode(data) {
   return Object.keys(data)
       .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
@@ -31,6 +33,7 @@ export default class Contact extends React.Component {
 
   render() {
     return (
+      <Layout>
       <section id='contact' className="animated fadeIn">
 
         <section>
@@ -75,6 +78,7 @@ export default class Contact extends React.Component {
 
         </section>
       </section>
+      </Layout>
     );
   }
 }
