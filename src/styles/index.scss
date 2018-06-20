@@ -38,12 +38,14 @@ body {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  background: white;
+  //background: white;
+  background: linear-gradient(120deg, rgb(244, 0, 136), rgb(101, 31, 255));
+  padding: 10px;
   position: relative;
 }
 
 html, body {
-  width: 100%;
+  //width: 100%;
 }
 
 #home {
@@ -59,6 +61,7 @@ html, body {
   grid-template-columns: 100%;
   padding-left: 7%;
   padding-right: 7%;
+  background: #fff;
 }
 
 form {

@@ -15,7 +15,7 @@ header {
     padding-bottom: 50px;
     flex-direction: row-reverse;
 
-    
+
     align-items: center;
   }
 }
@@ -35,7 +35,7 @@ header {
     padding: 10px 10px;
     line-height: 1;
     margin-bottom: 0;
-    font-family: "Crimson Text",Georgia,Serif;
+    //font-family: "Crimson Text",Georgia,Serif;
 
     @include breakpoint(medium) {
       padding: 10px 10px;
@@ -50,8 +50,8 @@ header {
     }
     a {
       color: #4A4A4A;
-      font-size: 1.1764705882352942rem;
-      //font-size: 1rem;
+      //font-size: 1.1764705882352942rem;
+      font-size: 1rem;
       padding-bottom: 2px;
       transition: all 0.2s ease-in-out;
       &.active {
