@@ -3,7 +3,7 @@ import React from "react"
 const Footer = () => (
   <footer>
     <div>
-      <p><span aria-labelledby="jsx-a11y/accessible-emoji" role="img">🏑</span> David Riches © 2018</p>
+      <p><span role="img" alt="Hockey stick emoji" aria-label="Hockey">🏑</span> David Riches © 2018</p>
     </div>
   </footer>
 )

@@ -19,6 +19,7 @@
     "gatsby-transformer-sharp": "next",
     "node-sass": "^4.9.0",
     "react": "^16.4.1",
+    "react-anchor-link-smooth-scroll": "^1.0.10",
     "react-dom": "^16.4.1",
     "react-helmet": "^5.2.0"
   },
