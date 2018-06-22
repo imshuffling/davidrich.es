@@ -28,13 +28,13 @@
     position: relative;
     height: 100%;
     width: 100%;
-    min-height: 300px;
+    min-height: 400px;
 
     grid-column: span 1;
     overflow: hidden;
 
     @include breakpoint(medium) {
-        min-height: 300px;
+        min-height: 350px;
     }
 
     @include breakpoint(large) {
@@ -61,6 +61,7 @@
       span {
         //font-size: .8rem;
         display: inline-block;
+        line-height: 1.1;
       }
 
       @include breakpoint(medium) {
@@ -97,7 +98,7 @@
       transform: translate3d(0,0,0);
       z-index: 4;
       position: relative;
-      font-size: 15px;
+      //font-size: 15px;
       @include breakpoint(medium) {
         -webkit-transform: translate3d(-5px,0,0);
         transform: translate3d(-5px,0,0);
@@ -116,7 +117,7 @@
 
 
       p {
-        font-size: 15px;
+        //font-size: 15px;
         @include breakpoint(medium) {
           font-size: 1.0588235294117647rem;
         }
@@ -127,7 +128,7 @@
       }
 
       a {
-        font-size: 15px;
+        //font-size: 15px;
         box-shadow: 0 1px 0 var(--grey);
         @include breakpoint(medium) {
           font-size: 17px;
