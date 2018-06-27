@@ -41,6 +41,15 @@
         min-height: 460px;
     }
 
+    video {
+      position: absolute;
+      left: 0;
+      object-fit: cover;
+      width: 100%;
+      top: 0;
+      height: 100%;
+    }
+
     .item-inner {
       padding: 25px 7% 25px 7%;
       transition: all .2s ease 0s;

@@ -32,17 +32,26 @@ export default (props) => (
     )
 
 const PortfolioPost = ({ node }) => {
+
+  console.log(node)
+
   return (
       <div className="item" id={node.slug}>
 
-      <Img style={{
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        width: '100%',
-        height: '100%'
-      }}
-      fixed={node.image.fixed} />
+        <Img style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%'
+        }}
+        fixed={node.image.fixed} />
+
+        {node.media !== null &&
+          <video loop muted autoPlay>
+          	<source src={node.media.file.url} type="video/mp4" />
+          </video>
+        }
 
         <div className="item-inner">
           <span>{node.tag}</span>
@@ -79,6 +88,11 @@ export const pageQuery = graphql`
                     content {
                       childMarkdownRemark {
                         html
+                      }
+                    }
+                    media {
+                      file {
+                        url
                       }
                     }
                 }
