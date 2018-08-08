@@ -48,7 +48,7 @@ const PortfolioPost = ({ node }) => {
         fixed={node.image.fixed} />
 
         {node.media !== null &&
-          <video loop muted autoPlay>
+          <video loop muted autoPlay playsInline>
           	<source src={node.media.file.url} type="video/mp4" />
           </video>
         }
