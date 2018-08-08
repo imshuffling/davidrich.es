@@ -33,7 +33,7 @@ export default (props) => (
 
 const PortfolioPost = ({ node }) => {
 
-  console.log(node)
+  //console.log(node)
 
   return (
       <div className="item" id={node.slug}>
