@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 export default () => (
   <Layout>
     <section id='services' className="animated fadeIn">
-      <h1 className="page-title">What I do</h1>
+      <h1 className="page-title">Services</h1>
       <ul>
         <li>
           <h3>Front-end Development</h3>
