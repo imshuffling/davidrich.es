@@ -45,20 +45,15 @@ body {
   margin-bottom: 0;
   //background: white;
   background: linear-gradient(120deg, rgb(244, 0, 136), rgb(101, 31, 255));
-  padding: 10px;
+  padding: 4px;
   position: relative;
-}
-
-html {
-  //width: 100%;
+  @include breakpoint(medium) {
+    padding: 10px;
+  }
 }
 
 #home {
   scroll-behavior: smooth;
-}
-
-#___gatsby {
-  
 }
 
 .container-wrap {
@@ -71,6 +66,7 @@ html {
   padding-left: 7%;
   padding-right: 7%;
   background: #fff;
+  border-radius: 2px;
 }
 
 @keyframes fadeIn {
