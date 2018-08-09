@@ -5,11 +5,11 @@ import Layout from "../components/layout"
 export default () => (
   <Layout>
     <section id='services' className="animated fadeIn">
-      <h1 className="page-title">Services</h1>
+      <h1 className="page-title">What I do</h1>
       <ul>
         <li>
           <h3>Front-end Development</h3>
-          <p>I write clean, hand-coded HTML, CSS and JavaScript - This site is built using React with Gatsby.js</p>
+          <p>I write clean, hand-coded HTML, CSS and JavaScript - This site is built using React with Gatsby.js with a Contentful back-end.</p>
         </li>
         <li>
           <h3>UX Design</h3>
@@ -17,7 +17,7 @@ export default () => (
         </li>
         <li>
           <h3>Version control</h3>
-          <p>Active member of the Github community&nbsp;<a target="_blank" rel="noopener noreferrer" href="https://github.com/imshuffling">follow me</a>&nbsp;and I use SVN on a daily basis.</p>
+          <p>A active member of the Github community <a target="_blank" rel="noopener noreferrer" href="https://github.com/imshuffling">follow me</a>.</p>
         </li>
         <li>
           <h3>Content managment systems</h3>
