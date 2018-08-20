@@ -5,7 +5,7 @@ import Helmet from 'react-helmet'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import '../styles/index.scss'
-//import 'typeface-karla'
+import 'typeface-karla'
 
 const Layout = ({ children }) => (
   <section className="container-wrap">
