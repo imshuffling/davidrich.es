@@ -19,7 +19,7 @@
 #logo {
   font-family: var(--logo-font);
   a {
-    background: linear-gradient(120deg,#f40088,#651fff);
+    background: linear-gradient(120deg, #f40088, #651fff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -141,10 +141,6 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
-
-#logo, #navigation {
-  //animation: fadeIn 2s ease var(--delay,2.8s) backwards;
-}
 
 .heading-wrap span {
   animation: fadeIn 1s ease var(--delay) backwards;
