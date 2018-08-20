@@ -5,11 +5,7 @@ import Helmet from 'react-helmet'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import '../styles/index.scss'
-
-// if (typeof window !== 'undefined') {
-//   // Make scroll behavior of internal links smooth
-//   //require('smooth-scroll')('a[href*="#"]');
-// }
+import 'typeface-karla'
 
 const Layout = ({ children }) => (
   <section className="container-wrap">
