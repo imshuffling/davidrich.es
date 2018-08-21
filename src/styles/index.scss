@@ -3,17 +3,17 @@
 @import "components/components";
 @import "variables/variables";
 
-@font-face {
-    font-family: 'BebasNeueRegular';
-    font-display: auto;
-    src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot');
-    src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/BebasNeue-webfont.woff') format('woff'),
-         url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
-         url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+// @font-face {
+//     font-family: 'BebasNeueRegular';
+//     font-display: auto;
+//     src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot');
+//     src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
+//          url('../fonts/BebasNeue-webfont.woff') format('woff'),
+//          url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
+//          url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
+//     font-weight: normal;
+//     font-style: normal;
+// }
 
 html {
   margin: 0px auto;

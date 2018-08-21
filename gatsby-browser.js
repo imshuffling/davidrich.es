@@ -1,1 +1,2 @@
-require('typeface-karla')
+require('typeface-karla');
+require('typeface-oswald');

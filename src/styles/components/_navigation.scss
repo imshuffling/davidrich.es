@@ -35,7 +35,6 @@ header {
     padding: 10px 10px;
     line-height: 1;
     margin-bottom: 0;
-    //font-family: "Crimson Text",Georgia,Serif;
 
     @include breakpoint(medium) {
       padding: 10px 10px;
@@ -69,11 +68,14 @@ header {
   line-height: 1;
   animation-play-state: paused;
   font-family: var(--logo-font);
-
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: -1px;
   a {
-    //background: linear-gradient(120deg, #f40088, #651fff);
-    //-webkit-background-clip: text;
-    //-webkit-text-fill-color: transparent;
+    background: linear-gradient(120deg, #f40088, #651fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 2px 0 0;
     &:hover {
       text-decoration: none;
       box-shadow: none;
@@ -87,7 +89,7 @@ header {
   }
 
   @include breakpoint(large) {
-    font-size: 2.3529411764705883rem;
+    font-size: 2rem;
     margin-right: auto;
     margin-left: 0;
   }
