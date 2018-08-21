@@ -71,9 +71,9 @@ header {
   font-family: var(--logo-font);
 
   a {
-    background: linear-gradient(120deg, #f40088, #651fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    //background: linear-gradient(120deg, #f40088, #651fff);
+    //-webkit-background-clip: text;
+    //-webkit-text-fill-color: transparent;
     &:hover {
       text-decoration: none;
       box-shadow: none;
