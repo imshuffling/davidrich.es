@@ -22,7 +22,7 @@ exports.createPages = ({graphql, actions}) => {
                 }
                 result.data.allContentfulPortfolio.edges.forEach((edge) => {
                     createPage ({
-                        path: edge.node.slug,
+                        path: `/portfolio/${edge.node.slug}`,
                         component: PortfolioPostTemplate,
                         context: {
                             slug: edge.node.slug
