@@ -1,23 +1,21 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import PropTypes from 'prop-types'
+import Layout from "../components/layout"
 
 class PortfolioPost extends React.Component {
   render() {
       //console.log(this.props)
       const { title, tag, content } = this.props.data.contentfulPortfolio
       return (
+        <Layout>
           <section id="portfolio-item">
               <h1 className="Page-title">{title}</h1>
               <p>{tag}</p>
               <div dangerouslySetInnerHTML={{__html:content.childMarkdownRemark.html}} />
           </section>
+          </Layout>
       )
   }
-}
-
-PortfolioPost.PropTypes = {
-    data: PropTypes.object.isRequired
 }
 
 export default PortfolioPost

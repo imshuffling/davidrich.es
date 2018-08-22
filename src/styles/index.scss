@@ -3,18 +3,6 @@
 @import "components/components";
 @import "variables/variables";
 
-// @font-face {
-//     font-family: 'BebasNeueRegular';
-//     font-display: auto;
-//     src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot');
-//     src: local('BebasNeueRegular'), url('../fonts/BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('../fonts/BebasNeue-webfont.woff') format('woff'),
-//          url('../fonts/BebasNeue-webfont.ttf') format('truetype'),
-//          url('../fonts/BebasNeue-webfont.svg#BebasNeueRegular') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
-// }
-
 html {
   margin: 0px auto;
   box-sizing: border-box;
@@ -140,9 +128,7 @@ input[type="email"] {
 }
 
 #case-studies .item {
-  //animation: fadeIn 2s ease 2.8s backwards;
   animation: card__moveIn 3s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
-
 
   &:nth-child(1) {
     --delay: 2s;
