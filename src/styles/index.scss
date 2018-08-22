@@ -56,6 +56,18 @@ body {
   }
 }
 
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+.animated {
+  -webkit-animation-duration: 250ms;
+  animation-duration: 250ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
 form {
   margin-top: 50px;
   margin-bottom: 0;
@@ -184,15 +196,5 @@ body.loaded {
   .heading-wrap .page-title,
   #case-studies .item {
     animation: none;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
