@@ -104,7 +104,6 @@
       transform: translate3d(0,0,0);
       z-index: 4;
       position: relative;
-      //font-size: 15px;
       @include breakpoint(medium) {
         -webkit-transform: translate3d(-5px,0,0);
         transform: translate3d(-5px,0,0);
