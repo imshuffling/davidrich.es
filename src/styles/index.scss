@@ -177,6 +177,10 @@ input[type="email"] {
   &:nth-child(9) {
     --delay: 3.3333333333333335s;
   }
+
+  &:nth-child(10) {
+    --delay: 3.5s;
+  }
 }
 
 @keyframes card__moveIn {
