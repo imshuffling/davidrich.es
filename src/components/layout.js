@@ -11,9 +11,9 @@ import 'typeface-oswald'
 const Layout = ({ children }) => (
   <section className="container-wrap">
     <Helmet
-      title="David Riches - Front-end developer, London - UK"
+      title="About me | David Riches - Front-end developer, London - UK"
       meta={[
-        { name: 'description', content: 'Personal portfolio website for David Riches.' },
+        { name: 'description', content: 'Personal portfolio for David Riches.' },
         { name: 'keywords', content: 'Front-end developer London, Drupal front-end developer, Drupal developer london' },
       ]}
     />

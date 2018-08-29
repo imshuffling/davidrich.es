@@ -1,9 +1,12 @@
 import React from 'react'
-
+import Helmet from 'react-helmet';
 import Layout from "../components/layout"
 
 export default () => (
   <Layout>
+    <Helmet
+      title="Services | David Riches"
+    />
     <section id='services' className="animated fadeIn">
       <h1 className="page-title">Services</h1>
       <ul>

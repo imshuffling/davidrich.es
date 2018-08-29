@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigateTo } from 'gatsby-link'
-
+import Helmet from 'react-helmet';
 import Layout from "../components/layout"
 
 function encode(data) {
@@ -34,6 +34,9 @@ export default class Contact extends React.Component {
   render() {
     return (
       <Layout>
+      <Helmet
+        title="Contact | David Riches"
+      />
       <section id='contact' className="animated fadeIn">
 
         <section>
