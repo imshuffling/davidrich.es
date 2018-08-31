@@ -14,6 +14,7 @@
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
+    "gatsby-plugin-sri": "^1.0.3",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
