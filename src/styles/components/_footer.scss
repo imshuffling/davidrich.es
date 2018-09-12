@@ -8,8 +8,13 @@ footer {
     display: flex;
     align-items: center;
 
-    .contentful {
+    .github {
       margin-left: auto;
+      width: 22px;
+      height: 22px;
+      &:hover {
+        box-shadow: none;
+      }
     }
 
     @include breakpoint(medium) {
