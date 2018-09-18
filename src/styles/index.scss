@@ -34,7 +34,7 @@ body {
 }
 
 .container-wrap {
-  min-height: 100vh;
+  min-height: calc(100vh - 8px);
   height: 100%;
   display: grid;
   grid-template-areas: "Header" "Main-content" "Footer";
@@ -44,6 +44,9 @@ body {
   padding-right: 7%;
   background: #fff;
   border-radius: 2px;
+  @include breakpoint(medium) {
+    min-height: calc(100vh - 20px);
+  }
 }
 
 @keyframes fadeIn {
