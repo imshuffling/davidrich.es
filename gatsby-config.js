@@ -12,11 +12,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "David Riches 🏑",
-        short_name: "DR 🏑",
+        name: "David Riches",
+        short_name: "davidrich.es",
         start_url: "/",
         background_color: "#ffffff",
-        theme_color: "#A864A8",
+        theme_color: "#F40088",
         display: "minimal-ui",
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
