@@ -1,5 +1,5 @@
 import React from "react"
-import favicon from './favicon.png';
+import favicon from './images/icon.png';
 
 export default class HTML extends React.Component {
   render() {
@@ -15,6 +15,7 @@ export default class HTML extends React.Component {
           <meta name="theme-color" content="#A864A8" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="shortcut icon" type="image/png" href={favicon} />
+          <link rel="apple-touch-icon" href={favicon} />
           {this.props.headComponents}
           <noscript>Your browser does not support JavaScript!</noscript>
         </head>
