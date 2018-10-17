@@ -6,6 +6,9 @@ export default () => (
   <Layout>
     <Helmet
       title="Services | David Riches"
+      bodyAttributes={{
+          class: 'services'
+      }}
     />
     <section id='services' className="animated fadeIn">
       <h1 className="page-title">Services</h1>

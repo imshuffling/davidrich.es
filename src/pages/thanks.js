@@ -6,6 +6,9 @@ export default () => (
   <Layout>
     <Helmet
       title="Thanks | David Riches"
+      bodyAttributes={{
+          class: 'contact'
+      }}
     />
     <section id='thanks' className="animated fadeIn">
       <h1>Thanks for getting in touch.</h1>

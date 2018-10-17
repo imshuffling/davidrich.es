@@ -205,3 +205,33 @@ body.loaded {
     animation: none;
   }
 }
+
+body.home {
+  #navigation li {
+    &:first-of-type {
+      > a {
+        @extend .active;
+      }
+    }
+  }
+}
+
+body.services {
+  #navigation li {
+    &:nth-child(2) {
+      > a {
+        @extend .active;
+      }
+    }
+  }
+}
+
+body.contact {
+  #navigation li {
+    &:nth-child(3) {
+      > a {
+        @extend .active;
+      }
+    }
+  }
+}
