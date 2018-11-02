@@ -34,12 +34,10 @@ export default class Contact extends React.Component {
   render() {
     return (
       <Layout>
-      <Helmet
-        title="Contact | David Riches"
-        bodyAttributes={{
-            class: 'contact'
-        }}
-      />
+      <Helmet>
+        <title>Contact | David Riches</title>
+        <body class='contact'/>
+      </Helmet>
 
       <section id='contact' className="animated fadeIn">
 

@@ -4,12 +4,10 @@ import Layout from "../components/layout"
 
 export default () => (
   <Layout>
-    <Helmet
-      title="Services | David Riches"
-      bodyAttributes={{
-          class: 'services'
-      }}
-    />
+  <Helmet>
+    <title>Services | David Riches</title>
+    <body class='services'/>
+  </Helmet>
     <section id='services' className="animated fadeIn">
       <h1 className="page-title">Services</h1>
       <ul>

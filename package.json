@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
-    "gatsby": "next",
+    "gatsby": "2.0.0-rc.28",
     "gatsby-image": "next",
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-manifest": "next",
@@ -13,15 +13,15 @@
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sass": "next",
-    "gatsby-plugin-sharp": "next",
+    "gatsby-plugin-sharp": "^2.0.5",
     "gatsby-plugin-sri": "^1.0.3",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
     "gatsby-transformer-sharp": "next",
     "node-sass": "^4.9.0",
-    "react": "^16.4.1",
-    "react-anchor-link-smooth-scroll": "^1.0.10",
-    "react-dom": "^16.4.1",
+    "react": "^16.5.1",
+    "react-anchor-link-smooth-scroll": "^1.0.11",
+    "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "typeface-karla": "0.0.54",
     "typeface-oswald": "0.0.54"
@@ -39,7 +39,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "gh-pages": "^1.1.0",
-    "prettier": "^1.8.2"
+    "prettier": "^1.12.0"
   }
 }
