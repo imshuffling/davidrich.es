@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 export default () => (
   <Layout>
     <Helmet
-      title="404 | David Riches"
+      title="404 - David Riches"
     />
     <section id='page-not-found' className="animated fadeIn">
       <h1>404 - Sorry page no found.</h1>

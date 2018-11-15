@@ -35,7 +35,7 @@ export default class Contact extends React.Component {
     return (
       <Layout>
       <Helmet>
-        <title>Contact | David Riches</title>
+        <title>Contact - David Riches</title>
         <body class='contact'/>
       </Helmet>
 

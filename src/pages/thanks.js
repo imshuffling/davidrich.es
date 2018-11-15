@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 export default () => (
   <Layout>
   <Helmet>
-    <title>Thanks | David Riches</title>
+    <title>Thanks - David Riches</title>
     <body class='contact'/>
   </Helmet>
     <section id='thanks' className="animated fadeIn">
