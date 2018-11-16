@@ -1,5 +1,6 @@
 import React from "react"
-import favicon from './images/icon.png';
+import favicon from './images/icon.png'
+import PropTypes from "prop-types"
 
 export default class HTML extends React.Component {
   render() {
@@ -31,4 +32,13 @@ export default class HTML extends React.Component {
       </html>
     )
   }
+}
+
+HTML.propTypes = {
+  htmlAttributes: PropTypes.object,
+  headComponents: PropTypes.array,
+  bodyAttributes: PropTypes.object,
+  preBodyComponents: PropTypes.array,
+  body: PropTypes.string,
+  postBodyComponents: PropTypes.array,
 }
