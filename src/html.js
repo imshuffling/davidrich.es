@@ -12,7 +12,7 @@ export default class HTML extends React.Component {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <meta name="theme-color" content="#A864A8" />
+          <meta name="theme-color" content="#f40088" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <link rel="shortcut icon" type="image/png" href={favicon} />
           <link rel="apple-touch-icon" href={favicon} />
@@ -25,17 +25,6 @@ export default class HTML extends React.Component {
             key={`body`}
             id="___gatsby"
             dangerouslySetInnerHTML={{ __html: this.props.body }}
-          />
-          <script
-              dangerouslySetInnerHTML={{ __html:
-                `
-                window.onload = function() {
-                  setTimeout(function() {
-                      document.body.classList.add('loaded');
-                  }, (4*1000)); //4 seconds
-                }
-                `,
-              }}
           />
           {this.props.postBodyComponents}
         </body>

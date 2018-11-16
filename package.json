@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
-  "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "gatsby-david-riches",
+  "description": "Gatsby - David Riches theme",
+  "version": "2.0",
+  "author": "David Riches <hi@davidrich.es>",
   "dependencies": {
     "gatsby": "next",
     "gatsby-image": "next",
@@ -14,6 +14,7 @@
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "next",
+    "gatsby-plugin-sitemap": "^2.0.2",
     "gatsby-plugin-sri": "^1.0.3",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",

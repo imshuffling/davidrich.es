@@ -1,9 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: `davidrich.es`,
+    title: `David Riches - A Front-end developer & part-time hockey player from London.`,
+    siteUrl: `https://davidrich.es`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: ["/portfolio/*", `/thanks/`]
+      }
+    },
     `gatsby-plugin-sass`,
     `gatsby-transformer-remark`,
     `gatsby-plugin-catch-links`,
