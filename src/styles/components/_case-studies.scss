@@ -43,7 +43,7 @@
       position: absolute;
       left: 0;
       object-fit: cover;
-      width: 100%;
+      width: 101%;
       top: 0;
       height: 100%;
     }
@@ -154,6 +154,11 @@
 
     &#hb-cleaning {
       color: #fff;
+    }
+
+    &#shell-v-power {
+      color: #fff;
+      box-shadow: 0px 0px 2px #E9E9E9;
     }
 
     &#southern-sports {

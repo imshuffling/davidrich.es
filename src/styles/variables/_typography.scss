@@ -7,6 +7,13 @@
   --grey:                  #E5E5E5;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: black;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0 20px;
   font-weight: 400;
