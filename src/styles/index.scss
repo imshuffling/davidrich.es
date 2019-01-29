@@ -198,13 +198,13 @@ input[type="email"] {
 }
 
 // page is loaded....
-body.loaded {
-  .heading-wrap span,
-  .heading-wrap .page-title,
-  #case-studies .item {
-    animation: none;
-  }
-}
+// body.loaded {
+//   .heading-wrap span,
+//   .heading-wrap .page-title,
+//   #case-studies .item {
+//     animation: none;
+//   }
+// }
 
 body.home {
   #navigation li {
