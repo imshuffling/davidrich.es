@@ -17,15 +17,15 @@ body {
   font-weight: normal;
   color: var(--black);
   line-height: 1.42857;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-  margin-bottom: 0;
-  background: linear-gradient(120deg, rgb(244, 0, 136), rgb(101, 31, 255));
-  padding: 4px;
   position: relative;
+}
+
+#___gatsby {
+  transition: all .2s ease-in-out;
+	border: 4px solid transparent;
+	background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
   @include breakpoint(medium) {
-    padding: 10px;
+    border: 10px solid transparent;
   }
 }
 
@@ -108,8 +108,8 @@ textarea {
 }
 
 button {
-  --x: 50%;
-	--y: 50%;
+  // --x: 50%;
+	// --y: 50%;
   transition: all .2s ease-in-out;
 	position: relative;
 	appearance: none;

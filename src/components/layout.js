@@ -11,6 +11,16 @@ class Layout extends Component {
   componentWillUnmount () {
     //
   }
+
+  componentDidMount () {
+    document.querySelector('#___gatsby').onmousemove = (e) => {
+      const x = e.pageX - e.target.offsetLeft
+      const y = e.pageY - e.target.offsetTop
+      e.target.style.setProperty('--x', `${ x }px`)
+      e.target.style.setProperty('--y', `${ y }px`)
+    }
+  }
+
   render() {
     const { children } = this.props
     return (
