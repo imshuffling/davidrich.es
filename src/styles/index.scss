@@ -22,7 +22,7 @@ body {
 
 #___gatsby {
   transition: all .2s ease-in-out;
-	border: 4px solid transparent;
+	border: 4px solid transparent
 	background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
   @include breakpoint(medium) {
     border: 10px solid transparent;
@@ -47,21 +47,6 @@ body {
   @include breakpoint(medium) {
     min-height: calc(100vh - 20px);
   }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
 }
 
 .animated {
@@ -137,13 +122,28 @@ input[type="email"] {
     -webkit-appearance: none;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
 
 .heading-wrap span {
   animation: fadeIn 1s ease var(--delay) backwards;
 }
 
 .heading-wrap .page-title {
-  animation: fadeIn 3s ease .3s backwards;
+  animation: fadeIn 2s ease .3s backwards;
 }
 
 #case-studies .item {
@@ -188,12 +188,24 @@ input[type="email"] {
   &:nth-child(10) {
     --delay: 3.5s;
   }
+
+  &:nth-child(11) {
+    --delay: 3.6666666666666665s;
+  }
+
+  &:nth-child(12) {
+    --delay: 3.8333333333333335s;
+  }
+
+  &:nth-child(13) {
+    --delay: 4s;
+  }
 }
 
 @keyframes card__moveIn {
   0% {
       opacity: 0;
-      transform: translateY(60px);
+      transform: translateY(20px);
   }
   100% {
       opacity: 1;
