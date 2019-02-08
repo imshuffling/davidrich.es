@@ -4,6 +4,17 @@
     grid-gap: 50px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     max-width: 999px;
+
+    margin-bottom: 0;
+
+    @include breakpoint(medium) {
+      margin-bottom: 30px;
+    }
+
+    @include breakpoint(large) {
+      margin-bottom: 40px;
+    }
+
     li {
       h3 {
         line-height: 1.1;
