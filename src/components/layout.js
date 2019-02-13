@@ -6,7 +6,6 @@ import '../styles/index.scss'
 import 'typeface-karla'
 import 'typeface-oswald'
 
-
 class Layout extends Component {
   constructor(){
     super()
