@@ -8,23 +8,39 @@ import 'typeface-oswald'
 
 
 class Layout extends Component {
-  componentWillUnmount () {
-    //
+  constructor(){
+    super()
+    this.state = {
+      loaded : undefined
+    }
   }
 
-  componentDidMount () {
+  getLoaded(){
+    setTimeout(() => {
+      this.setState({loaded: window.sessionStorage.setItem('loaded', 1)})
+    }, 4000)
+  }
+
+  componentDidMount() {
+    // Calling getLoaded - adds sessionStorage after 4 seconds.
+    this.getLoaded();
+
+    // Updating state to get our sessionStorage
+    this.setState({loaded: window.sessionStorage.getItem('loaded')})
+
+    // Doing gradient bg on outter wrapper.
     document.querySelector('#___gatsby').onmousemove = (e) => {
-      const x = e.pageX - e.target.offsetLeft
-      const y = e.pageY - e.target.offsetTop
-      e.target.style.setProperty('--x', `${ x }px`)
-      e.target.style.setProperty('--y', `${ y }px`)
+      const x = e.pageX - e.currentTarget.offsetLeft
+      const y = e.pageY - e.currentTarget.offsetTop
+      e.currentTarget.style.setProperty('--x', `${ x }px`)
+      e.currentTarget.style.setProperty('--y', `${ y }px`)
     }
   }
 
   render() {
     const { children } = this.props
     return (
-      <section className="container-wrap">
+      <section className={this.state.loaded ? 'container-wrap loaded' : 'container-wrap'}>
         <Helmet
           title="About me - David Riches"
           meta={[
