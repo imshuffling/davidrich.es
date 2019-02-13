@@ -67,7 +67,7 @@ header {
   font-weight: 400;
   letter-spacing: -1.5px;
   a {
-    background-image: linear-gradient(120deg, #f40088, #651fff);
+    background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
