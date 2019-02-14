@@ -67,8 +67,7 @@ export const pageQuery = graphql`
     query pageQuery {
         allContentfulPortfolio(
             filter: {
-                node_locale: {eq: "en-GB"},
-                slug: { ne: null }
+                node_locale: {eq: "en-GB"}
             },
             sort: {
                 fields: [sortOrder], order: ASC
