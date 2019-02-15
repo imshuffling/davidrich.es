@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "author": "David Riches <hi@davidrich.es>",
   "dependencies": {
-    "gatsby": "2.0.118",
+    "gatsby": "next",
     "gatsby-image": "next",
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-manifest": "next",
