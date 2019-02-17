@@ -25,7 +25,7 @@ class Layout extends Component {
     this.getLoaded();
 
     // Updating state to get our sessionStorage
-    this.setState({loaded: window.sessionStorage.getItem('loaded')})
+    //this.setState({loaded: window.sessionStorage.getItem('loaded')})
 
     // Doing gradient bg on outter wrapper.
     document.querySelector('#___gatsby').onmousemove = (e) => {
