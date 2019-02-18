@@ -41,15 +41,11 @@ header {
       font-size: 1rem;
       padding-bottom: 2px;
       text-decoration: none;
-      transition: all 0.2s ease-in-out;
-
-      &:hover, &:focus {
-        outline: none;
-      }
+      box-shadow: inset 0 0 var(--primary-colour);
+      transition: box-shadow .2s ease-in-out;
 
       &.active {
-        box-shadow: 0 1px 0 var(--primary-colour);
-        transition: all 0.2s ease-in-out;
+        box-shadow: inset 0 -1px var(--primary-colour);
       }
 
     }
@@ -72,6 +68,7 @@ header {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 0 2px 0 0;
+    box-shadow: none;
     &:hover {
       text-decoration: none;
       box-shadow: none;

@@ -24,7 +24,7 @@ class Layout extends Component {
     // Calling getLoaded - adds sessionStorage after 4 seconds.
     this.getLoaded();
 
-    // Updating state to get our sessionStorage
+    // TODO Updating state to get our sessionStorage
     //this.setState({loaded: window.sessionStorage.getItem('loaded')})
 
     // Doing gradient bg on outter wrapper.

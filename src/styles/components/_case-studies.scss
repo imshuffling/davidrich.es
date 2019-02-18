@@ -134,14 +134,9 @@
 
       a {
         box-shadow: 0 1px 0 var(--grey);
-        @include breakpoint(medium) {
-          font-size: 17px;
-          box-shadow: none;
-          &:hover {
-            box-shadow: 0 1px 0 var(--grey);
-          }
-        }
       }
+
+
     }
 
     &#mary-jane-speechtherapy {

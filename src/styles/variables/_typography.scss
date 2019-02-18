@@ -2,6 +2,9 @@
   --base-font:             'Karla', sans-serif;
   --logo-font:             'Oswald';
   --primary-colour:        rgb(244, 0, 136);
+  --pink:                  #ffd6ed;
+  --green:                 #9cffdb;
+  --blue:                  #d6f0ff;
   --black:                 rgb(57, 53, 49);
   --alt-black:             #9c9c9c;
   --grey:                  #E5E5E5;
@@ -70,14 +73,15 @@ h3 {
 }
 
 a {
-  transition: all .2s ease 0s;
-  color: var(--primary-colour);
+  box-shadow: inset 0 -0.5em var(--blue);
+  transition: box-shadow .2s ease-in-out;
   text-decoration: none;
-  display: inline-block;
+  color: black;
   &:hover {
-    box-shadow: 0 1px 0 var(--grey);
+    box-shadow: inset 0 -1.2em 0 var(--blue);
   }
 }
+
 
 p {
   margin: 0 0 12px;
