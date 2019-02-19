@@ -69,7 +69,6 @@ form {
     margin-top: 70px;
     margin-bottom: 40px;
   }
-
 }
 
 input,
@@ -78,12 +77,17 @@ select {
   width: 100%;
   padding: 12px;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 2px solid #f1f1f1;
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 16px;
   font-size: 17px;
   font-family: inherit;
+  &:focus {
+    border: 2px solid transparent;
+    background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
+    outline: none;
+  }
 }
 
 textarea {
@@ -114,7 +118,7 @@ button {
 
 input:invalid,
 textarea:invalid {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 input[type="text"],
