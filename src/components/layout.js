@@ -7,26 +7,8 @@ import 'typeface-karla'
 import 'typeface-oswald'
 
 class Layout extends Component {
-  constructor(){
-    super()
-    this.state = {
-      loaded : undefined
-    }
-  }
-
-  getLoaded(){
-    setTimeout(() => {
-      this.setState({loaded: window.sessionStorage.setItem('loaded', 1)})
-    }, 4000)
-  }
 
   componentDidMount() {
-    // Calling getLoaded - adds sessionStorage after 4 seconds.
-    this.getLoaded();
-
-    // TODO Updating state to get our sessionStorage
-    //this.setState({loaded: window.sessionStorage.getItem('loaded')})
-
     // Doing gradient bg on outter wrapper.
     document.querySelector('#___gatsby').onmousemove = (e) => {
       const x = e.pageX - e.currentTarget.offsetLeft
@@ -45,7 +27,7 @@ class Layout extends Component {
   render() {
     const { children } = this.props
     return (
-      <section className={this.state.loaded ? 'container-wrap loaded' : 'container-wrap'}>
+      <section className="container-wrap">
         <Helmet
           title="About me - David Riches"
           meta={[
