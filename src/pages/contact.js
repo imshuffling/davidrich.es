@@ -36,7 +36,6 @@ export default class Contact extends React.Component {
       <Layout>
       <Helmet>
         <title>Contact - David Riches</title>
-        <body class='contact'/>
       </Helmet>
 
       <section id='contact' className="animated fadeIn">

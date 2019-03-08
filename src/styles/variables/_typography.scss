@@ -10,6 +10,7 @@
   --grey:                  #E5E5E5;
   --x:                     50%;
   --y:                     0%;
+  font-size:               calc(1rem + ((1vw - 0.3rem) * 0.2222));
 }
 
 
@@ -99,7 +100,7 @@ ul, ol {
   }
 }
 
-.tag {
-  color: var(--alt-black);
-  font-size: 0.9rem;
-}
+// .tag {
+//   color: var(--alt-black);
+//   font-size: 0.9rem;
+// }

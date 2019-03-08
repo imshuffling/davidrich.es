@@ -4,12 +4,12 @@
 @import "variables/variables";
 
 html {
+  scroll-behavior: smooth;
   margin: 0px auto;
   box-sizing: border-box;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 17px;
 }
 
 body {
@@ -28,10 +28,6 @@ body {
   @include breakpoint(medium) {
     border: 10px solid transparent;
   }
-}
-
-#home {
-  scroll-behavior: smooth;
 }
 
 .container-wrap {

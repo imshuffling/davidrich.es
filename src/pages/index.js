@@ -3,13 +3,9 @@ import Img from "gatsby-image"
 import { graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import Helmet from 'react-helmet'
 
 export default (props) => (
   <Layout>
-      <Helmet>
-        <body class='home'/>
-      </Helmet>
       <section id='home' className="animated fadeIn">
         <div className="heading-wrap">
           <div>
