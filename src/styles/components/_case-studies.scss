@@ -55,7 +55,7 @@
       position: relative;
       top: 0;
       height: calc(100% - 7%);
-      background:rgba(0,0,0,0.6);
+      background:rgba(0,0,0,0.9);
       width: calc(100% - 14%);
       z-index: 1;
       * {
@@ -91,7 +91,7 @@
 
     &:hover {
       .item-inner__content {
-        opacity: .7;
+        opacity: .9;
         -webkit-transform: translate3d(0,0,0);
         transform: translate3d(0,0,0);
       }
@@ -120,26 +120,6 @@
         font-size: 1.1764705882352942rem;
         max-width: 90%;
       }
-
-
-      p {
-
-        @include breakpoint(medium) {
-          font-size: 1.0588235294117647rem;
-        }
-
-        @include breakpoint(large) {
-          font-size: 1.1764705882352942rem;
-        }
-      }
-
-      a {
-        box-shadow: 0 1px 0 var(--grey);
-      }
-    }
-
-    &#shell-v-power {
-      box-shadow: 0px 0px 2px #E9E9E9;
     }
 
     &#mirum-xt-tm {
@@ -149,6 +129,7 @@
     &#brand-hub {
       background-size: contain;
       background-color: #E9E9E9;
+      color: inherit;
     }
   }
 
@@ -157,7 +138,6 @@
     * {
       color: #fff;
     }
-      background:rgba(0,0,0,0.6);
-      transition: all 0.2s;
+    background:rgba(0,0,0,0.9);
   }
 }
