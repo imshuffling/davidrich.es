@@ -30,6 +30,7 @@
     grid-column: span 1;
     overflow: hidden;
     color: #fff;
+    border-bottom: 0 none;
 
     @include breakpoint(medium) {
         min-height: 350px;

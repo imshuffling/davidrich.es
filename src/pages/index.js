@@ -24,34 +24,54 @@ export default (props) => (
     )
 
 const PortfolioPost = ({ node }) => {
-
   //console.log(node)
-
-  return (
-      <div className="item" id={node.slug}>
-
-        <Img style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          width: '100%',
-          height: '100%'
-        }}
-        fixed={node.image.fixed} />
-
-        {node.media !== null &&
-          <video loop muted autoPlay playsInline>
-          	<source src={node.media.file.url} type="video/mp4" />
-          </video>
-        }
-
-        <div className="item-inner">
-          <span>{node.tag}</span>
-          <h3>{node.title}</h3>
-          <div className="item-inner__content" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
+  if (node.link !== null) {
+    return (
+      <a href={node.link} className="item" id={node.slug} rel="noopener noreferrer" target="_BLANK">
+          <Img style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%'
+          }}
+          fixed={node.image.fixed} />
+          {node.media !== null &&
+            <video loop muted autoPlay playsInline>
+              <source src={node.media.file.url} type="video/mp4" />
+            </video>
+          }
+          <div className="item-inner">
+            <span>{node.tag}</span>
+            <h3>{node.title}</h3>
+            <div className="item-inner__content" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
+          </div>
+      </a>
+    )
+  } else {
+      return (
+        <div className="item" id={node.slug}>
+          <Img style={{
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%'
+          }}
+          fixed={node.image.fixed} />
+          {node.media !== null &&
+            <video loop muted autoPlay playsInline>
+              <source src={node.media.file.url} type="video/mp4" />
+            </video>
+          }
+          <div className="item-inner">
+            <span>{node.tag}</span>
+            <h3>{node.title}</h3>
+            <div className="item-inner__content" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
+          </div>
         </div>
-      </div>
-  )
+    )
+  }
 }
 
 export const pageQuery = graphql`
@@ -71,6 +91,7 @@ export const pageQuery = graphql`
                     tag
                     slug
                     sortOrder
+                    link
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
                       fixed(width: 800) {

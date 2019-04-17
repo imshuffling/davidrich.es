@@ -39,11 +39,14 @@ header {
     a {
       padding-bottom: 2px;
       background: none;
-      transition: box-shadow .2s ease-in-out;
+      transition: all .2s ease-in-out;
       border-bottom: 4px solid transparent;
       &.active {
         background: none;
         border-color: var(--blue);
+        &:hover {
+          border-color: var(--blue);
+        }
       }
       &:hover {
         border-color: var(--grey);
