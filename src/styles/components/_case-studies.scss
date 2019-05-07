@@ -4,6 +4,7 @@
   -webkit-overflow-scrolling: touch;
   display: grid;
   grid-template-columns: 1fr;
+  grid-gap: 30px;
 
   @include breakpoint(medium) {
     margin-top: 100px;
@@ -16,8 +17,6 @@
     margin-bottom: 40px;
     grid-template-columns: repeat(2, 1fr)
   }
-
-  grid-gap: 30px;
 }
 
 .card {
@@ -122,7 +121,7 @@
     padding: 30px;
     height: 100%;
 		transition-property: transform;
-		transition-delay: $delay;
+    transition-delay: $delay;
 	}
 
 	&.hover &__body {
@@ -130,19 +129,16 @@
 	}
 
 	&__headline {
-		font-weight: 400;
 		margin: 0 0 .8em;
 	}
 
 	&__text {
-		line-height: 1.5;
 		margin: 0;
-		opacity: .8;
+    opacity: .8;
 	}
 }
 
 .author {
-
 	display: flex;
 	align-items: center;
 
