@@ -155,8 +155,7 @@ input[type="email"] {
   animation: fadeIn 3s ease .3s backwards;
 }
 
-
-#case-studies .item {
+.card {
   animation: card__moveIn 2s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
   @for $i from 1 through 15 {
     &:nth-child(#{$i}) {
