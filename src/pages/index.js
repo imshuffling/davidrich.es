@@ -48,7 +48,7 @@ const PortfolioPost = ({ node }) => {
       //     </div>
       // </a>
 
-      <a href={node.link} className="card">
+      <a href={node.link} className="card" rel="noopener noreferrer" target="_blank">
         <div className="card__head">
           <div className="card__image" style={{
             backgroundImage: `url(${node.image.file.url})`,
@@ -72,6 +72,7 @@ const PortfolioPost = ({ node }) => {
         <div className="card__body">
           <h3 className="card__headline">{node.title}</h3>
           <div className="card__text" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
+          <p>View site</p>
         </div>
       </a>
     )
