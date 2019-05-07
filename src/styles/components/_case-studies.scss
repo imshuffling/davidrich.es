@@ -54,7 +54,7 @@
 
 	&__head {
 		position: relative;
-		padding-top: 70%;
+		padding-top: 50%;
 	}
 
 	&__author {
@@ -122,6 +122,10 @@
     height: 100%;
 		transition-property: transform;
     transition-delay: $delay;
+
+    > p:last-of-type {
+      margin-bottom: 0;
+    }
 	}
 
 	&.hover &__body {
