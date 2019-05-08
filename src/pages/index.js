@@ -27,27 +27,6 @@ const PortfolioPost = ({ node }) => {
   //console.log(node)
   if (node.link !== null) {
     return (
-      // <a href={node.link} className="item" id={node.slug} rel="noopener noreferrer" target="_BLANK">
-      //     <Img style={{
-      //       position: 'absolute',
-      //       left: 0,
-      //       top: 0,
-      //       width: '100%',
-      //       height: '100%'
-      //     }}
-      //     fixed={node.image.fixed} />
-      //     {node.media !== null &&
-      //       <video loop muted autoPlay playsInline>
-      //         <source src={node.media.file.url} type="video/mp4" />
-      //       </video>
-      //     }
-      //     <div className="item-inner">
-      //       <span>{node.tag}</span>
-      //       <h3>{node.title}</h3>
-      //       <div className="item-inner__content" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
-      //     </div>
-      // </a>
-
       <a href={node.link} className="card" rel="noopener noreferrer" target="_blank">
         <div className="card__head">
           <div className="card__image" style={{
@@ -61,7 +40,6 @@ const PortfolioPost = ({ node }) => {
           </div>
           <div className="card__author">
             <div className="author">
-            <div className="author__image"><img src={node.image.file.url} alt={node.title} /></div>
               <div className="author__content">
                 <p className="author__header">{node.title}</p>
                 <p className="author__subheader">{node.tag}</p>
@@ -72,7 +50,7 @@ const PortfolioPost = ({ node }) => {
         <div className="card__body">
           <h3 className="card__headline">{node.title}</h3>
           <div className="card__text" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
-          <p>View site</p>
+          <p className="card__link">View site</p>
         </div>
       </a>
     )
@@ -91,7 +69,6 @@ const PortfolioPost = ({ node }) => {
           </div>
           <div className="card__author">
             <div className="author">
-            <div className="author__image"><img src={node.image.file.url} alt={node.title} /></div>
               <div className="author__content">
                 <p className="author__header">{node.title}</p>
                 <p className="author__subheader">{node.tag}</p>
@@ -111,9 +88,6 @@ const PortfolioPost = ({ node }) => {
 export const pageQuery = graphql`
     query pageQuery {
         allContentfulPortfolio(
-            filter: {
-                node_locale: {eq: "en-GB"}
-            },
             sort: {
                 fields: [sortOrder], order: ASC
             }
