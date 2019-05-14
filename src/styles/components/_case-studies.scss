@@ -1,4 +1,4 @@
-.cards {
+#cards {
   margin-top: 50px;
   margin-bottom: 0;
   -webkit-overflow-scrolling: touch;
@@ -16,15 +16,13 @@
     margin-top: 120px;
     margin-bottom: 40px;
     grid-template-columns: repeat(2, 1fr)
-  }
+	}
 }
 
 .card {
-
 	$delay: .15s;
 	$duration: .4s;
 	$timing: cubic-bezier(.51, .92, .24, 1);
-
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -36,6 +34,12 @@
 	transition-delay: $delay;
 	box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
 
+	&:before,
+	&:after {
+		content: '';
+		width: 10px;
+	}
+
 	&.hover {
 		color: white;
 		transition-delay: 0;
@@ -46,8 +50,7 @@
 	&__image::after,
 	&__author,
 	&__body,
-	&__foot,
-	&__border {
+	&__foot {
 		transition-duration: $duration;
 		transition-timing-function: $timing;
 	}
@@ -123,9 +126,9 @@
 		transition-property: transform;
     transition-delay: $delay;
 
-    p:last-of-type {
-      margin-bottom: 0;
-    }
+    // p:last-of-type {
+    //   margin-bottom: 0;
+    // }
   }
 
   &__link {
@@ -144,6 +147,36 @@
 		margin: 0;
     opacity: .8;
 	}
+
+	&__foot {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 0 2em 2em;
+		opacity: 0;
+		transition-property: opacity;
+
+		&.hidden {
+			opacity: 0;
+			padding: 0;
+		}
+	}
+
+	&.hover &__foot {
+		opacity: 1;
+		transition-delay: $delay;
+	}
+
+	&__link {
+		a {
+			color: white;
+			background: none;
+			text-decoration: none;
+			border-bottom: 2px solid #fff;
+		}
+	}
+
 }
 
 .author {
