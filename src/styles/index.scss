@@ -14,6 +14,7 @@ html {
 
 body {
   font-family: var(--base-font);
+  font-display: optional;
   font-weight: normal;
   color: var(--black);
   line-height: 1.42857;
@@ -80,6 +81,7 @@ select {
   margin-bottom: 16px;
   font-size: 17px;
   font-family: inherit;
+  font-display: optional;
   &:focus {
     border: 2px solid transparent;
     background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
