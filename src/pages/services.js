@@ -23,7 +23,7 @@ export default () => (
           <p>A active member of the Github community <a target="_blank" rel="noopener noreferrer" href="https://github.com/imshuffling">follow me</a>.</p>
         </li>
         <li>
-          <h3>Content managment systems</h3>
+          <h3>CMS</h3>
           <p>I have over 6 years<strong>'</strong>&nbsp;experience using Drupal and have used Wordpress and Magento too.</p>
         </li>
         <li>
