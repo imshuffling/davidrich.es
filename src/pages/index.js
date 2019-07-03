@@ -2,6 +2,8 @@ import React from 'react'
 import { graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import { BLOCKS, MARKS } from "@contentful/rich-text-types"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 export default (props) => (
   <Layout>
@@ -21,7 +23,21 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
-  //console.log(node)
+  console.log(node)
+
+  const Bold = ({ children }) => <strong>{children}</strong>
+  const Text = ({ children }) => <p>{children}</p>
+
+  const options = {
+      renderMark: {
+          [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+      },
+      renderNode: {
+          [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+      },
+  }
+
+
   return (
     <div className="card">
       <div className="card__head">
@@ -45,7 +61,7 @@ const PortfolioPost = ({ node }) => {
       </div>
       <div className="card__body">
         <h3 className="card__headline">{node.title}</h3>
-        <div className="card__text" dangerouslySetInnerHTML={{__html:node.content.childMarkdownRemark.html}} />
+        <div className="card__text">{documentToReactComponents(node.body.json, options)}</div>
       </div>
 
       <div className={"card__foot " + (node.link ? 'show' : 'hidden')}>
@@ -80,10 +96,8 @@ export const pageQuery = graphql`
                         url
                       }
                     }
-                    content {
-                      childMarkdownRemark {
-                        html
-                      }
+                    body {
+                      json
                     }
                     media {
                       file {

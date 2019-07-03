@@ -12,10 +12,10 @@
     grid-template-columns: 1fr;
   }
 
-  @include breakpoint(large) {
-    margin-top: 120px;
-    margin-bottom: 40px;
-    grid-template-columns: repeat(2, 1fr)
+	@include breakpoint(large) {
+		margin-top: 120px;
+		margin-bottom: 40px;
+		grid-template-columns: repeat(2, 1fr)
 	}
 }
 
@@ -26,8 +26,8 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-  background: white;
-  border: 0 none;
+  	background: white;
+  	border: 0 none;
 	text-decoration: none;
 	overflow: hidden;
 	transition-property: color;
@@ -84,8 +84,8 @@
 		background-position: center;
 		transform-origin: top center;
 		transition-property: transform;
-    transition-delay: $delay;
-    overflow: hidden;
+    	transition-delay: $delay;
+    	overflow: hidden;
 
 		&::after {
 			content: '';
@@ -98,21 +98,19 @@
 			background: linear-gradient(30deg,rgba(71, 26, 99, 0.85),rgba(98, 26, 99, 0.5));
 			transition-property: opacity;
 			transition-delay: $delay;
-    }
-
-    video {
-      position: absolute;
-      left: 0;
-      object-fit: cover;
-      width: 100%;
-      top: 0;
-      height: 100%;
-    }
+		}
+		video {
+			position: absolute;
+			left: 0;
+			object-fit: cover;
+			width: 100%;
+			top: 0;
+			height: 100%;
+		}
 	}
 
 	&.hover &__image {
 		transition-delay: 0;
-
 		&::after {
 			opacity: 1;
 			transition-delay: 0;
@@ -121,15 +119,11 @@
 
 	&__body {
 		position: relative;
-    padding: 1.875rem;
-    height: 100%;
+		padding: 1.875rem;
+		height: 100%;
 		transition-property: transform;
-    transition-delay: $delay;
-
-    // p:last-of-type {
-    //   margin-bottom: 0;
-    // }
-  }
+		transition-delay: $delay;
+  	}
 
   &__link {
     margin: 12px 0;
