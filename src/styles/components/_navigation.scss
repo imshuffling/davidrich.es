@@ -1,55 +1,193 @@
+body.block {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+.navbutton {
+  margin-left: auto;
+  width: 24px;
+  height: 20px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  padding: 0;
+  border: 0 none;
+  background: none;
+
+  &:focus {
+    background: none;
+    color: inherit;
+  }
+
+
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    border-radius: 9px;
+    background: var(--black);
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0px;
+    }
+
+    &:nth-child(2) {
+      top: 9px;
+    }
+
+    &:nth-child(3) {
+      top: 18px;
+    }
+  }
+
+  &.active {
+    span {
+      &:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+
+      &:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+}
+
+.mobile-nav {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
 header {
   display: flex;
   padding-top: 7%;
   padding-bottom: 7%;
-  flex-direction: column-reverse;
   @include breakpoint(medium) {
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-items: center;
+  }
+
+  &.open {
+    position: fixed;
+    width: calc(100% - 14%);
+    height: 100%;
+    background: #5f5f5f;
+    padding: 7%;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    align-items: baseline;
+    flex-direction: column;
+
+    #logo a {
+      background: linear-gradient(#fff, #fff) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding: 0 2px 0 0;
+      box-shadow: none;
+      border: 0 none;
+      &:hover {
+        text-decoration: none;
+        box-shadow: none;
+      }
+    }
+
+    nav {
+      display: flex;
+      height: 80%;
+      align-items: center;
+      width: 100%;
+      #navigation {
+        flex-direction: column;
+        width: 100%;
+        li {
+          padding: 15px 0;
+          a {
+            color: var(--grey);
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .navbutton {
+      span {
+        background: white;
+      }
+    }
   }
 }
 
-#navigation {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  visibility: visible;
-
+nav {
+  display: none;
   @include breakpoint(medium) {
-    visibility: visible;
+    display: block;
   }
 
-  li {
-    padding: 10px 10px;
-    line-height: 1;
-    margin-bottom: 0;
+  #navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
 
-    @include breakpoint(medium) {
+    li {
       padding: 10px 10px;
-    }
+      line-height: 1;
+      margin-bottom: 0;
 
-    @include breakpoint(large) {
-      padding: 10px 15px;
-    }
+      @include breakpoint(medium) {
+        padding: 10px 8px;
+        &:first-of-type {
+          padding-left: 0;
+        }
 
-    &:first-of-type {
-      padding-left: 0;
-    }
-    a {
-      padding-bottom: 2px;
-      background: none;
-      transition: all .2s ease-in-out;
-      border-bottom: 4px solid transparent;
-      &.active {
-        background: none;
-        border-color: var(--blue);
-        &:hover {
-          border-color: var(--blue);
+        &:last-of-type {
+          padding-right: 0;
         }
       }
-      &:hover {
-        border-color: var(--grey);
+
+      @include breakpoint(large) {
+        padding: 10px 15px;
+        &:first-of-type {
+          padding-left: 0;
+        }
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+
+      a {
+        padding-bottom: 2px;
+        background: none;
+        transition: all .2s ease-in-out;
+        border-bottom: 4px solid transparent;
+        &.active {
+          background: none;
+          border-color: var(--blue);
+          &:hover {
+            border-color: var(--blue);
+          }
+        }
+        &:hover {
+          border-color: var(--grey);
+        }
       }
     }
   }
@@ -58,7 +196,6 @@ header {
 #logo {
   font-size: 1.8823529411764706rem;
   letter-spacing: -1px;
-  margin-right: auto;
   line-height: 1;
   animation-play-state: paused;
   font-family: var(--logo-font);
@@ -83,12 +220,10 @@ header {
   @include breakpoint(medium) {
     font-size: 1.8823529411764706rem;
     margin-right: auto;
-    margin-left: 0;
   }
 
   @include breakpoint(large) {
     font-size: 2rem;
     margin-right: auto;
-    margin-left: 0;
   }
 }
