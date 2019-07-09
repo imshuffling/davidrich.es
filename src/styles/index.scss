@@ -151,7 +151,19 @@ input[type="email"] {
 
 .heading-wrap .strap-line {
   animation: fadeIn 3s ease .3s backwards;
+
+  span {
+    display: block;
+    margin: 0 0 12px;
+
+    @include breakpoint(medium) {
+      display: inline;
+      margin: 0;
+    }
+  }
 }
+
+
 
 .heading-wrap .sub-strap-line {
   animation: fadeIn 3s ease .3s backwards;

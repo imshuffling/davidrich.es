@@ -49,7 +49,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.4705882352941178rem;
+  font-size: 1.405882352941178rem;
   @include breakpoint(medium) {
     font-size: 1.6470588235294117rem;
   }
@@ -60,7 +60,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.411764705882353rem;
+  font-size: 1.111764705882353rem;
   margin-bottom: 10px;
   @include breakpoint(medium) {
     font-size: 1.6470588235294117rem;

@@ -1,8 +1,12 @@
 #services {
   ul {
     display: grid;
-    grid-gap: 70px;
+    grid-gap: 45px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    @include breakpoint(medium) {
+      grid-gap: 70px;
+    }
     li {
       h3 {
         line-height: 1.1;
