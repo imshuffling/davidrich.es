@@ -3,17 +3,6 @@ import Media from 'react-media';
 import { Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 
-// const Header = () => (
-//   <header>
-//     <ul id="navigation">
-//       <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
-//       <li><Link to='/services' activeClassName="active"><span>Services</span></Link></li>
-//       <li><Link to='/contact' activeClassName="active"><span>Contact</span></Link></li>
-//     </ul>
-//     <div id="logo"><Link to='/'>David Riches</Link></div>
-//   </header>
-// )
-
 class Header extends Component {
 
   state = {
@@ -40,7 +29,7 @@ class Header extends Component {
               <>
                 {/* Mobile */}
                 <div className="mobile-nav">
-                  <div id="logo"><Link to='/'>David Riches</Link></div>
+                  <div className="logo"><Link to='/'>David Riches</Link></div>
                   <button className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle}>
                     <span></span>
                     <span></span>
@@ -60,7 +49,7 @@ class Header extends Component {
             ) : (
               // Desktop
               <>
-                <div id="logo"><Link to='/'>David Riches</Link></div>
+                <div className="logo"><Link to='/'>David Riches</Link></div>
                 <nav>
                   <ul id="navigation">
                     <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>

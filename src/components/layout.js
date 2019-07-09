@@ -13,7 +13,7 @@ class Layout extends Component {
     document.querySelector('#___gatsby').onmousemove = (e) => {
       const x = e.pageX - e.currentTarget.offsetLeft
       const y = e.pageY - e.currentTarget.offsetTop
-      const logo = document.querySelector('#logo a')
+      const logo = document.querySelector('.logo a')
 
       // halfing this for the logo
       logo.style.setProperty('--x', `${ x / 2 }px`)

@@ -23,7 +23,6 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
-  console.log(node)
 
   const Bold = ({ children }) => <strong>{children}</strong>
   const Text = ({ children }) => <p>{children}</p>

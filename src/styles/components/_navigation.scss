@@ -96,7 +96,7 @@ header {
     flex-direction: column;
     border: 4px solid transparent;
 
-    #logo a {
+    .logo a {
       background: linear-gradient(#fff, #fff) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
       -webkit-background-clip: text;
       background-clip: text;
@@ -194,7 +194,7 @@ nav {
   }
 }
 
-#logo {
+.logo {
   font-size: 1.8823529411764706rem;
   letter-spacing: -1px;
   line-height: 1;
