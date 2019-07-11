@@ -195,9 +195,8 @@ nav {
 }
 
 .logo {
-  font-size: 1.8823529411764706rem;
+  font-size: 1.8rem;
   letter-spacing: -1px;
-  line-height: 1;
   animation-play-state: paused;
   font-family: var(--logo-font);
   font-display: optional;
@@ -219,7 +218,7 @@ nav {
   }
 
   @include breakpoint(medium) {
-    font-size: 1.8823529411764706rem;
+    font-size: 1.8rem;
     margin-right: auto;
   }
 

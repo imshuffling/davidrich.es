@@ -57,17 +57,23 @@
 
 	&__head {
 		position: relative;
-		padding-top: 50%;
+		padding-top: 70%;
+		@include breakpoint(medium) {
+			padding-top: 50%;
+		}
 	}
 
 	&__author {
 		position: absolute;
-		padding: 30px;
+		padding: 1.4rem;
 		left: 0;
 		bottom: 0;
 		color: white;
 		transition-property: transform;
 		transition-delay: $delay;
+		@include breakpoint(medium) {
+			padding: 1.875rem;
+		}
 	}
 
 	&.hover &__author {
@@ -119,14 +125,17 @@
 
 	&__body {
 		position: relative;
-		padding: 1.875rem;
+		padding: 1.4rem;
 		height: 100%;
 		transition-property: transform;
 		transition-delay: $delay;
+		@include breakpoint(medium) {
+			padding: 1.875rem;
+		}
   	}
 
   &__link {
-    margin: 12px 0;
+    margin: .8rem 0;
   }
 
 	&.hover &__body {
@@ -134,12 +143,12 @@
 	}
 
 	&__headline {
-		margin: 0 0 .8em;
+		margin-bottom: .8rem;
 	}
 
 	&__text {
 		margin: 0;
-    opacity: .8;
+    	opacity: .8;
 	}
 
 	&__foot {
@@ -147,9 +156,13 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		padding: 0 2em 2em;
+		padding: 0 1.4rem 1.4rem;
 		opacity: 0;
 		transition-property: opacity;
+
+		@include breakpoint(medium) {
+			padding: 1.875rem;
+		}
 
 		&.hidden {
 			opacity: 0;

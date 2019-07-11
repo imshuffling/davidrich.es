@@ -14,56 +14,44 @@
 }
 
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0 20px;
+h1, h2, h3, h4, h5 {
   font-weight: 400;
 }
 
 h1 {
   font-size: 2.2rem;
-  line-height: 45px;
   letter-spacing: -1px;
+  margin-bottom: 2.2rem;
   @include breakpoint(medium) {
     font-size: 3.1176470588235294rem;
-    line-height: 63px;
-    letter-spacing: -1px;
+    margin-bottom: 3.1176470588235294rem;
   }
-
-  @include breakpoint(large) {
-    font-size: 3.1176470588235294rem;
-    line-height: 63px;
-    letter-spacing: -1px;
-  }
-
-  &.page-title {
-    margin-bottom: 30px;
-    @include breakpoint(medium) {
-      margin-bottom: 50px;
-    }
-
-    @include breakpoint(large) {
-      margin-bottom: 50px;
-    }
-  }
-
 }
 
 h2 {
   font-size: 1.405882352941178rem;
+  margin-bottom: 1.4rem;
   @include breakpoint(medium) {
-    font-size: 1.6470588235294117rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
   }
 
   @include breakpoint(large) {
-    font-size: 1.8823529411764706rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
   }
 }
 
 h3 {
-  font-size: 1.111764705882353rem;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
   @include breakpoint(medium) {
-    font-size: 1.6470588235294117rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+  @include breakpoint(medium) {
+    font-size: 1.6rem;
+    margin-bottom: 1.8rem;
   }
 }
 
@@ -85,23 +73,17 @@ a {
 }
 
 p {
-  margin: 0 0 12px;
+  margin: 0 0 .8rem;
 }
 
 noscript {
   display: block;
-  margin-bottom: 12px;
-  margin-top: 12px;
+  margin-bottom: .8rem;
+  margin-top: .8rem;
 }
 
 ul, ol {
   padding: 0;
   margin: 0;
   list-style: none;
-  li {
-    > * {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
 }

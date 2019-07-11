@@ -1,19 +1,17 @@
 #services {
   ul {
     display: grid;
-    grid-gap: 45px;
+    grid-gap: 30px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-
     @include breakpoint(medium) {
-      grid-gap: 70px;
+      grid-gap: 40px;
+    }
+    @include breakpoint(large) {
+      grid-gap: 60px;
     }
     li {
       h3 {
-        line-height: 1.1;
-        margin-bottom: 10px;
-      }
-      p {
-        margin-bottom: 0;
+        margin-bottom: .8rem;
       }
     }
   }
