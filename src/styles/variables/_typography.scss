@@ -23,13 +23,13 @@ h1 {
   letter-spacing: -1px;
   margin-bottom: 2.2rem;
   @include breakpoint(medium) {
-    font-size: 3.1176470588235294rem;
-    margin-bottom: 3.1176470588235294rem;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
   }
 }
 
 h2 {
-  font-size: 1.405882352941178rem;
+  font-size: 1.4rem;
   margin-bottom: 1.4rem;
   @include breakpoint(medium) {
     font-size: 1.6rem;
@@ -43,15 +43,15 @@ h2 {
 }
 
 h3 {
-  font-size: 1.1rem;
-  margin-bottom: 1.1rem;
+  font-size: 1.3rem;
+  margin-bottom: 1.3rem;
   @include breakpoint(medium) {
     font-size: 1.4rem;
     margin-bottom: 1.4rem;
   }
   @include breakpoint(medium) {
     font-size: 1.6rem;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.6rem;
   }
 }
 
