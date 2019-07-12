@@ -1,40 +1,44 @@
 import React from 'react'
+import { graphql } from "gatsby"
 import Helmet from 'react-helmet';
 import Layout from "../components/layout"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-export default () => (
-  <Layout>
-  <Helmet>
-    <title>Services - David Riches</title>
-  </Helmet>
-    <section id='services' className="animated fadeIn">
-      <h1 className="page-title">Services</h1>
-      <ul>
-        <li>
-          <h3>Front-end Development</h3>
-          <p>I write clean, hand-coded HTML, CSS and JavaScript - This site is built using React with Gatsby.js with a Contentful back-end.</p>
-        </li>
-        <li>
-          <h3>UX Design</h3>
-          <p>User Experience is a crucial part of my workflow, from research through to development.</p>
-        </li>
-        <li>
-          <h3>Version control</h3>
-          <p>A active member of the Github community <a target="_blank" rel="noopener noreferrer" href="https://github.com/imshuffling">follow me</a>.</p>
-        </li>
-        <li>
-          <h3>CMS</h3>
-          <p>I have over 6 years<strong>'</strong>&nbsp;experience using Drupal and have used Wordpress and Magento too.</p>
-        </li>
-        <li>
-          <h3>Mobile web apps</h3>
-          <p>I build responsive web sites from the ground up, keeping a close eye on the latest trends.</p>
-        </li>
-        <li>
-          <h3>Web optimisation</h3>
-          <p>I have good knowledge of page speed optimisation, and some SEO skills.</p>
-        </li>
-      </ul>
-    </section>
-  </Layout>
-)
+class Services extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <Helmet>
+          <title>Services - David Riches</title>
+        </Helmet>
+        <section id='services' className="animated fadeIn">
+          <h1 className="page-title">Services</h1>
+          <ul>
+          {this.props.data.allContentfulServices.nodes.map((i) =>
+            <li key={i.id}>
+              <h3>{i.title}</h3>
+              {documentToReactComponents(i.body.json)}
+            </li>
+          )}
+          </ul>
+        </section>
+      </Layout>
+    )
+  }
+}
+
+export default Services
+
+export const servicesQuery = graphql`
+  query servicesQuery {
+    allContentfulServices {
+      nodes {
+        title
+        id
+        body {
+          json
+        }
+      }
+    }
+  }
+`
