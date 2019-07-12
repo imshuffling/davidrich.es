@@ -12,7 +12,7 @@ class Services extends React.Component {
           <title>Services - David Riches</title>
         </Helmet>
         <section id='services' className="animated fadeIn">
-          <h1 className="page-title">Services</h1>
+          <h1>Services</h1>
           <ul>
           {this.props.data.allContentfulServices.nodes.map((i) =>
             <li key={i.id}>
@@ -31,7 +31,7 @@ export default Services
 
 export const servicesQuery = graphql`
   query servicesQuery {
-    allContentfulServices {
+    allContentfulServices(sort: {fields: id}) {
       nodes {
         title
         id

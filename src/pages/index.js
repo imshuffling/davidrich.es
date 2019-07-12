@@ -9,11 +9,11 @@ export default (props) => (
   <Layout>
     <section id='home' className="animated fadeIn">
       <div className="heading-wrap">
-        <h1 className="page-title">Hello I'm David.</h1>
-        <h2 className="strap-line">
+        <h1>Hello I'm David.</h1>
+        <h2>
           <span>A Front-end developer &amp; part-time hockey player from London. </span>
           I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a></h2>
-        <h3 className="sub-strap-line">This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
+        <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
       </div>
       <section id="cards">
         {props.data.allContentfulPortfolio.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}

@@ -140,22 +140,16 @@ input[type="email"] {
   animation-name: fadeIn;
 }
 
-
-.heading-wrap span {
-  animation: fadeIn 1s ease var(--delay) backwards;
-}
-
-.heading-wrap .page-title {
+.heading-wrap h1 {
   animation: fadeIn 2s ease .3s backwards;
 }
 
-.heading-wrap .strap-line {
+.heading-wrap h2 {
   animation: fadeIn 3s ease .3s backwards;
 
   span {
     display: block;
-    margin: 0 0 12px;
-
+    margin: 0 0 .8rem;
     @include breakpoint(medium) {
       display: inline;
       margin: 0;
@@ -163,9 +157,7 @@ input[type="email"] {
   }
 }
 
-
-
-.heading-wrap .sub-strap-line {
+.heading-wrap h3 {
   animation: fadeIn 3s ease .3s backwards;
 }
 

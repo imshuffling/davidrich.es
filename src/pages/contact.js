@@ -41,7 +41,7 @@ export default class Contact extends React.Component {
       <section id='contact' className="animated fadeIn">
 
         <section>
-          <h1 className="page-title">Contact me</h1>
+          <h1>Contact me</h1>
           <h2>I am available for small projects and contract work.<br />
             <span className="email">
               E-mail me at&nbsp;
