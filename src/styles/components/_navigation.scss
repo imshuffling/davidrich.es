@@ -7,8 +7,8 @@ body.block {
 
 .navbutton {
   margin-left: auto;
-  width: 24px;
-  height: 20px;
+  width: 20px;
+  height: 16px;
   position: relative;
   transform: rotate(0deg);
   transition: .5s ease-in-out;
@@ -96,7 +96,7 @@ header {
     flex-direction: column;
     border: 4px solid transparent;
 
-    .logo a {
+    .logo {
       background: linear-gradient(#fff, #fff) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
       -webkit-background-clip: text;
       background-clip: text;
@@ -203,18 +203,16 @@ nav {
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: -1.5px;
-  a {
-    background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 0 2px 0 0;
+  background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 2px 0 0;
+  box-shadow: none;
+  border: 0 none;
+  &:hover {
+    text-decoration: none;
     box-shadow: none;
-    border: 0 none;
-    &:hover {
-      text-decoration: none;
-      box-shadow: none;
-    }
   }
 
   @include breakpoint(medium) {

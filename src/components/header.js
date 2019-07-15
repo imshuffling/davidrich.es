@@ -23,13 +23,13 @@ class Header extends Component {
         <body className={this.state.toggle ? 'block' : '' } />
       </Helmet>
       <header className={this.state.toggle ? 'open' : '' }>
-        <Media query="(max-width: 479px)">
+      <Media query="(max-width: 479px)">
           {matches =>
             matches ? (
               <>
                 {/* Mobile */}
                 <div className="mobile-nav">
-                  <div className="logo"><Link to='/'>David Riches</Link></div>
+                  <Link className="logo" to='/'>David Riches</Link>
                   <button className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle}>
                     <span></span>
                     <span></span>
@@ -49,7 +49,7 @@ class Header extends Component {
             ) : (
               // Desktop
               <>
-                <div className="logo"><Link to='/'>David Riches</Link></div>
+                <Link className="logo" to='/'>David Riches</Link>
                 <nav>
                   <ul id="navigation">
                     <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
