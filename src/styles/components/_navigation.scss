@@ -16,6 +16,9 @@ body.block {
   padding: 0;
   border: 0 none;
   background: none;
+  @include breakpoint(medium) {
+    display: none;
+  }
 
   &:focus {
     background: none;
