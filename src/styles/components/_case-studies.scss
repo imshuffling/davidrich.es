@@ -1,5 +1,5 @@
 #cards {
-  margin-top: 50px;
+  margin-top: 2rem;
   margin-bottom: 0;
   -webkit-overflow-scrolling: touch;
   display: grid;
@@ -7,14 +7,14 @@
   grid-gap: 30px;
 
   @include breakpoint(medium) {
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
     grid-template-columns: 1fr;
   }
 
 	@include breakpoint(large) {
-		margin-top: 120px;
-		margin-bottom: 40px;
+		margin-top: 6rem;
+		margin-bottom: 1rem;
 		grid-template-columns: repeat(2, 1fr)
 	}
 }

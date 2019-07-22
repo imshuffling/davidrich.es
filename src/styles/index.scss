@@ -148,10 +148,8 @@ input[type="email"] {
   animation: fadeIn 3s ease .3s backwards;
 
   span {
-    display: block;
-    margin: 0 0 .8rem;
-    @include breakpoint(medium) {
-      display: inline;
+    @include breakpoint(large) {
+      display: block;
       margin: 0;
     }
   }
