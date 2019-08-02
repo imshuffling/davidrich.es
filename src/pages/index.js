@@ -34,6 +34,7 @@ const PortfolioPost = ({ node }) => {
       renderNode: {
           [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
       },
+      renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
 
