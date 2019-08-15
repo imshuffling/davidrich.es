@@ -16,10 +16,16 @@
 npm install
 ```
 
-## Usage
+## Running local environment
 
 ```sh
 gatsby develop
+```
+
+## Run build
+
+```sh
+gatsby build
 ```
 
 ## Author
