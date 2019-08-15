@@ -8,7 +8,7 @@
 
 > Gatsby - David Riches theme
 
-### 🏠 [Homepage](https://github.com/imshuffling/davidrich.es)
+### 🏠 [Homepage](https://davidrich.es)
 
 ## Install
 
