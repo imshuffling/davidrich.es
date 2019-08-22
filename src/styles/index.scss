@@ -42,17 +42,19 @@ body {
   padding-right: 7%;
   background: #fff;
   border-radius: 2px;
+  max-width: 1400px;
+  margin: 0px auto;
   @include breakpoint(medium) {
     min-height: calc(100vh - 20px);
   }
 }
 
-.animated {
-  -webkit-animation-duration: 250ms;
-  animation-duration: 250ms;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
+// .animated {
+//   -webkit-animation-duration: 250ms;
+//   animation-duration: 250ms;
+//   -webkit-animation-fill-mode: both;
+//   animation-fill-mode: both;
+// }
 
 form {
   margin-top: 50px;
@@ -136,16 +138,15 @@ input[type="email"] {
 }
 
 .fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
+  //animation-name: fadeIn;
 }
 
 .heading-wrap h1 {
-  animation: fadeIn 2s ease .3s backwards;
+  //animation: fadeIn 2s ease .3s backwards;
 }
 
 .heading-wrap h2 {
-  animation: fadeIn 3s ease .3s backwards;
+  //animation: fadeIn 3s ease .3s backwards;
 
   span {
     @include breakpoint(large) {
@@ -156,17 +157,17 @@ input[type="email"] {
 }
 
 .heading-wrap h3 {
-  animation: fadeIn 3s ease .3s backwards;
+  //animation: fadeIn 3s ease .3s backwards;
 }
 
-.card {
-  animation: card__moveIn 2s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
-  @for $i from 1 through 15 {
-    &:nth-child(#{$i}) {
-      --delay: #{(1 + 0.1667 * ($i - 1))}s;
-    }
-  }
-}
+// .card {
+//   animation: card__moveIn 2s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
+//   @for $i from 1 through 15 {
+//     &:nth-child(#{$i}) {
+//       --delay: #{(1 + 0.1667 * ($i - 1))}s;
+//     }
+//   }
+// }
 
 @keyframes card__moveIn {
   0% {

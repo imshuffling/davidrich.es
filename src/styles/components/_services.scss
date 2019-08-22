@@ -2,7 +2,7 @@
   ul {
     display: grid;
     grid-gap: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     @include breakpoint(medium) {
       grid-gap: 40px;
     }
@@ -11,7 +11,7 @@
     }
     li {
       h3 {
-        margin-bottom: .4rem;
+        margin-bottom: .8rem;
       }
     }
   }
