@@ -6,8 +6,6 @@
   </a>
 </p>
 
-> Gatsby - David Riches theme
-
 ### 🏠 [Homepage](https://davidrich.es)
 
 ## Install
