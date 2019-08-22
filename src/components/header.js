@@ -30,7 +30,7 @@ class Header extends Component {
                 {/* Mobile */}
                 <div className="mobile-nav">
                   <Link className="logo" to='/'>David Riches</Link>
-                  <button className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle}>
+                  <button aria-label="navigation" className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle}>
                     <span></span>
                     <span></span>
                     <span></span>
