@@ -7,9 +7,6 @@
   @include breakpoint(large) {
     flex-direction: row;
   }
-  section {
-    max-width: 100%;
-  }
   .email {
     margin: 20px 0;
     display: block;

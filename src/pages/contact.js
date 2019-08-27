@@ -38,9 +38,8 @@ export default class Contact extends React.Component {
         <title>Contact - David Riches</title>
       </Helmet>
 
-      <section id='contact' className="animated fadeIn">
-
-        <section>
+      <section id='contact'>
+        <div>
           <h1>Contact me</h1>
           <h2>I am available for small projects and contract work.<br />
             <span className="email">
@@ -79,8 +78,7 @@ export default class Contact extends React.Component {
             <textarea name="message" placeholder="Your message" required onChange={this.handleChange}/>
             <button type="submit">Send</button>
           </form>
-
-        </section>
+        </div>
       </section>
       </Layout>
     );

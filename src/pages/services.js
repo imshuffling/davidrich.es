@@ -11,9 +11,9 @@ class Services extends React.Component {
         <Helmet>
           <title>Services - David Riches</title>
         </Helmet>
-        <section id='services' className="animated fadeIn">
+        <section>
           <h1>Services</h1>
-          <ul>
+          <ul id="services">
           {this.props.data.allContentfulServices.nodes.map((i) =>
             <li key={i.id}>
               <h3>{i.title}</h3>
