@@ -145,14 +145,21 @@ input[type="email"] {
   //animation: fadeIn 2s ease .3s backwards;
 }
 
-.heading-wrap h2 {
-  //animation: fadeIn 3s ease .3s backwards;
-
+h2 {
   span {
-    @include breakpoint(large) {
+    display: block;
+    margin: 10px 0;
+    @include breakpoint(medium) {
       display: block;
       margin: 0;
     }
+  }
+}
+
+.email {
+  span {
+    display: inline;
+    margin: 0;
   }
 }
 
