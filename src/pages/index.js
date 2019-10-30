@@ -61,14 +61,6 @@ const PortfolioPost = ({ node }) => {
         <h3 className="card__headline">{node.title}</h3>
         <div className="card__text">{documentToReactComponents(node.body.json, options)}</div>
       </div>
-
-      <div className={"card__foot " + (node.link ? 'show' : 'hidden')}>
-        <span className="card__link">
-          {node.link !== null &&
-            <a href={node.link} rel="noopener noreferrer" target="_blank">View site</a>
-          }
-        </span>
-      </div>
     </div>
   )
 }
@@ -87,7 +79,6 @@ export const pageQuery = graphql`
                     tag
                     slug
                     sortOrder
-                    link
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
                       file {

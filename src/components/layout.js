@@ -9,23 +9,6 @@ import 'typeface-oswald'
 class Layout extends Component {
 
   componentDidMount() {
-    // Doing gradient bg on outter wrapper.
-    // document.querySelector('#___gatsby').onmousemove = (e) => {
-    //   const x = e.pageX - e.currentTarget.offsetLeft
-    //   const y = e.pageY - e.currentTarget.offsetTop
-    //   const logo = document.querySelector('.logo a')
-
-    //   // halfing this for the logo
-    //   logo.style.setProperty('--x', `${ x / 2 }px`)
-    //   logo.style.setProperty('--y', `${ y / 2 }px`)
-
-    //   e.currentTarget.style.setProperty('--x', `${ x }px`)
-    //   e.currentTarget.style.setProperty('--y', `${ y }px`)
-    // }
-
-    const height = (elem) => {
-      return elem.getBoundingClientRect().height
-    }
 
     const distance = (elemA, elemB, prop) => {
       const sizeA = elemA.getBoundingClientRect()[prop]
@@ -45,16 +28,12 @@ class Layout extends Component {
       const image = elem.querySelector('.card__image')
       const author = elem.querySelector('.card__author')
       const body = elem.querySelector('.card__body')
-      const foot = elem.querySelector('.card__foot')
 
       elem.onmouseenter = () => {
         elem.classList.add('hover')
 
         const imageScale = 1 + factor(head, body, 'height')
         image.style.transform = `scale(${ imageScale })`
-
-        const bodyDistance = height(foot) * -1
-        body.style.transform = `translateY(${ bodyDistance }px)`
 
         const authorDistance = distance(head, author, 'height')
         author.style.transform = `translateY(${ authorDistance }px)`

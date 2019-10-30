@@ -137,14 +137,6 @@ input[type="email"] {
   }
 }
 
-.fadeIn {
-  //animation-name: fadeIn;
-}
-
-.heading-wrap h1 {
-  //animation: fadeIn 2s ease .3s backwards;
-}
-
 h2 {
   span {
     display: block;
@@ -162,19 +154,6 @@ h2 {
     margin: 0;
   }
 }
-
-.heading-wrap h3 {
-  //animation: fadeIn 3s ease .3s backwards;
-}
-
-// .card {
-//   animation: card__moveIn 2s cubic-bezier(.22,1,.32,1) var(--delay) backwards;
-//   @for $i from 1 through 15 {
-//     &:nth-child(#{$i}) {
-//       --delay: #{(1 + 0.1667 * ($i - 1))}s;
-//     }
-//   }
-// }
 
 @keyframes card__moveIn {
   0% {
