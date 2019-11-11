@@ -1,6 +1,6 @@
 #cards {
   margin-top: 2rem;
-  margin-bottom: 0;
+  margin-bottom: 3rem;
   -webkit-overflow-scrolling: touch;
   display: grid;
   grid-template-columns: 1fr;
@@ -8,13 +8,13 @@
 
   @include breakpoint(medium) {
     margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     grid-template-columns: 1fr;
   }
 
 	@include breakpoint(large) {
 		margin-top: 6rem;
-		margin-bottom: 1rem;
+		margin-bottom: 3rem;
 		grid-template-columns: repeat(2, 1fr)
 	}
 }
@@ -200,4 +200,16 @@
 		opacity: .8;
 	}
 
+}
+
+#other-projects {
+	> div {
+		margin-top: 1.3rem;
+		margin-bottom: 1.3rem;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--grey);
+		&:last-of-type {
+			border-bottom: 0 none;
+		}
+	}
 }

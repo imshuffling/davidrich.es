@@ -56,6 +56,19 @@ h3 {
   }
 }
 
+h4 {
+  font-size: 1rem;
+  margin-bottom: 0;
+  @include breakpoint(medium) {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+  @include breakpoint(medium) {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+  }
+}
+
 a {
   color: var(--black);
   border-bottom: 4px solid var(--blue);

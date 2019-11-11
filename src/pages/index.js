@@ -16,6 +16,10 @@ export default (props) => (
       <div id="cards">
         {props.data.allContentfulPortfolio.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
       </div>
+      <div id="other-projects">
+        <h3>Side Projects</h3>
+        {props.data.allContentfulPortfolio.edges.map((edge) => <OtherProjects key={edge.node.id} node={edge.node} />)}
+      </div>
     </section>
   </Layout>
 )
@@ -35,34 +39,69 @@ const PortfolioPost = ({ node }) => {
       renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
-
-  return (
-    <div className="card">
-      <div className="card__head">
-        <div className="card__image" style={{
-          backgroundImage: `url(${node.image.file.url})`,
-        }}>
-        {node.media !== null &&
-          <video loop muted autoPlay playsInline>
-            <source src={node.media.file.url} type="video/mp4" />
-          </video>
-        }
-        </div>
-        <div className="card__author">
-          <div className="author">
-            <div className="author__content">
-              <p className="author__header">{node.title}</p>
-              <p className="author__subheader">{node.tag}</p>
+  if (node.otherProjects == null) {
+    return (
+      <div className="card">
+        <div className="card__head">
+          <div className="card__image" style={{
+            backgroundImage: `url(${node.image.file.url})`,
+          }}>
+          {node.media !== null &&
+            <video loop muted autoPlay playsInline>
+              <source src={node.media.file.url} type="video/mp4" />
+            </video>
+          }
+          </div>
+          <div className="card__author">
+            <div className="author">
+              <div className="author__content">
+                <p className="author__header">{node.title}</p>
+                <p className="author__subheader">{node.tag}</p>
+              </div>
             </div>
           </div>
         </div>
+        <div className="card__body">
+          <h3 className="card__headline">{node.title}</h3>
+          <div className="card__text">{documentToReactComponents(node.body.json, options)}</div>
+        </div>
       </div>
-      <div className="card__body">
-        <h3 className="card__headline">{node.title}</h3>
-        <div className="card__text">{documentToReactComponents(node.body.json, options)}</div>
+    )
+  } else {
+    return (
+      ''
+    )
+  }
+}
+
+
+const OtherProjects = ({ node }) => {
+
+  const Bold = ({ children }) => <strong>{children}</strong>
+  const Text = ({ children }) => <p>{children}</p>
+
+  const options = {
+      renderMark: {
+          [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+      },
+      renderNode: {
+          [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+      },
+      renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
+  }
+
+  if (node.otherProjects !== null) {
+    return (
+      <div>
+        <h4>{node.title}</h4>
+        {documentToReactComponents(node.body.json, options)}
       </div>
-    </div>
-  )
+    )
+  } else {
+    return (
+      ''
+    )
+  }
 }
 
 export const pageQuery = graphql`
@@ -79,6 +118,7 @@ export const pageQuery = graphql`
                     tag
                     slug
                     sortOrder
+                    otherProjects
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
                       file {

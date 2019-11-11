@@ -13,7 +13,6 @@ class Services extends React.Component {
         </Helmet>
         <section>
           <h1>Services</h1>
-          <h2>Things that I can do...</h2>
           <ul id="services">
           {this.props.data.allContentfulServices.nodes.map((i) =>
             <li key={i.id}>
