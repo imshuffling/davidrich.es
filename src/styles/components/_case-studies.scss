@@ -43,6 +43,9 @@
 	&.hover {
 		color: white;
 		transition-delay: 0;
+		a {
+			color: inherit;
+		}
 	}
 
 	&,
