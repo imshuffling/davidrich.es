@@ -17,7 +17,7 @@ export default (props) => (
         {props.data.allContentfulPortfolio.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
       </div>
       <div id="other-projects">
-        <h3>Side Projects</h3>
+        <h2>Side Projects</h2>
         {props.data.allContentfulPortfolio.edges.map((edge) => <OtherProjects key={edge.node.id} node={edge.node} />)}
       </div>
     </section>
@@ -93,7 +93,7 @@ const OtherProjects = ({ node }) => {
   if (node.otherProjects !== null) {
     return (
       <div>
-        <h4>{node.title}</h4>
+        <h3>{node.title}</h3>
         {documentToReactComponents(node.body.json, options)}
       </div>
     )

@@ -44,7 +44,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
   @include breakpoint(medium) {
     font-size: 1.4rem;
@@ -57,15 +57,15 @@ h3 {
 }
 
 h4 {
-  font-size: 1rem;
-  margin-bottom: 0;
+  font-size: 1.1rem;
+  margin-bottom: .8rem;
   @include breakpoint(medium) {
     font-size: 1.2rem;
-    margin-bottom: 0;
+    margin-bottom: .5rem;
   }
   @include breakpoint(medium) {
     font-size: 1.3rem;
-    margin-bottom: 0;
+    margin-bottom: .5rem;
   }
 }
 
