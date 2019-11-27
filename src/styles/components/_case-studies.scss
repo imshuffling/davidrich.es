@@ -32,7 +32,7 @@
 	overflow: hidden;
 	transition-property: color;
 	transition-delay: $delay;
-	box-shadow: 0 2px 20px rgba(0, 0, 0, .1);
+	height: 363px;
 
 	&:before,
 	&:after {
@@ -41,7 +41,6 @@
 	}
 
 	&.hover {
-		color: white;
 		transition-delay: 0;
 		a {
 			color: inherit;
@@ -50,38 +49,11 @@
 
 	&,
 	&__image,
-	&__image::after,
-	&__author,
-	&__body,
-	&__foot {
+	&__image::after {
 		transition-duration: $duration;
 		transition-timing-function: $timing;
 	}
 
-	&__head {
-		position: relative;
-		padding-top: 70%;
-		@include breakpoint(medium) {
-			padding-top: 50%;
-		}
-	}
-
-	&__author {
-		position: absolute;
-		padding: 1.4rem;
-		left: 0;
-		bottom: 0;
-		color: white;
-		transition-property: transform;
-		transition-delay: $delay;
-		@include breakpoint(medium) {
-			padding: 1.875rem;
-		}
-	}
-
-	&.hover &__author {
-		transition-delay: 0;
-	}
 
 	&__image {
 		position: absolute;
@@ -104,7 +76,7 @@
 			right: 0;
 			bottom: 0;
 			opacity: .5;
-			background: linear-gradient(30deg,rgba(71, 26, 99, 0.85),rgba(98, 26, 99, 0.5));
+			background: linear-gradient(30deg, rgba(71, 26, 99, 0.85), rgb(75, 22, 76));
 			transition-property: opacity;
 			transition-delay: $delay;
 		}
@@ -126,97 +98,55 @@
 		}
 	}
 
-	&__body {
-		position: relative;
-		padding: 1.4rem;
-		height: 100%;
-		transition-property: transform;
-		transition-delay: $delay;
-		@include breakpoint(medium) {
-			padding: 1.875rem;
-		}
-  	}
-
-  &__link {
-    margin: .8rem 0;
+  &__details {
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: calc(100% - 2.8rem);
+	  height: calc(100% - 2.8rem);
+	  padding: 1.4rem;
+	  @include breakpoint(medium) {
+		padding: 1.875rem;
+		width: calc(100% - 3.75rem);
+		height: calc(100% - 3.75rem);
+	}
   }
 
-	&.hover &__body {
-		transition-delay: 0;
-	}
+  &__content {
+	opacity: 0;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+  }
 
-	&__headline {
-		margin-bottom: .8rem;
-	}
-
-	&__text {
-		margin: 0;
-    	opacity: .8;
-	}
-
-	&__foot {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		padding: 0 1.4rem 1.4rem;
-		opacity: 0;
-		transition-property: opacity;
-
-		@include breakpoint(medium) {
-			padding: 1.875rem;
-		}
-
-		&.hidden {
-			opacity: 0;
-			padding: 0;
-		}
-	}
-
-	&.hover &__foot {
+	&.hover &__content {
 		opacity: 1;
 		transition-delay: $delay;
-	}
-
-	&__link {
-		a {
-			color: white;
-			background: none;
-			text-decoration: none;
-			border-bottom: 2px solid #fff;
-		}
-	}
-
-}
-
-.author {
-	display: flex;
-	align-items: center;
-
-	&__header {
-		margin: 0;
-		font-weight: 600;
-	}
-
-	&__subheader {
-		margin: 0;
-		opacity: .8;
 	}
 
 }
 
 #other-projects {
+	margin-top: 4rem;
 	> div {
-		margin-top: 1.3rem;
-		margin-bottom: 1.3rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 		padding-bottom: 1rem;
 		border-bottom: 1px solid var(--grey);
+		min-height: 200px;
+    	display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
 		&:last-of-type {
 			border-bottom: 0 none;
 		}
 	}
 
 	h3 {
-		margin-bottom: .8rem;
+		margin-bottom: .6rem;
 	}
 }

@@ -8,9 +8,9 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 export default (props) => (
   <Layout>
     <section>
-        <h1>Hello I'm David.</h1>
+        <h1>Hello I'm David. <span role="img" aria-label="Waving hand">👋</span></h1>
         <h2>
-          <span>A Front-end developer &amp; part-time hockey player from London. </span>
+          <span className="intro">A Front-end developer &amp; part-time hockey player <span role="img" aria-label="Hockey stick">🏑</span> from London. <span role="img" aria-label="United Kingdom Union Jack">🇬🇧</span></span>
           I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a></h2>
         <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
       <div id="cards">
@@ -42,7 +42,6 @@ const PortfolioPost = ({ node }) => {
   if (node.otherProjects == null) {
     return (
       <div className="card">
-        <div className="card__head">
           <div className="card__image" style={{
             backgroundImage: `url(${node.image.file.url})`,
           }}>
@@ -52,19 +51,12 @@ const PortfolioPost = ({ node }) => {
             </video>
           }
           </div>
-          <div className="card__author">
-            <div className="author">
-              <div className="author__content">
-                <p className="author__header">{node.title}</p>
-                <p className="author__subheader">{node.tag}</p>
+          <div className="card__details">
+              <div className="card__content">
+                <h3>{node.title}</h3>
+                <p>{documentToReactComponents(node.body.json, options)}</p>
               </div>
-            </div>
           </div>
-        </div>
-        <div className="card__body">
-          <h3 className="card__headline">{node.title}</h3>
-          <div className="card__text">{documentToReactComponents(node.body.json, options)}</div>
-        </div>
       </div>
     )
   } else {
