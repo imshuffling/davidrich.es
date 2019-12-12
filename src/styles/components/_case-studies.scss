@@ -132,6 +132,12 @@
 #other-projects {
 	margin-top: 4rem;
 	> div {
+
+		&:first-of-type {
+			padding-top: 1rem;
+			border-top: 1px solid var(--grey);
+		}
+
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 		padding-bottom: 1rem;
