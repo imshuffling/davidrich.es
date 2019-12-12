@@ -12,13 +12,14 @@
     margin-bottom: 1rem;
   }
   @include breakpoint(large) {
-    grid-gap: 60px;
+    grid-gap: 80px;
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
   li {
     h3 {
-      margin-bottom: .8rem;
+      @extend .h2;
+      margin-bottom: .5rem !important;
     }
   }
 }
