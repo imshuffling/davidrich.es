@@ -54,6 +54,7 @@ const PortfolioPost = ({ node }) => {
           <div className="card__details">
               <div className="card__content">
                 <h3>{node.title}</h3>
+                <span>{node.tag}</span>
                 {documentToReactComponents(node.body.json, options)}
               </div>
           </div>
