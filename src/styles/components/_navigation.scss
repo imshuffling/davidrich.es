@@ -28,14 +28,12 @@ nav {
 
       a {
         padding-bottom: 2px;
-        background: none;
-        transition: all .2s ease-in-out;
-        border-bottom: 4px solid transparent;
+        border-bottom: 1px solid transparent;
+        color: var(--black);
         &.active {
-          background: none;
-          border-color: var(--blue);
+          border-color: var(--grey);
           &:hover {
-            border-color: var(--blue);
+            border-color: var(--grey);
           }
         }
         &:hover {

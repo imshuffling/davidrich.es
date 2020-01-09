@@ -49,7 +49,7 @@
     font-size: 1.4rem;
     margin-bottom: 1.4rem;
   }
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     font-size: 1.6rem;
     margin-bottom: 1.6rem;
   }
@@ -62,7 +62,7 @@
     font-size: 1.2rem;
     margin-bottom: .5rem;
   }
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     font-size: 1.3rem;
     margin-bottom: .5rem;
   }
@@ -85,14 +85,11 @@ h4 {
 }
 
 a {
-  color: var(--black);
-  border-bottom: 4px solid var(--blue);
-  background: linear-gradient(var(--blue),var(--blue) 100%) bottom no-repeat;
-  background-size: 100% 0;
-  transition: background-size .1s;
   text-decoration: none;
+  color: rgb(0, 0, 238);
+  transition: color .4s ease-out;
   &:hover {
-    background-size: 100% 100%;
+    color: rgb(0, 0, 156);
   }
 }
 
