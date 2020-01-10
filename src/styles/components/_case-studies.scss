@@ -151,16 +151,10 @@
 #other-projects {
 	margin-top: 4rem;
 	> div {
-
-		&:first-of-type {
-			padding-top: 1rem;
-			border-top: 1px solid var(--grey);
-		}
-
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 		padding-bottom: 1rem;
-		border-bottom: 1px solid var(--grey);
+		border-bottom: 1px solid #efefef;
 		min-height: 200px;
     	display: flex;
 		flex-direction: column;

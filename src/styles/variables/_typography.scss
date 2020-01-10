@@ -88,8 +88,10 @@ a {
   text-decoration: none;
   color: rgb(0, 0, 238);
   transition: color .4s ease-out;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--grey);
   &:hover {
-    color: rgb(0, 0, 156);
+    color: var(--primary-colour);
   }
 }
 
