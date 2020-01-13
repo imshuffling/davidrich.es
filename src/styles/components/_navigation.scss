@@ -32,12 +32,23 @@ nav {
         color: var(--black);
         &.active {
           border-color: var(--grey);
+          background: linear-gradient(90deg, var(--primary-colour), #651fff);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: none;
+
           &:hover {
-            border-color: var(--grey);
+
+            background: none;
+            -webkit-text-fill-color: inherit;
+            text-decoration: none;
           }
         }
         &:hover {
-          border-color: var(--grey);
+          background: none;
+          -webkit-text-fill-color: inherit;
+          text-decoration: none;
         }
       }
     }
@@ -63,7 +74,10 @@ nav {
   margin-right: 15px;
   &:hover {
     text-decoration: none;
-    box-shadow: none;
+    background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   @include breakpoint(medium) {

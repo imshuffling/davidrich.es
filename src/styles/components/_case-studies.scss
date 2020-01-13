@@ -41,10 +41,18 @@
 	}
 
 	&.hover {
-		transition-delay: 0;
+		transition-delay: $delay;
 		a {
 			color: inherit;
+			background: none;
+			text-decoration: underline;
+			text-decoration-color: var(--grey);
+			-webkit-text-fill-color: inherit;
 		}
+	}
+
+	a {
+		color: inherit;
 	}
 
 	&,
