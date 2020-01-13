@@ -88,10 +88,14 @@ a {
   text-decoration: none;
   color: rgb(0, 0, 238);
   transition: color .4s ease-out;
-  padding-bottom: 2px;
-  border-bottom: 1px solid var(--grey);
   &:hover {
-    color: var(--primary-colour);
+    text-decoration: underline;
+    text-decoration-color: var(--grey);
+    background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
   }
 }
 
