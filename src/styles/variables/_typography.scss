@@ -91,7 +91,6 @@ a {
   &:hover {
     text-decoration: underline;
     text-decoration-color: var(--grey);
-    //background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
     background: linear-gradient(90deg, var(--primary-colour), #651fff);
     -webkit-background-clip: text;
     background-clip: text;

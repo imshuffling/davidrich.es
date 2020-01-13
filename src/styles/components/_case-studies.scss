@@ -32,7 +32,7 @@
 	overflow: hidden;
 	transition-property: color;
 	transition-delay: $delay;
-	height: 363px;
+	min-height: 450px;
 
 	&:before,
 	&:after {
