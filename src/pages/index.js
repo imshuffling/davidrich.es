@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -14,7 +14,7 @@ export default (props) => (
           I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a></h2>
         <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
       <div id="cards">
-        {props.data.allContentfulPortfolio.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
+        {props.data.allContentfulFeaturedProjects.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
       </div>
       <div id="other-projects">
         <h2>Side Projects</h2>
@@ -26,45 +26,45 @@ export default (props) => (
 
 const PortfolioPost = ({ node }) => {
 
-  const Bold = ({ children }) => <strong>{children}</strong>
-  const Text = ({ children }) => <p>{children}</p>
+  // const Bold = ({ children }) => <strong>{children}</strong>
+  // const Text = ({ children }) => <p>{children}</p>
 
-  const options = {
-      renderMark: {
-          [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-      },
-      renderNode: {
-          [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-      },
-      renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
-  }
+  // const options = {
+  //     renderMark: {
+  //         [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+  //     },
+  //     renderNode: {
+  //         [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+  //     },
+  //     renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
+  // }
 
-  if (node.otherProjects == null) {
     return (
-      <div className="card">
-          <div className="card__image" style={{
-            backgroundImage: `url(${node.image.file.url})`,
-          }}>
-          {node.media !== null &&
-            <video loop muted autoPlay playsInline>
-              <source src={node.media.file.url} type="video/mp4" />
-            </video>
-          }
-          </div>
-          <div className="card__details">
-              <div className="card__content">
-                <h3>{node.title}</h3>
-                <span>{node.tag}</span>
-                {documentToReactComponents(node.body.json, options)}
+      <>
+        {node.item.map((item, i) =>
+          <div className="card">
+            <Link to={`/portfolio/${item.slug}`}>
+              <div className="card__image" style={{
+                backgroundImage: `url(${item.image.file.url})`,
+              }}>
+              {item.media !== null &&
+                <video loop muted autoPlay playsInline>
+                  <source src={item.media.file.url} type="video/mp4" />
+                </video>
+              }
               </div>
+              <div className="card__details">
+                  <div className="card__content">
+                    <h3>{item.title}</h3>
+                    {/* <span>{item.tag}</span> */}
+                    {/* {documentToReactComponents(item.body.json, options)} */}
+                  </div>
+              </div>
+            </Link>
           </div>
-      </div>
+        )}
+      </>
     )
-  } else {
-    return (
-      ''
-    )
-  }
 }
 
 
@@ -99,18 +99,13 @@ const OtherProjects = ({ node }) => {
 
 export const pageQuery = graphql`
     query pageQuery {
-        allContentfulPortfolio(
-            sort: {
-                fields: [sortOrder], order: ASC
-            }
-        ) {
+        allContentfulPortfolio {
             edges {
                 node {
                     id
                     title
                     tag
                     slug
-                    sortOrder
                     otherProjects
                     createdAt(formatString: "MMMM DD, YYYY")
                     image {
@@ -128,6 +123,33 @@ export const pageQuery = graphql`
                     }
                 }
             }
+        }
+        allContentfulFeaturedProjects {
+          edges {
+            node {
+              item {
+                id
+                title
+                tag
+                slug
+                otherProjects
+                createdAt(formatString: "MMMM DD, YYYY")
+                image {
+                  file {
+                    url
+                  }
+                }
+                body {
+                  json
+                }
+                media {
+                  file {
+                    url
+                  }
+                }
+              }
+            }
+          }
         }
     }
 `

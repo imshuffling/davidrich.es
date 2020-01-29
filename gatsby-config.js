@@ -8,7 +8,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: ["/portfolio/*", `/thanks/`]
+        exclude: [`/thanks/`]
       }
     },
     `gatsby-plugin-sass`,
