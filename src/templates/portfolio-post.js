@@ -19,7 +19,7 @@ class PortfolioPost extends React.Component {
                 {documentToReactComponents(body.json)}
               </div>
               {media !== null &&
-                <video controls playsInline>
+                <video controls playsInline poster={image.file.url}>
                   <source src={media.file.url} type="video/mp4" />
                 </video>
               }
