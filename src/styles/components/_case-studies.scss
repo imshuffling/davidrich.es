@@ -199,7 +199,9 @@
 		p {
 			font-size: 1.6rem;
     		margin-bottom: 1.6rem;
-			max-width: 70%;
+			@include breakpoint(medium) {
+				max-width: 70%;
+			}
 		}
 	}
 
