@@ -25,20 +25,6 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
-
-  // const Bold = ({ children }) => <strong>{children}</strong>
-  // const Text = ({ children }) => <p>{children}</p>
-
-  // const options = {
-  //     renderMark: {
-  //         [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-  //     },
-  //     renderNode: {
-  //         [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-  //     },
-  //     renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
-  // }
-
     return (
       <>
         {node.item.map((item, i) =>
@@ -56,8 +42,6 @@ const PortfolioPost = ({ node }) => {
               <div className="card__details">
                   <div className="card__content">
                     <h3>{item.title}</h3>
-                    {/* <span>{item.tag}</span> */}
-                    {/* {documentToReactComponents(item.body.json, options)} */}
                   </div>
               </div>
             </Link>
@@ -79,11 +63,15 @@ const OtherProjects = ({ node }) => {
       },
       renderNode: {
           [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+          [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>
+            <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" alt="${fields.title['en-GB']}"/>`}} />,
       },
       renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
-  if (node.otherProjects !== null) {
+  console.log(node.body.json)
+
+  if (node.otherProjects === true) {
     return (
       <div>
         <h3>{node.title}</h3>

@@ -22,7 +22,7 @@ class Layout extends Component {
   render() {
     const { children } = this.props
     return (
-      <section className="container-wrap">
+      <div className="container-wrap">
         <Helmet
           title="About me - David Riches"
           meta={[
@@ -33,7 +33,7 @@ class Layout extends Component {
         <Header />
           {children}
         <Footer />
-      </section>
+      </div>
     )
   }
 }

@@ -132,6 +132,9 @@
 	justify-content: flex-end;
 	height: 100%;
 	width: 100%;
+	transition: all .2s ease-in-out;
+
+
 	p, span {
 		color: white;
 	}
@@ -184,8 +187,12 @@
 
 
 .portfolio-item {
+	padding-left: 0;
+	padding-right: 0;
 	> div {
 		min-height: 60vh;
+		padding-left: 7%;
+		padding-right: 7%;
 
 		h1 {
 			margin-bottom: 0;
@@ -205,8 +212,22 @@
 		}
 	}
 
-	video {
-		width: 100%;
+	img, video {
+		max-width: 100%;
 		height: auto;
+	}
+
+	.sections {
+		padding-left: 0;
+		padding-right: 0;
+		> div {
+			margin: 0px auto;
+			text-align: center;
+			padding: 80px 7%;
+		}
+		> div:nth-child(odd) {
+			background: var(--grey);
+			padding: 80px 7%;
+		}
 	}
 }
