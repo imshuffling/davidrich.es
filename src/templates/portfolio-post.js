@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
+import Helmet from 'react-helmet';
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
@@ -9,7 +10,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 class PortfolioPost extends React.Component {
   render() {
     console.log(this.props.data.contentfulPortfolio)
-    const { title, tag, body, media, image, fullPost } = this.props.data.contentfulPortfolio
+    const { title, tag, body, media, image, fullPost, link } = this.props.data.contentfulPortfolio
 
     const Bold = ({ children }) => <strong>{children}</strong>
     const Text = ({ children }) => <p>{children}</p>
@@ -28,11 +29,17 @@ class PortfolioPost extends React.Component {
 
       return (
         <Layout>
+        <Helmet>
+          <title>{title} - David Riches</title>
+        </Helmet>
           <section className="portfolio-item">
               <div>
                 <h1>{title}</h1>
                 <span>{tag}</span>
                 {documentToReactComponents(body.json, options)}
+                {link !== null &&
+                    <p><a target="_blank" rel="noopener noreferrer" href={link}>View site</a></p>
+                }
               </div>
             <div className="sections">
               {fullPost !== null &&
@@ -50,10 +57,6 @@ class PortfolioPost extends React.Component {
                     <Img fluid={image.fluid} />
                 </div>
               }
-              {/* {link !== null &&
-                <p><Link to={link}>View site</Link></p>
-              } */}
-
               </div>
 
           </section>

@@ -32,10 +32,9 @@ body {
   grid-template-areas: "Header" "Main-content" "Footer";
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
-  // padding-left: 7%;
-  // padding-right: 7%;
   background: #fff;
   margin: 0px auto;
+  border-top: 10px solid #651fff;
 }
 
 header, section, footer {

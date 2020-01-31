@@ -37,12 +37,13 @@ nav {
           background-clip: text;
           -webkit-text-fill-color: transparent;
           text-shadow: none;
-
           &:hover {
-
-            background: none;
-            -webkit-text-fill-color: inherit;
-            text-decoration: none;
+            border-color: var(--grey);
+            background: linear-gradient(90deg, var(--primary-colour), #651fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
           }
         }
         &:hover {
