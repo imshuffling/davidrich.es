@@ -9,7 +9,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 class PortfolioPost extends React.Component {
   render() {
-    console.log(this.props.data.contentfulPortfolio)
+    // console.log(this.props.data.contentfulPortfolio)
     const { title, tag, body, media, image, fullPost, link } = this.props.data.contentfulPortfolio
 
     const Bold = ({ children }) => <strong>{children}</strong>
@@ -22,7 +22,8 @@ class PortfolioPost extends React.Component {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
             [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>
-              <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" loading="lazy" alt="${fields.title['en-GB']}"/>`}} />,
+              <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" width="${fields.file['en-GB'].details.image.width}" height="${fields.file['en-GB'].details.image.height}" loading="lazy" alt="${fields.title['en-GB']}"/>`}} />,
+              // TODO - use gatsby image
         },
         renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
     }
