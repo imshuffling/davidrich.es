@@ -22,7 +22,7 @@ class PortfolioPost extends React.Component {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
             [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>
-              <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" alt="${fields.title['en-GB']}"/>`}} />,
+              <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" loading="lazy" alt="${fields.title['en-GB']}"/>`}} />,
         },
         renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
     }
@@ -48,6 +48,7 @@ class PortfolioPost extends React.Component {
               {media !== null &&
                 <div className="video-container section">
                     <video controls playsInline poster={image.file.url}>
+                    <track kind="captions" />
                     <source src={media.file.url} type="video/mp4" />
                     </video>
                 </div>
