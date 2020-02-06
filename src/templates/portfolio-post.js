@@ -39,7 +39,7 @@ class PortfolioPost extends React.Component {
                 <span>{tag}</span>
                 {documentToReactComponents(body.json, options)}
                 {link !== null &&
-                    <p><a target="_blank" rel="noopener noreferrer" href={link}>View site</a></p>
+                    <a target="_blank" rel="noopener noreferrer" href={link}>View site</a>
                 }
               </div>
             <div className="sections">
