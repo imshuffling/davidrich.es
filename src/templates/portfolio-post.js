@@ -83,9 +83,13 @@ class PortfolioPost extends React.Component {
               <div className="section__services">
                 <div>
                 <h4>Services</h4>
-                  {services.map((item, i) =>
-                    <div key={item.id}>{item}</div>
-                  )}
+                {services !== null &&
+                  <>
+                    {services.map((item, i) =>
+                      <div key={item.id}>{item}</div>
+                    )}
+                  </>
+                  }
                 </div>
               </div>
               {fullPost !== null &&
