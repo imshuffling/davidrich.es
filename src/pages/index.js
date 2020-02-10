@@ -28,7 +28,7 @@ const PortfolioPost = ({ node }) => {
     return (
       <>
         {node.item.map((item, i) =>
-          <div className="card">
+          <div className="card" key={item.id}>
             <Link to={`/portfolio/${item.slug}`}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
@@ -69,12 +69,12 @@ const OtherProjects = ({ node }) => {
       renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
-  console.log(node.body.json)
+  //console.log(node.body.json)
 
   if (node.otherProjects === true) {
     return (
-      <div>
-        <h3>{node.title}</h3>
+      <div key={node.id}>
+        <h4>{node.title}</h4>
         {documentToReactComponents(node.body.json, options)}
       </div>
     )
@@ -92,22 +92,11 @@ export const pageQuery = graphql`
                 node {
                     id
                     title
-                    tag
                     slug
                     otherProjects
                     createdAt(formatString: "MMMM DD, YYYY")
-                    image {
-                      file {
-                        url
-                      }
-                    }
                     body {
                       json
-                    }
-                    media {
-                      file {
-                        url
-                      }
                     }
                 }
             }
@@ -118,10 +107,8 @@ export const pageQuery = graphql`
               item {
                 id
                 title
-                tag
                 slug
                 otherProjects
-                createdAt(formatString: "MMMM DD, YYYY")
                 image {
                   file {
                     url

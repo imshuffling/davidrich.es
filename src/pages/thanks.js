@@ -7,7 +7,7 @@ export default () => (
   <Helmet>
     <title>Thanks - David Riches</title>
   </Helmet>
-    <section id='thanks' className="animated fadeIn">
+    <section id='thanks'>
       <h1>Thanks for getting in touch.</h1>
       <p>Have a great day!</p>
     </section>

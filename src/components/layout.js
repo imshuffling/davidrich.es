@@ -22,7 +22,7 @@ class Layout extends Component {
   render() {
     const { children } = this.props
     return (
-      <div className="container-wrap">
+      <div className="container-wrap animated fadeIn">
         <Helmet
           title="About me - David Riches"
           meta={[
