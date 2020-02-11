@@ -41,7 +41,8 @@ class PortfolioPost extends React.Component {
                         <source src={media.file.url} type="video/mp4" />
                       </video>
                   }
-                <div className="portfolio-item__copy">
+                <div className="portfolio-item__copy" data-aos="fade-up" data-aos-once="true">
+                  <div className="portfolio-item__who">Mirum</div>
                   <h1>{title}</h1>
                   {documentToReactComponents(body.json, options)}
                 </div>

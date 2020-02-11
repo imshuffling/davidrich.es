@@ -5,10 +5,16 @@ import Footer from '../components/footer'
 import '../styles/index.scss'
 import 'typeface-karla'
 import 'typeface-oswald'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 class Layout extends Component {
 
   componentDidMount() {
+    AOS.init({
+      duration : 1000
+    })
+
     document.querySelectorAll('.card').forEach((elem) => {
       elem.onmouseenter = () => {
         elem.classList.add('hover')

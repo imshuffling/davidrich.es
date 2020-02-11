@@ -25,10 +25,13 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
+
+    console.log({node})
+
     return (
       <>
         {node.item.map((item, i) =>
-          <div className="card" key={item.id}>
+          <div className="card" key={item.id} data-aos="fade-up" data-aos-once="true" data-aos-delay={`${i}50`}>
             <Link to={`/portfolio/${item.slug}`}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,

@@ -245,7 +245,7 @@ body.portfolio {
 				flex-direction: column;
 				justify-content: flex-end;
 				color: white;
-				height: calc(100vh - 2.5rem);
+				height: 90vh;
 				position: relative;
 				padding-left: 7%;
 				padding-right: 7%;
@@ -256,7 +256,6 @@ body.portfolio {
 					}
 				}
 		}
-
 
 		.link {
 			text-align: right;
@@ -273,7 +272,7 @@ body.portfolio {
 			@include breakpoint(medium) {
 				font-size: 1.6rem;
 			}
-    		margin-bottom: 2.5rem;
+    		margin-bottom: 5rem;
 		}
 	}
 
