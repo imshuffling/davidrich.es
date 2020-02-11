@@ -22,7 +22,7 @@ class PortfolioPost extends React.Component {
         renderNode: {
             [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
             [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>
-              <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" width="${fields.file['en-GB'].details.image.width}" height="${fields.file['en-GB'].details.image.height}" loading="lazy" alt="${fields.title['en-GB']}"/>`}} />,
+              <div dangerouslySetInnerHTML={{__html: `<img data-aos="fade-in" data-aos-once="true" src="${fields.file['en-GB'].url}" width="${fields.file['en-GB'].details.image.width}" height="${fields.file['en-GB'].details.image.height}" loading="lazy" alt="${fields.title['en-GB']}"/>`}} />,
               // TODO - use gatsby image
         },
         renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
