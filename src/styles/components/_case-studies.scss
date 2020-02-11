@@ -268,11 +268,16 @@ body.portfolio {
 			margin-bottom: 0;
 		}
 
-		p, img {
+		img {
+			margin-top: 5rem;
+    		margin-bottom: 5rem;
+		}
+
+		p {
 			@include breakpoint(medium) {
 				font-size: 1.6rem;
 			}
-    		margin-bottom: 5rem;
+    		//margin-bottom: 5rem;
 		}
 	}
 
