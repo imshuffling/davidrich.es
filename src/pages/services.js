@@ -15,7 +15,7 @@ class Services extends React.Component {
           <h1>Services</h1>
           <ul id="services">
           {this.props.data.allContentfulServices.nodes.map((i, index) =>
-            <li key={i.id} data-aos="fade-in" data-aos-once="true" data-aos-delay={`${index}50`}>
+            <li key={i.id} data-aos="fade-in" data-aos-once="true" data-aos-delay={index + 1 + '00'}>
               <h3>{i.title}</h3>
               {documentToReactComponents(i.body.json)}
             </li>
