@@ -29,7 +29,7 @@ const PortfolioPost = ({ node }) => {
     return (
       <>
         {node.item.map((item, i) =>
-          <div className="card" key={item.id} data-aos="fade-in" data-aos-once="true" data-aos-delay={i + 1 + '00'}>
+          <div className="card" key={item.id} data-aos="fade-in" data-aos-once="true" data-aos-offset="30" data-aos-delay={i + 1 + '00'}>
             <Link to={`/portfolio/${item.slug}`}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
