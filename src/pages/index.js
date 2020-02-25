@@ -8,11 +8,14 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 export default (props) => (
   <Layout>
     <section>
+      <div id="strapline">
         <h1>Hello I'm David. <span role="img" aria-label="Waving hand">👋</span></h1>
         <h2>
           <span className="intro">A Front-end developer &amp; part-time hockey player <span role="img" aria-label="Hockey stick">🏑</span> from London. <span role="img" aria-label="United Kingdom Union Jack">🇬🇧</span></span>
-          I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a></h2>
+          I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a>
+        </h2>
         <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
+      </div>
       <div id="cards">
         {props.data.allContentfulFeaturedProjects.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
       </div>
@@ -29,7 +32,7 @@ const PortfolioPost = ({ node }) => {
     return (
       <>
         {node.item.map((item, i) =>
-          <div className="card" key={item.id} data-aos="fade-in" data-aos-once="true" data-aos-offset="30" data-aos-delay={i + 1 + '00'}>
+          <div className="card" key={item.id}>
             <Link to={`/portfolio/${item.slug}`}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,

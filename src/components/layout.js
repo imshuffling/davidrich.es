@@ -37,7 +37,7 @@ class Layout extends Component {
           ]}
         />
         <Header />
-          {children}
+          <div id="page-wrap">{children}</div>
         <Footer />
       </div>
     )
