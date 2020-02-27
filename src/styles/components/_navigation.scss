@@ -18,12 +18,20 @@ header {
 
 body.no-scroll {
   overflow: hidden;
+  .logo {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+  }
 }
 
 nav {
   font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   @include breakpoint(medium) {
-    font-size: 5rem;
+    font-size: 4rem;
   }
 
   #navigation {
@@ -133,6 +141,9 @@ nav {
   box-shadow: none;
   border: 0 none;
   margin-right: 15px;
+  z-index: 9999;
+  position: relative;
+  transition: all .4s ease-in-out;
   &:hover {
     text-decoration: none;
     background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;
