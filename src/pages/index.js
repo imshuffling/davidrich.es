@@ -28,7 +28,20 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
-    //console.log({node})
+
+    const Bold = ({ children }) => <strong>{children}</strong>
+    const Text = ({ children }) => <p>{children}</p>
+
+    const options = {
+        renderMark: {
+            [MARKS.BOLD]: text => <Bold>{text}</Bold>,
+        },
+        renderNode: {
+            [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
+        },
+        renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
+    }
+    // console.log({node})
     return (
       <>
         {node.item.map((item, i) =>
@@ -46,6 +59,7 @@ const PortfolioPost = ({ node }) => {
               <div className="card__details">
                   <div className="card__content">
                     <h3>{item.title}</h3>
+                    {documentToReactComponents(item.body.json, options)}
                   </div>
               </div>
             </Link>
