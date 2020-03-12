@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -46,7 +46,6 @@ const PortfolioPost = ({ node }) => {
       <>
         {node.item.map((item, i) =>
           <div className="card" key={item.id}>
-            <Link to={`/portfolio/${item.slug}`}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
               }}>
@@ -62,7 +61,6 @@ const PortfolioPost = ({ node }) => {
                     {documentToReactComponents(item.body.json, options)}
                   </div>
               </div>
-            </Link>
           </div>
         )}
       </>
