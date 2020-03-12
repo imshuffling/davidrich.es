@@ -87,7 +87,7 @@ const OtherProjects = ({ node }) => {
       renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
-  console.log(node)
+  // console.log(node)
 
   if (node.otherProjects === true) {
     return (
