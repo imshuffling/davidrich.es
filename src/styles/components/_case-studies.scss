@@ -52,10 +52,6 @@
 	overflow: hidden;
 	transition-property: color;
 	transition-delay: $delay;
-	// min-height: 250px;
-	// @include breakpoint(medium) {
-	// 	min-height: 450px;
-	// }
 
 	&:before,
 	&:after {
@@ -65,18 +61,10 @@
 
 	&.hover {
 		transition-delay: $delay;
-		a {
-			color: inherit;
-			background: none;
-			text-decoration: underline;
-			text-decoration-color: var(--grey);
-			-webkit-text-fill-color: inherit;
-		}
 	}
 
 	a {
-		color: inherit;
-		pointer-events: none;
+		color: white;
 	}
 
 	&,
