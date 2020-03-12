@@ -18,11 +18,6 @@ header {
 
 body.no-scroll {
   overflow: hidden;
-  // .logo {
-  //   color: white;
-  //   background: none;
-  //   -webkit-text-fill-color: #ffffff;
-  // }
 }
 
 nav {
@@ -40,36 +35,26 @@ nav {
 
   a {
     color: white;
-    border-bottom: 1px solid transparent;
+
+    &:after {
+      background: transparent;
+    }
 
     &.active {
-      // text-decoration: underline;
-      // -webkit-text-decoration-color: white;
-      // text-decoration-color: white;
-      border-color: white;
-      background: -webkit-gradient(linear, left top, right top, from(var(--primary-colour)), to(#651fff));
-      background: linear-gradient(90deg, var(--primary-colour), #651fff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
+      &:after {
+        background: var(--grey);
+      }
     }
 
     &:hover {
       color: white;
-      text-decoration: none;
-      border-color: white;
+      &:after {
+        background: white;
+      }
       &.active {
-          // text-decoration: underline;
-          // -webkit-text-decoration-color: white;
-          // text-decoration-color: white;
-          border-color: white;
-          background: -webkit-gradient(linear, left top, right top, from(var(--primary-colour)), to(#651fff));
-          background: linear-gradient(90deg, var(--primary-colour), #651fff);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-shadow: none;
+          &:after {
+            background: var(--grey);
+          }
       }
     }
   }
@@ -149,6 +134,10 @@ nav {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  &:after {
+    display: none;
   }
 
   @include breakpoint(medium) {

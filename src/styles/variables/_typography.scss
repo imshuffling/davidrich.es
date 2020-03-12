@@ -86,16 +86,24 @@ h4 {
 
 a {
   text-decoration: none;
-  color: rgb(0, 0, 238);
-  transition: color .4s ease-out;
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: var(--grey);
+  color: var(--primary-colour);
+  transition: all .2s ease;
+  position: relative;
+  &:after {
+    content: '';
+    height: 1px;
     background: linear-gradient(90deg, var(--primary-colour), #651fff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
+    width: 100%;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+
+  &:hover {
+    color: var(--alt-black);
+    &:after {
+      background: var(--alt-black);
+    }
   }
 }
 
