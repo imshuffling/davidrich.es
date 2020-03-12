@@ -36,9 +36,12 @@ body {
   margin: 0px auto;
 }
 
-header, section, footer {
+header, footer, #page-wrap {
+  max-width: 1600px;
   padding-left: 7%;
   padding-right: 7%;
+  margin: 0px auto;
+  width: calc(100% - 14%);
 }
 
 form {
@@ -148,7 +151,7 @@ input[type="email"] {
 h2 {
   .intro {
     display: block;
-    margin: 10px 0;
+    margin: 1rem 0;
     @include breakpoint(medium) {
       display: block;
       margin: 0;

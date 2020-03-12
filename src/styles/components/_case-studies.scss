@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 30px;
+  grid-auto-rows: 1fr;
 
   @include breakpoint(medium) {
     margin-top: 3rem;
@@ -17,6 +18,25 @@
 		margin-bottom: 3rem;
 		grid-template-columns: repeat(2, 1fr)
 	}
+
+	&:before {
+		content: '';
+		width: 0;
+		padding-bottom: 100%;
+		grid-row: 1 / 1;
+		grid-column: 1 / 1;
+	}
+
+	> *:first-child {
+		grid-row: 1 / 1;
+		grid-column: 1 / 1;
+	}
+
+	> * {
+		background: rgba(0,0,0,0.1);
+		border: 1px white solid;
+	  }
+
 }
 
 .card {
@@ -32,10 +52,10 @@
 	overflow: hidden;
 	transition-property: color;
 	transition-delay: $delay;
-	min-height: 250px;
-	@include breakpoint(medium) {
-		min-height: 450px;
-	}
+	// min-height: 250px;
+	// @include breakpoint(medium) {
+	// 	min-height: 450px;
+	// }
 
 	&:before,
 	&:after {
@@ -164,19 +184,54 @@
 }
 
 #other-projects {
-	margin-top: 4rem;
-	> div {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
-		padding-bottom: 1rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	@include breakpoint(medium) {
+		margin-top: 6rem;
+		margin-bottom: 3rem;
+	}
+	.item {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-gap: 30px;
 		border-bottom: 1px solid #efefef;
-		min-height: 200px;
-    	display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-content: center;
-		&:last-of-type {
-			border-bottom: 0 none;
+		padding: 2rem 0;
+		@include breakpoint(medium) {
+			grid-auto-rows: 1fr;
+			padding: 4rem 0;
+			align-items: center;
+		}
+
+		&:first-of-type {
+			border-top: 1px solid #efefef;
+			margin-top: 2rem;
+			@include breakpoint(medium) {
+				margin-top: 4rem;
+			}
+		}
+
+		&__title {
+			margin-bottom: 0;
+		}
+
+		&__content {
+			@include breakpoint(medium) {
+				margin-right: 4rem;
+			}
+		}
+
+		p {
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		@include breakpoint(medium) {
+			grid-template-columns: 1fr;
+		}
+
+		@include breakpoint(large) {
+			grid-template-columns: repeat(2, 1fr)
 		}
 	}
 }

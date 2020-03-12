@@ -87,13 +87,13 @@ const OtherProjects = ({ node }) => {
       renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
   }
 
-  //console.log(node.body.json)
+  console.log(node)
 
   if (node.otherProjects === true) {
     return (
-      <div key={node.id}>
-        <h4>{node.title}</h4>
-        {documentToReactComponents(node.body.json, options)}
+      <div className="item" key={node.id}>
+        <h4 className="item__title">{node.title}</h4>
+        <div className="item__content">{documentToReactComponents(node.body.json, options)}</div>
       </div>
     )
   } else {
