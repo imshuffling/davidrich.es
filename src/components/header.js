@@ -1,22 +1,44 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
-import { slide as Menu } from 'react-burger-menu'
-import X from '../images/x.svg';
-import ham from '../images/ham.svg';
+import Helmet from 'react-helmet'
+// import { slide as Menu } from 'react-burger-menu'
+// import X from '../images/x.svg';
+// import ham from '../images/ham.svg';
 
 class Header extends Component {
+
+  state = {
+    toggle: false
+  }
+
+  toggle = () => {
+    this.setState({
+      toggle: !this.state.toggle
+    })
+  }
+
   render() {
     return (
-      <header>
-        <Link className="logo" to='/'>David Riches</Link>
-        <Menu pageWrapId={ "page-wrap" } width={'100vw'} bodyClassName={ "no-scroll" } customBurgerIcon={ <img alt="open navigation" src={ham} /> } customCrossIcon={ <img alt="close navigation" src={X} /> } right>
-          <ul id="navigation">
-            <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
-            <li><Link to='/services' activeClassName="active"><span>Services</span></Link></li>
-            <li><Link to='/contact' activeClassName="active"><span>Contact</span></Link></li>
-          </ul>
-        </Menu>
-      </header>
+      <>
+        <Helmet>
+            <body className={this.state.toggle ? 'menu-open' : 'menu-close' } />
+        </Helmet>
+        <header>
+          <Link className="logo" to='/'>David Riches</Link>
+          <div role="button" className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle} tabIndex={0} onKeyDown={this.handleClick}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <nav className={this.state.toggle ? 'open' : '' }>
+            <ul id="navigation">
+              <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
+              <li><Link to='/services' activeClassName="active"><span>Services</span></Link></li>
+              <li><Link to='/contact' activeClassName="active"><span>Contact</span></Link></li>
+            </ul>
+          </nav>
+        </header>
+      </>
     )
   }
 }

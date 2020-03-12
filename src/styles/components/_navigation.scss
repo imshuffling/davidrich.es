@@ -1,7 +1,5 @@
 header {
   display: flex;
-  // padding-top: 5%;
-  // padding-bottom: 7%;
   padding-top: 45px;
   padding-bottom: 60px;
   width: calc(100% - 14%);
@@ -9,22 +7,91 @@ header {
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  //position: absolute;
   @include breakpoint(medium) {
     padding-top: 85px;
     padding-bottom: 100px;
   }
 }
 
-body.no-scroll {
+body.menu-open {
   overflow: hidden;
 }
 
+.navbutton {
+  z-index: 12;
+  width: 24px;
+  height: 20px;
+  position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+  span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--alt-black);
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+
+    &:nth-child(1) {
+      top: 0px;
+    }
+
+    &:nth-child(2) {
+      top: 9px;
+    }
+
+    &:nth-child(3) {
+      top: 18px;
+    }
+  }
+
+  &.active {
+    span {
+      background: white;
+
+      &:nth-child(1) {
+        top: 9px;
+        transform: rotate(135deg);
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+      }
+
+      &:nth-child(3) {
+        top: 9px;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+
+
+}
+
 nav {
+  display: none;
   font-size: 2rem;
-  display: flex;
   justify-content: center;
   flex-direction: column;
+
+  &.open {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--alt-black);
+    z-index: 10;
+  }
+
+
   @include breakpoint(medium) {
     font-size: 4rem;
   }
@@ -60,54 +127,6 @@ nav {
   }
 }
 
-// nav {
-//   #navigation {
-//     margin: 0;
-//     padding: 0;
-//     list-style: none;
-//     display: flex;
-
-//     li {
-//       line-height: 1;
-//       margin-bottom: 0;
-//         padding: 10px 15px;
-//         &:first-of-type {
-//           padding-left: 0;
-//         }
-
-//         &:last-of-type {
-//           padding-right: 0;
-//         }
-
-//       a {
-//         padding-bottom: 2px;
-//         border-bottom: 1px solid transparent;
-//         color: var(--black);
-//         &.active {
-//           border-color: var(--grey);
-//           background: linear-gradient(90deg, var(--primary-colour), #651fff);
-//           -webkit-background-clip: text;
-//           background-clip: text;
-//           -webkit-text-fill-color: transparent;
-//           text-shadow: none;
-//           &:hover {
-//             border-color: var(--grey);
-//             background: linear-gradient(90deg, var(--primary-colour), #651fff);
-//             -webkit-background-clip: text;
-//             background-clip: text;
-//             -webkit-text-fill-color: transparent;
-//             text-shadow: none;
-//           }
-//         }
-//         &:hover {
-//           background: none;
-//           -webkit-text-fill-color: inherit;
-//           text-decoration: none;
-//         }
-//       }
-//     }
-//   }
-// }
 
 .logo {
   font-size: 1.8rem;
@@ -149,90 +168,4 @@ nav {
     font-size: 2rem;
    // margin-right: auto;
   }
-}
-
-
-/* Position and sizing of burger button */
-.bm-burger-button {
-  // position: fixed;
-  // right: 7%;
-  // top: 84px !important;
-  //background: rgba(255, 255, 255, 0.486);
-  display: flex;
-  justify-content: center;
-  //padding: 5px;
-  width: 48px;
-  border-radius: 100%;
-  height: 32px;
-  position: relative;
-}
-
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: var(--black);
-  height: 15% !important;
-}
-
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: var(--alt-black);
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  width: 48px !important;
-  height: 48px !important;
-  right: 7% !important;
-  top: 45px !important;
-  @include breakpoint(medium) {
-    top: 85px !important;
-  }
-}
-
-/* Color/shape of close button cross */
-.bm-cross {
-  width: 48px !important;
-  height: 48px !important;
-}
-
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: fixed;
-  height: 100%;
-  top: 0;
-}
-
-/* General sidebar styles */
-.bm-menu {
-  background: var(--alt-black);
-}
-
-.bm-icon,
-.bm-cross {
-  // width: 36px !important;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: var(--alt-black);
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: white;
-  // padding: 0.8em;
-  padding: 0;
-}
-
-/* Individual item */
-.bm-item {
-  display: inline-block;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
 }
