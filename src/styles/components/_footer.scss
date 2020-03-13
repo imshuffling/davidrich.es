@@ -12,6 +12,9 @@ footer {
       height: 22px;
       border: 0 none;
       background: none;
+      &:after {
+        display: none;
+      }
     }
 
     @include breakpoint(medium) {
