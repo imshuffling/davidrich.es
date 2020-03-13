@@ -1,7 +1,7 @@
 header {
   display: flex;
-  padding-top: 45px;
-  padding-bottom: 60px;
+  padding-top: 20px;
+  padding-bottom: 30px;
   width: calc(100% - 14%);
   flex-direction: row;
   align-items: center;
@@ -76,7 +76,7 @@ body.menu-open {
 
 nav {
   display: flex;
-  font-size: 2rem;
+  font-size: clamp(2rem, 7vw, 6rem);
   justify-content: center;
   flex-direction: column;
   position: absolute;
@@ -96,13 +96,7 @@ nav {
     transition-delay: 0s;
   }
 
-
-  @include breakpoint(medium) {
-    font-size: 4rem;
-  }
-
   #navigation {
-    // padding: 45px 7%;
     max-width: 1600px;
     margin: 0px auto;
     padding-left: 7%;

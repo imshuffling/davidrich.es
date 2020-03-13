@@ -95,8 +95,11 @@ a {
     background: linear-gradient(90deg, var(--primary-colour), #651fff);
     width: 100%;
     position: absolute;
-    bottom: -4px;
+    bottom: -2px;
     left: 0;
+    @include breakpoint(medium) {
+      bottom: -4px;
+    }
   }
 
   &:hover {
