@@ -5,7 +5,7 @@
   margin-top: 2rem;
   margin-bottom: 0;
   grid-template-columns: 1fr;
-  max-width: 1100px;
+  max-width: 1200px;
   @include breakpoint(medium) {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 5rem;
