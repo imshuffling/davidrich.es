@@ -76,7 +76,7 @@ body.menu-open {
 
 nav {
   display: flex;
-  font-size: clamp(2rem, 7vw, 6rem);
+  font-size: min(max(2rem, 7vw), 6rem);
   justify-content: center;
   flex-direction: column;
   position: absolute;
