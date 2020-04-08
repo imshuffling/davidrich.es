@@ -1,9 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
 import Helmet from 'react-helmet'
-// import { slide as Menu } from 'react-burger-menu'
-// import X from '../images/x.svg';
-// import ham from '../images/ham.svg';
 
 class Header extends Component {
 
@@ -34,6 +31,7 @@ class Header extends Component {
             <ul id="navigation">
               <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
               <li><Link to='/services' activeClassName="active"><span>Services</span></Link></li>
+              <li><a target="_blank" rel="noopener noreferrer" href='https://resume.davidrich.es/'><span>Resume</span></a></li>
               <li><Link to='/contact' activeClassName="active"><span>Contact</span></Link></li>
             </ul>
           </nav>
