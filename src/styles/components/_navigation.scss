@@ -109,6 +109,16 @@ nav {
     color: white;
     user-select: none;
 
+    span {
+      display: none;
+    }
+
+    &[aria-current="page"] {
+      span {
+        display: inline-block;
+      }
+    }
+
     &:after {
       background: transparent;
     }

@@ -29,10 +29,10 @@ class Header extends Component {
           </div>
           <nav className={this.state.toggle ? 'open' : '' }>
             <ul id="navigation">
-              <li><Link to='/' activeClassName="active"><span>About me</span></Link></li>
-              <li><Link to='/services' activeClassName="active"><span>Services</span></Link></li>
-              <li><a target="_blank" rel="noopener noreferrer" href='https://resume.davidrich.es/'><span>Resume</span></a></li>
-              <li><Link to='/contact' activeClassName="active"><span>Contact</span></Link></li>
+              <li><Link to='/' activeClassName="active">About me <span role="img" alt="OK emoji" aria-label="OK">👌</span></Link></li>
+              <li><Link to='/services' activeClassName="active">Services <span role="img" alt="OK emoji" aria-label="OK">👌</span></Link></li>
+              <li><a target="_blank" rel="noopener noreferrer" href='https://resume.davidrich.es/'>Resume</a></li>
+              <li><Link to='/contact' activeClassName="active">Contact <span role="img" alt="OK emoji" aria-label="OK">👌</span></Link></li>
             </ul>
           </nav>
         </header>
