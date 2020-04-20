@@ -92,30 +92,32 @@ class PortfolioPost extends React.Component {
             }
           </section>
 
-          <section className="other-projects">
-            <h3>Other projects</h3>
-            <div id="cards">
-              {footer.map((item, i) =>
-                <Link to={`/portfolio/${item.slug}`} className="card" key={item.id}>
-                    <div className="card__image" style={{
-                      backgroundImage: `url(${item.image.file.url})`,
-                    }}>
-                    {item.media !== null &&
-                      <video loop muted autoPlay playsInline>
-                        <source src={item.media.file.url} type="video/mp4" />
-                      </video>
-                    }
-                    </div>
-                    <div className="card__details">
-                        <div className="card__content">
-                          <h3>{item.title}</h3>
-                          <span>View project</span>
-                        </div>
-                    </div>
-                </Link>
-              )}
-            </div>
-            </section>
+          {footer !== null &&
+            <section className="other-projects">
+              <h3>Other projects</h3>
+              <div id="cards">
+                {footer.map((item, i) =>
+                  <Link to={`/portfolio/${item.slug}`} className="card" key={item.id}>
+                      <div className="card__image" style={{
+                        backgroundImage: `url(${item.image.file.url})`,
+                      }}>
+                      {item.media !== null &&
+                        <video loop muted autoPlay playsInline>
+                          <source src={item.media.file.url} type="video/mp4" />
+                        </video>
+                      }
+                      </div>
+                      <div className="card__details">
+                          <div className="card__content">
+                            <h3>{item.title}</h3>
+                            <span>View project</span>
+                          </div>
+                      </div>
+                  </Link>
+                )}
+                </div>
+              </section>
+            }
           </Layout>
       )
   }
