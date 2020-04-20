@@ -382,9 +382,6 @@
 	#cards {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
-		grid-template-columns: 1fr;
-		@include breakpoint(large) {
-			grid-template-columns: 1fr 1fr;
-		}
+		grid-template-columns: 1fr 1fr;
 	}
 }
