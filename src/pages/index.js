@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
@@ -19,7 +19,8 @@ export default (props) => (
       <div id="cards">
         {props.data.allContentfulFeaturedProjects.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
       </div>
-      <div id="other-projects">
+      <div id="side-projects">
+        <h2>Side projects</h2>
         {props.data.allContentfulPortfolio.edges.map((edge) => <OtherProjects key={edge.node.id} node={edge.node} />)}
       </div>
     </section>
@@ -27,24 +28,11 @@ export default (props) => (
 )
 
 const PortfolioPost = ({ node }) => {
-
-    const Bold = ({ children }) => <strong>{children}</strong>
-    const Text = ({ children }) => <p>{children}</p>
-
-    const options = {
-        renderMark: {
-            [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-        },
-        renderNode: {
-            [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-        },
-        renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
-    }
-    // console.log({node})
+    console.log({node})
     return (
       <>
         {node.item.map((item, i) =>
-          <div className="card" key={item.id}>
+          <Link to={`/portfolio/${item.slug}`} className="card" key={item.id}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
               }}>
@@ -57,10 +45,10 @@ const PortfolioPost = ({ node }) => {
               <div className="card__details">
                   <div className="card__content">
                     <h3>{item.title}</h3>
-                    {documentToReactComponents(item.body.json, options)}
+                    <span>View project</span>
                   </div>
               </div>
-          </div>
+          </Link>
         )}
       </>
     )
@@ -89,7 +77,7 @@ const OtherProjects = ({ node }) => {
   if (node.otherProjects === true) {
     return (
       <div className="item" key={node.id}>
-        <h4 className="item__title h2">{node.title}</h4>
+        <h4 className="item__title h3">{node.title}</h4>
         <div className="item__content">{documentToReactComponents(node.body.json, options)}</div>
       </div>
     )

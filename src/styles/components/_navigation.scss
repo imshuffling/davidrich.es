@@ -163,6 +163,7 @@ nav {
   margin-right: 15px;
   position: relative;
   transition: all .4s ease-in-out;
+  user-select: none;
   &:hover {
     text-decoration: none;
     background: linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), var(--primary-colour), #651fff) border-box;

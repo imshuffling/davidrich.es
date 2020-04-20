@@ -1,19 +1,19 @@
 import React from 'react'
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 //import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Helmet from 'react-helmet';
 import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-
+import ContentModules from '../content-modules';
 
 class PortfolioPost extends React.Component {
   render() {
     console.log(this.props.data.contentfulPortfolio)
-    const { title, body, media, image, fullPost, link, completed, client, timeframe, services } = this.props.data.contentfulPortfolio
+    const { title, body, link, completed, client, timeframe, blocks, footer } = this.props.data.contentfulPortfolio
 
     const Bold = ({ children }) => <strong>{children}</strong>
-    const Text = ({ children }) => <p>{children}</p>
+    const Text = ({ children }) => <h2>{children}</h2>
 
     const options = {
         renderMark: {
@@ -35,12 +35,7 @@ class PortfolioPost extends React.Component {
           <body className="portfolio" />
         </Helmet>
           <section className="portfolio-item">
-                <div className="portfolio-item__content" style={{ backgroundImage: `linear-gradient(30deg, rgba(71, 26, 99, 0.85), rgba(75, 22, 76, 0.5)), url(${image.file.url})` }}>
-                {media !== null &&
-                      <video loop muted autoPlay playsInline>
-                        <source src={media.file.url} type="video/mp4" />
-                      </video>
-                  }
+              <div className="portfolio-item__content">
                 <div className="portfolio-item__copy" data-aos="fade-up" data-aos-once="true">
                   <div className="portfolio-item__who">Mirum</div>
                   <h1>{title}</h1>
@@ -48,7 +43,8 @@ class PortfolioPost extends React.Component {
                 </div>
               </div>
 
-              <div className="portfolio-wrapper">
+              <div className="portfolio-wrapper" data-aos="fade-in" data-aos-once="true" data-aos-delay="500">
+
                 <div className="portfolio-info">
                   {client !== null &&
                     <div className="portfolio-info__item">
@@ -77,33 +73,49 @@ class PortfolioPost extends React.Component {
                       <span><strong><a target="_blank" rel="noopener noreferrer" href={`https://www.${link}`}>{link}</a></strong></span>
                     </div>
                   }
+
+                  {/* {services !== null &&
+                    <div className="portfolio-info__item">
+                      <span>Stack</span>
+                      <ul>
+                        {services.map((item, i) =>
+                          <li><span key={item.id}><strong>{item}</strong></span></li>
+                        )}
+                      </ul>
+                    </div>
+                  } */}
               </div>
             </div>
-
-            <div className="sections">
-              <div className="section__services">
-                <div>
-                <h4>Services</h4>
-                {services !== null &&
-                  <>
-                    {services.map((item, i) =>
-                      <div key={item.id}>{item}</div>
-                    )}
-                  </>
-                  }
-                </div>
-              </div>
-              {fullPost !== null &&
-                <div className="section__text"><div>{documentToReactComponents(fullPost.json, options)}</div></div>
-              }
-              {/* {media == null &&
-                <div className="section">
-                    <Img fluid={image.fluid} />
-                </div>
-              } */}
-              </div>
-
+            {blocks && <ContentModules blocks={blocks} />}
+            {link !== null &&
+              <p><span role="img" alt="Finger emoji" aria-label="Finger">👉 </span><a target="_blank" rel="noopener noreferrer" href={`https://www.${link}`}>Visit website</a></p>
+            }
           </section>
+
+          <section className="other-projects">
+            <h3>Other projects</h3>
+            <div id="cards">
+              {footer.map((item, i) =>
+                <Link to={`/portfolio/${item.slug}`} className="card" key={item.id}>
+                    <div className="card__image" style={{
+                      backgroundImage: `url(${item.image.file.url})`,
+                    }}>
+                    {item.media !== null &&
+                      <video loop muted autoPlay playsInline>
+                        <source src={item.media.file.url} type="video/mp4" />
+                      </video>
+                    }
+                    </div>
+                    <div className="card__details">
+                        <div className="card__content">
+                          <h3>{item.title}</h3>
+                          <span>View project</span>
+                        </div>
+                    </div>
+                </Link>
+              )}
+            </div>
+            </section>
           </Layout>
       )
   }
@@ -118,8 +130,76 @@ export const pageQuery = graphql`
             body {
                 json
             }
-            fullPost {
+            footer {
+              id
+              title
+              slug
+              image {
+                file {
+                  url
+                }
+              }
+              body {
                 json
+              }
+              media {
+                file {
+                  url
+                }
+              }
+            }
+            blocks {
+              __typename
+              ... on Node {
+                ... on ContentfulImage {
+                  image {
+                    fluid(maxWidth: 1200) {
+                      ...GatsbyContentfulFluid
+                    }
+                    file {
+                      url
+                    }
+                  }
+                }
+                ... on ContentfulTextLeft {
+                  id
+                  title
+                  body {
+                    id
+                    childMarkdownRemark {
+                      id
+                      html
+                    }
+                  }
+                }
+                ... on ContentfulTextArea {
+                  id
+                  title
+                  centerText
+                  body {
+                    id
+                    childMarkdownRemark {
+                      id
+                      html
+                    }
+                  }
+                }
+                ... on ContentfulTwoColumn {
+                  image {
+                    file {
+                      url
+                    }
+                  }
+                  imageFirst
+                  body {
+                    id
+                    childMarkdownRemark {
+                      id
+                      html
+                    }
+                  }
+                }
+              }
             }
             completed
             services
