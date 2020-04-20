@@ -248,8 +248,10 @@
 .portfolio-wrapper {
 	padding: 1rem 0;
 	width: 100%;
+	border-top: 1px solid var(--grey);
 	@include breakpoint(large) {
 		padding: 2rem 0;
+		border-top: 0 none;
 	}
 }
 
@@ -380,5 +382,9 @@
 	#cards {
 		margin-top: 2rem;
 		margin-bottom: 2rem;
+		grid-template-columns: 1fr;
+		@include breakpoint(large) {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 }
