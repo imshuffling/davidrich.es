@@ -9,13 +9,13 @@
   @include breakpoint(medium) {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 5rem;
-    grid-row-gap: 2.5rem;
+    grid-row-gap: 3.5rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
   }
   @include breakpoint(large) {
     grid-gap: 5rem;
-    grid-row-gap: 2.5rem;
+    grid-row-gap: 3.5rem;
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
