@@ -135,7 +135,7 @@
   }
 
   &__content {
-	opacity: 0;
+	opacity: 1;
 	color: white;
 	display: flex;
 	flex-direction: column;
@@ -148,13 +148,25 @@
 		color: var(--alt-grey);
 	}
 
-	h3 {
-		margin-bottom: .4rem;
-		line-height: 1.1;
+	h2 {
+		@extend .h3;
+		margin-bottom: 0 !important;
+		line-height: 1.2;
+		@include breakpoint(medium) {
+			font-size: 1.6rem;
+		  }
+
+		@include breakpoint(large) {
+			font-size: 1.8rem;
+		}
 	}
 
 	div {
 		text-decoration: underline;
+		display: none;
+		@include breakpoint(large) {
+			display: block;
+		}
 	}
 
 	span {
