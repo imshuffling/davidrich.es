@@ -32,7 +32,7 @@ const PortfolioPost = ({ node }) => {
     return (
       <>
         {node.item.map((item, i) =>
-          <Link to={`/portfolio/${item.slug}`} className="card" key={item.id}>
+          <Link to={`${item.slug}`} className="card" key={item.id}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
               }}>
@@ -44,8 +44,9 @@ const PortfolioPost = ({ node }) => {
               </div>
               <div className="card__details">
                   <div className="card__content">
-                    <h3>{item.title}</h3>
-                    <span>View project</span>
+                    <span>Mirum</span>
+                    <h2>{item.title}</h2>
+                    <div>View project</div>
                   </div>
               </div>
           </Link>

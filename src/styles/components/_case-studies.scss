@@ -153,6 +153,10 @@
 		line-height: 1.1;
 	}
 
+	div {
+		text-decoration: underline;
+	}
+
 	span {
 		font-size: .8rem;
 		display: block;
@@ -341,15 +345,16 @@
 }
 
 .portfolio-info {
-	display: flex;
+	display: grid;
 	width: 100%;
-	flex-direction: row;
-	flex-wrap: wrap;
+	grid-template-columns: repeat(2, 1fr);
 	@include breakpoint(large) {
-		flex-wrap: nowrap;
-		flex-direction: row;
+		grid-template-columns: repeat(4, 1fr);
+		grid-column-gap: 1rem;
 		width: 70%;
 	}
+
+
 	&__item {
 		display: flex;
 		flex-direction: column;
