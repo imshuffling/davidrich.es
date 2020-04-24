@@ -11,7 +11,7 @@ export default (props) => (
       <div id="strapline">
         <h1>Hello I'm David. <span role="img" aria-label="Waving hand">👋</span></h1>
         <h2>
-          <span className="intro">A Front-end developer &amp; part-time hockey player <span role="img" aria-label="Hockey stick">🏑</span> from London. <span role="img" aria-label="United Kingdom Union Jack">🇬🇧</span></span>
+          <span className="intro">A Front-end developer <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/mirum">@Mirum</a> &amp; part-time hockey player <span role="img" aria-label="Hockey stick">🏑</span> from London.</span>
           I like making things on the web, <AnchorLink offset='30' data-scroll href="#cards">view my portfolio</AnchorLink> or <a target="_blank" rel="noopener noreferrer" href="https://www.github.com/imshuffling">follow me on Github.</a>
         </h2>
         <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
