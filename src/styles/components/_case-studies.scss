@@ -337,9 +337,6 @@
 }
 
 .text-area {
-	@include breakpoint(medium) {
-		max-width: 70%;
-	}
 	&__center {
 		text-align: center;
 		margin: 0px auto;
