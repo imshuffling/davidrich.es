@@ -9,10 +9,10 @@ class Services extends React.Component {
     return (
       <Layout>
         <Helmet>
-          <title>Services - David Riches</title>
+          <title>Skills - David Riches</title>
         </Helmet>
         <section>
-          <h1>Services</h1>
+          <h1>Skills</h1>
           <ul id="services">
           {this.props.data.allContentfulServices.nodes.map((i, index) =>
             <li key={i.id}>
