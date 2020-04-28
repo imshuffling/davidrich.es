@@ -114,31 +114,18 @@ nav {
     }
 
     &[aria-current="page"] {
+      text-decoration: line-through;
       span {
         display: inline-block;
       }
     }
 
     &:after {
-      background: transparent;
-    }
-
-    &.active {
-      &:after {
-        background: var(--grey);
-      }
+      background: none;
     }
 
     &:hover {
       color: white;
-      &:after {
-        background: white;
-      }
-      &.active {
-          &:after {
-            background: var(--grey);
-          }
-      }
     }
   }
 }
