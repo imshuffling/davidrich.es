@@ -4,6 +4,13 @@ module.exports = {
     siteUrl: `https://davidrich.es`
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-165591929-1",
+        head: true,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-sitemap`,
