@@ -3,8 +3,8 @@
   margin-bottom: 3rem;
   -webkit-overflow-scrolling: touch;
   display: grid;
-  grid-gap: 0px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
 
   @include breakpoint(medium) {
