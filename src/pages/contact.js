@@ -41,9 +41,9 @@ export default class Contact extends React.Component {
       <section id='contact'>
         <div>
           <h1>Contact me</h1>
-          <h2>I am available for small projects and contract work.<br />
+          <h2>I am currently looking for a new challange <span role="img" alt="Smile emoji" aria-label="Smile">😊</span><br />
             <span className="email">
-              E-mail me at&nbsp;
+              email me at&nbsp;
               <a href="mailto:hi@davidrich.es"><span>hi</span>
               <span>@</span>
               <span>d</span>
