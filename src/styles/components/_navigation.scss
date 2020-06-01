@@ -89,7 +89,7 @@ nav {
   min-height: stretch;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+  transition: visibility 0s linear 0s, opacity 0s linear;
 
   &.open {
     background: var(--alt-black);
