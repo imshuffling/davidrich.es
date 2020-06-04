@@ -1,5 +1,5 @@
 import React from 'react'
-import Helmet from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/layout"
 
 export default () => (
@@ -7,7 +7,7 @@ export default () => (
   <Helmet>
     <title>Thanks - David Riches</title>
   </Helmet>
-    <section id='thanks'>
+    <section id="thanks">
       <h1>Thanks for getting in touch.</h1>
       <p>Have a great day!</p>
     </section>

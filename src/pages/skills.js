@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { graphql } from "gatsby"
-import Helmet from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/layout"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-class Services extends React.Component {
+class Services extends Component {
   render() {
     return (
       <Layout>

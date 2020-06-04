@@ -1,15 +1,14 @@
-import React from 'react'
-import { Link, graphql } from "gatsby"
+import React, { Component } from 'react';
+import { Link, graphql } from "gatsby";
 //import Img from "gatsby-image"
-import Layout from "../components/layout"
-import Helmet from 'react-helmet';
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import Layout from "../components/layout";
+import { Helmet } from "react-helmet-async";
+import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import ContentModules from '../content-modules';
 
-class PortfolioPost extends React.Component {
+class PortfolioPost extends Component {
   render() {
-    console.log(this.props.data.contentfulPortfolio)
     const { title, body, link, completed, client, timeframe, blocks, footer } = this.props.data.contentfulPortfolio
 
     const Bold = ({ children }) => <strong>{children}</strong>
@@ -73,17 +72,6 @@ class PortfolioPost extends React.Component {
                       <span><strong><a target="_blank" rel="noopener noreferrer" href={`https://www.${link}`}>{link}</a></strong></span>
                     </div>
                   }
-
-                  {/* {services !== null &&
-                    <div className="portfolio-info__item">
-                      <span>Stack</span>
-                      <ul>
-                        {services.map((item, i) =>
-                          <li><span key={item.id}><strong>{item}</strong></span></li>
-                        )}
-                      </ul>
-                    </div>
-                  } */}
               </div>
             </div>
             {blocks && <ContentModules blocks={blocks} />}

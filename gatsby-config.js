@@ -11,7 +11,7 @@ module.exports = {
         head: true,
       },
     },
-    `gatsby-plugin-react-helmet`,
+    `@rhysforyou/gatsby-plugin-react-helmet-async`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {

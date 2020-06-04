@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigateTo } from 'gatsby-link'
-import Helmet from 'react-helmet';
+import { Helmet } from "react-helmet-async";
 import Layout from "../components/layout"
 
 function encode(data) {

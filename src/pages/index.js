@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout.js"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import { BLOCKS, MARKS } from "@contentful/rich-text-types"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 export default (props) => (
@@ -17,22 +16,21 @@ export default (props) => (
         <h3>This site is built with <a target="_blank" rel="noopener noreferrer" href="https://www.gatsbyjs.org/">Gatsby.js</a> and powered by <a target="_blank" rel="noopener noreferrer" href="https://www.contentful.com/">Contentful.</a></h3>
       </div>
       <div id="cards">
-        {props.data.allContentfulFeaturedProjects.edges.map((edge) => <PortfolioPost key={edge.node.id} node={edge.node} />)}
+        {props.data.allContentfulFeaturedProjects.edges.map((edge, i) => <PortfolioPost key={i} node={edge.node} />)}
       </div>
       <div id="side-projects">
         <h2>Side projects</h2>
-        {props.data.allContentfulPortfolio.edges.map((edge) => <OtherProjects key={edge.node.id} node={edge.node} />)}
+        {props.data.allContentfulPortfolio.edges.map((edge, i) => <OtherProjects key={i} node={edge.node} />)}
       </div>
     </section>
   </Layout>
 )
 
 const PortfolioPost = ({ node }) => {
-    console.log({node})
     return (
       <>
         {node.item.map((item, i) =>
-          <Link to={`${item.slug}`} className="card" key={item.id}>
+          <Link to={`/${item.slug}`} className="card" key={i}>
               <div className="card__image" style={{
                 backgroundImage: `url(${item.image.file.url})`,
               }}>
@@ -57,36 +55,15 @@ const PortfolioPost = ({ node }) => {
 
 
 const OtherProjects = ({ node }) => {
-
-  const Bold = ({ children }) => <strong>{children}</strong>
-  const Text = ({ children }) => <p>{children}</p>
-
-  const options = {
-      renderMark: {
-          [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-      },
-      renderNode: {
-          [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
-          [BLOCKS.EMBEDDED_ASSET]: ({ data: { target: { fields }}}) =>
-            <div dangerouslySetInnerHTML={{__html: `<img src="${fields.file['en-GB'].url}" alt="${fields.title['en-GB']}"/>`}} />,
-      },
-      renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br />, text]),
-  }
-
-  // console.log(node)
-
-  if (node.otherProjects === true) {
+  if ( node.otherProjects ) {
     return (
       <div className="item" key={node.id}>
         <h4 className="item__title h3">{node.title}</h4>
-        <div className="item__content">{documentToReactComponents(node.body.json, options)}</div>
+        <div className="item__content">{documentToReactComponents(node.body.json)}</div>
       </div>
     )
-  } else {
-    return (
-      ''
-    )
   }
+  return null
 }
 
 export const pageQuery = graphql`
@@ -96,7 +73,6 @@ export const pageQuery = graphql`
                 node {
                     id
                     title
-                    slug
                     otherProjects
                     createdAt(formatString: "MMMM DD, YYYY")
                     body {
