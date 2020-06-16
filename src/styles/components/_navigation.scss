@@ -129,6 +129,10 @@ nav {
       span {
         display: inline-block;
       }
+
+      &:hover {
+        color: inherit;
+      }
     }
 
     &:after {
