@@ -15,6 +15,13 @@ header {
 
 body.menu-open {
   overflow: hidden;
+
+  .logo {
+    color: #fff;
+    -webkit-text-fill-color: #fff;
+    position: relative;
+    z-index: 20;
+  }
 }
 
 .navbutton {
@@ -110,13 +117,15 @@ nav {
   a {
     color: white;
     user-select: none;
+    letter-spacing: -.5px;
 
     span {
-      display: none;
+      display: inline-block;
     }
 
     &[aria-current="page"] {
-      text-decoration: line-through;
+      text-decoration: none;
+      color: #565656;
       span {
         display: inline-block;
       }
