@@ -17,8 +17,8 @@ body.menu-open {
   overflow: hidden;
 
   .logo {
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+    // color: #fff;
+    // -webkit-text-fill-color: #fff;
     position: relative;
     z-index: 20;
   }
@@ -59,7 +59,7 @@ body.menu-open {
 
   &.active {
     span {
-      background: white;
+      // background: white;
 
       &:nth-child(1) {
         top: 9px;
@@ -99,7 +99,8 @@ nav {
   transition: visibility 0s linear 0s, opacity 0s linear;
 
   &.open {
-    background: var(--alt-black);
+    // background: var(--alt-black);
+    background: var(--grey);
     z-index: 10;
     visibility: visible;
     opacity: 1;
@@ -115,12 +116,16 @@ nav {
   }
 
   a {
-    color: white;
     user-select: none;
     letter-spacing: -.5px;
 
     span {
       display: inline-block;
+    }
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
     }
 
     &[aria-current="page"] {
@@ -130,17 +135,15 @@ nav {
         display: inline-block;
       }
 
-      &:hover {
-        color: inherit;
+      &:after {
+        background: var(--alt-black);
       }
+
+      
     }
 
     &:after {
       background: none;
-    }
-
-    &:hover {
-      color: white;
     }
   }
 }
