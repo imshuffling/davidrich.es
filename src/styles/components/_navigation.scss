@@ -15,13 +15,6 @@ header {
 
 body.menu-open {
   overflow: hidden;
-
-  .logo {
-    // color: #fff;
-    // -webkit-text-fill-color: #fff;
-    position: relative;
-    z-index: 20;
-  }
 }
 
 .navbutton {
@@ -99,7 +92,6 @@ nav {
   transition: visibility 0s linear 0s, opacity 0s linear;
 
   &.open {
-    // background: var(--alt-black);
     background: var(--grey);
     z-index: 10;
     visibility: visible;
@@ -137,9 +129,7 @@ nav {
 
       &:after {
         background: var(--alt-black);
-      }
-
-      
+      }      
     }
 
     &:after {
@@ -168,6 +158,8 @@ nav {
   margin-right: 15px;
   position: relative;
   transition: all .4s ease-in-out;
+  position: relative;
+  z-index: 20;
   user-select: none;
   &:hover {
     text-decoration: none;
@@ -183,11 +175,9 @@ nav {
 
   @include breakpoint(medium) {
     font-size: 1.8rem;
-    //margin-right: auto;
   }
 
   @include breakpoint(large) {
     font-size: 2rem;
-   // margin-right: auto;
   }
 }
