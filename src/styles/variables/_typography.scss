@@ -1,21 +1,50 @@
 :root {
+  font-size:               calc(1rem + ((1vw - 0.3rem) * 0.2222));
   --base-font:             'Karla', sans-serif;
   --logo-font:             'Oswald';
+
   --primary-colour:        rgb(244, 0, 136);
   --pink:                  #ffd6ed;
   --green:                 #9cffdb;
   --blue:                  rgba(137, 212, 255, 0.5);
   --black:                 rgb(57, 53, 49);
   --alt-black:             #9c9c9c;
-  --grey:                  #E5E5E5;
   --x:                     50%;
   --y:                     0%;
-  font-size:               calc(1rem + ((1vw - 0.3rem) * 0.2222));
+
+  --logo-color:           linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), rgb(244, 0, 136), #651fff) border-box;
+  --bg:                   #fff;
+  --heading-color:        rgb(57, 53, 49);
+  --text-color:           rgb(57, 53, 49);
+  --border-color:         #E5E5E5;
+  --nav-button:           rgb(57, 53, 49);
+  --nav-bg:               #E5E5E5;
+  --image-gradient:       linear-gradient(30deg, rgba(71, 26, 99, 0.85), rgb(75, 22, 76));
+  --svg-fill-color:       rgb(57, 53, 49);
+  --button-bg:            rgb(244, 0, 136);
+  --button-text-color:    #fff;
+}
+
+:root body.dark {
+  -webkit-font-smoothing: antialiased;
+  --logo-color:           linear-gradient(#fff0, #fff0) padding-box, radial-gradient(farthest-corner at var(--x) var(--y), hsla(0,0%,100%,0.6), hsla(0,0%,100%,0.6)) border-box;
+  --bg:                   rgb(57, 53, 49);
+  --heading-color:        #fff;
+  --text-color:           hsla(0,0%,100%,0.6);
+  --primary-colour:       hsl(140, 100%, 76%);
+  --border-color:         hsla(0,0%,100%,0.6);
+  --nav-button:           #fff;
+  --nav-bg:               #1e1e1e;
+  --image-gradient:       linear-gradient(30deg, hsla(140, 100%, 76%, 0.25), #9cffdb);
+  --svg-fill-color:       hsla(0,0%,100%,0.6);
+  --button-bg:            hsl(140, 100%, 76%);
+  --button-text-color:    #1e1e1e;
 }
 
 .h1, .h2, .h3, .h4, .h5 {
   font-weight: 400;
   line-height: 1.4;
+  color: var(--heading-color);
 }
 
 .h1 {
@@ -92,7 +121,8 @@ a {
   &:after {
     content: '';
     height: 1px;
-    background: linear-gradient(90deg, var(--primary-colour), #651fff);
+    // background: linear-gradient(90deg, var(--primary-colour), #651fff);
+    background: var(--border-color);
     width: 100%;
     position: absolute;
     bottom: -2px;

@@ -15,6 +15,10 @@ footer {
       &:after {
         display: none;
       }
+
+      svg path {
+        fill: var(--svg-fill-color);
+      }
     }
 
     @include breakpoint(medium) {

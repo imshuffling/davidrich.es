@@ -9,13 +9,14 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 body {
   font-family: var(--base-font);
   font-display: optional;
   font-weight: normal;
-  color: var(--black);
+  color: var(--text-color);
   line-height: 1.42857;
   position: relative;
 }
@@ -31,7 +32,7 @@ body {
   grid-template-areas: "Header" "Main-content" "Footer";
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
-  background: #fff;
+  background: var(--bg);
   margin: 0px auto;
 }
 
@@ -95,12 +96,15 @@ button {
 	outline: none;
 	border-radius: 4px;
   font-size: 16px;
+  background: var(--button-bg);
+  color: var(--button-text-color);
 	// The magic
 	border: 2px solid transparent;
-	background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
+	// background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
   &:focus {
-    background: var(--primary-colour);
-    color: white;
+    // background: var(--primary-colour);
+    // background: var(--button-bg);
+    // color: white;
   }
 }
 

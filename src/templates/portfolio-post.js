@@ -31,7 +31,6 @@ class PortfolioPost extends Component {
         <Layout>
         <Helmet>
           <title>{title} - David Riches</title>
-          <body className="portfolio" />
         </Helmet>
           <section className="portfolio-item">
               <div className="portfolio-item__content">

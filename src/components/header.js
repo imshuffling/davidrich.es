@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { Link } from "gatsby"
 import { Helmet } from "react-helmet-async"
+import ThemeChanger from "../components/themeChanger"
+
 
 class Header extends Component {
 
@@ -18,10 +20,11 @@ class Header extends Component {
     return (
       <>
         <Helmet>
-            <body className={this.state.toggle ? 'menu-open' : 'menu-close' } />
-        </Helmet>
+            <body id={this.state.toggle ? 'menu-open' : 'menu-close' } />
+        </Helmet> 
         <header>
           <Link className="logo" to='/'>David Riches</Link>
+          <ThemeChanger/>
           <div role="button" className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle} tabIndex={0} onKeyDown={this.handleClick}>
             <span></span>
             <span></span>
