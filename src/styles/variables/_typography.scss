@@ -125,10 +125,10 @@ a {
     background: var(--border-color);
     width: 100%;
     position: absolute;
-    bottom: -2px;
+    bottom: 0px;
     left: 0;
     @include breakpoint(medium) {
-      bottom: -4px;
+      bottom: 0px;
     }
   }
 

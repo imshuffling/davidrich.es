@@ -34,11 +34,6 @@
 		grid-column: 1 / 1;
 	}
 
-	// > * {
-	// 	background: rgba(0,0,0,0.1);
-	// 	border: 1px white solid;
-	//   }
-
 }
 
 .card {
@@ -59,6 +54,8 @@
 	&:after {
 		content: '';
 		width: 10px;
+		height: 0;
+		border: 0 none;
 	}
 
 	&.hover {
@@ -128,21 +125,21 @@
 	  height: calc(100% - 2rem);
 	  padding: 1rem;
 	  @include breakpoint(medium) {
-		padding: 1.875rem;
-		width: calc(100% - 3.75rem);
-		height: calc(100% - 3.75rem);
-	}
+			padding: 1.875rem;
+			width: calc(100% - 3.75rem);
+			height: calc(100% - 3.75rem);
+		}
   }
 
   &__content {
-	opacity: 1;
-	color: white;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	height: 100%;
-	width: 100%;
-	transition: all .2s ease-in-out;
+		opacity: 1;
+		color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		height: 100%;
+		width: 100%;
+		transition: all .2s ease-in-out;
 
 	p {
 		color: var(--alt-grey);
@@ -163,10 +160,11 @@
 	}
 
 	div {
-		text-decoration: underline;
+		border-bottom: 1px solid var(--border-color);
+		width: fit-content;
 		display: none;
 		@include breakpoint(large) {
-			display: block;
+			display: inline-block;
 		}
 	}
 
