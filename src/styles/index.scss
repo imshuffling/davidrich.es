@@ -65,16 +65,18 @@ select {
   width: 100%;
   padding: 12px;
   display: inline-block;
-  border: 2px solid #f1f1f1;
+  border: 2px solid var(--border-color);
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 16px;
   font-size: 17px;
   font-family: inherit;
   font-display: optional;
+  background: var(--form-color);
+  color: var(--form-text-color);
   &:focus {
-    border: 2px solid transparent;
-    background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
+    border: 2px solid var(--border-color);
+    background: var(--form-color);
     outline: none;
   }
 }
@@ -99,13 +101,7 @@ button {
   background: var(--button-bg);
   color: var(--button-text-color);
 	// The magic
-	border: 2px solid transparent;
-	// background: linear-gradient(#FFF, #FFF) padding-box, radial-gradient(farthest-corner at  var(--x) var(--y), var(--primary-colour), rgb(101, 31, 255)) border-box;
-  &:focus {
-    // background: var(--primary-colour);
-    // background: var(--button-bg);
-    // color: white;
-  }
+	border: 1px solid transparent;
 }
 
 input:invalid,

@@ -1,47 +1,38 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import { Link } from "gatsby"
 import { Helmet } from "react-helmet-async"
 import ThemeChanger from "../components/themeChanger"
 
+export default function Header(props) {
 
-class Header extends Component {
+  const [toggleState, setToggleState] = useState(false);
 
-  state = {
-    toggle: false
+  function toggle() {
+    setToggleState(!toggleState);
   }
 
-  toggle = () => {
-    this.setState({
-      toggle: !this.state.toggle
-    })
-  }
-
-  render() {
-    return (
-      <>
-        <Helmet>
-            <body id={this.state.toggle ? 'menu-open' : 'menu-close' } />
-        </Helmet> 
-        <header>
-          <Link className="logo" to='/'>David Riches</Link>
-          <ThemeChanger/>
-          <div role="button" className={this.state.toggle ? 'navbutton active' : 'navbutton' } onClick={this.toggle} tabIndex={0} onKeyDown={this.handleClick}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <nav className={this.state.toggle ? 'open' : '' }>
-            <ul id="navigation">
-              <li><Link to='/' activeClassName="active">About me</Link></li>
-              <li><Link to='/what-i-can-do' activeClassName="active">What I can do</Link></li>
-              <li><a target="_blank" rel="noopener noreferrer" href='https://resume.davidrich.es/'>Resume</a></li>
-              <li><Link to='/contact' activeClassName="active">Contact</Link></li>
-            </ul>
-          </nav>
-        </header>
-      </>
-    )
-  }
+  return (
+    <>
+      <Helmet>
+          <body id={toggleState ? 'menu-open' : 'menu-close' } />
+      </Helmet>
+      <header>
+        <Link className="logo" to='/'>David Riches</Link>
+        <ThemeChanger/>
+        <div role="button" className={toggleState ? 'navbutton active' : 'navbutton' } onClick={toggle} tabIndex={0} onKeyDown={toggle}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav className={toggleState ? 'open' : '' }>
+          <ul id="navigation">
+            <li><Link to='/' activeClassName="active">About me</Link></li>
+            <li><Link to='/what-i-can-do' activeClassName="active">What I can do</Link></li>
+            <li><a target="_blank" rel="noopener noreferrer" href='https://resume.davidrich.es/'>Resume</a></li>
+            <li><Link to='/contact' activeClassName="active">Contact</Link></li>
+          </ul>
+        </nav>
+      </header>
+    </>
+  )
 }
-
-export default Header

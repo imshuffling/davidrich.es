@@ -1,33 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { graphql } from "gatsby"
 import { Helmet } from "react-helmet-async";
 import Layout from "../components/layout"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-class Services extends Component {
-  render() {
-    return (
-      <Layout>
-        <Helmet>
-          <title>What I can do - David Riches</title>
-        </Helmet>
-        <section>
-          <h1>What I can do</h1>
-          <ul id="services">
-          {this.props.data.allContentfulServices.nodes.map((i, index) =>
-            <li key={i.id}>
-              <h3>{i.title}</h3>
-              {documentToReactComponents(i.body.json)}
-            </li>
-          )}
-          </ul>
-        </section>
-      </Layout>
-    )
-  }
+export default function Services({data}) {
+  return (
+    <Layout>
+      <Helmet>
+        <title>What I can do - David Riches</title>
+      </Helmet>
+      <section>
+        <h1>What I can do</h1>
+        <ul id="services">
+        {data.allContentfulServices.nodes.map((i, index) =>
+          <li key={index}>
+            <h3>{i.title}</h3>
+            {documentToReactComponents(i.body.json)}
+          </li>
+        )}
+        </ul>
+      </section>
+    </Layout>
+  )
 }
-
-export default Services
 
 export const servicesQuery = graphql`
   query servicesQuery {
