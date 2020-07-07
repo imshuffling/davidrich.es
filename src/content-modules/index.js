@@ -18,7 +18,7 @@ const propTypes = {
 };
 
 export default function ContentModules({blocks}) {
-  console.log('---', blocks);
+  // console.log('---', blocks);
   return (
     <>
       {blocks.map(({"__typename": type, ...props}, i) => {
