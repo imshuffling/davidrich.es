@@ -17,7 +17,8 @@
   --bg:                   #fff;
   --heading-color:        rgb(57, 53, 49);
   --text-color:           rgb(57, 53, 49);
-  --border-color:         #E5E5E5;
+  --border-color:     #E5E5E5;
+  --nav-border-color:     #E5E5E5;
   --nav-button:           rgb(57, 53, 49);
   --nav-bg:               #E5E5E5;
   --image-gradient:       linear-gradient(30deg, rgba(71, 26, 99, 0.85), rgb(75, 22, 76));
@@ -34,7 +35,8 @@
   --heading-color:        #fff;
   --text-color:           hsla(0,0%,100%,0.6);
   --primary-colour:       hsl(140, 100%, 76%);
-  --border-color:         hsla(0,0%,100%,0.6);
+  --border-color:         rgba(79, 79, 79, 0.6);
+  --nav-border-color:     hsla(0,0%,100%,0.6);
   --nav-button:           #fff;
   --nav-bg:               #1e1e1e;
   --image-gradient:       linear-gradient(30deg, hsla(140, 100%, 76%, 0.25), #9cffdb);
@@ -52,7 +54,8 @@
     --heading-color:        #fff;
     --text-color:           hsla(0,0%,100%,0.6);
     --primary-colour:       hsl(140, 100%, 76%);
-    --border-color:         hsla(0,0%,100%,0.6);
+    --border-color:         rgba(79, 79, 79, 0.6);
+    --nav-border-color:     hsla(0,0%,100%,0.6);
     --nav-button:           #fff;
     --nav-bg:               #1e1e1e;
     --image-gradient:       linear-gradient(30deg, hsla(140, 100%, 76%, 0.25), #9cffdb);
@@ -78,6 +81,7 @@
     --heading-color:        rgb(57, 53, 49);
     --text-color:           rgb(57, 53, 49);
     --border-color:         #E5E5E5;
+    --nav-border-color:     #E5E5E5;
     --nav-button:           rgb(57, 53, 49);
     --nav-bg:               #E5E5E5;
     --image-gradient:       linear-gradient(30deg, rgba(71, 26, 99, 0.85), rgb(75, 22, 76));
@@ -170,7 +174,7 @@ a {
     content: '';
     height: 1px;
     // background: linear-gradient(90deg, var(--primary-colour), #651fff);
-    background: var(--border-color);
+    background: var(--nav-border-color);
     width: 100%;
     position: absolute;
     bottom: 0px;
