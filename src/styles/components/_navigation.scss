@@ -200,7 +200,7 @@ nav {
 
     &[aria-current="page"] {
       text-decoration: none;
-      color: #565656;
+      color: var(--heading-color);
       span {
         display: inline-block;
       }
