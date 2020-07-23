@@ -23,8 +23,10 @@ body#menu-open {
   cursor: pointer;
 }
 
-.theme-changer,body.dark .gg-moon,body.light .gg-sun {
-  display: none
+.theme-changer,
+body.dark .gg-moon,
+body.light .gg-sun {
+  display: none;
 }
 
 .mode-container {
@@ -36,48 +38,59 @@ body#menu-open {
 
 .gg-sun {
   position: relative;
-  transform: scale(var(--ggs,1));
+  transform: scale(var(--ggs, 1));
   height: 24px;
-  background: linear-gradient(180deg,currentColor 4px,transparent 0) no-repeat 5px -6px/2px 6px,linear-gradient(180deg,currentColor 4px,transparent 0) no-repeat 5px 14px/2px 6px,linear-gradient(180deg,currentColor 4px,transparent 0) no-repeat -8px 5px/6px 2px,linear-gradient(180deg,currentColor 4px,transparent 0) no-repeat 14px 5px/6px 2px;
+  background: linear-gradient(180deg, currentColor 4px, transparent 0) no-repeat
+      5px -6px/2px 6px,
+    linear-gradient(180deg, currentColor 4px, transparent 0) no-repeat 5px 14px/2px
+      6px,
+    linear-gradient(180deg, currentColor 4px, transparent 0) no-repeat -8px 5px/6px
+      2px,
+    linear-gradient(180deg, currentColor 4px, transparent 0) no-repeat 14px 5px/6px
+      2px;
   border-radius: 100px;
   box-shadow: inset 0 0 0 2px;
   border: 6px solid transparent;
 }
 
-.gg-sun,.gg-sun:after,.gg-sun:before {
+.gg-sun,
+.gg-sun:after,
+.gg-sun:before {
   box-sizing: border-box;
   display: block;
-  width: 24px
+  width: 24px;
 }
 
-.gg-sun:after,.gg-sun:before {
+.gg-sun:after,
+.gg-sun:before {
   content: "";
   position: absolute;
   height: 2px;
   border-right: 4px solid;
   border-left: 4px solid;
   left: -6px;
-  top: 5px
+  top: 5px;
 }
 
 .gg-sun:before {
-  transform: rotate(-45deg)
+  transform: rotate(-45deg);
 }
 
 .gg-sun:after {
-  transform: rotate(45deg)
+  transform: rotate(45deg);
 }
 
-.gg-moon,.gg-moon:after {
+.gg-moon,
+.gg-moon:after {
   display: block;
   box-sizing: border-box;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .gg-moon {
   overflow: hidden;
   position: relative;
-  transform: rotate(-135deg) scale(var(--ggs,1));
+  transform: rotate(-135deg) scale(var(--ggs, 1));
   width: 20px;
   height: 20px;
   border: 2px solid;
@@ -92,7 +105,7 @@ body#menu-open {
   border: 2px solid transparent;
   box-shadow: 0 0 0 2px;
   top: 8px;
-  left: 2px
+  left: 2px;
 }
 
 .navbutton {
@@ -101,7 +114,7 @@ body#menu-open {
   height: 20px;
   position: relative;
   transform: rotate(0deg);
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   cursor: pointer;
   span {
     display: block;
@@ -113,7 +126,7 @@ body#menu-open {
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: 0.25s ease-in-out;
 
     &:nth-child(1) {
       top: 0px;
@@ -148,8 +161,6 @@ body#menu-open {
       }
     }
   }
-
-
 }
 
 nav {
@@ -162,9 +173,9 @@ nav {
   top: 0;
   width: 100%;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
-  min-height: -moz-available;
-  min-height: stretch;
+  // min-height: -webkit-fill-available;
+  // min-height: -moz-available;
+  // min-height: stretch;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0s, opacity 0s linear;
@@ -187,7 +198,7 @@ nav {
 
   a {
     user-select: none;
-    letter-spacing: -.5px;
+    letter-spacing: -0.5px;
 
     span {
       display: inline-block;
@@ -216,7 +227,6 @@ nav {
   }
 }
 
-
 .logo {
   font-size: 1.8rem;
   letter-spacing: -1px;
@@ -235,7 +245,7 @@ nav {
   border: 0 none;
   margin-right: 15px;
   position: relative;
-  transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: relative;
   z-index: 20;
   user-select: none;
