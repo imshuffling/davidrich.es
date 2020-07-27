@@ -166,6 +166,13 @@
     font-size: 1.8rem;
     margin-bottom: 1.8rem;
   }
+
+  a {
+    display: inline-block;
+    @include breakpoint(medium) {
+      display: inline;
+    }
+  }
 }
 
 .h3 {
