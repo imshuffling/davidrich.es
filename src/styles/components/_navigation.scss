@@ -63,7 +63,7 @@ body.light .gg-sun {
 
 .gg-sun:after,
 .gg-sun:before {
-  content: "";
+  content: '';
   position: absolute;
   height: 2px;
   border-right: 4px solid;
@@ -98,7 +98,7 @@ body.light .gg-sun {
 }
 
 .gg-moon:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 12px;
   height: 18px;
@@ -168,14 +168,14 @@ nav {
   font-size: 2.2rem;
   justify-content: center;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   min-height: 100vh;
-  // min-height: -webkit-fill-available;
-  // min-height: -moz-available;
-  // min-height: stretch;
+  min-height: -webkit-fill-available;
+  min-height: -moz-available;
+  min-height: stretch;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 0s, opacity 0s linear;
@@ -209,7 +209,7 @@ nav {
       text-decoration: none;
     }
 
-    &[aria-current="page"] {
+    &[aria-current='page'] {
       text-decoration: none;
       color: var(--heading-color);
       span {
