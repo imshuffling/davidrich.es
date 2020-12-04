@@ -125,12 +125,15 @@ class PortfolioPost extends Component {
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`https://www.${link}`}
+                href={`//${link}`}
               >
                 Visit website
               </a>
             </p>
           )}
+
+
+
         </section>
 
         {footer !== null && (
