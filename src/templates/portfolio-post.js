@@ -204,7 +204,7 @@ export const pageQuery = graphql`
           ... on ContentfulImage {
             image {
               fluid(maxWidth: 1200) {
-                ...GatsbyContentfulFluid
+                ...GatsbyContentfulFluid_withWebp
               }
               file {
                 url
