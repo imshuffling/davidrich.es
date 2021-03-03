@@ -4,11 +4,10 @@ const Footer = () => (
   <footer>
     <div>
       <p>
-        Crafted with{' '}
+      Crafted by David with{' '}
         <span role="img" alt="Heart emoji" aria-label="Love">
           ❤️
-        </span>{' '}
-        By David.
+        </span>
       </p>
       <a
         className="github"

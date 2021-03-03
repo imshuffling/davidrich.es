@@ -1,8 +1,9 @@
 import React from 'react'
 import { ThemeToggler } from 'gatsby-plugin-dark-mode'
 
-export default () => (
-  <ThemeToggler>
+const Themechanger = () => {
+  return (
+    <ThemeToggler>
     {({ theme, toggleTheme }) => (
       <label className="theme-changer-wrapper">
         <input
@@ -19,4 +20,7 @@ export default () => (
       </label>
     )}
   </ThemeToggler>
-)
+  )
+}
+
+export default Themechanger

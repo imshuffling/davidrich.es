@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Helmet } from "react-helmet-async"
+import { Helmet } from "react-helmet"
 import Header from '../components/header'
 import Footer from '../components/footer'
 import '../styles/index.scss'

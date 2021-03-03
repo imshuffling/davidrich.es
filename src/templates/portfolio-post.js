@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ContentModules from "../content-modules";
 
 const PortfolioPost = ({ data }) => {
@@ -58,7 +58,7 @@ const PortfolioPost = ({ data }) => {
           >
             <div className="portfolio-item__who">Mirum</div>
             <h1>{title}</h1>
-            {documentToReactComponents(body.json, options)}
+            {renderRichText(body, options)}
           </div>
         </div>
 
@@ -168,7 +168,7 @@ export const pageQuery = graphql`
     contentfulPortfolio(slug: { eq: $slug }) {
       title
       body {
-        json
+        raw
       }
       footer {
         id
@@ -180,7 +180,7 @@ export const pageQuery = graphql`
           }
         }
         body {
-          json
+          raw
         }
         media {
           file {

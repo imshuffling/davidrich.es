@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "gatsby"
-import { Helmet } from "react-helmet-async"
+import { Helmet } from 'react-helmet'
 import ThemeChanger from "../components/themeChanger"
 
 export default function Header(props) {

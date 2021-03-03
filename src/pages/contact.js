@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { navigate } from "gatsby-link";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Layout from "../components/layout";
 
 const Contact = () => {

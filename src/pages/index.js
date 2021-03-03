@@ -2,10 +2,11 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout.js";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
-export default ({ data }) => (
-  <Layout>
+const Index = ({ data }) => {
+  return (
+<Layout>
     <section>
       <div id="strapline">
         <h1>
@@ -64,10 +65,17 @@ export default ({ data }) => (
         {data.allContentfulPortfolio.edges.map((edge, i) => (
           <OtherProjects key={i} node={edge.node} />
         ))}
+
+
+
+
+
+
       </div>
     </section>
   </Layout>
-);
+  )
+}
 
 const PortfolioPost = ({ node }) => {
   return (
@@ -105,13 +113,15 @@ const OtherProjects = ({ node }) => {
       <div className="item" key={node.id}>
         <h4 className="item__title h3">{node.title}</h4>
         <div className="item__content">
-          {documentToReactComponents(node.body.json)}
+          {renderRichText(node.body)}
         </div>
       </div>
     );
   }
   return null;
 };
+
+export default Index
 
 export const pageQuery = graphql`
   query pageQuery {
@@ -123,7 +133,7 @@ export const pageQuery = graphql`
           otherProjects
           createdAt(formatString: "MMMM DD, YYYY")
           body {
-            json
+            raw
           }
         }
       }
@@ -142,7 +152,7 @@ export const pageQuery = graphql`
               }
             }
             body {
-              json
+              raw
             }
             media {
               file {
@@ -155,3 +165,4 @@ export const pageQuery = graphql`
     }
   }
 `;
+

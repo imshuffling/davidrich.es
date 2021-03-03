@@ -1,8 +1,8 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import Layout from "../components/layout"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
+import { renderRichText } from "gatsby-source-contentful/rich-text"
 
 export default function Services({data}) {
   return (
@@ -16,7 +16,7 @@ export default function Services({data}) {
         {data.allContentfulServices.nodes.map((i, index) =>
           <li key={index}>
             <h3>{i.title}</h3>
-            {documentToReactComponents(i.body.json)}
+            {renderRichText(i.body)}
           </li>
         )}
         </ul>
@@ -32,7 +32,7 @@ export const servicesQuery = graphql`
         title
         id
         body {
-          json
+          raw
         }
       }
     }
