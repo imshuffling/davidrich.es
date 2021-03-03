@@ -8,22 +8,27 @@ const Contact = () => {
 
   function encode(data) {
     return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+      )
       .join("&");
   }
 
-  const handleChange = e => {
-    setText({ [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    setText({ ...text, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", ...text })
+      body: encode({ "form-name": "contact", ...text }),
     })
       .then(() => navigate("/thanks/"))
-      .catch(error => alert(error));
+      .catch((error) => alert(error));
+
+    console.log("Text", text);
+    console.log(e);
 
     e.preventDefault();
   };
