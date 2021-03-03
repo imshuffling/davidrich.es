@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ContentModules from "../content-modules";
+import Img from 'gatsby-image'
 
 const PortfolioPost = ({ data }) => {
   const {
@@ -21,6 +22,12 @@ const PortfolioPost = ({ data }) => {
   const Bold = ({ children }) => <strong>{children}</strong>;
   const Text = ({ children }) => <h2>{children}</h2>;
 
+  // <div
+  //   dangerouslySetInnerHTML={{
+  //     __html: `<img data-aos="fade-in" data-aos-once="true" src="${fields.file["en-GB"].url}" width="${fields.file["en-GB"].details.image.width}" height="${fields.file["en-GB"].details.image.height}" loading="lazy" alt="${fields.title["en-GB"]}"/>`
+  //   }}
+  // />
+
   const options = {
     renderMark: {
       [MARKS.BOLD]: text => <Bold>{text}</Bold>
@@ -32,11 +39,7 @@ const PortfolioPost = ({ data }) => {
           target: { fields }
         }
       }) => (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: `<img data-aos="fade-in" data-aos-once="true" src="${fields.file["en-GB"].url}" width="${fields.file["en-GB"].details.image.width}" height="${fields.file["en-GB"].details.image.height}" loading="lazy" alt="${fields.title["en-GB"]}"/>`
-          }}
-        />
+        <Img fluid={fields.file["en-GB"].url} />  // Not sure if this is working... still in testing
       )
       // TODO - use gatsby image
     },

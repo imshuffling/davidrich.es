@@ -1,7 +1,7 @@
 {
   "name": "gatsby-david-riches",
   "description": "Gatsby - David Riches theme",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "author": "David Riches <hi@davidrich.es>",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
@@ -31,7 +31,7 @@
     "react-helmet": "^6.1.0",
     "react-media": "^1.10.0",
     "typeface-karla": "^1.1.13",
-    "typeface-oswald": "0.0.54"
+    "typeface-oswald": "^1.1.13"
   },
   "keywords": [
     "gatsby"
