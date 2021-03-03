@@ -27,9 +27,6 @@ const Contact = () => {
       .then(() => navigate("/thanks/"))
       .catch((error) => alert(error));
 
-    console.log("Text", text);
-    console.log(e);
-
     e.preventDefault();
   };
 
