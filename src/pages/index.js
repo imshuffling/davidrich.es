@@ -105,7 +105,7 @@ const OtherProjects = ({ node }) => {
   if (node.otherProjects) {
     return (
       <div className="item" key={node.id}>
-        <h4 className="item__title h3">{node.title}</h4>
+        <h3 className="item__title">{node.title}</h3>
         <div className="item__content">
           {renderRichText(node.body)}
         </div>
