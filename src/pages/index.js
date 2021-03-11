@@ -65,12 +65,6 @@ const Index = ({ data }) => {
         {data.allContentfulPortfolio.edges.map((edge, i) => (
           <OtherProjects key={i} node={edge.node} />
         ))}
-
-
-
-
-
-
       </div>
     </section>
   </Layout>

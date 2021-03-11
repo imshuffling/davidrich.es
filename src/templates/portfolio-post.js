@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import ContentModules from "../content-modules";
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image"
 
 const PortfolioPost = ({ data }) => {
   const {
@@ -39,7 +39,7 @@ const PortfolioPost = ({ data }) => {
           target: { fields }
         }
       }) => (
-        <Img fluid={fields.file["en-GB"].url} />  // Not sure if this is working... still in testing
+        <GatsbyImage image={fields.file["en-GB"].url} />  // Not sure if this is working... still in testing
       )
       // TODO - use gatsby image
     },
@@ -72,7 +72,7 @@ const PortfolioPost = ({ data }) => {
           data-aos-delay="500"
         >
           <div className="portfolio-info">
-            {client !== null && (
+            {client && (
               <div className="portfolio-info__item">
                 <span>Client</span>
                 <span>
@@ -81,7 +81,7 @@ const PortfolioPost = ({ data }) => {
               </div>
             )}
 
-            {completed !== null && (
+            {completed && (
               <div className="portfolio-info__item">
                 <span>Completed</span>
                 <span>
@@ -90,7 +90,7 @@ const PortfolioPost = ({ data }) => {
               </div>
             )}
 
-            {timeframe !== null && (
+            {timeframe && (
               <div className="portfolio-info__item">
                 <span>Timeframe</span>
                 <span>
@@ -99,7 +99,7 @@ const PortfolioPost = ({ data }) => {
               </div>
             )}
 
-            {link !== null && (
+            {link && (
               <div className="portfolio-info__item">
                 <span>Website</span>
                 <span>
@@ -118,7 +118,7 @@ const PortfolioPost = ({ data }) => {
           </div>
         </div>
         {blocks && <ContentModules blocks={blocks} />}
-        {link !== null && (
+        {link && (
           <p>
             <span role="img" alt="Finger emoji" aria-label="Finger">
               👉{" "}
@@ -130,7 +130,7 @@ const PortfolioPost = ({ data }) => {
         )}
       </section>
 
-      {footer !== null && (
+      {footer && (
         <section className="other-projects">
           <h3>Other projects</h3>
           <div id="cards">
@@ -142,7 +142,7 @@ const PortfolioPost = ({ data }) => {
                     backgroundImage: `url(${item.image.file.url})`
                   }}
                 >
-                  {item.media !== null && (
+                  {item.media  && (
                     <video loop muted autoPlay playsInline>
                       <source src={item.media.file.url} type="video/mp4" />
                     </video>
@@ -178,6 +178,7 @@ export const pageQuery = graphql`
         title
         slug
         image {
+          gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
           file {
             url
           }
@@ -196,9 +197,8 @@ export const pageQuery = graphql`
         ... on Node {
           ... on ContentfulImage {
             image {
-              fluid(maxWidth: 1200) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              title
+              gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
               file {
                 url
               }
@@ -229,6 +229,7 @@ export const pageQuery = graphql`
           }
           ... on ContentfulTwoColumn {
             image {
+              gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
               file {
                 url
               }
@@ -253,9 +254,7 @@ export const pageQuery = graphql`
         file {
           url
         }
-        fluid(maxWidth: 850) {
-          ...GatsbyContentfulFluid_withWebp
-        }
+        gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
       }
       media {
         file {

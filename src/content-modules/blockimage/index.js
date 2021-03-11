@@ -1,10 +1,10 @@
 import React from 'react'
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image"
 
 export default function BlockImage({image}) {
   return (
     <div className="section image">
-      <Img fluid={image.fluid} />
+      <GatsbyImage image={image.gatsbyImageData} />
     </div>
   );
 }
