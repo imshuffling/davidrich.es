@@ -82,7 +82,7 @@ const PortfolioPost = ({ node }) => {
               backgroundImage: `url(${item.image.file.url})`
             }}
           >
-            {item.media !== null && (
+            {item.media && (
               <video loop muted autoPlay playsInline>
                 <source src={item.media.file.url} type="video/mp4" />
               </video>

@@ -19,7 +19,7 @@ export default function Header(props) {
       <header>
         <Link className="logo" to='/'>David Riches</Link>
         <ThemeChanger/>
-        <div role="button" className={toggleState ? 'navbutton active' : 'navbutton' } onClick={toggle} tabIndex={0} onKeyDown={toggle}>
+        <div role="button" aria-label="Main menu" className={toggleState ? 'navbutton active' : 'navbutton' } onClick={toggle} tabIndex={0} onKeyDown={toggle}>
           <span></span>
           <span></span>
           <span></span>
