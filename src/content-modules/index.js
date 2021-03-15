@@ -5,11 +5,13 @@ import BlockTextLeft from './blocktextleft';
 import BlockTextArea from './blocktextarea';
 import BlockImage from './blockimage';
 import BlockTwoColumn from './blocktwocolumn';
+import BlockVideo from './blockvideo';
 
 const MODULE_MAP = {
   ContentfulTextLeft: BlockTextLeft,
   ContentfulTextArea: BlockTextArea,
   ContentfulImage: BlockImage,
+  ContentfulVideo: BlockVideo,
   ContentfulTwoColumn: BlockTwoColumn,
 };
 
@@ -18,7 +20,7 @@ const propTypes = {
 };
 
 export default function ContentModules({blocks}) {
-  // console.log('---', blocks);
+  console.log('---', blocks);
   return (
     <>
       {blocks.map(({"__typename": type, ...props}, i) => {

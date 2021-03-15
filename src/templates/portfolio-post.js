@@ -3,9 +3,9 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/layout";
 import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 import ContentModules from "../content-modules";
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const PortfolioPost = ({ data }) => {
   const {
@@ -16,7 +16,7 @@ const PortfolioPost = ({ data }) => {
     client,
     timeframe,
     blocks,
-    footer
+    footer,
   } = data.contentfulPortfolio;
 
   const Bold = ({ children }) => <strong>{children}</strong>;
@@ -30,21 +30,21 @@ const PortfolioPost = ({ data }) => {
 
   const options = {
     renderMark: {
-      [MARKS.BOLD]: text => <Bold>{text}</Bold>
+      [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (node, children) => <Text>{children}</Text>,
       [BLOCKS.EMBEDDED_ASSET]: ({
         data: {
-          target: { fields }
-        }
+          target: { fields },
+        },
       }) => (
-        <GatsbyImage image={fields.file["en-GB"].url} />  // Not sure if this is working... still in testing
-      )
+        <GatsbyImage image={fields.file["en-GB"].url} /> // Not sure if this is working... still in testing
+      ),
       // TODO - use gatsby image
     },
-    renderText: text =>
-      text.split("\n").flatMap((text, i) => [i > 0 && <br />, text])
+    renderText: (text) =>
+      text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
   };
 
   return (
@@ -139,10 +139,10 @@ const PortfolioPost = ({ data }) => {
                 <div
                   className="card__image"
                   style={{
-                    backgroundImage: `url(${item.image.file.url})`
+                    backgroundImage: `url(${item.image.file.url})`,
                   }}
                 >
-                  {item.media  && (
+                  {item.media && (
                     <video loop muted autoPlay playsInline>
                       <source src={item.media.file.url} type="video/mp4" />
                     </video>
@@ -178,7 +178,11 @@ export const pageQuery = graphql`
         title
         slug
         image {
-          gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
+          gatsbyImageData(
+            layout: CONSTRAINED
+            formats: [WEBP]
+            placeholder: BLURRED
+          )
           file {
             url
           }
@@ -198,7 +202,24 @@ export const pageQuery = graphql`
           ... on ContentfulImage {
             image {
               title
-              gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
+              gatsbyImageData(
+                layout: CONSTRAINED
+                formats: [WEBP]
+                placeholder: BLURRED
+              )
+              file {
+                url
+              }
+            }
+          }
+          ... on ContentfulVideo {
+            image {
+              file {
+                url
+              }
+            }
+            video {
+              description
               file {
                 url
               }
@@ -229,7 +250,11 @@ export const pageQuery = graphql`
           }
           ... on ContentfulTwoColumn {
             image {
-              gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
+              gatsbyImageData(
+                layout: CONSTRAINED
+                formats: [WEBP]
+                placeholder: BLURRED
+              )
               file {
                 url
               }
@@ -254,7 +279,11 @@ export const pageQuery = graphql`
         file {
           url
         }
-        gatsbyImageData(layout: CONSTRAINED, formats: [WEBP], placeholder: BLURRED)
+        gatsbyImageData(
+          layout: CONSTRAINED
+          formats: [WEBP]
+          placeholder: BLURRED
+        )
       }
       media {
         file {
