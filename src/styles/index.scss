@@ -1,7 +1,7 @@
-@import 'reset.scss';
-@import 'grid-settings.scss';
-@import 'components/components';
-@import 'variables/variables';
+@import "reset.scss";
+@import "grid-settings.scss";
+@import "components/components";
+@import "variables/variables";
 
 html {
   margin: 0px auto;
@@ -28,7 +28,7 @@ body {
   min-height: 100vh;
   height: 100%;
   display: grid;
-  grid-template-areas: 'Header' 'Main-content' 'Footer';
+  grid-template-areas: "Header" "Main-content" "Footer";
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
   background: var(--bg);
@@ -110,8 +110,8 @@ textarea:invalid {
   box-shadow: none;
 }
 
-input[type='text'],
-input[type='email'] {
+input[type="text"],
+input[type="email"] {
   -webkit-appearance: none;
 }
 
@@ -175,4 +175,9 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.gatsby-image-wrapper img[src*="base64\\,"] {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
 }
