@@ -1,11 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from "react";
+import PropTypes from "prop-types";
 
-import BlockTextLeft from './blocktextleft';
-import BlockTextArea from './blocktextarea';
-import BlockImage from './blockimage';
-import BlockTwoColumn from './blocktwocolumn';
-import BlockVideo from './blockvideo';
+import BlockTextLeft from "./blocktextleft";
+import BlockTextArea from "./blocktextarea";
+import BlockImage from "./blockimage";
+import BlockTwoColumn from "./blocktwocolumn";
+import BlockVideo from "./blockvideo";
 
 const MODULE_MAP = {
   ContentfulTextLeft: BlockTextLeft,
@@ -16,14 +16,14 @@ const MODULE_MAP = {
 };
 
 const propTypes = {
-  blocks: PropTypes.any
+  blocks: PropTypes.any,
 };
 
-export default function ContentModules({blocks}) {
-  console.log('---', blocks);
+export default function ContentModules({ blocks }) {
+  // console.log('---', blocks);
   return (
     <>
-      {blocks.map(({"__typename": type, ...props}, i) => {
+      {blocks.map(({ __typename: type, ...props }, i) => {
         const Component = MODULE_MAP[type];
         return <Component key={i} {...props} />;
       })}

@@ -39,7 +39,10 @@ const PortfolioPost = ({ data }) => {
           target: { fields },
         },
       }) => (
-        <GatsbyImage image={fields.file["en-GB"].url} /> // Not sure if this is working... still in testing
+        <GatsbyImage
+          image={fields.file["en-GB"].url}
+          alt={fields.file["en-GB"].fileName}
+        /> // Not sure if this is working... still in testing
       ),
       // TODO - use gatsby image
     },
@@ -207,15 +210,19 @@ export const pageQuery = graphql`
                 formats: [WEBP]
                 placeholder: BLURRED
               )
+              description
               file {
                 url
+                fileName
               }
             }
           }
           ... on ContentfulVideo {
             image {
+              description
               file {
                 url
+                fileName
               }
             }
             video {
@@ -255,8 +262,10 @@ export const pageQuery = graphql`
                 formats: [WEBP]
                 placeholder: BLURRED
               )
+              description
               file {
                 url
+                fileName
               }
             }
             imageFirst
