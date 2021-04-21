@@ -40,7 +40,7 @@ const PortfolioPost = ({ data }) => {
         },
       }) => (
         <GatsbyImage
-          image={fields.file["en-GB"].url}
+          src={fields.file["en-GB"].url}
           alt={fields.file["en-GB"].fileName}
         /> // Not sure if this is working... still in testing
       ),
@@ -216,6 +216,7 @@ export const pageQuery = graphql`
                 fileName
               }
             }
+            lazyLoad
           }
           ... on ContentfulVideo {
             image {

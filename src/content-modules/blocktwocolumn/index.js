@@ -1,4 +1,5 @@
 import React from "react";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 export default function BlockTwoColumn({ image, body, imageFirst }) {
   return (
@@ -10,7 +11,11 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
       data-aos-delay="300"
       data-aos-once="true"
     >
-      <img src={image.file.url} alt={image.file.fileName} />
+      <GatsbyImage
+        image={image.gatsbyImageData}
+        alt={image.file.fileName}
+        lazy="lazy"
+      />
       <div
         dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}
       />
