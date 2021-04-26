@@ -13,6 +13,7 @@ const PortfolioPost = ({ data }) => {
     body,
     link,
     completed,
+    agency,
     client,
     timeframe,
     blocks,
@@ -62,7 +63,9 @@ const PortfolioPost = ({ data }) => {
             data-aos="fade-up"
             data-aos-once="true"
           >
-            <div className="portfolio-item__who">Mirum</div>
+            <div className="portfolio-item__who">
+              {agency ? agency : "Mirum"}
+            </div>
             <h1>{title}</h1>
             {renderRichText(body, options)}
           </div>
@@ -153,7 +156,7 @@ const PortfolioPost = ({ data }) => {
                 </div>
                 <div className="card__details">
                   <div className="card__content">
-                    <span>Mirum</span>
+                    <span>{item.agency ? item.agency : "Mirum"}</span>
                     <h2>{item.title}</h2>
                     <div>View project</div>
                   </div>
@@ -180,6 +183,7 @@ export const pageQuery = graphql`
         id
         title
         slug
+        agency
         image {
           gatsbyImageData(
             layout: CONSTRAINED
@@ -282,6 +286,7 @@ export const pageQuery = graphql`
       }
       completed
       services
+      agency
       client
       timeframe
       link
