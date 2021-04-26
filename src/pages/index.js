@@ -77,23 +77,16 @@ const PortfolioPost = ({ node }) => {
     <>
       {node.item.map((item, i) => (
         <Link to={`/${item.slug}`} className="card" key={i}>
-          <div
-            className="card__image"
-            // style={{
-            //   backgroundImage: `url(${item.image.file.url})`,
-            // }}
-          >
-
-          <GatsbyImage
-            image={item.image.gatsbyImageData}
-            alt={item.image.file.fileName}
-            lazy="eager"
-            style={{
-              transform: "scale(1.3)",
-            }}
-            layout="fullWidth"
-          />
-
+          <div className="card__image">
+            <GatsbyImage
+              image={item.image.gatsbyImageData}
+              alt={item.image.file.fileName}
+              lazy="eager"
+              style={{
+                transform: "scale(1.3)",
+              }}
+              layout="fullWidth"
+            />
             {item.media && (
               <video loop muted autoPlay playsInline>
                 <source src={item.media.file.url} type="video/mp4" />

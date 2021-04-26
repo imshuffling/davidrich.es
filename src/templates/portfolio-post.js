@@ -144,10 +144,16 @@ const PortfolioPost = ({ data }) => {
               <Link to={`/${item.slug}`} className="card" key={item.id}>
                 <div
                   className="card__image"
-                  style={{
-                    backgroundImage: `url(${item.image.file.url})`,
-                  }}
                 >
+                  <GatsbyImage
+                    image={item.image.gatsbyImageData}
+                    alt={item.image.file.fileName}
+                    lazy="eager"
+                    style={{
+                      transform: "scale(1.3)",
+                    }}
+                    layout="fullWidth"
+                  />
                   {item.media && (
                     <video loop muted autoPlay playsInline>
                       <source src={item.media.file.url} type="video/mp4" />
@@ -185,14 +191,13 @@ export const pageQuery = graphql`
         slug
         agency
         image {
-          gatsbyImageData(
-            layout: CONSTRAINED
-            formats: [WEBP]
-            placeholder: BLURRED
-          )
-          file {
-            url
-          }
+              gatsbyImageData(
+              width: 1000
+              formats: [WEBP]
+              placeholder: BLURRED
+              quality: 80
+              aspectRatio: 1.1
+            )
         }
         body {
           raw
