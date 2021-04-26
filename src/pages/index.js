@@ -2,74 +2,74 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout.js";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { renderRichText } from "gatsby-source-contentful/rich-text"
+import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 const Index = ({ data }) => {
   return (
-<Layout>
-    <section>
-      <div id="strapline">
-        <h1>
-          Hello I'm David.{" "}
-          <span role="img" aria-label="Waving hand">
-            👋
-          </span>
-        </h1>
-        <h2>
-          <span className="intro">
-            A Front-end developer &amp; part-time hockey player{" "}
-            <span role="img" aria-label="Hockey stick">
-              🏑
-            </span>{" "}
-            from London.
-          </span>
-          I like making things on the web,{" "}
-          <AnchorLink offset="30" data-scroll href="#cards">
-            view my portfolio
-          </AnchorLink>{" "}
-          or{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.github.com/imshuffling"
-          >
-            follow me on Github.
-          </a>
-        </h2>
-        <h3>
-          This site is built with{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.gatsbyjs.org/"
-          >
-            Gatsby.js
-          </a>{" "}
-          and powered by{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.contentful.com/"
-          >
-            Contentful.
-          </a>
-        </h3>
-      </div>
-      <div id="cards">
-        {data.allContentfulFeaturedProjects.edges.map((edge, i) => (
-          <PortfolioPost key={i} node={edge.node} />
-        ))}
-      </div>
-      <div id="side-projects">
-        <h2>Side projects</h2>
-        {data.allContentfulPortfolio.edges.map((edge, i) => (
-          <OtherProjects key={i} node={edge.node} />
-        ))}
-      </div>
-    </section>
-  </Layout>
-  )
-}
+    <Layout>
+      <section>
+        <div id="strapline">
+          <h1>
+            Hello I'm David.{" "}
+            <span role="img" aria-label="Waving hand">
+              👋
+            </span>
+          </h1>
+          <h2>
+            <span className="intro">
+              A Front-end developer &amp; part-time hockey player{" "}
+              <span role="img" aria-label="Hockey stick">
+                🏑
+              </span>{" "}
+              from London.
+            </span>
+            I like making things on the web,{" "}
+            <AnchorLink offset="30" data-scroll href="#cards">
+              view my portfolio
+            </AnchorLink>{" "}
+            or{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.github.com/imshuffling"
+            >
+              follow me on Github.
+            </a>
+          </h2>
+          <h3>
+            This site is built with{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.gatsbyjs.org/"
+            >
+              Gatsby.js
+            </a>{" "}
+            and powered by{" "}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.contentful.com/"
+            >
+              Contentful.
+            </a>
+          </h3>
+        </div>
+        <div id="cards">
+          {data.allContentfulFeaturedProjects.edges.map((edge, i) => (
+            <PortfolioPost key={i} node={edge.node} />
+          ))}
+        </div>
+        <div id="side-projects">
+          <h2>Side projects</h2>
+          {data.allContentfulPortfolio.edges.map((edge, i) => (
+            <OtherProjects key={i} node={edge.node} />
+          ))}
+        </div>
+      </section>
+    </Layout>
+  );
+};
 
 const PortfolioPost = ({ node }) => {
   return (
@@ -79,7 +79,7 @@ const PortfolioPost = ({ node }) => {
           <div
             className="card__image"
             style={{
-              backgroundImage: `url(${item.image.file.url})`
+              backgroundImage: `url(${item.image.file.url})`,
             }}
           >
             {item.media && (
@@ -90,7 +90,7 @@ const PortfolioPost = ({ node }) => {
           </div>
           <div className="card__details">
             <div className="card__content">
-              <span>Mirum</span>
+              <span>{item.agency ? item.agency : "Mirum"}</span>
               <h2>{item.title}</h2>
               <div>View project</div>
             </div>
@@ -106,16 +106,14 @@ const OtherProjects = ({ node }) => {
     return (
       <div className="item" key={node.id}>
         <h3 className="item__title">{node.title}</h3>
-        <div className="item__content">
-          {renderRichText(node.body)}
-        </div>
+        <div className="item__content">{renderRichText(node.body)}</div>
       </div>
     );
   }
   return null;
 };
 
-export default Index
+export default Index;
 
 export const pageQuery = graphql`
   query pageQuery {
@@ -139,6 +137,7 @@ export const pageQuery = graphql`
             id
             title
             slug
+            agency
             otherProjects
             image {
               file {
@@ -159,4 +158,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
