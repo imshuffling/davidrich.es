@@ -158,7 +158,9 @@
     }
 
     div {
-      border-bottom: 1px solid var(--border-color);
+      text-decoration: underline;
+      text-underline-offset: 0.5rem;
+      text-decoration-thickness: 0.125rem;
       width: fit-content;
       display: none;
       @include breakpoint(large) {
