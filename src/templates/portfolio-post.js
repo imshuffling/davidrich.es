@@ -51,6 +51,8 @@ const PortfolioPost = ({ data }) => {
       text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
   };
 
+  // console.log(data);
+
   return (
     <Layout>
       <Helmet>
@@ -142,17 +144,14 @@ const PortfolioPost = ({ data }) => {
           <div id="cards">
             {footer.map((item, i) => (
               <Link to={`/${item.slug}`} className="card" key={item.id}>
-                <div
-                  className="card__image"
-                >
+                <div className="card__image">
                   <GatsbyImage
                     image={item.image.gatsbyImageData}
-                    alt={item.image.file.fileName}
+                    alt={item.title}
                     lazy="eager"
                     style={{
-                      transform: "scale(1.3)",
+                      position: "unset",
                     }}
-                    layout="fullWidth"
                   />
                   {item.media && (
                     <video loop muted autoPlay playsInline>
@@ -191,13 +190,13 @@ export const pageQuery = graphql`
         slug
         agency
         image {
-              gatsbyImageData(
-              width: 1000
-              formats: [WEBP]
-              placeholder: BLURRED
-              quality: 80
-              aspectRatio: 1.1
-            )
+          gatsbyImageData(
+            width: 800
+            formats: [WEBP, PNG]
+            placeholder: BLURRED
+            quality: 60
+            aspectRatio: 1.1
+          )
         }
         body {
           raw

@@ -83,9 +83,8 @@ const PortfolioPost = ({ node }) => {
               alt={item.image.file.fileName}
               lazy="eager"
               style={{
-                transform: "scale(1.3)",
+                position: "unset",
               }}
-              layout="fullWidth"
             />
             {item.media && (
               <video loop muted autoPlay playsInline>
@@ -146,14 +145,14 @@ export const pageQuery = graphql`
             otherProjects
             image {
               gatsbyImageData(
-              width: 1000
-              formats: [WEBP]
-              placeholder: BLURRED
-              quality: 80
-              aspectRatio: 1.1
-            )
-            file {
-              url
+                width: 800
+                formats: [WEBP, PNG]
+                placeholder: BLURRED
+                quality: 60
+                aspectRatio: 1.1
+              )
+              file {
+                url
               }
             }
             body {
