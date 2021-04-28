@@ -84,6 +84,7 @@ const PortfolioPost = ({ node }) => {
               lazy="eager"
               style={{
                 position: "unset",
+                height: "100%",
               }}
             />
             {item.media && (
