@@ -182,8 +182,7 @@
 }
 
 #side-projects {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin: 0;
   @include breakpoint(large) {
     margin-top: 6rem;
     margin-bottom: 3rem;
@@ -191,7 +190,7 @@
   .item {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 30px;
+    grid-gap: 1rem;
     border-bottom: 1px solid var(--border-color);
     padding: 2rem 0;
     @include breakpoint(large) {
@@ -202,7 +201,10 @@
 
     &:first-of-type {
       border-top: 1px solid var(--border-color);
-      margin-top: 3rem;
+      margin-top: 2rem;
+      @include breakpoint(large) {
+        margin-top: 3rem;
+      }
     }
 
     &__title {

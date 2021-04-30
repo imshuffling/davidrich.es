@@ -1,7 +1,7 @@
 :root {
   font-size: calc(1rem + ((1vw - 0.3rem) * 0.2222));
-  --base-font: 'Karla', sans-serif;
-  --logo-font: 'Oswald';
+  --base-font: "Karla", sans-serif;
+  --logo-font: "Oswald";
   -webkit-font-smoothing: antialiased;
 
   --primary-colour: rgb(244, 0, 136);
@@ -62,8 +62,8 @@
   --svg-fill-color: hsla(0, 0%, 100%, 0.6);
   --button-bg: hsl(140, 100%, 76%);
   --button-text-color: #1e1e1e;
-  --form-color: #fff;
-  --form-text-color: rgb(57, 53, 49);
+  --form-color: #000;
+  --form-text-color: #fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -92,8 +92,8 @@
     --svg-fill-color: hsla(0, 0%, 100%, 0.6);
     --button-bg: hsl(140, 100%, 76%);
     --button-text-color: #1e1e1e;
-    --form-color: #fff;
-    --form-text-color: rgb(57, 53, 49);
+    --form-color: #000;
+    --form-text-color: #fff;
   }
 
   :root body.light {
