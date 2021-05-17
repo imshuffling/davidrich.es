@@ -5,7 +5,7 @@
   -webkit-font-smoothing: antialiased;
 
   --primary-colour: rgb(244, 0, 136);
-  --primary-colour-dark: rgb(255, 60, 169);
+  --primary-colour-dark: rgb(187, 0, 103);
   --pink: #ffd6ed;
   --green: #9cffdb;
   --blue: rgba(137, 212, 255, 0.5);
@@ -98,7 +98,7 @@
 
   :root body.light {
     --primary-colour: rgb(244, 0, 136);
-    --primary-colour-dark: rgb(255, 60, 169);
+    --primary-colour-dark: rgb(187, 0, 103);
     --pink: #ffd6ed;
     --green: #9cffdb;
     --blue: rgba(137, 212, 255, 0.5);
@@ -220,7 +220,7 @@ h4 {
 a {
   --underlineWidth: 2px;
   --blockLength: 0.75rem;
-  color: var(--alt-black);
+  color: var(--primary-colour);
   text-decoration: none;
   border-bottom-width: 2px;
   border-bottom-style: solid;
@@ -242,7 +242,7 @@ a {
 
   &:hover {
     text-decoration: none;
-    color: var(--primary-colour);
+    color: var(--primary-colour-dark);
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: var(--primary-colour-dark);
