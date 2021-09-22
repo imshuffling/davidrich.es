@@ -6,6 +6,9 @@ import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const Index = ({ data }) => {
+
+  console.log(data)
+
   return (
     <Layout>
       <section>
@@ -61,12 +64,15 @@ const Index = ({ data }) => {
             <PortfolioPost key={i} node={edge.node} />
           ))}
         </div>
-        <div id="side-projects">
-          <h2>Side projects</h2>
-          {data.allContentfulPortfolio.edges.map((edge, i) => (
-            <OtherProjects key={i} node={edge.node} />
-          ))}
-        </div>
+
+        {/* {data.allContentfulPortfolio.edges && (
+          <div id="side-projects">
+            <h2>Side projects</h2>
+            {data.allContentfulPortfolio.edges.map((edge, i) => (
+              <OtherProjects key={i} node={edge.node} />
+            ))}
+          </div>
+        )} */}
       </section>
     </Layout>
   );
