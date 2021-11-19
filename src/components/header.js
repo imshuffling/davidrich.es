@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { Helmet } from 'react-helmet'
 import ThemeChanger from "../components/themeChanger"
 
-export default function Header(props) {
+export default function Header() {
 
   const [toggleState, setToggleState] = useState(false);
 

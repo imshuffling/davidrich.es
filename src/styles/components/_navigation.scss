@@ -63,7 +63,7 @@ body.light .gg-sun {
 
 .gg-sun:after,
 .gg-sun:before {
-  content: '';
+  content: "";
   position: absolute;
   height: 2px;
   border-right: 4px solid;
@@ -98,7 +98,7 @@ body.light .gg-sun {
 }
 
 .gg-moon:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 12px;
   height: 18px;
@@ -194,6 +194,11 @@ nav {
     padding-left: 7%;
     padding-right: 7%;
     width: calc(100% - 14%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
   }
 
   a {
@@ -209,7 +214,7 @@ nav {
       text-decoration: none;
     }
 
-    &[aria-current='page'] {
+    &[aria-current="page"] {
       text-decoration: none;
       color: var(--heading-color);
       span {

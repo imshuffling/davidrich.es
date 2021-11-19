@@ -193,9 +193,9 @@ export const pageQuery = graphql`
         image {
           gatsbyImageData(
             width: 800
-            formats: [WEBP, PNG]
+            formats: [AVIF]
             placeholder: BLURRED
-            quality: 60
+            quality: 80
             aspectRatio: 1.1
           )
         }
@@ -216,7 +216,7 @@ export const pageQuery = graphql`
               title
               gatsbyImageData(
                 layout: CONSTRAINED
-                formats: [WEBP]
+                formats: [AVIF]
                 placeholder: BLURRED
               )
               description
@@ -269,7 +269,7 @@ export const pageQuery = graphql`
             image {
               gatsbyImageData(
                 layout: CONSTRAINED
-                formats: [WEBP]
+                formats: [AVIF]
                 placeholder: BLURRED
               )
               description
@@ -301,7 +301,7 @@ export const pageQuery = graphql`
         }
         gatsbyImageData(
           layout: CONSTRAINED
-          formats: [WEBP]
+          formats: [AVIF]
           placeholder: BLURRED
         )
       }

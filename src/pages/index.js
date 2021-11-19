@@ -2,7 +2,7 @@ import React from "react";
 import { Link, graphql } from "gatsby";
 import Layout from "../components/layout.js";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { renderRichText } from "gatsby-source-contentful/rich-text";
+// import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const Index = ({ data }) => {
@@ -112,17 +112,17 @@ const PortfolioPost = ({ node }) => {
   );
 };
 
-const OtherProjects = ({ node }) => {
-  if (node.otherProjects) {
-    return (
-      <div className="item" key={node.id}>
-        <h3 className="item__title">{node.title}</h3>
-        <div className="item__content">{renderRichText(node.body)}</div>
-      </div>
-    );
-  }
-  return null;
-};
+// const OtherProjects = ({ node }) => {
+//   if (node.otherProjects) {
+//     return (
+//       <div className="item" key={node.id}>
+//         <h3 className="item__title">{node.title}</h3>
+//         <div className="item__content">{renderRichText(node.body)}</div>
+//       </div>
+//     );
+//   }
+//   return null;
+// };
 
 export default Index;
 
@@ -153,9 +153,9 @@ export const pageQuery = graphql`
             image {
               gatsbyImageData(
                 width: 800
-                formats: [WEBP, PNG]
+                formats: [AVIF]
                 placeholder: BLURRED
-                quality: 60
+                quality: 80
                 aspectRatio: 1.1
               )
               file {
