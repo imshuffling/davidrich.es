@@ -7,7 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 const Index = ({ data }) => {
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <Layout>
