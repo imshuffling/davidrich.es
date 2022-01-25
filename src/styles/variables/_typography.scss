@@ -58,7 +58,7 @@
   --nav-border-color: hsla(0, 0%, 100%, 0.6);
   --nav-button: #fff;
   --nav-bg: #545454;
-  --image-gradient: linear-gradient(30deg, hsla(140, 100%, 76%, 0.25), #9cffdb);
+  --image-gradient: linear-gradient(30deg, hsla(0, 0%, 24%, 0.6), rgb(0, 0, 0));
   --svg-fill-color: hsla(0, 0%, 100%, 0.6);
   --button-bg: hsl(140, 100%, 76%);
   --button-text-color: #1e1e1e;
@@ -84,11 +84,7 @@
     --nav-border-color: hsla(0, 0%, 100%, 0.6);
     --nav-button: #fff;
     --nav-bg: #545454;
-    --image-gradient: linear-gradient(
-      30deg,
-      hsla(140, 100%, 76%, 0.25),
-      #9cffdb
-    );
+    --image-gradient: linear-gradient(30deg, hsla(0, 0%, 24%, 0.6), rgb(0, 0, 0));
     --svg-fill-color: hsla(0, 0%, 100%, 0.6);
     --button-bg: hsl(140, 100%, 76%);
     --button-text-color: #1e1e1e;

@@ -153,7 +153,7 @@ export const pageQuery = graphql`
             image {
               gatsbyImageData(
                 width: 800
-                formats: [AVIF]
+                formats: [AUTO, WEBP, AVIF]
                 placeholder: BLURRED
                 quality: 80
                 aspectRatio: 1.1
