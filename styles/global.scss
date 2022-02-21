@@ -1,0 +1,184 @@
+@import "reset.scss";
+@import "grid-settings.scss";
+@import "components/components";
+@import "variables/variables";
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Oswald&display=swap');
+
+html {
+  margin: 0px auto;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--base-font);
+  font-display: optional;
+  font-weight: normal;
+  color: var(--text-color);
+  line-height: 1.42857;
+  position: relative;
+}
+
+#___gatsby {
+  min-height: 100vh;
+}
+
+.container-wrap {
+  min-height: 100vh;
+  height: 100%;
+  display: grid;
+  grid-template-areas: "Header" "Main-content" "Footer";
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  background: var(--bg);
+  margin: 0px auto;
+}
+
+header,
+footer,
+#page-wrap {
+  max-width: 1600px;
+  padding-left: 7%;
+  padding-right: 7%;
+  margin: 0px auto;
+  width: calc(100% - 14%);
+}
+
+form {
+  margin-top: 50px;
+  margin-bottom: 0;
+
+  @include breakpoint(medium) {
+    margin-top: 70px;
+    margin-bottom: 30px;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 70px;
+    margin-bottom: 40px;
+  }
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  display: inline-block;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  font-size: 17px;
+  font-family: inherit;
+  font-display: optional;
+  background: var(--form-color);
+  color: var(--form-text-color);
+  &:focus {
+    border: 2px solid var(--border-color);
+    background: var(--form-color);
+    outline: none;
+  }
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+  -webkit-appearance: none;
+}
+
+button {
+  --x: 50%;
+  --y: 50%;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  appearance: none;
+  padding: 12px 30px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 4px;
+  font-size: 16px;
+  background: var(--button-bg);
+  color: var(--button-text-color);
+  // The magic
+  border: 1px solid transparent;
+}
+
+input:invalid,
+textarea:invalid {
+  box-shadow: none;
+}
+
+input[type="text"],
+input[type="email"] {
+  -webkit-appearance: none;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@media (print), (prefers-reduced-motion: reduce) {
+  .animated {
+    -webkit-animation-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    -webkit-transition-duration: 1ms !important;
+    transition-duration: 1ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+h2 {
+  .intro {
+    display: block;
+    margin: 1rem 0;
+    @include breakpoint(medium) {
+      display: block;
+      margin: 0;
+    }
+  }
+}
+
+.email {
+  span {
+    display: inline;
+    margin: 0;
+  }
+}
+
+@keyframes card__moveIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gatsby-image-wrapper img[src*="base64\\,"] {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: pixelated;
+}
