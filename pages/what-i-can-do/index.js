@@ -29,6 +29,7 @@ export default function services({ servicesCollection }) {
       <Head>
         <title>What I can do - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Skills that I offer" />
         <Favicon />
       </Head>
       <h1>What I can do</h1>

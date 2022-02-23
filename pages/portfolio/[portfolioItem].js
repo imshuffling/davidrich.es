@@ -22,6 +22,7 @@ export default function PortfolioItem({ portfolioItem }) {
       <Head>
         <title>{title} - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={`Some work I've done for ${title}`} />
         <Favicon />
       </Head>
       <section className="portfolio-item">

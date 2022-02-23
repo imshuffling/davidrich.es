@@ -8,6 +8,7 @@ const Thanks = () => {
       <Head>
         <title>Thanks - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Thankyou page" />
         <Favicon />
       </Head>
       <h1>Thanks for getting in touch.</h1>

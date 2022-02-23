@@ -35,6 +35,7 @@ const Contact = () => {
       <Head>
         <title>Contact - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Contact me if you have an interesting project you would like to discuss." />
         <Favicon />
       </Head>
       <div>

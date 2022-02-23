@@ -62,6 +62,7 @@ export default function Recipes({ portfolioCollection }) {
       <Head>
         <title>About me - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Hello I'm David 👋, A Front-end developer and part-time hockey player" />
         <Favicon />
       </Head>
       <div id="strapline">
