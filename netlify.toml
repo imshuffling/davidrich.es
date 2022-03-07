@@ -1,6 +1,8 @@
 [build]
-  command = "npm run build"
-  publish = ".next"
-
+  publish = "public"
+  command = "gatsby build"
+[build.environment]
+  YARN_VERSION = "1.3.2"
+  YARN_FLAGS = "--no-ignore-optional"
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
+  package = "netlify-plugin-gatsby-cache"

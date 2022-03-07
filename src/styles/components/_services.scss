@@ -1,0 +1,28 @@
+#services {
+  display: grid;
+  grid-gap: 5rem;
+  grid-row-gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+  grid-template-columns: 1fr;
+  max-width: 1200px;
+  @include breakpoint(medium) {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-gap: 5rem;
+    grid-row-gap: 2.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  @include breakpoint(large) {
+    grid-gap: 5rem;
+    grid-row-gap: 4.5rem;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+  }
+  li {
+    h3 {
+      @extend .h2;
+      margin-bottom: .5rem !important;
+    }
+  }
+}

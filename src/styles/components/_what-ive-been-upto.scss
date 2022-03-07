@@ -1,0 +1,18 @@
+#contact {
+  display: flex;
+  flex-direction: column;
+  @include breakpoint(medium) {
+    flex-direction: column;
+  }
+  @include breakpoint(large) {
+    flex-direction: row;
+  }
+  .email {
+    margin: 20px 0;
+    display: block;
+    @include breakpoint(large) {
+      margin: 0;
+      display: inline;
+    }
+  }
+}

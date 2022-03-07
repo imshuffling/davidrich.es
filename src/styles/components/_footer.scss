@@ -1,0 +1,41 @@
+footer {
+  > div {
+    margin-top: 30px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    display: flex;
+    align-items: center;
+
+    .github {
+      margin-left: auto;
+      width: 22px;
+      height: 22px;
+      border: 0 none;
+      background: none;
+      &:after {
+        display: none;
+      }
+
+      svg path {
+        fill: var(--svg-fill-color);
+      }
+    }
+
+    @include breakpoint(medium) {
+      margin-top: 75px;
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+
+    @include breakpoint(large) {
+      margin-top: 75px;
+      padding-top: 35px;
+      padding-bottom: 35px;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: .8rem;
+    }
+  }
+}

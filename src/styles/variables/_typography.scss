@@ -1,0 +1,271 @@
+:root {
+  font-size: calc(1rem + ((1vw - 0.3rem) * 0.2222));
+  --base-font: "Karla", sans-serif;
+  --logo-font: "Oswald";
+  -webkit-font-smoothing: antialiased;
+
+  --primary-colour: rgb(244, 0, 136);
+  --primary-colour-dark: rgb(187, 0, 103);
+  --pink: #ffd6ed;
+  --green: #9cffdb;
+  --blue: rgba(137, 212, 255, 0.5);
+  --black: rgb(57, 53, 49);
+  --alt-black: #9c9c9c;
+  --x: 50%;
+  --y: 0%;
+
+  --logo-color: linear-gradient(#fff0, #fff0) padding-box,
+    radial-gradient(
+        farthest-corner at var(--x) var(--y),
+        rgb(244, 0, 136),
+        #651fff
+      )
+      border-box;
+  --bg: #fff;
+  --heading-color: rgb(57, 53, 49);
+  --text-color: rgb(57, 53, 49);
+  --border-color: #e5e5e5;
+  --nav-border-color: #e5e5e5;
+  --nav-button: rgb(57, 53, 49);
+  --nav-bg: #e5e5e5;
+  --image-gradient: linear-gradient(
+    30deg,
+    rgba(71, 26, 99, 0.85),
+    rgb(75, 22, 76)
+  );
+  --svg-fill-color: rgb(57, 53, 49);
+  --button-bg: rgb(244, 0, 136);
+  --button-text-color: #fff;
+  --form-color: #fff;
+  --form-text-color: rgb(57, 53, 49);
+}
+
+:root body.dark {
+  --logo-color: linear-gradient(#fff0, #fff0) padding-box,
+    radial-gradient(
+        farthest-corner at var(--x) var(--y),
+        hsla(0, 0%, 100%, 0.6),
+        hsla(0, 0%, 100%, 0.6)
+      )
+      border-box;
+  --bg: rgb(57, 53, 49);
+  --heading-color: #fff;
+  --text-color: hsla(0, 0%, 100%, 0.6);
+  --primary-colour: hsl(140, 100%, 76%);
+  --primary-colour-dark: rgb(92, 212, 125);
+
+  --border-color: rgba(79, 79, 79, 0.6);
+  --nav-border-color: hsla(0, 0%, 100%, 0.6);
+  --nav-button: #fff;
+  --nav-bg: #545454;
+  --image-gradient: linear-gradient(30deg, hsla(0, 0%, 24%, 0.6), rgb(0, 0, 0));
+  --svg-fill-color: hsla(0, 0%, 100%, 0.6);
+  --button-bg: hsl(140, 100%, 76%);
+  --button-text-color: #1e1e1e;
+  --form-color: #000;
+  --form-text-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --logo-color: linear-gradient(#fff0, #fff0) padding-box,
+      radial-gradient(
+          farthest-corner at var(--x) var(--y),
+          hsla(0, 0%, 100%, 0.6),
+          hsla(0, 0%, 100%, 0.6)
+        )
+        border-box;
+    --bg: rgb(57, 53, 49);
+    --heading-color: #fff;
+    --text-color: hsla(0, 0%, 100%, 0.6);
+    --primary-colour: hsl(140, 100%, 76%);
+    --primary-colour-dark: rgb(92, 212, 125);
+    --border-color: rgba(79, 79, 79, 0.6);
+    --nav-border-color: hsla(0, 0%, 100%, 0.6);
+    --nav-button: #fff;
+    --nav-bg: #545454;
+    --image-gradient: linear-gradient(30deg, hsla(0, 0%, 24%, 0.6), rgb(0, 0, 0));
+    --svg-fill-color: hsla(0, 0%, 100%, 0.6);
+    --button-bg: hsl(140, 100%, 76%);
+    --button-text-color: #1e1e1e;
+    --form-color: #000;
+    --form-text-color: #fff;
+  }
+
+  :root body.light {
+    --primary-colour: rgb(244, 0, 136);
+    --primary-colour-dark: rgb(187, 0, 103);
+    --pink: #ffd6ed;
+    --green: #9cffdb;
+    --blue: rgba(137, 212, 255, 0.5);
+    --black: rgb(57, 53, 49);
+    --alt-black: #9c9c9c;
+    --x: 50%;
+    --y: 0%;
+
+    --logo-color: linear-gradient(#fff0, #fff0) padding-box,
+      radial-gradient(
+          farthest-corner at var(--x) var(--y),
+          rgb(244, 0, 136),
+          #651fff
+        )
+        border-box;
+    --bg: #fff;
+    --heading-color: rgb(57, 53, 49);
+    --text-color: rgb(57, 53, 49);
+    --border-color: #e5e5e5;
+    --nav-border-color: #e5e5e5;
+    --nav-button: rgb(57, 53, 49);
+    --nav-bg: #e5e5e5;
+    --image-gradient: linear-gradient(
+      30deg,
+      rgba(71, 26, 99, 0.85),
+      rgb(75, 22, 76)
+    );
+    --svg-fill-color: rgb(57, 53, 49);
+    --button-bg: rgb(244, 0, 136);
+    --button-text-color: #fff;
+    --form-color: #fff;
+    --form-text-color: rgb(57, 53, 49);
+  }
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--heading-color);
+}
+
+.h1 {
+  font-size: 2rem;
+  letter-spacing: -1px;
+  margin-bottom: 1.5rem;
+  @include breakpoint(medium) {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1.1rem;
+  @include breakpoint(medium) {
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+
+  @include breakpoint(large) {
+    font-size: 1.8rem;
+    margin-bottom: 1.8rem;
+  }
+
+  a {
+    display: inline-block;
+    @include breakpoint(medium) {
+      display: inline;
+    }
+  }
+}
+
+.h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  @include breakpoint(medium) {
+    font-size: 1.4rem;
+    margin-bottom: 1.4rem;
+  }
+  @include breakpoint(large) {
+    font-size: 1.6rem;
+    margin-bottom: 1.6rem;
+  }
+}
+
+.h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  @include breakpoint(medium) {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  @include breakpoint(large) {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+h1 {
+  @extend .h1;
+}
+
+h2 {
+  @extend .h2;
+}
+
+h3 {
+  @extend .h3;
+}
+
+h4 {
+  @extend .h4;
+}
+
+a {
+  --underlineWidth: 2px;
+  --blockLength: 0.75rem;
+  color: var(--primary-colour);
+  text-decoration: none;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--primary-colour);
+  background-image: linear-gradient(90deg, (var(--bg)), (var(--bg))),
+    linear-gradient(var(--primary-colour), var(--primary-colour)),
+    linear-gradient(var(--primary-colour-dark), var(--primary-colour-dark));
+  background-repeat: no-repeat;
+  background-size: var(--blockLength) var(--underlineWidth),
+    100% var(--underlineWidth), 0 var(--underlineWidth);
+  background-position: calc(var(--blockLength) * -1) 100%, 100% 100%, 0 100%;
+  -webkit-transition: background-size cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s,
+    background-position cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s,
+    color cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s;
+  transition: background-size cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s,
+    background-position cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s,
+    color cubic-bezier(0.39, 0.575, 0.565, 1) 0.3s;
+  border: none;
+
+  &:hover {
+    text-decoration: none;
+    color: var(--primary-colour-dark);
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: var(--primary-colour-dark);
+    border: none;
+    background-size: var(--blockLength) var(--underlineWidth),
+      0 var(--underlineWidth), 100% var(--underlineWidth);
+    background-position: calc(100% + var(--blockLength)) 100%, 100% 100%, 0 100%;
+  }
+}
+
+::selection {
+  background-color: var(--primary-colour);
+  color: #fff;
+}
+
+p {
+  margin: 0 0 0.8rem;
+}
+
+noscript {
+  display: block;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
