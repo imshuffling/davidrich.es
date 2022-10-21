@@ -6,7 +6,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.6.2",
     "aos": "^2.3.4",
-    "gatsby": "^5.0.0-next.6",
+    "gatsby": "^4.24.4",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-catch-links": "^4.2.0",
     "gatsby-plugin-dark-mode": "^1.1.2",
