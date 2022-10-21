@@ -27,7 +27,7 @@ export default function Services({ data }) {
 
 export const servicesQuery = graphql`
   query servicesQuery {
-    allContentfulServices(sort: { id: ASC }) {
+    allContentfulServices(sort: { fields: id }) {
       nodes {
         title
         id
