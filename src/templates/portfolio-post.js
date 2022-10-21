@@ -155,8 +155,9 @@ const PortfolioPost = ({ data }) => {
                     }}
                   />
                   {item.media && (
-                    <video loop muted autoPlay playsInline>
+                    <video loop muted autoPlay playsInline controls="muted">
                       <source src={item.media.file.url} type="video/mp4" />
+                      <track kind="captions" />
                     </video>
                   )}
                 </div>

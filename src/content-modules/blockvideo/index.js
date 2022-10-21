@@ -4,13 +4,15 @@ export default function BlockVideo({ video, image }) {
   return (
     <div className="section video">
       <video
-        controls
+        controls="muted"
         playsInline
         track={video.description}
         poster={image.file.url}
-        src={video.file.url}
         alt="Video recording of the website"
-      />
+      >
+        <source src={video.file.url} type="video/mp4" />
+        <track kind="captions" />
+      </video>
     </div>
   );
 }
