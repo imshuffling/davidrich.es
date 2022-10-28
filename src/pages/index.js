@@ -6,8 +6,6 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const Index = ({ data }) => {
-  // console.log(data)
-
   return (
     <Layout>
       <section>
@@ -101,7 +99,7 @@ const PortfolioPost = ({ node }) => {
           </div>
           <div className="card__details">
             <div className="card__content">
-              <span>{item.agency ? item.agency : "Mirum"}</span>
+              {item.agency && <span>{item.agency}</span>}
               <h2>{item.title}</h2>
               <div>View project</div>
             </div>

@@ -65,9 +65,6 @@ const PortfolioPost = ({ data }) => {
             data-aos="fade-up"
             data-aos-once="true"
           >
-            <div className="portfolio-item__who">
-              {agency ? agency : "Mirum"}
-            </div>
             <h1>{title}</h1>
             {renderRichText(body, options)}
           </div>
@@ -85,6 +82,15 @@ const PortfolioPost = ({ data }) => {
                 <span>Client</span>
                 <span>
                   <strong>{client}</strong>
+                </span>
+              </div>
+            )}
+
+            {agency && (
+              <div className="portfolio-info__item">
+                <span>Agency</span>
+                <span>
+                  <strong>{agency}</strong>
                 </span>
               </div>
             )}
@@ -163,7 +169,7 @@ const PortfolioPost = ({ data }) => {
                 </div>
                 <div className="card__details">
                   <div className="card__content">
-                    <span>{item.agency ? item.agency : "Mirum"}</span>
+                    {/* <span>{item.agency ? item.agency : "Mirum"}</span> */}
                     <h2>{item.title}</h2>
                     <div>View project</div>
                   </div>
