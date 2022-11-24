@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/Layout.js";
+import Layout from "../components/Layout";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { GatsbyImage } from "gatsby-plugin-image";
 
