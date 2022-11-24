@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { Helmet } from "react-helmet";
 import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
@@ -23,12 +23,6 @@ const PortfolioPost = ({ data }) => {
   const Bold = ({ children }) => <strong>{children}</strong>;
   const Text = ({ children }) => <h2>{children}</h2>;
 
-  // <div
-  //   dangerouslySetInnerHTML={{
-  //     __html: `<img data-aos="fade-in" data-aos-once="true" src="${fields.file["en-GB"].url}" width="${fields.file["en-GB"].details.image.width}" height="${fields.file["en-GB"].details.image.height}" loading="lazy" alt="${fields.title["en-GB"]}"/>`
-  //   }}
-  // />
-
   const options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <Bold>{text}</Bold>,
@@ -43,15 +37,12 @@ const PortfolioPost = ({ data }) => {
         <GatsbyImage
           src={fields.file["en-GB"].url}
           alt={fields.file["en-GB"].fileName}
-        /> // Not sure if this is working... still in testing
+        />
       ),
-      // TODO - use gatsby image
     },
     renderText: (text) =>
       text.split("\n").flatMap((text, i) => [i > 0 && <br />, text]),
   };
-
-  // console.log(data);
 
   return (
     <Layout>

@@ -31,7 +31,6 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-preload-fonts`,
-    `gatsby-plugin-dark-mode`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -62,9 +61,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sri",
       options: {
-        hash: "sha512", // 'sha256', 'sha384' or 'sha512' ('sha512' = default)
+        hash: "sha512",
       },
     },
-    `gatsby-plugin-netlify`,
+    `@skagami/gatsby-plugin-dark-mode`,
+    // `gatsby-plugin-netlify`,
   ],
 };

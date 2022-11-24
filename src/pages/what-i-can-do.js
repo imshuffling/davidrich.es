@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { Helmet } from "react-helmet";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 
 export default function Services({ data }) {
@@ -27,7 +27,7 @@ export default function Services({ data }) {
 
 export const servicesQuery = graphql`
   query servicesQuery {
-    allContentfulServices(sort: { fields: id }) {
+    allContentfulServices(sort: { id: ASC }) {
       nodes {
         title
         id

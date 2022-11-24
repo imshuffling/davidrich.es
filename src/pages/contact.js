@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { navigate } from "gatsby-link";
 import { Helmet } from "react-helmet";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 
 const Contact = () => {
   const [text, setText] = useState({});

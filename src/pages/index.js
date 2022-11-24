@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/layout.js";
+import Layout from "../components/Layout.js";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-// import { renderRichText } from "gatsby-source-contentful/rich-text";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 const Index = ({ data }) => {
@@ -70,6 +69,15 @@ const Index = ({ data }) => {
             ))}
           </div>
         )} */}
+
+        {data.allContentfulSideProjects.edges && (
+          <div id="side-projects">
+            <h2>Side projects</h2>
+            {data.allContentfulSideProjects.edges.map((edge, i) => (
+              <SideProjects key={i} node={edge.node} />
+            ))}
+          </div>
+        )}
       </section>
     </Layout>
   );
@@ -110,17 +118,37 @@ const PortfolioPost = ({ node }) => {
   );
 };
 
-// const OtherProjects = ({ node }) => {
-//   if (node.otherProjects) {
-//     return (
-//       <div className="item" key={node.id}>
-//         <h3 className="item__title">{node.title}</h3>
-//         <div className="item__content">{renderRichText(node.body)}</div>
-//       </div>
-//     );
-//   }
-//   return null;
-// };
+const SideProjects = ({ node }) => {
+  return (
+    <div className="item" key={node.id}>
+      <h3 className="item__title">{node.title}</h3>
+      {node.description && (
+        <div
+          className="item__content"
+          dangerouslySetInnerHTML={{
+            __html: node.description.childMarkdownRemark.html,
+          }}
+        />
+      )}
+
+      {node.link && (
+        <span>
+          <a target="_blank" rel="noopener noreferrer" href={node.link}>
+            View Site
+          </a>
+        </span>
+      )}
+
+      {node.githubUrl && !node.link && (
+        <span>
+          <a target="_blank" rel="noopener noreferrer" href={node.githubUrl}>
+            View Repo
+          </a>
+        </span>
+      )}
+    </div>
+  );
+};
 
 export default Index;
 
@@ -167,6 +195,23 @@ export const pageQuery = graphql`
               file {
                 url
               }
+            }
+          }
+        }
+      }
+    }
+    allContentfulSideProjects {
+      edges {
+        node {
+          __typename
+          id
+          title
+          link
+          githubUrl
+          description {
+            childMarkdownRemark {
+              id
+              html
             }
           }
         }
