@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => (
   <footer>
     <div>
       <p>
-      Crafted by David with{' '}
+        Crafted with{" "}
         <span role="img" alt="Heart emoji" aria-label="Love">
           ❤️
-        </span>
+        </span>{" "}
+        by David
       </p>
       <a
         className="github"
