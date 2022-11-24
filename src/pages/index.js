@@ -61,21 +61,14 @@ const Index = ({ data }) => {
           ))}
         </div>
 
-        {/* {data.allContentfulPortfolio.edges && (
-          <div id="side-projects">
-            <h2>Side projects</h2>
-            {data.allContentfulPortfolio.edges.map((edge, i) => (
-              <OtherProjects key={i} node={edge.node} />
-            ))}
-          </div>
-        )} */}
-
         {data.allContentfulSideProjects.edges && (
           <div id="side-projects">
             <h2>Side projects</h2>
-            {data.allContentfulSideProjects.edges.map((edge, i) => (
-              <SideProjects key={i} node={edge.node} />
-            ))}
+            <div className="side-projects-wrapper">
+              {data.allContentfulSideProjects.edges.map((edge, i) => (
+                <SideProjects key={i} node={edge.node} />
+              ))}
+            </div>
           </div>
         )}
       </section>
@@ -121,15 +114,17 @@ const PortfolioPost = ({ node }) => {
 const SideProjects = ({ node }) => {
   return (
     <div className="item" key={node.id}>
-      <h3 className="item__title">{node.title}</h3>
-      {node.description && (
-        <div
-          className="item__content"
-          dangerouslySetInnerHTML={{
-            __html: node.description.childMarkdownRemark.html,
-          }}
-        />
-      )}
+      <div>
+        <h3 className="item__title">{node.title}</h3>
+        {node.description && (
+          <div
+            className="item__content"
+            dangerouslySetInnerHTML={{
+              __html: node.description.childMarkdownRemark.html,
+            }}
+          />
+        )}
+      </div>
 
       {node.link && (
         <span>

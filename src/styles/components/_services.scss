@@ -24,5 +24,9 @@
       @extend .h2;
       margin-bottom: .5rem !important;
     }
+
+    p {
+      color: var(--alt-black);
+    }
   }
 }
