@@ -52,10 +52,10 @@ module.exports = {
     `gatsby-plugin-offline`,
     {
       resolve: `gatsby-source-contentful`,
-      useNameForId: false,
       options: {
         spaceId: `anjlutb8dq3v`,
         accessToken: `4bf9314dc5bdfbf380247aa3ab84d7da0e86d33a6089168eb32558d4f7096cda`,
+        useNameForId: false,
         // downloadLocal: true,
       },
     },
