@@ -11,7 +11,7 @@ const Index = ({ data }) => {
         <div id="strapline">
           <h1>
             Hello I'm David.{" "}
-            <span role="img" aria-label="Waving hand">
+            <span role="img" aria-label="Waving hand" class="wave">
               👋
             </span>
           </h1>
