@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby";
 import Layout from "../components/Layout";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { useBreakpoint } from "gatsby-plugin-breakpoints";
 
 const Index = ({ data }) => {
   return (
@@ -77,6 +78,8 @@ const Index = ({ data }) => {
 };
 
 const PortfolioPost = ({ node }) => {
+  const breakpoints = useBreakpoint();
+
   return (
     <>
       {node.item.map((item, i) => (
@@ -91,7 +94,7 @@ const PortfolioPost = ({ node }) => {
                 height: "100%",
               }}
             />
-            {item.media && (
+            {item.media && !breakpoints.sm && (
               <video loop muted autoPlay playsInline controls="muted">
                 <source src={item.media.file.url} type="video/mp4" />
                 <track kind="captions" />

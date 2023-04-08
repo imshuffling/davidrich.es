@@ -31,6 +31,7 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-preload-fonts`,
+    `gatsby-plugin-breakpoints`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

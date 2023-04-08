@@ -6,6 +6,7 @@ import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import { renderRichText } from "gatsby-source-contentful/rich-text";
 import ContentModules from "../content-modules";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { useBreakpoint } from "gatsby-plugin-breakpoints";
 
 const PortfolioPost = ({ data }) => {
   const {
@@ -19,6 +20,8 @@ const PortfolioPost = ({ data }) => {
     blocks,
     footer,
   } = data.contentfulPortfolio;
+
+  const breakpoints = useBreakpoint();
 
   const Bold = ({ children }) => <strong>{children}</strong>;
   const Text = ({ children }) => <h2>{children}</h2>;
@@ -151,7 +154,7 @@ const PortfolioPost = ({ data }) => {
                       height: "100%",
                     }}
                   />
-                  {item.media && (
+                  {item.media && !breakpoints.sm && (
                     <video loop muted autoPlay playsInline controls="muted">
                       <source src={item.media.file.url} type="video/mp4" />
                       <track kind="captions" />
