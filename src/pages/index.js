@@ -104,7 +104,7 @@ const PortfolioPost = ({ node }) => {
           <div className="card__details">
             <div className="card__content">
               {item.agency && <span>{item.agency}</span>}
-              <h2>{item.title}</h2>
+              <h2 dangerouslySetInnerHTML={{ __html: item.title }} />
               <div>View project</div>
             </div>
           </div>

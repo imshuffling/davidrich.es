@@ -59,7 +59,7 @@ const PortfolioPost = ({ data }) => {
             data-aos="fade-up"
             data-aos-once="true"
           >
-            <h1>{title}</h1>
+            <h1 dangerouslySetInnerHTML={{ __html: title }} />
             {renderRichText(body, options)}
           </div>
         </div>
@@ -164,7 +164,7 @@ const PortfolioPost = ({ data }) => {
                 <div className="card__details">
                   <div className="card__content">
                     {/* <span>{item.agency ? item.agency : "Mirum"}</span> */}
-                    <h2>{item.title}</h2>
+                    <h2 dangerouslySetInnerHTML={{ __html: item.title }} />
                     <div>View project</div>
                   </div>
                 </div>
