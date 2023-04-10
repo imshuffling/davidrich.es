@@ -335,9 +335,16 @@ img {
   }
   > div {
     order: 1;
+    @include breakpoint(medium) {
+      order: 1;
+    }
   }
-  > img {
+
+  .gatsby-image-wrapper {
     order: 2;
+    @include breakpoint(medium) {
+      order: 2;
+    }
   }
 }
 
