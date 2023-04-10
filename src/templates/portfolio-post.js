@@ -11,6 +11,7 @@ import { useBreakpoint } from "gatsby-plugin-breakpoints";
 const PortfolioPost = ({ data }) => {
   const {
     title,
+    seoTitle,
     body,
     link,
     completed,
@@ -50,7 +51,7 @@ const PortfolioPost = ({ data }) => {
   return (
     <Layout>
       <Helmet>
-        <title>{title} - David Riches</title>
+        <title>{seoTitle || title} - David Riches</title>
       </Helmet>
       <section className="portfolio-item">
         <div className="portfolio-item__content">
@@ -183,6 +184,7 @@ export const pageQuery = graphql`
   query PortfolioPostQuery($slug: String!) {
     contentfulPortfolio(slug: { eq: $slug }) {
       title
+      seoTitle
       body {
         raw
       }

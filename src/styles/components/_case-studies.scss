@@ -158,8 +158,11 @@
 
       span {
         font-size: 0.6rem;
-        display: inline;
+        display: block;
         margin-bottom: 0;
+        @include breakpoint(medium) {
+          display: inline;
+        }
       }
     }
 
@@ -244,8 +247,11 @@
     h1 {
       span {
         font-size: 1rem;
-        display: inline;
+        display: block;
         margin-bottom: 0;
+        @include breakpoint(medium) {
+          display: inline;
+        }
       }
     }
   }
