@@ -95,7 +95,7 @@ const PortfolioPost = ({ node }) => {
               }}
             />
             {item.media && !breakpoints.sm && (
-              <video loop muted autoPlay playsInline controls="muted">
+              <video loop muted autoPlay playsInline>
                 <source src={item.media.file.url} type="video/mp4" />
                 <track kind="captions" />
               </video>

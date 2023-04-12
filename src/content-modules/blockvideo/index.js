@@ -4,7 +4,7 @@ export default function BlockVideo({ video, image }) {
   return (
     <div className="section video">
       <video
-        controls="muted"
+        muted
         playsInline
         track={video.description}
         poster={image.file.url}
