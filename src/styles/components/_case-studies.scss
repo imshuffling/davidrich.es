@@ -378,7 +378,7 @@ img {
   @include breakpoint(large) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 1em;
-    width: 70%;
+    // width: 70%;
   }
 
   &__item {
