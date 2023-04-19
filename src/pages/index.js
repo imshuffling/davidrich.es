@@ -12,7 +12,7 @@ const Index = ({ data }) => {
         <div id="strapline">
           <h1>
             Hello I'm David.{" "}
-            <span role="img" aria-label="Waving hand" class="wave">
+            <span role="img" aria-label="Waving hand" className="wave">
               👋
             </span>
           </h1>
@@ -61,6 +61,10 @@ const Index = ({ data }) => {
             <PortfolioPost key={i} node={edge.node} />
           ))}
         </div>
+
+        {data.allContentfulCompanies.edges && (
+          <Company node={data.allContentfulCompanies.edges[0].node} />
+        )}
 
         {data.allContentfulSideProjects.edges && (
           <div id="side-projects">
@@ -111,6 +115,26 @@ const PortfolioPost = ({ node }) => {
         </Link>
       ))}
     </>
+  );
+};
+
+const Company = ({ node }) => {
+  return (
+    <div className="company">
+      <h3>{node.administrativeTitle}</h3>
+      <div className="company_wrapper">
+        {node.companies.map((company, i) => (
+          <div className="item" key={i}>
+            <GatsbyImage
+              image={company.image.gatsbyImageData}
+              alt={company.title}
+              lazy="lazy"
+              objectFit="contain"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 
@@ -180,7 +204,6 @@ export const pageQuery = graphql`
                 formats: [AUTO, WEBP, AVIF]
                 placeholder: BLURRED
                 quality: 80
-                aspectRatio: 1.1
               )
               file {
                 url
@@ -190,6 +213,28 @@ export const pageQuery = graphql`
               raw
             }
             media {
+              file {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    allContentfulCompanies {
+      edges {
+        node {
+          administrativeTitle
+          companies {
+            title
+            image {
+              gatsbyImageData(
+                width: 200
+                formats: [AUTO, WEBP, AVIF]
+                placeholder: BLURRED
+                quality: 80
+                aspectRatio: 3.2
+              )
               file {
                 url
               }

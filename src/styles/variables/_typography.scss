@@ -11,6 +11,8 @@
   --blue: rgba(137, 212, 255, 0.5);
   --black: rgb(57, 53, 49);
   --alt-black: #9c9c9c;
+  --companies-bg: #fff;
+  --filter-colour: grayscale(1);
   --x: 50%;
   --y: 0%;
 
@@ -64,6 +66,8 @@
   --button-text-color: #1e1e1e;
   --form-color: #000;
   --form-text-color: #fff;
+  --companies-bg: #9c9c9c;
+  --filter-colour: grayscale(1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,12 +88,18 @@
     --nav-border-color: hsla(0, 0%, 100%, 0.6);
     --nav-button: #fff;
     --nav-bg: #545454;
-    --image-gradient: linear-gradient(30deg, hsla(0, 0%, 24%, 0.6), rgb(0, 0, 0));
+    --image-gradient: linear-gradient(
+      30deg,
+      hsla(0, 0%, 24%, 0.6),
+      rgb(0, 0, 0)
+    );
     --svg-fill-color: hsla(0, 0%, 100%, 0.6);
     --button-bg: hsl(140, 100%, 76%);
     --button-text-color: #1e1e1e;
     --form-color: #000;
     --form-text-color: #fff;
+    --companies-bg: #9c9c9c;
+    --filter-colour: grayscale(1);
   }
 
   :root body.light {
@@ -100,6 +110,8 @@
     --blue: rgba(137, 212, 255, 0.5);
     --black: rgb(57, 53, 49);
     --alt-black: #9c9c9c;
+    --filter-colour: grayscale(1);
+    --companies-bg: #fff;
     --x: 50%;
     --y: 0%;
 

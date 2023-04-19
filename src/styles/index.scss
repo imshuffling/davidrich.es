@@ -216,3 +216,31 @@ h2 {
     transform: rotate(0deg);
   }
 }
+
+.company {
+  margin: 125px 0;
+  // background: var(--companies-bg);
+  padding: 25px 0;
+  h3 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.company_wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 50px;
+  align-items: center;
+  padding: 20px 0;
+
+  @include breakpoint(medium) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .item {
+    text-align: center;
+    .gatsby-image-wrapper {
+      filter: var(--filter-colour);
+    }
+  }
+}
