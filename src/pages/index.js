@@ -229,11 +229,11 @@ export const pageQuery = graphql`
             title
             image {
               gatsbyImageData(
-                width: 200
+                height: 70
                 formats: [AUTO, WEBP, AVIF]
                 placeholder: BLURRED
                 quality: 80
-                aspectRatio: 3.2
+                aspectRatio: 4.3
               )
               file {
                 url
