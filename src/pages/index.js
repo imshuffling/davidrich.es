@@ -62,9 +62,9 @@ const Index = ({ data }) => {
           ))}
         </div>
 
-        {data.allContentfulCompanies.edges && (
+        {/* {data.allContentfulCompanies.edges && (
           <Company node={data.allContentfulCompanies.edges[0].node} />
-        )}
+        )} */}
 
         {data.allContentfulSideProjects.edges && (
           <div id="side-projects">
@@ -118,25 +118,25 @@ const PortfolioPost = ({ node }) => {
   );
 };
 
-const Company = ({ node }) => {
-  return (
-    <div className="company">
-      <h3>{node.administrativeTitle}</h3>
-      <div className="company_wrapper">
-        {node.companies.map((company, i) => (
-          <div className="item" key={i}>
-            <GatsbyImage
-              image={company.image.gatsbyImageData}
-              alt={company.title}
-              lazy="lazy"
-              objectFit="contain"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+// const Company = ({ node }) => {
+//   return (
+//     <div className="company">
+//       <h3>{node.administrativeTitle}</h3>
+//       <div className="company_wrapper">
+//         {node.companies.map((company, i) => (
+//           <div className="item" key={i}>
+//             <GatsbyImage
+//               image={company.image.gatsbyImageData}
+//               alt={company.title}
+//               lazy="lazy"
+//               objectFit="contain"
+//             />
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// };
 
 const SideProjects = ({ node }) => {
   return (
