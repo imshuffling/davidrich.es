@@ -90,14 +90,14 @@ const PortfolioPost = ({ data }) => {
               </div>
             )}
 
-            {completed && (
-              <div className="portfolio-info__item">
-                <span>Completed</span>
-                <span>
-                  <strong>{completed}</strong>
-                </span>
-              </div>
-            )}
+            // {completed && (
+            //   <div className="portfolio-info__item">
+            //     <span>Completed</span>
+            //     <span>
+            //       <strong>{completed}</strong>
+            //     </span>
+            //   </div>
+            // )}
 
             {timeframe && (
               <div className="portfolio-info__item">
