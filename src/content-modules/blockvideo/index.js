@@ -8,6 +8,7 @@ export default function BlockVideo({ video, image }) {
         playsInline
         track={video.description}
         poster={image.file.url}
+        controls
         alt="Video recording of the website"
       >
         <source src={video.file.url} type="video/mp4" />
