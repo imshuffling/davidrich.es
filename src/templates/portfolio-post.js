@@ -80,7 +80,6 @@ const PortfolioPost = ({ data }) => {
                 </span>
               </div>
             )}
-
             {agency && (
               <div className="portfolio-info__item">
                 <span>Agency</span>
@@ -90,15 +89,14 @@ const PortfolioPost = ({ data }) => {
               </div>
             )}
 
-            // {completed && (
-            //   <div className="portfolio-info__item">
-            //     <span>Completed</span>
-            //     <span>
-            //       <strong>{completed}</strong>
-            //     </span>
-            //   </div>
-            // )}
-
+            {completed && (
+              <div className="portfolio-info__item">
+                <span>Completed</span>
+                <span>
+                  <strong>{completed}</strong>
+                </span>
+              </div>
+            )}
             {timeframe && (
               <div className="portfolio-info__item">
                 <span>Timeframe</span>
@@ -107,7 +105,6 @@ const PortfolioPost = ({ data }) => {
                 </span>
               </div>
             )}
-
             {link && (
               <div className="portfolio-info__item">
                 <span>Website</span>
