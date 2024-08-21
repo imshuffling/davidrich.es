@@ -68,5 +68,6 @@ module.exports = {
       },
     },
     `@skagami/gatsby-plugin-dark-mode`,
+    `gatsby-plugin-robots-txt`,
   ],
 };
