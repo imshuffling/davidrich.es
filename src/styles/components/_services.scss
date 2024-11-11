@@ -20,9 +20,17 @@
     margin-bottom: 1rem;
   }
   li {
+    display: flex;
+    gap: 12px;
+
+    span {
+      @extend .h2;
+      margin-bottom: 0;
+    }
+
     h3 {
       @extend .h2;
-      margin-bottom: .5rem !important;
+      margin-bottom: 0.5rem !important;
     }
 
     p {

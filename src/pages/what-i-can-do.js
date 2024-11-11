@@ -15,8 +15,11 @@ export default function Services({ data }) {
         <ul id="services">
           {data.allContentfulServices.nodes.map((i, index) => (
             <li key={index}>
-              <h3>{i.title}</h3>
-              {renderRichText(i.body)}
+              <span>{i.emojiImage}</span>
+              <div>
+                <h3>{i.title}</h3>
+                {renderRichText(i.body)}
+              </div>
             </li>
           ))}
         </ul>
@@ -31,6 +34,7 @@ export const servicesQuery = graphql`
       nodes {
         title
         id
+        emojiImage
         body {
           raw
         }
