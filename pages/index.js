@@ -14,29 +14,37 @@ export async function getStaticProps() {
       },
       body: JSON.stringify({
         query: `
-        query {
-          featuredProjectsCollection(limit: 10) {
-            items {
-              itemCollection {
-                items {
-                  title
-                  slug
-                  client
-                  agency
-                  otherProjects
-                  media {
-                    url
-                  }
-                  image {
-                    url
-                    width
-                    height
+          query {
+            featuredProjectsCollection(limit: 10) {
+              items {
+                itemCollection {
+                  items {
+                    title
+                    slug
+                    client
+                    agency
+                    otherProjects
+                    media {
+                      url
+                    }
+                    image {
+                      url
+                      width
+                      height
+                    }
                   }
                 }
               }
             }
+            sideProjectsCollection(limit: 10) {
+              items {
+                title
+                description
+                link
+                githubUrl
+              }
+            }
           }
-        }
       `,
       }),
     }
@@ -48,15 +56,25 @@ export async function getStaticProps() {
   }
 
   const { data } = await result.json();
+
   const portfolioData =
     data.featuredProjectsCollection.items[0].itemCollection.items;
+  const sideProjects = data.sideProjectsCollection.items;
 
   return {
-    props: { portfolioCollection: portfolioData },
+    props: {
+      portfolioCollection: portfolioData,
+      sideProjectsCollection: sideProjects,
+    },
   };
 }
 
-export default function Recipes({ portfolioCollection }) {
+export default function Recipes({
+  portfolioCollection,
+  sideProjectsCollection,
+}) {
+  console.log("sideProjectsCollection", sideProjectsCollection);
+
   return (
     <section>
       <Head>
@@ -116,6 +134,51 @@ export default function Recipes({ portfolioCollection }) {
           <PortfolioCard key={item.slug} item={item} />
         ))}
       </div>
+
+      {sideProjectsCollection.length > 0 && (
+        <div id="side-projects">
+          <h2>Side projects</h2>
+          <div className="side-projects-wrapper">
+            {sideProjectsCollection.map((node, i) => (
+              <SideProjects key={i} node={node} />
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
+
+const SideProjects = ({ node }) => {
+  return (
+    <div className="item" key={node.id}>
+      <div>
+        <h3 className="item__title">{node.title}</h3>
+        {node.description && (
+          <div
+            className="item__content"
+            dangerouslySetInnerHTML={{
+              __html: node.description,
+            }}
+          />
+        )}
+      </div>
+
+      {node.link && (
+        <span>
+          <a target="_blank" rel="noopener noreferrer" href={node.link}>
+            View Site
+          </a>
+        </span>
+      )}
+
+      {node.githubUrl && !node.link && (
+        <span>
+          <a target="_blank" rel="noopener noreferrer" href={node.githubUrl}>
+            View Repo
+          </a>
+        </span>
+      )}
+    </div>
+  );
+};

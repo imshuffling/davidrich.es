@@ -9,6 +9,7 @@ export async function getStaticProps() {
     servicesCollection {
         items {
           title
+          emojiImage
           body {
             json
           }
@@ -36,8 +37,11 @@ export default function services({ servicesCollection }) {
         <ul id="services">
           {servicesCollection.map((item, i) => (
             <li key={i}>
-              <h3>{item.title}</h3>
-              <div>{documentToReactComponents(item.body.json)}</div>
+              <span>{item.emojiImage}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <div>{documentToReactComponents(item.body.json)}</div>
+              </div>
             </li>
           ))}
         </ul>

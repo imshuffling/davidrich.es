@@ -101,9 +101,14 @@
       position: absolute;
       left: 0;
       object-fit: cover;
-      width: 101%;
+      width: 100%;
       top: 0;
       height: 100%;
+      pointer-events: none;
+
+      &::-webkit-media-controls {
+        display: none;
+      }
     }
   }
 
@@ -155,6 +160,15 @@
       @include breakpoint(large) {
         font-size: 1.8rem;
       }
+
+      span {
+        font-size: 0.6rem;
+        display: block;
+        margin-bottom: 0;
+        @include breakpoint(medium) {
+          display: inline;
+        }
+      }
     }
 
     div {
@@ -181,54 +195,40 @@
   }
 }
 
+.side-projects-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+  @include breakpoint(medium) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include breakpoint(large) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 #side-projects {
+  color: var(--alt-black);
   margin: 0;
   @include breakpoint(large) {
     margin-top: 6rem;
     margin-bottom: 3rem;
   }
   .item {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    padding: 2rem 0;
-    @include breakpoint(large) {
-      grid-auto-rows: 1fr;
-      padding: 4rem 0;
-      align-items: center;
-    }
-
-    &:first-of-type {
-      border-top: 1px solid var(--border-color);
-      margin-top: 2rem;
-      @include breakpoint(large) {
-        margin-top: 3rem;
-      }
-    }
+    padding: 1.5rem 0;
 
     &__title {
-      margin-bottom: 0;
+      margin-bottom: 0.5rem !important;
+    }
+
+    p {
+      margin-bottom: 0.25rem !important;
     }
 
     &__content {
       @include breakpoint(medium) {
         margin-right: 4rem;
       }
-    }
-
-    p {
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    @include breakpoint(medium) {
-      grid-template-columns: 1fr;
-    }
-
-    @include breakpoint(large) {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 }
@@ -246,6 +246,17 @@
       max-width: 100%;
       @include breakpoint(large) {
         max-width: 70%;
+      }
+    }
+
+    h1 {
+      span {
+        font-size: 1rem;
+        display: block;
+        margin-bottom: 0;
+        @include breakpoint(medium) {
+          display: inline;
+        }
       }
     }
   }
@@ -329,9 +340,16 @@ img {
   }
   > div {
     order: 1;
+    @include breakpoint(medium) {
+      order: 1;
+    }
   }
-  > img {
+
+  .gatsby-image-wrapper {
     order: 2;
+    @include breakpoint(medium) {
+      order: 2;
+    }
   }
 }
 
@@ -358,9 +376,9 @@ img {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.8em;
   @include breakpoint(large) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 1em;
-    width: 70%;
+    // width: 70%;
   }
 
   &__item {
