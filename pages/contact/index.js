@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import Favicon from "../../components/Favicon";
 
@@ -24,7 +23,7 @@ const Contact = () => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...text }),
     })
-      .then(() => Router.push("/thanks"))
+      .then(() => alert("Success!"))
       .catch((error) => alert(error));
 
     e.preventDefault();
@@ -63,14 +62,7 @@ const Contact = () => {
           </span>
         </h2>
 
-        <form
-          name="contact"
-          method="post"
-          action="/thanks"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={handleSubmit}
-        >
+        <form name="contact" method="post" onSubmit={handleSubmit}>
           <p hidden>
             <label>
               Don’t fill this out:{" "}
