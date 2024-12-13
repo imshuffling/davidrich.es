@@ -26,7 +26,7 @@ export default function RecipeCard({ item }) {
         <div className="card__details">
           <div className="card__content">
             <span>{agency ? agency : "Mirum"}</span>
-            <h2>{title}</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: title }}></h2>
             <div>View project</div>
           </div>
         </div>
