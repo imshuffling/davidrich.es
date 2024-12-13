@@ -8,19 +8,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.11.1",
     "aos": "^2.3.4",
     "ipx": "^0.9.4",
-    "next": "12.0.10",
     "next-themes": "^0.0.15",
-    "react": "17.0.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-dom": "17.0.2",
     "react-markdown": "^8.0.0",
-    "sass": "^1.49.7"
+    "sass": "^1.49.7",
+    "@contentful/rich-text-react-renderer": "^15.19.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
     "eslint": "8.9.0",
-    "eslint-config-next": "12.0.10"
+    "eslint-config-next": "^13.5.7"
   }
 }

@@ -12,8 +12,8 @@ export default function Header() {
   return (
     <header>
       <span onClick={() => setToggleState(false)}>
-        <Link href="/">
-          <a className="logo">David Riches</a>
+        <Link className="logo" href="/">
+          David Riches
         </Link>
       </span>
       <ThemeChanger />
@@ -32,9 +32,7 @@ export default function Header() {
       <nav className={toggleState ? "open" : ""}>
         <ul id="navigation">
           <li onClick={() => setToggleState(false)}>
-            <Link href="/">
-              <a>About me</a>
-            </Link>
+            <Link href="/">About me</Link>
           </li>
           <li onClick={() => setToggleState(false)}>
             <Link href="/what-i-can-do">What I can do</Link>

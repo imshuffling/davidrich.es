@@ -10,7 +10,8 @@ export default function BlockImage({ image, lazyLoad }) {
         width={image.width}
         layout="intrinsic"
         quality={20}
-        blurDataURL placeholder="blur"
+        // blurDataURL
+        // placeholder="blur"
         lazy={lazyLoad ? "lazy" : "eager"}
       />
     </div>

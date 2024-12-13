@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown";
 
 export default function BlockTwoColumn({ image, body, imageFirst }) {
   return (
@@ -19,9 +19,12 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
         layout="intrinsic"
         quality={20}
         lazy="lazy"
-        blurDataURL placeholder="blur"
+        // blurDataURL
+        // placeholder="blur"
       />
-      <div><ReactMarkdown>{body}</ReactMarkdown></div>
+      <div>
+        <ReactMarkdown>{body}</ReactMarkdown>
+      </div>
     </div>
   );
 }
