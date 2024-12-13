@@ -34,7 +34,7 @@ export default function PortfolioItem({ portfolioItem }) {
             <div className="portfolio-item__who">
               {agency ? agency : "Mirum"}
             </div>
-            <h1>{title}</h1>
+            <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
             <h2>{documentToReactComponents(body.json)}</h2>
           </div>
         </div>
