@@ -2,7 +2,7 @@
   "name": "next-12-contentful",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -15,12 +15,12 @@
     "react-markdown": "^8.0.0",
     "sass": "^1.49.7",
     "@contentful/rich-text-react-renderer": "^15.19.0",
-    "next": "14.0.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "next": "15.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
     "eslint": "8.9.0",
-    "eslint-config-next": "^13.5.7"
+    "eslint-config-next": "15.1.0"
   }
 }
