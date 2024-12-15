@@ -1,3 +1,5 @@
+@use "../grid-settings";
+
 footer {
   > div {
     margin-top: 30px;
@@ -21,13 +23,13 @@ footer {
       }
     }
 
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       margin-top: 75px;
       padding-top: 35px;
       padding-bottom: 35px;
     }
 
-    @include breakpoint(large) {
+    @include grid-settings.breakpoint(large) {
       margin-top: 75px;
       padding-top: 35px;
       padding-bottom: 35px;

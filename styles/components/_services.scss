@@ -1,3 +1,5 @@
+@use "../grid-settings";
+
 #services {
   display: grid;
   grid-gap: 5rem;
@@ -6,14 +8,14 @@
   margin-bottom: 0;
   grid-template-columns: 1fr;
   max-width: 1200px;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: 5rem;
     grid-row-gap: 2.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-gap: 5rem;
     grid-row-gap: 4.5rem;
     margin-top: 4rem;
@@ -24,12 +26,13 @@
     gap: 12px;
 
     span {
-      @extend .h2;
+      @extend .h2 !optional;
       margin-bottom: 0;
+      margin-right: 10px;
     }
 
     h3 {
-      @extend .h2;
+      @extend .h2 !optional;
       margin-bottom: 0.5rem !important;
     }
 

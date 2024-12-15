@@ -1,16 +1,18 @@
+@use "../grid-settings";
+
 #contact {
   display: flex;
   flex-direction: column;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     flex-direction: column;
   }
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     flex-direction: row;
   }
   .email {
     margin: 20px 0;
     display: block;
-    @include breakpoint(large) {
+    @include grid-settings.breakpoint(large) {
       margin: 0;
       display: inline;
     }

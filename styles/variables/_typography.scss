@@ -1,3 +1,5 @@
+@use "../grid-settings";
+
 :root {
   font-size: calc(1rem + ((1vw - 0.3rem) * 0.2222));
   --base-font: "Karla", sans-serif;
@@ -156,7 +158,7 @@ html[data-theme="dark"] {
   font-size: 2rem;
   letter-spacing: -1px;
   margin-bottom: 1.5rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     font-size: 3rem;
     margin-bottom: 2.5rem;
   }
@@ -165,19 +167,19 @@ html[data-theme="dark"] {
 .h2 {
   font-size: 1.1rem;
   margin-bottom: 1.1rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     font-size: 1.6rem;
     margin-bottom: 1.6rem;
   }
 
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     font-size: 1.8rem;
     margin-bottom: 1.8rem;
   }
 
   a {
     display: inline-block;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       display: inline;
     }
   }
@@ -186,11 +188,11 @@ html[data-theme="dark"] {
 .h3 {
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     font-size: 1.4rem;
     margin-bottom: 1.4rem;
   }
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     font-size: 1.6rem;
     margin-bottom: 1.6rem;
   }
@@ -199,11 +201,11 @@ html[data-theme="dark"] {
 .h4 {
   font-size: 1.1rem;
   margin-bottom: 0.8rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
   }
@@ -214,11 +216,11 @@ h1 {
 }
 
 h2 {
-  @extend .h2;
+  @extend .h2 !optional;
 }
 
 h3 {
-  @extend .h3;
+  @extend .h3 !optional;
 }
 
 h4 {

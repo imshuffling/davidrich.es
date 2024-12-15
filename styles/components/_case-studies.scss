@@ -1,3 +1,5 @@
+@use "../grid-settings";
+
 #cards {
   margin-top: 2rem;
   margin-bottom: 3rem;
@@ -7,14 +9,14 @@
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 1fr;
 
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     grid-gap: 15px;
     margin-top: 2rem;
     margin-bottom: 3rem;
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-gap: 30px;
     margin-top: 6rem;
     margin-bottom: 3rem;
@@ -127,7 +129,7 @@
     width: calc(100% - 1.5rem);
     height: calc(100% - 1.5rem);
     padding: 0.75rem;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       padding: 1.875rem;
       width: calc(100% - 3.75rem);
       height: calc(100% - 3.75rem);
@@ -150,14 +152,14 @@
 
     h2 {
       color: white !important;
-      @extend .h3;
+      @extend .h3 !optional;
       margin-bottom: 0 !important;
       line-height: 1.2;
-      @include breakpoint(medium) {
+      @include grid-settings.breakpoint(medium) {
         font-size: 1.6rem;
       }
 
-      @include breakpoint(large) {
+      @include grid-settings.breakpoint(large) {
         font-size: 1.8rem;
       }
 
@@ -165,7 +167,7 @@
         font-size: 0.6rem;
         display: block;
         margin-bottom: 0;
-        @include breakpoint(medium) {
+        @include grid-settings.breakpoint(medium) {
           display: inline;
         }
       }
@@ -177,7 +179,7 @@
       text-decoration-thickness: 0.125rem;
       width: fit-content;
       display: none;
-      @include breakpoint(large) {
+      @include grid-settings.breakpoint(large) {
         display: inline-block;
       }
     }
@@ -199,10 +201,10 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 1rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     grid-template-columns: 1fr 1fr;
   }
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -210,7 +212,7 @@
 #side-projects {
   color: var(--alt-black);
   margin: 0;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     margin-top: 6rem;
     margin-bottom: 3rem;
   }
@@ -226,7 +228,7 @@
     }
 
     &__content {
-      @include breakpoint(medium) {
+      @include grid-settings.breakpoint(medium) {
         margin-right: 4rem;
       }
     }
@@ -244,7 +246,7 @@
     z-index: 5;
     > * {
       max-width: 100%;
-      @include breakpoint(large) {
+      @include grid-settings.breakpoint(large) {
         max-width: 70%;
       }
     }
@@ -254,7 +256,7 @@
         font-size: 1rem;
         display: block;
         margin-bottom: 0;
-        @include breakpoint(medium) {
+        @include grid-settings.breakpoint(medium) {
           display: inline;
         }
       }
@@ -274,7 +276,7 @@ img {
 .portfolio-wrapper {
   padding: 0.8rem 0;
   width: 100%;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     padding: 2rem 0;
     border-top: 0 none;
   }
@@ -283,7 +285,7 @@ img {
 .section {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     margin-top: 6rem;
     margin-bottom: 6rem;
   }
@@ -303,7 +305,7 @@ img {
   margin-bottom: 2.5rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 2.5rem;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     border-bottom: 0 none;
     padding-bottom: 0;
   }
@@ -313,7 +315,7 @@ img {
 }
 
 .section__text {
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     order: -1;
   }
 }
@@ -323,7 +325,7 @@ img {
   grid-template-columns: 1fr;
   align-items: center;
   grid-gap: 2rem;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 6rem;
   }
@@ -334,20 +336,20 @@ img {
   grid-template-columns: 1fr;
   align-items: center;
   grid-gap: 2rem;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 6rem;
   }
   > div {
     order: 1;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       order: 1;
     }
   }
 
   .gatsby-image-wrapper {
     order: 2;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       order: 2;
     }
   }
@@ -357,7 +359,7 @@ img {
   &__center {
     text-align: center;
     margin: 0px auto;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       max-width: 70%;
     }
   }
@@ -365,7 +367,7 @@ img {
 
 .text-area-left {
   max-width: 100%;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     max-width: 70%;
   }
 }
@@ -375,7 +377,7 @@ img {
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.8em;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 1em;
     // width: 70%;
@@ -387,7 +389,7 @@ img {
     flex: 0 0 50%;
     margin-bottom: 0;
 
-    @include breakpoint(large) {
+    @include grid-settings.breakpoint(large) {
       flex: 0 0 25%;
     }
   }
@@ -397,7 +399,7 @@ img {
   border-top: 1px solid var(--border-color);
   margin-top: 2rem;
   margin-bottom: 0rem;
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     margin-top: 5rem;
     margin-bottom: 0rem;
   }

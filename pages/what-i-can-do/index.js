@@ -37,9 +37,11 @@ export default function services({ servicesCollection }) {
         <ul id="services">
           {servicesCollection.map((item, i) => (
             <li key={i}>
-              <span>{item.emojiImage}</span>
               <div>
-                <h3>{item.title}</h3>
+                <h3>
+                  <span>{item.emojiImage}</span>
+                  {item.title}
+                </h3>
                 <div>{documentToReactComponents(item.body.json)}</div>
               </div>
             </li>

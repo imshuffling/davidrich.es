@@ -1,3 +1,5 @@
+@use "../grid-settings";
+
 header {
   display: flex;
   padding-top: 20px;
@@ -7,7 +9,7 @@ header {
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     padding-top: 85px;
     padding-bottom: 100px;
   }
@@ -273,11 +275,11 @@ nav {
     display: none;
   }
 
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     font-size: 1.8rem;
   }
 
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     font-size: 2rem;
   }
 }

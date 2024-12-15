@@ -1,7 +1,7 @@
-@import "reset.scss";
-@import "grid-settings.scss";
-@import "components/components";
-@import "variables/variables";
+@use "reset.scss";
+@use "grid-settings.scss";
+@use "components/components";
+@use "variables/variables";
 @import url('https://fonts.googleapis.com/css2?family=Karla&family=Oswald&display=swap');
 
 html {
@@ -50,12 +50,12 @@ form {
   margin-top: 50px;
   margin-bottom: 0;
 
-  @include breakpoint(medium) {
+  @include grid-settings.breakpoint(medium) {
     margin-top: 70px;
     margin-bottom: 30px;
   }
 
-  @include breakpoint(large) {
+  @include grid-settings.breakpoint(large) {
     margin-top: 70px;
     margin-bottom: 40px;
   }
@@ -153,7 +153,7 @@ h2 {
   .intro {
     display: block;
     margin: 1rem 0;
-    @include breakpoint(medium) {
+    @include grid-settings.breakpoint(medium) {
       display: block;
       margin: 0;
     }
