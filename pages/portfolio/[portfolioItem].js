@@ -7,6 +7,7 @@ import Favicon from "../../components/Favicon";
 export default function PortfolioItem({ portfolioItem }) {
   const {
     title,
+    seoTitle,
     link,
     completed,
     agency,
@@ -20,7 +21,7 @@ export default function PortfolioItem({ portfolioItem }) {
   return (
     <>
       <Head>
-        <title>{title} - David Riches</title>
+        <title>{seoTitle} - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <Favicon />
       </Head>
@@ -141,6 +142,7 @@ export async function getStaticProps({ params }) {
             ) {
               items {
                 title
+                seoTitle
                 body {
                   json
                 }
