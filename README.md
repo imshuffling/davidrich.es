@@ -1,5 +1,8 @@
 # davidrich.es
 
+![image](https://github.com/user-attachments/assets/27d3ae2d-9fb7-42e9-b63e-95c14d65ba24)
+
+
 Welcome to [davidrich.es](https://davidrich.es), my personal website. This repository contains the source code and configuration for the site.
 
 ## Technologies Used
