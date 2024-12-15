@@ -1,8 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# davidrich.es
+
+Welcome to [davidrich.es](https://davidrich.es), my personal website. This repository contains the source code and configuration for the site.
+
+## Technologies Used
+
+- **[Next.js](https://nextjs.org/)** v15: A React framework for building optimized and scalable web applications.
+- **[Contentful](https://www.contentful.com/)**: A headless CMS for managing and delivering content.
+- **[Netlify](https://www.netlify.com/)**: Hosting platform for fast deployment and continuous delivery.
+
+## Features
+
+- **Dynamic Content**: Content managed through Contentful for seamless updates.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **Performance Optimized**: Leveraging Next.js's capabilities for server-side rendering (SSR) and static site generation (SSG).
+- **Netlify Hosting**: Deployed with continuous integration for rapid updates.
 
 ## Getting Started
 
-First, run the development server:
+Follow the instructions below to set up and run the project locally.
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- npm or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/davidrich.es.git
+   cd davidrich.es
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Configure environment variables:
+
+   Create a `.env.local` file in the root directory and add the following variables:
+
+   ```env
+   NEXT_PUBLIC_CONTENTFUL_SPACE_ID=your-space-id
+   NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=your-access-token
+   ```
+
+   Replace `your-space-id` and `your-access-token` with your Contentful API credentials.
+
+### Running the Development Server
+
+Start the development server:
 
 ```bash
 npm run dev
@@ -10,25 +64,48 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Building for Production
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Build the application for production:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+npm run build
+# or
+yarn build
+```
 
-## Learn More
+Start the production server:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run start
+# or
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+This project is deployed on [Netlify](https://www.netlify.com/). Pushes to the `main` branch trigger an automatic build and deployment.
 
-## Deploy on Vercel
+For manual deployment:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Run the production build:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run build
+   ```
+
+2. Deploy the `.next` folder to Netlify.
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+If you have any questions or feedback, feel free to contact me via the website or open an issue in this repository.
