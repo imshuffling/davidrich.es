@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import imageBlur from "../utils/imageBlur";
 
 export default function RecipeCard({ item }) {
   const { title, slug, media, image, agency } = item;
@@ -11,8 +12,8 @@ export default function RecipeCard({ item }) {
           <Image
             src={image.url}
             objectFit="cover"
-            // blurDataURL
-            // placeholder="blur"
+            blurDataURL={`data:image/png;base64,${imageBlur}`}
+            placeholder="blur"
             layout="fill"
             alt={title}
             quality={50}

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import imageBlur from "../../utils/imageBlur";
 
 export default function BlockTwoColumn({ image, body, imageFirst }) {
   return (
@@ -17,10 +18,10 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
         width={image.width}
         height={image.height}
         layout="intrinsic"
-        quality={20}
+        quality={80}
         lazy="lazy"
-        // blurDataURL
-        // placeholder="blur"
+        blurDataURL={`data:image/png;base64,${imageBlur}`}
+        placeholder="blur"
       />
       <div>
         <ReactMarkdown>{body}</ReactMarkdown>

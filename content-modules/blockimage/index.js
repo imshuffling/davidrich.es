@@ -1,4 +1,5 @@
 import Image from "next/image";
+import imageBlur from "../../utils/imageBlur";
 
 export default function BlockImage({ image, lazyLoad }) {
   return (
@@ -9,9 +10,9 @@ export default function BlockImage({ image, lazyLoad }) {
         height={image.height}
         width={image.width}
         layout="intrinsic"
-        quality={20}
-        // blurDataURL
-        // placeholder="blur"
+        quality={80}
+        blurDataURL={`data:image/png;base64,${imageBlur}`}
+        placeholder="blur"
         lazy={lazyLoad ? "lazy" : "eager"}
       />
     </div>
