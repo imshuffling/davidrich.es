@@ -46,9 +46,9 @@ export default function Header() {
               Resume
             </a>
           </li>
-          <li onClick={() => setToggleState(false)}>
+          {/* <li onClick={() => setToggleState(false)}>
             <Link href="/contact">Contact</Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
