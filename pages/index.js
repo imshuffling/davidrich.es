@@ -85,7 +85,7 @@ export default function Recipes({
       <div id="strapline">
         <h1>
           Hello I&apos;m David.{" "}
-          <span role="img" aria-label="Waving hand">
+          <span role="img" aria-label="Waving hand" className="wave">
             👋
           </span>
         </h1>
