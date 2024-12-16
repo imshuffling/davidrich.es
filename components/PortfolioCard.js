@@ -5,8 +5,6 @@ import imageBlur from "../utils/imageBlur";
 export default function RecipeCard({ item }) {
   const { title, slug, media, image, agency } = item;
 
-  console.log("image", image);
-
   return (
     <div className="card">
       <Link href={"/portfolio/" + slug}>
