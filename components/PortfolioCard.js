@@ -15,6 +15,8 @@ export default function RecipeCard({ item }) {
             height={image.height}
             blurDataURL={`data:image/png;base64,${imageBlur}`}
             placeholder="blur"
+            loading="lazy"
+            style={{ objectFit: "cover", height: "100%" }}
             alt={title}
             quality={50}
           />

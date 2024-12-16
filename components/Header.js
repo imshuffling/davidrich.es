@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import ThemeChanger from "./ThemeChanger";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
+
+  const router = useRouter();
 
   function toggle() {
     setToggleState(!toggleState);
@@ -32,10 +35,22 @@ export default function Header() {
       <nav className={toggleState ? "open" : ""}>
         <ul id="navigation">
           <li onClick={() => setToggleState(false)}>
-            <Link href="/">About me</Link>
+            <Link
+              {...(router.pathname === "/" ? { "aria-current": "page" } : {})}
+              href="/"
+            >
+              About me
+            </Link>
           </li>
           <li onClick={() => setToggleState(false)}>
-            <Link href="/what-i-can-do">What I can do</Link>
+            <Link
+              {...(router.pathname === "/what-i-can-do"
+                ? { "aria-current": "page" }
+                : {})}
+              href="/what-i-can-do"
+            >
+              What I can do
+            </Link>
           </li>
           <li>
             <a

@@ -12,7 +12,7 @@ export default function BlockImage({ image, lazyLoad }) {
         quality={80}
         blurDataURL={`data:image/png;base64,${imageBlur}`}
         placeholder="blur"
-        lazy={lazyLoad ? "lazy" : "eager"}
+        loading={lazyLoad ? "lazy" : "eager"}
       />
     </div>
   );
