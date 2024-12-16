@@ -11,7 +11,6 @@
 /.next/
 /out/
 .next/*
-public/*
 .cache/*
 
 # production
