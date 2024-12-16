@@ -30,7 +30,7 @@ export default function services({ servicesCollection }) {
       <Head>
         <title>What I can do - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <Favicon />
+        {/* <Favicon /> */}
       </Head>
       <h1>What I can do</h1>
       {servicesCollection && (

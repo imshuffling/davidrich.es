@@ -23,7 +23,7 @@ export default function PortfolioItem({ portfolioItem }) {
       <Head>
         <title>{seoTitle} - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <Favicon />
+        {/* <Favicon /> */}
       </Head>
       <section className="portfolio-item">
         <div className="portfolio-item__content">

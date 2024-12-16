@@ -11,10 +11,10 @@ export default function RecipeCard({ item }) {
         <div className="card__image">
           <Image
             src={image.url}
-            objectFit="cover"
+            // objectFit="cover"
             blurDataURL={`data:image/png;base64,${imageBlur}`}
             placeholder="blur"
-            layout="fill"
+            fill
             alt={title}
             quality={50}
           />
