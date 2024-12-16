@@ -17,9 +17,7 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
         alt={image.fileName}
         width={image.width}
         height={image.height}
-        // layout="intrinsic"
-        fill
-        quality={80}
+        quality={50}
         lazy="lazy"
         blurDataURL={`data:image/png;base64,${imageBlur}`}
         placeholder="blur"

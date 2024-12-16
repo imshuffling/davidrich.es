@@ -73,8 +73,6 @@ export default function Recipes({
   portfolioCollection,
   sideProjectsCollection,
 }) {
-  console.log("sideProjectsCollection", sideProjectsCollection);
-
   return (
     <section>
       <Head>

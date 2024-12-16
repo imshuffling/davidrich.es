@@ -5,16 +5,18 @@ import imageBlur from "../utils/imageBlur";
 export default function RecipeCard({ item }) {
   const { title, slug, media, image, agency } = item;
 
+  console.log("image", image);
+
   return (
     <div className="card">
       <Link href={"/portfolio/" + slug}>
         <div className="card__image">
           <Image
             src={image.url}
-            // objectFit="cover"
+            width={image.width}
+            height={image.height}
             blurDataURL={`data:image/png;base64,${imageBlur}`}
             placeholder="blur"
-            fill
             alt={title}
             quality={50}
           />

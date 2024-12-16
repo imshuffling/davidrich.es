@@ -9,8 +9,6 @@ export default function BlockImage({ image, lazyLoad }) {
         alt={image.fileName}
         height={image.height}
         width={image.width}
-        // layout="intrinsic"
-        fill
         quality={80}
         blurDataURL={`data:image/png;base64,${imageBlur}`}
         placeholder="blur"
