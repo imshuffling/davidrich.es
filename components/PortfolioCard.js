@@ -17,6 +17,7 @@ export default function RecipeCard({ item }) {
             placeholder="blur"
             loading="lazy"
             style={{ objectFit: "cover", height: "100%" }}
+            sizes="(min-width: 1960px) 1407px, 71.89vw"
             alt={title}
             quality={50}
           />

@@ -13,14 +13,15 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
       data-aos-once="true"
     >
       <Image
-        src={`${image.url}`}
+        src={image.url}
         alt={image.fileName}
         width={image.width}
         height={image.height}
         quality={50}
-        loading="lazy"
+        lazy="lazy"
         blurDataURL={`data:image/png;base64,${imageBlur}`}
         placeholder="blur"
+        sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
       />
       <div>
         <ReactMarkdown>{body}</ReactMarkdown>
