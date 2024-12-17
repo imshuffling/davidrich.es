@@ -28,7 +28,7 @@ export async function getStaticProps() {
                       url
                     }
                     image {
-                      url
+                      url(transform: { width: 800, height: 800 })
                       width
                       height
                     }
