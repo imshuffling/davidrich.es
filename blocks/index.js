@@ -12,7 +12,7 @@ const MODULE_MAP = {
   TwoColumn: BlockTwoColumn,
 };
 
-export default function ContentModules({ blocksCollection }) {
+export default function Blocks({ blocksCollection }) {
   return (
     <div>
       {blocksCollection.items.map(({ __typename: type, ...props }, i) => {

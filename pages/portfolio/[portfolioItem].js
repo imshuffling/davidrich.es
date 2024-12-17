@@ -1,8 +1,7 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import PortfolioCard from "../../components/PortfolioCard";
-import ContentModules from "../../content-modules";
+import Blocks from "../../blocks";
 import Head from "next/head";
-import Favicon from "../../components/Favicon";
 
 export default function PortfolioItem({ portfolioItem }) {
   const {
@@ -92,9 +91,7 @@ export default function PortfolioItem({ portfolioItem }) {
             )}
           </div>
         </div>
-        {blocksCollection && (
-          <ContentModules blocksCollection={blocksCollection} />
-        )}
+        {blocksCollection && <Blocks blocksCollection={blocksCollection} />}
         {link && (
           <p>
             <span role="img" alt="Finger emoji" aria-label="Finger">

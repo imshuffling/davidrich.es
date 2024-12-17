@@ -1,7 +1,6 @@
 import PortfolioCard from "../components/PortfolioCard";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import Head from "next/head";
-import Favicon from "../components/Favicon";
 
 export async function getStaticProps() {
   const result = await fetch(
