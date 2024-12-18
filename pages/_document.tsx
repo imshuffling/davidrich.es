@@ -5,10 +5,28 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </Head>
       <body>
         <Main />
         <NextScript />
+        {/* Dynamically Load Google Fonts */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              const link = document.createElement('link');
+              link.href = "https://fonts.googleapis.com/css2?family=Karla&family=Oswald&display=swap";
+              link.rel = "stylesheet";
+              document.head.appendChild(link);
+            `,
+          }}
+        />
       </body>
     </Html>
   );
