@@ -1,4 +1,5 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import PortfolioCard from "../../components/PortfolioCard";
 import Blocks from "../../blocks";
 import Head from "next/head";
@@ -17,12 +18,14 @@ export default function PortfolioItem({ portfolioItem }) {
     blocksCollection,
   } = portfolioItem;
 
+  const seoDescription = documentToPlainTextString(body.json);
+
   return (
     <>
       <Head>
         <title>{seoTitle} - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {/* <Favicon /> */}
+        <meta name="description" content={seoDescription} />
       </Head>
       <section className="portfolio-item">
         <div className="portfolio-item__content">

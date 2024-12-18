@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/rich-text-plain-text-renderer": "^17.0.0",
     "@contentful/rich-text-react-renderer": "^15.19.0",
     "aos": "^2.3.4",
     "ipx": "^0.9.4",

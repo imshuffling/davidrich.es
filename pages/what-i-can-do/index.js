@@ -1,7 +1,6 @@
 import fetchContent from "../../utils/fetchContent.ts";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
-import Favicon from "../../components/Favicon";
 
 export async function getStaticProps() {
   const response = await fetchContent(`
@@ -30,7 +29,10 @@ export default function services({ servicesCollection }) {
       <Head>
         <title>What I can do - David Riches</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {/* <Favicon /> */}
+        <meta
+          name="description"
+          content="Want to see what I can do? Check out my services"
+        />
       </Head>
       <h1>What I can do</h1>
       {servicesCollection && (
