@@ -111,7 +111,7 @@ export default function PortfolioItem({ portfolioItem }) {
           <h3>Other projects</h3>
           <div id="cards">
             {footerCollection.items.map((item) => (
-              <PortfolioCard key={item.slug} item={item} />
+              <PortfolioCard key={item.slug} item={item} loading="lazy" />
             ))}
           </div>
         </section>

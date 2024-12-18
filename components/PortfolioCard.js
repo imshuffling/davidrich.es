@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import imageBlur from "../utils/imageBlur";
 
-export default function RecipeCard({ item }) {
+export default function PortfolioCard({ item, loading }) {
   const { title, slug, media, image, agency } = item;
 
   return (
@@ -15,7 +15,7 @@ export default function RecipeCard({ item }) {
             height={image.height}
             blurDataURL={`data:image/png;base64,${imageBlur}`}
             placeholder="blur"
-            loading="lazy"
+            loading={loading ? loading : "lazy"}
             style={{ objectFit: "cover", height: "100%" }}
             sizes="(min-width: 1960px) 1407px, 71.89vw"
             alt={title}
