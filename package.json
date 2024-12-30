@@ -1,5 +1,5 @@
 {
-  "name": "next-12-contentful",
+  "name": "next-15-contentful",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",

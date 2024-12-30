@@ -72,13 +72,7 @@ const Contact = () => {
           </span>
         </h2>
 
-        <form
-          name="contact"
-          method="post"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={handleSubmit}
-        >
+        <form name="contact" method="post" data-netlify onSubmit={handleSubmit}>
           <p hidden>
             <label>
               Don’t fill this out:{" "}
