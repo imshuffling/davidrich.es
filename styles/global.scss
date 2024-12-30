@@ -86,6 +86,7 @@ textarea {
   min-height: 200px;
   resize: vertical;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 button {
@@ -105,6 +106,17 @@ button {
   border: 1px solid transparent;
 }
 
+.notification {
+  color: var(--text-color);
+  margin-bottom: 0;
+}
+
+.button-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 input:invalid,
 textarea:invalid {
   box-shadow: none;
@@ -113,6 +125,7 @@ textarea:invalid {
 input[type="text"],
 input[type="email"] {
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .animated {

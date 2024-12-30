@@ -40,17 +40,21 @@ export function FeedbackForm() {
       <input name="name" type="text" placeholder="Name" required />
       <input name="email" type="text" placeholder="Email" required />
       <textarea name="message" type="text" placeholder="Message" required />
-      <button
-        className="btn btn-primary"
-        type="submit"
-        disabled={status === "pending"}
-      >
-        Submit
-      </button>
-      {status === "ok" && (
-        <h4 className="alert alert-success">Message sent!!</h4>
-      )}
-      {status === "error" && <h4 className="alert alert-error">{error}</h4>}
+      <div className="button-wrap">
+        <button
+          className="btn btn-primary"
+          type="submit"
+          disabled={status === "pending"}
+        >
+          Submit
+        </button>
+        {status === "ok" && (
+          <h4 className="notification alert alert-success">Message sent!!</h4>
+        )}
+        {status === "error" && (
+          <h4 className="notification alert alert-error">{error}</h4>
+        )}
+      </div>
     </form>
   );
 }
