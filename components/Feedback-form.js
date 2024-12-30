@@ -49,10 +49,10 @@ export function FeedbackForm() {
           Submit
         </button>
         {status === "ok" && (
-          <h4 className="notification alert alert-success">Message sent!!</h4>
+          <h5 className="notification alert alert-success">Message sent...</h5>
         )}
         {status === "error" && (
-          <h4 className="notification alert alert-error">{error}</h4>
+          <h5 className="notification alert alert-error">{error}</h5>
         )}
       </div>
     </form>
