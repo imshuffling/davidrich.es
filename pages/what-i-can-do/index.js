@@ -35,21 +35,6 @@ export default function services({ servicesCollection }) {
         />
       </Head>
       <h1>What I can do</h1>
-      {/* {servicesCollection && (
-        <ul id="services">
-          {servicesCollection.map((item, i) => (
-            <li key={i}>
-              <div>
-                <h3>
-                  <span>{item.emojiImage}</span>
-                  {item.title}
-                </h3>
-                <div>{documentToReactComponents(item.body.json)}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )} */}
       {servicesCollection && (
         <ul id="services">
           {servicesCollection.map((item, i) => (
