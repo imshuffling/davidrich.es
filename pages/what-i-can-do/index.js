@@ -35,7 +35,7 @@ export default function services({ servicesCollection }) {
         />
       </Head>
       <h1>What I can do</h1>
-      {servicesCollection && (
+      {/* {servicesCollection && (
         <ul id="services">
           {servicesCollection.map((item, i) => (
             <li key={i}>
@@ -44,6 +44,19 @@ export default function services({ servicesCollection }) {
                   <span>{item.emojiImage}</span>
                   {item.title}
                 </h3>
+                <div>{documentToReactComponents(item.body.json)}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )} */}
+      {servicesCollection && (
+        <ul id="services">
+          {servicesCollection.map((item, i) => (
+            <li key={i}>
+              <div className="emoji">{item.emojiImage}</div>
+              <div>
+                <h3>{item.title}</h3>
                 <div>{documentToReactComponents(item.body.json)}</div>
               </div>
             </li>

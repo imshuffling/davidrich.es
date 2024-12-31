@@ -25,10 +25,12 @@
     display: flex;
     gap: 12px;
 
-    span {
+    .emoji {
       @extend .h2 !optional;
-      margin-bottom: 0;
-      margin-right: 10px;
+      margin-top: 0.1rem;
+      @include grid-settings.breakpoint(medium) {
+        margin-top: 0.4rem;
+      }
     }
 
     h3 {
