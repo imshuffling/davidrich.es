@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import ThemeChanger from "./ThemeChanger";
 import { useRouter } from "next/router";
+import { RxOpenInNewWindow } from "react-icons/rx";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
@@ -61,6 +62,7 @@ export default function Header() {
               href="https://resume.davidrich.es/"
             >
               Resume
+              <RxOpenInNewWindow />
             </a>
           </li>
           <li onClick={() => setToggleState(false)}>

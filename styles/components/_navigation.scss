@@ -213,6 +213,9 @@ nav {
   a {
     user-select: none;
     letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
     span {
       display: inline-block;
