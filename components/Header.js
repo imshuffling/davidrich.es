@@ -62,7 +62,7 @@ export default function Header() {
               href="https://resume.davidrich.es/"
             >
               Resume
-              <RxOpenInNewWindow />
+              <RxOpenInNewWindow size={25} />
             </a>
           </li>
           <li onClick={() => setToggleState(false)}>
