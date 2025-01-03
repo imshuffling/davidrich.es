@@ -2,16 +2,16 @@
 
 header {
   display: flex;
-  padding-top: 20px;
-  padding-bottom: 30px;
+  margin-top: 20px !important;
+  margin-bottom: 30px !important;
   width: calc(100% - 14%);
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
   @include grid-settings.breakpoint(medium) {
-    padding-top: 85px;
-    padding-bottom: 100px;
+    margin-top: 85px !important;
+    margin-bottom: 100px !important;
   }
 }
 

@@ -1,6 +1,6 @@
 "use-client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeChanger from "./ThemeChanger";
 import { useRouter } from "next/router";
@@ -14,6 +14,23 @@ export default function Header() {
   function toggle() {
     setToggleState(!toggleState);
   }
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (toggleState) {
+      // Add inline styles to fix the body's position
+      body.style.position = "fixed";
+    } else {
+      // Remove the styles when menu is closed
+      body.style.position = "";
+    }
+
+    // Clean up on component unmount
+    return () => {
+      body.style.position = "";
+    };
+  }, [toggleState]);
 
   return (
     <header>
