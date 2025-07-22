@@ -269,10 +269,6 @@ img {
 .portfolio-wrapper {
   padding: 0.8rem 0;
   width: 100%;
-  @include grid-settings.breakpoint(large) {
-    padding: 2rem 0;
-    border-top: 0 none;
-  }
 }
 
 .section {

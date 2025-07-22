@@ -160,7 +160,7 @@ html[data-theme="dark"] {
   margin-bottom: 1.5rem;
   @include grid-settings.breakpoint(medium) {
     font-size: 3rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 

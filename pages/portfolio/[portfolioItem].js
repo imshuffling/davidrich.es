@@ -31,7 +31,7 @@ export default function PortfolioItem({ portfolioItem }) {
         <div className="portfolio-item__content">
           <div
             className="portfolio-item__copy"
-            data-aos="fade-up"
+            data-aos="fade-in"
             data-aos-once="true"
           >
             <div className="portfolio-item__who">
@@ -42,15 +42,15 @@ export default function PortfolioItem({ portfolioItem }) {
           </div>
         </div>
 
-        <div
-          className="portfolio-wrapper"
-          data-aos="fade-in"
-          data-aos-once="true"
-          data-aos-delay="500"
-        >
+        <div className="portfolio-wrapper">
           <div className="portfolio-info">
             {client && (
-              <div className="portfolio-info__item">
+              <div
+                className="portfolio-info__item"
+                data-aos="fade-in"
+                data-aos-once="true"
+                data-aos-delay="300"
+              >
                 <span>Client</span>
                 <span>
                   <strong>{client}</strong>
@@ -59,7 +59,12 @@ export default function PortfolioItem({ portfolioItem }) {
             )}
 
             {completed && (
-              <div className="portfolio-info__item">
+              <div
+                className="portfolio-info__item"
+                data-aos="fade-in"
+                data-aos-once="true"
+                data-aos-delay="400"
+              >
                 <span>Completed</span>
                 <span>
                   <strong>{completed}</strong>
@@ -68,7 +73,12 @@ export default function PortfolioItem({ portfolioItem }) {
             )}
 
             {timeframe && (
-              <div className="portfolio-info__item">
+              <div
+                className="portfolio-info__item"
+                data-aos="fade-in"
+                data-aos-once="true"
+                data-aos-delay="500"
+              >
                 <span>Timeframe</span>
                 <span>
                   <strong>{timeframe}</strong>
@@ -77,7 +87,12 @@ export default function PortfolioItem({ portfolioItem }) {
             )}
 
             {link && (
-              <div className="portfolio-info__item">
+              <div
+                className="portfolio-info__item"
+                data-aos="fade-in"
+                data-aos-once="true"
+                data-aos-delay="600"
+              >
                 <span>Website</span>
                 <span>
                   <strong>
