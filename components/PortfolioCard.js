@@ -3,10 +3,15 @@ import Image from "next/image";
 import imageBlur from "../utils/imageBlur";
 
 export default function PortfolioCard({ item, loading }) {
-  const { title, slug, media, image, agency } = item;
+  const { title, slug, media, image, agency, index } = item;
 
   return (
-    <div className="card">
+    <div
+      className="card"
+      data-aos="fade-in"
+      data-aos-once="true"
+      data-aos-delay={index * 100}
+    >
       <Link href={"/portfolio/" + slug}>
         <div className="card__image">
           <Image

@@ -49,7 +49,7 @@ export default function PortfolioItem({ portfolioItem }) {
                 className="portfolio-info__item"
                 data-aos="fade-in"
                 data-aos-once="true"
-                data-aos-delay="300"
+                data-aos-delay="200"
               >
                 <span>Client</span>
                 <span>
@@ -63,7 +63,7 @@ export default function PortfolioItem({ portfolioItem }) {
                 className="portfolio-info__item"
                 data-aos="fade-in"
                 data-aos-once="true"
-                data-aos-delay="400"
+                data-aos-delay="300"
               >
                 <span>Completed</span>
                 <span>
@@ -77,7 +77,7 @@ export default function PortfolioItem({ portfolioItem }) {
                 className="portfolio-info__item"
                 data-aos="fade-in"
                 data-aos-once="true"
-                data-aos-delay="500"
+                data-aos-delay="400"
               >
                 <span>Timeframe</span>
                 <span>
@@ -91,7 +91,7 @@ export default function PortfolioItem({ portfolioItem }) {
                 className="portfolio-info__item"
                 data-aos="fade-in"
                 data-aos-once="true"
-                data-aos-delay="600"
+                data-aos-delay="500"
               >
                 <span>Website</span>
                 <span>
@@ -125,8 +125,13 @@ export default function PortfolioItem({ portfolioItem }) {
         <section className="other-projects">
           <h3>Other projects</h3>
           <div id="cards">
-            {footerCollection.items.map((item) => (
-              <PortfolioCard key={item.slug} item={item} loading="lazy" />
+            {footerCollection.items.map((item, index) => (
+              <PortfolioCard
+                key={item.slug}
+                item={item}
+                index={index}
+                loading="lazy"
+              />
             ))}
           </div>
         </section>

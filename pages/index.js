@@ -130,8 +130,13 @@ export default function Recipes({
         </h3>
       </div>
       <div id="cards">
-        {portfolioCollection.map((item) => (
-          <PortfolioCard key={item.slug} item={item} loading={"eager"} />
+        {portfolioCollection.map((item, index) => (
+          <PortfolioCard
+            key={item.slug}
+            index={index}
+            item={item}
+            loading={"eager"}
+          />
         ))}
       </div>
 

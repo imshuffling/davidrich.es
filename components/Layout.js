@@ -19,10 +19,10 @@ export default function Layout({ children }) {
         elem.classList.remove("hover");
       };
     });
-  });
+  }, []);
 
   return (
-    <div className="container-wrap animated fadeIn">
+    <div className="container-wrap">
       <Header />
       <div id="page-wrap">{children}</div>
       <Footer />
