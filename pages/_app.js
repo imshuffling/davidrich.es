@@ -1,18 +1,18 @@
 import "../styles/global.scss";
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from "next-themes";
 import Layout from "../components/Layout";
-import { Karla, Oswald } from 'next/font/google';
+import { Karla, Oswald } from "next/font/google";
 
 const karla = Karla({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-karla',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-karla",
 });
 
 const oswald = Oswald({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-oswald',
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-oswald",
 });
 
 function MyApp({ Component, pageProps }) {
