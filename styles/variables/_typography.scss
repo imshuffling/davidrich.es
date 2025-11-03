@@ -2,8 +2,8 @@
 
 :root {
   font-size: calc(1rem + ((1vw - 0.3rem) * 0.2222));
-  --base-font: "Karla", sans-serif;
-  --logo-font: "Oswald";
+  --base-font: var(--font-karla), sans-serif;
+  --logo-font: var(--font-oswald), sans-serif;
   -webkit-font-smoothing: antialiased;
 
   --primary-colour: rgb(244, 0, 136);
