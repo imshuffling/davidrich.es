@@ -50,7 +50,8 @@
   overflow: hidden;
   transition-property: color;
   transition-delay: $delay;
-  aspect-ratio: 16/9;
+  aspect-ratio: 3/2;
+  border-radius: 2px;
 
   &.hover {
     transition-delay: $delay;
@@ -80,6 +81,11 @@
     transition-delay: $delay;
     overflow: hidden;
 
+    img {
+      transition: opacity 0.3s ease-in-out, transform 0.6s ease-out;
+      transform: scale(1);
+    }
+
     &::after {
       content: "";
       position: absolute;
@@ -87,10 +93,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      opacity: 0.5;
-      background: var(--image-gradient);
-      transition-property: opacity;
-      transition-delay: $delay;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+      pointer-events: none;
     }
     video {
       position: absolute;
@@ -100,6 +104,10 @@
       top: 0;
       height: 100%;
       pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.6s ease-out;
+      background: transparent;
+      transform: scale(1);
 
       &::-webkit-media-controls {
         display: none;
@@ -107,12 +115,28 @@
     }
   }
 
+  &:hover &__image {
+    transition-delay: 0;
+
+    img {
+      transform: scale(1.05);
+    }
+
+    video {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  &.has-video:hover &__image {
+    img {
+      opacity: 0;
+      transition-delay: 0.1s;
+    }
+  }
+
   &.hover &__image {
     transition-delay: 0;
-    &::after {
-      opacity: 1;
-      transition-delay: 0;
-    }
   }
 
   &__details {
@@ -187,6 +211,16 @@
   &.hover &__content {
     opacity: 1;
     transition-delay: $delay;
+  }
+
+  // Respect user's motion preferences
+  @media (prefers-reduced-motion: reduce) {
+    &__image {
+      img, video {
+        transition: opacity 0.3s ease-in-out;
+        transform: none !important;
+      }
+    }
   }
 }
 

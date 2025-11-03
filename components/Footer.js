@@ -5,10 +5,11 @@ export default function Footer() {
     <footer>
       <div>
         <p>
-          Crafted by David with{" "}
+          Crafted with{" "}
           <span role="img" alt="Heart emoji" aria-label="Love">
             ❤️
-          </span>
+          </span>{" "}
+          by David
         </p>
         <a
           className="github"
