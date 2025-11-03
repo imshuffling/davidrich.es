@@ -2,44 +2,82 @@
 
 #services {
   display: grid;
-  grid-gap: 5rem;
-  grid-row-gap: 1.5rem;
+  grid-gap: 1.5rem;
   margin-top: 2rem;
   margin-bottom: 0;
   grid-template-columns: 1fr;
-  max-width: 1200px;
   @include grid-settings.breakpoint(medium) {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 5rem;
-    grid-row-gap: 2.5rem;
+    grid-gap: 2rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
   @include grid-settings.breakpoint(large) {
-    grid-gap: 5rem;
-    grid-row-gap: 4.5rem;
+    grid-gap: 2.5rem;
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
   li {
     display: flex;
-    gap: 12px;
+    gap: 1.25rem;
+    padding: 2rem;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.51, 0.92, 0.24, 1);
+
+    @include grid-settings.breakpoint(medium) {
+      padding: 1.75rem;
+    }
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
 
     .emoji {
       @extend .h2 !optional;
-      margin-top: 0.1rem;
+      font-size: 2.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.03);
+      border-radius: 12px;
+      flex-shrink: 0;
+      margin-top: 0;
+
       @include grid-settings.breakpoint(medium) {
-        margin-top: 0.4rem;
+        font-size: 3rem;
+        width: 4rem;
+        height: 4rem;
       }
     }
 
     h3 {
       @extend .h2 !optional;
-      margin-bottom: 0.5rem !important;
+      // margin-bottom: 0.75rem !important;
+      margin-bottom: 0 !important;
+      margin-top: 0;
     }
 
     p {
       color: var(--alt-black);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+  }
+
+  // Respect user's motion preferences
+  @media (prefers-reduced-motion: reduce) {
+    li {
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+      &:hover {
+        transform: none;
+      }
     }
   }
 }

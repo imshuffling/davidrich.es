@@ -8,9 +8,6 @@ export default function BlockTwoColumn({ image, body, imageFirst }) {
       className={
         imageFirst ? "section two-column" : "section two-column__reversed"
       }
-      data-aos="fade-in"
-      data-aos-delay="200"
-      data-aos-once="true"
     >
       <Image
         src={image.url}

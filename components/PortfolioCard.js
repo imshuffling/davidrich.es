@@ -47,10 +47,7 @@ export default function PortfolioCard({ item, loading }) {
   return (
     <div
       ref={cardRef}
-      className={`card ${media ? 'has-video' : ''}`}
-      data-aos="fade-in"
-      data-aos-once="true"
-      data-aos-delay={index * 100}
+      className={`card ${media ? "has-video" : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -68,13 +65,12 @@ export default function PortfolioCard({ item, loading }) {
             alt={title}
             quality={50}
           />
-          {media && (
-            shouldLoadVideo ? (
+          {media &&
+            (shouldLoadVideo ? (
               <video ref={videoRef} loop muted playsInline preload="metadata">
                 <source src={media.url} type="video/mp4" />
               </video>
-            ) : null
-          )}
+            ) : null)}
         </div>
         <div className="card__details">
           <div className="card__content">
