@@ -4,7 +4,7 @@ import imageBlur from "../utils/imageBlur";
 import { useRef, useEffect, useState } from "react";
 
 export default function PortfolioCard({ item, loading }) {
-  const { title, slug, media, image, agency, index } = item;
+  const { title, slug, media, image, agency, index, industry } = item;
   const videoRef = useRef(null);
   const cardRef = useRef(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!media);
@@ -74,7 +74,7 @@ export default function PortfolioCard({ item, loading }) {
         </div>
         <div className="card__details">
           <div className="card__content">
-            <span>{agency ? agency : "Mirum"}</span>
+            {industry && <span>{industry}</span>}
             <h2 dangerouslySetInnerHTML={{ __html: title }}></h2>
             {/* <div>View project</div> */}
           </div>

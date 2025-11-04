@@ -172,6 +172,7 @@ export async function getStaticProps({ params }) {
                 agency
                 client
                 timeframe
+                industry
                 blocksCollection {
                   items {
                     __typename

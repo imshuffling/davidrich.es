@@ -22,6 +22,7 @@ export async function getStaticProps() {
                     slug
                     client
                     agency
+                    industry
                     otherProjects
                     media {
                       url
