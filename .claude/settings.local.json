@@ -4,7 +4,15 @@
       "Bash(npm view:*)",
       "Bash(rm:*)",
       "Bash(pnpm install:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find:*)",
+      "Bash(tree:*)",
+      "Bash(pnpm tsc:*)",
+      "Bash(pnpm build:*)",
+      "Bash(cat:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pkill:*)",
+      "Bash(pnpm remove:*)"
     ]
   }
 }

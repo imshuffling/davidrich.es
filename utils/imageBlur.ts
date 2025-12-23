@@ -1,7 +1,4 @@
-export default function imageBlur(imageUrl): any {
-    return fetch(
-        imageUrl
-    ).then(async (res) => {
-        return Buffer.from(await res.arrayBuffer()).toString("base64");
-    });
-}
+// Base64 encoded 1x1 transparent PNG for blur placeholder
+const imageBlur = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
+
+export default imageBlur;
