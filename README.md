@@ -7,8 +7,11 @@ Welcome to [davidrich.es](https://davidrich.es), my personal website. This repos
 
 ## Technologies Used
 
-- **[Next.js](https://nextjs.org/)** v15: A React framework for building optimized and scalable web applications.
+- **[Next.js](https://nextjs.org/)** v16: A React framework for building optimized and scalable web applications.
+- **[React](https://react.dev/)** v19: JavaScript library for building user interfaces.
+- **[TypeScript](https://www.typescriptlang.org/)** v5: Typed superset of JavaScript for better developer experience.
 - **[Contentful](https://www.contentful.com/)**: A headless CMS for managing and delivering content.
+- **[pnpm](https://pnpm.io/)**: Fast, disk space efficient package manager.
 - **[Netlify](https://www.netlify.com/)**: Hosting platform for fast deployment and continuous delivery.
 
 ## Features
@@ -27,7 +30,7 @@ Follow the instructions below to set up and run the project locally.
 Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
-- npm or [yarn](https://yarnpkg.com/)
+- [pnpm](https://pnpm.io/) (v8 or higher recommended)
 
 ### Installation
 
@@ -41,9 +44,7 @@ Ensure you have the following installed:
 2. Install dependencies:
 
    ```bash
-   npm install
-   # or
-   yarn install
+   pnpm install
    ```
 
 3. Configure environment variables:
@@ -62,9 +63,7 @@ Ensure you have the following installed:
 Start the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to view the site.
@@ -74,17 +73,13 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 Build the application for production:
 
 ```bash
-npm run build
-# or
-yarn build
+pnpm build
 ```
 
 Start the production server:
 
 ```bash
-npm run start
-# or
-yarn start
+pnpm start
 ```
 
 ### Deployment
@@ -96,7 +91,7 @@ For manual deployment:
 1. Run the production build:
 
    ```bash
-   npm run build
+   pnpm build
    ```
 
 2. Deploy the `.next` folder to Netlify.
