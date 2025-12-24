@@ -4,6 +4,7 @@ export interface ContentfulImage {
   fileName: string;
   width: number;
   height: number;
+  blurDataURL?: string;
 }
 
 export interface ContentfulVideo {

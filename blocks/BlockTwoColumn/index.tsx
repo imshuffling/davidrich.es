@@ -1,6 +1,5 @@
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import imageBlur from "@/utils/imageBlur";
 import type { BlockTwoColumn as BlockTwoColumnProps } from "@/types/contentful";
 
 export default function BlockTwoColumn({ image, body, imageFirst }: BlockTwoColumnProps) {
@@ -16,8 +15,8 @@ export default function BlockTwoColumn({ image, body, imageFirst }: BlockTwoColu
         width={image.width}
         height={image.height}
         quality={50}
-        blurDataURL={`data:image/png;base64,${imageBlur}`}
-        placeholder="blur"
+        blurDataURL={image.blurDataURL}
+        placeholder={image.blurDataURL ? "blur" : "empty"}
         sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
       />
       <div>

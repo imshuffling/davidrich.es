@@ -3,7 +3,8 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import PortfolioCard from "@/components/PortfolioCard";
 import Blocks from "@/blocks";
 import type { Metadata } from "next";
-import type { PortfolioItem } from "@/types/contentful";
+import type { PortfolioItem, ContentfulBlock } from "@/types/contentful";
+import { getBlurDataURL } from "@/utils/getBlurDataURL";
 
 type Props = {
   params: Promise<{ portfolioItem: string }>;
@@ -121,7 +122,58 @@ async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
   }
 
   const { data } = await result.json();
-  return data.portfolioCollection.items[0];
+  const item = data.portfolioCollection.items[0] as PortfolioItem;
+
+  // Generate blur data URLs for images in blocks
+  if (item.blocksCollection?.items) {
+    item.blocksCollection.items = await Promise.all(
+      item.blocksCollection.items.map(async (block: ContentfulBlock) => {
+        if (block.__typename === "Image" && block.image) {
+          return {
+            ...block,
+            image: {
+              ...block.image,
+              blurDataURL: await getBlurDataURL(block.image.url),
+            },
+          };
+        }
+        if (block.__typename === "TwoColumn" && block.image) {
+          return {
+            ...block,
+            image: {
+              ...block.image,
+              blurDataURL: await getBlurDataURL(block.image.url),
+            },
+          };
+        }
+        if (block.__typename === "Video" && block.image) {
+          return {
+            ...block,
+            image: {
+              ...block.image,
+              blurDataURL: await getBlurDataURL(block.image.url),
+            },
+          };
+        }
+        return block;
+      })
+    );
+  }
+
+  // Generate blur data URLs for footer images
+  if (item.footerCollection?.items) {
+    item.footerCollection.items = await Promise.all(
+      item.footerCollection.items.map(async (footerItem) => ({
+        ...footerItem,
+        image: {
+          ...footerItem.image,
+          blurDataURL: await getBlurDataURL(footerItem.image.url),
+        },
+      }))
+    );
+  }
+
+  return item;
 }
 
 export async function generateStaticParams() {

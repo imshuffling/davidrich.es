@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import imageBlur from "@/utils/imageBlur";
 import { useRef, useEffect, useState } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
@@ -60,8 +59,8 @@ export default function PortfolioCard({ item, loading = "lazy" }: PortfolioCardP
             src={image.url}
             width={image.width}
             height={image.height}
-            blurDataURL={`data:image/png;base64,${imageBlur}`}
-            placeholder="blur"
+            blurDataURL={image.blurDataURL}
+            placeholder={image.blurDataURL ? "blur" : "empty"}
             loading={loading}
             style={{ objectFit: "cover", height: "100%", width: "100%" }}
             sizes="(min-width: 1960px) 1407px, 71.89vw"

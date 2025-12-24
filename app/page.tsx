@@ -1,6 +1,7 @@
 import PortfolioCard from "@/components/PortfolioCard";
 import type { Metadata } from "next";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
+import { getBlurDataURL } from "@/utils/getBlurDataURL";
 
 export const metadata: Metadata = {
   title: "About me",
@@ -63,8 +64,21 @@ async function getHomeData() {
 
   const { data } = await result.json();
 
+  const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[];
+
+  // Generate blur data URLs for all portfolio images
+  const portfolioWithBlur = await Promise.all(
+    portfolioItems.map(async (item) => ({
+      ...item,
+      image: {
+        ...item.image,
+        blurDataURL: await getBlurDataURL(item.image.url),
+      },
+    }))
+  );
+
   return {
-    portfolioCollection: data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[],
+    portfolioCollection: portfolioWithBlur,
     sideProjectsCollection: data.sideProjectsCollection.items as SideProject[],
   };
 }

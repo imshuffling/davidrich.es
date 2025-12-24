@@ -15,11 +15,13 @@
     "next": "16.1.1",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.4.6",
+    "plaiceholder": "^3.0.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-icons": "^5.4.0",
     "react-markdown": "^10.1.0",
-    "sass": "^1.49.7"
+    "sass": "^1.49.7",
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@types/react": "19.2.7",
