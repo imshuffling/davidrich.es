@@ -19,10 +19,10 @@
   li {
     display: flex;
     gap: 1.25rem;
-    padding: 2rem;
+    padding: 2rem 0;
 
     @include grid-settings.breakpoint(medium) {
-      padding: 1.75rem;
+      padding: 1.75rem 0;
     }
 
     .emoji {
