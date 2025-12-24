@@ -1,4 +1,4 @@
-import Image from "next/image";
+import ImageWrapper from "@/components/ImageWrapper";
 import type { BlockImage as BlockImageProps } from "@/types/contentful";
 
 export default function BlockImage({ image, lazyLoad, aspectRatio = "16/9" }: BlockImageProps) {
@@ -21,13 +21,10 @@ export default function BlockImage({ image, lazyLoad, aspectRatio = "16/9" }: Bl
         maxWidth: "1600px",
       }}
     >
-      <Image
-        src={optimizedUrl}
-        alt={image.fileName}
+      <ImageWrapper
+        image={{ ...image, url: optimizedUrl }}
         fill
         quality={80}
-        blurDataURL={image.blurDataURL}
-        placeholder={image.blurDataURL ? "blur" : "empty"}
         loading={lazyLoad ? "lazy" : "eager"}
         sizes="(min-width: 1960px) 1600px, calc(81.83vw + 13px)"
       />

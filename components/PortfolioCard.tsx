@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import ImageWrapper from "@/components/ImageWrapper";
 import { useRef, useEffect, useState } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
-export default function PortfolioCard({ item, loading = "lazy" }: PortfolioCardProps) {
+export default function PortfolioCard({
+  item,
+  loading = "lazy",
+}: PortfolioCardProps) {
   const { title, slug, media, image, industry } = item;
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -55,17 +58,13 @@ export default function PortfolioCard({ item, loading = "lazy" }: PortfolioCardP
     >
       <Link href={"/portfolio/" + slug}>
         <div className="card__image">
-          <Image
-            src={image.url}
-            width={image.width}
-            height={image.height}
-            blurDataURL={image.blurDataURL}
-            placeholder={image.blurDataURL ? "blur" : "empty"}
-            loading={loading}
-            style={{ objectFit: "cover", height: "100%", width: "100%" }}
-            sizes="(min-width: 1960px) 1407px, 71.89vw"
+          <ImageWrapper
+            image={image}
             alt={title}
-            quality={50}
+            loading={loading}
+            quality={80}
+            sizes="(min-width: 1960px) 1407px, 71.89vw"
+            style={{ objectFit: "cover", height: "100%", width: "100%" }}
           />
           {media &&
             (shouldLoadVideo ? (
