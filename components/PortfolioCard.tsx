@@ -65,6 +65,7 @@ export default function PortfolioCard({
             quality={80}
             sizes="(min-width: 1960px) 1407px, 71.89vw"
             style={{ objectFit: "cover", height: "100%", width: "100%" }}
+            showGradient={true}
           />
           {media &&
             (shouldLoadVideo ? (

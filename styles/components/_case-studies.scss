@@ -86,17 +86,6 @@
       transform: scale(1);
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
-      pointer-events: none;
-    }
-
     video {
       position: absolute;
       left: 0;
@@ -168,7 +157,7 @@
     justify-content: flex-end;
     height: 100%;
     width: 100%;
-    transition: all 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
 
     p {
       color: var(--alt-grey);
@@ -213,6 +202,10 @@
       display: block;
       margin-bottom: 0;
     }
+  }
+
+  &:hover &__content {
+    opacity: 0;
   }
 
   &.hover &__content {
