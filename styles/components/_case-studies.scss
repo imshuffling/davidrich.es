@@ -50,7 +50,7 @@
   overflow: hidden;
   transition-property: color;
   transition-delay: $delay;
-  aspect-ratio: 3/2;
+  aspect-ratio: 4/4;
   border-radius: 2px;
 
   &.hover {
@@ -142,6 +142,7 @@
     width: calc(100% - 1.5rem);
     height: calc(100% - 1.5rem);
     padding: 0.75rem;
+    z-index: 2;
     @include grid-settings.breakpoint(medium) {
       padding: 1.875rem;
       width: calc(100% - 3.75rem);
@@ -216,7 +217,8 @@
   // Respect user's motion preferences
   @media (prefers-reduced-motion: reduce) {
     &__image {
-      img, video {
+      img,
+      video {
         transition: opacity 0.3s ease-in-out;
         transform: none !important;
       }

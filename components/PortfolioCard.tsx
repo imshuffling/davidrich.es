@@ -72,9 +72,24 @@ export default function PortfolioCard({
           />
           {media &&
             (shouldLoadVideo ? (
-              <video ref={videoRef} loop muted playsInline preload="metadata">
-                <source src={media.url} type="video/mp4" />
-              </video>
+              <>
+                <video ref={videoRef} loop muted playsInline preload="metadata">
+                  <source src={media.url} type="video/mp4" />
+                </video>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background:
+                      "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%)",
+                    pointerEvents: "none",
+                    zIndex: 1,
+                  }}
+                />
+              </>
             ) : null)}
         </div>
         <div className="card__details">
