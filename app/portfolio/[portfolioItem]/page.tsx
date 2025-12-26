@@ -214,11 +214,36 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { portfolioItem: slug } = await params;
   const portfolioItem = await getPortfolioItem(slug);
-  const seoDescription = documentToPlainTextString(portfolioItem.body.json);
+  const plainText = documentToPlainTextString(portfolioItem.body.json);
+  const seoDescription = plainText.slice(0, 160);
 
   return {
     title: portfolioItem.seoTitle,
     description: seoDescription,
+    alternates: {
+      canonical: `https://davidrich.es/portfolio/${slug}`,
+    },
+    openGraph: {
+      type: "website",
+      url: `https://davidrich.es/portfolio/${slug}`,
+      title: portfolioItem.seoTitle || portfolioItem.title,
+      description: seoDescription,
+      images: portfolioItem.image
+        ? [
+            {
+              url: portfolioItem.image.url,
+              width: portfolioItem.image.width,
+              height: portfolioItem.image.height,
+              alt: portfolioItem.title,
+            },
+          ]
+        : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: portfolioItem.seoTitle || portfolioItem.title,
+      description: seoDescription,
+    },
   };
 }
 
@@ -238,14 +263,38 @@ export default async function PortfolioPage({ params }: Props) {
     blocksCollection,
   } = portfolioItem;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: title,
+    description: documentToPlainTextString(body.json).slice(0, 200),
+    url: `https://davidrich.es/portfolio/${slug}`,
+    creator: {
+      "@type": "Organization",
+      name: agency || "Mirum",
+    },
+    ...(client && { client }),
+    ...(completed && { dateCreated: completed }),
+    ...(portfolioItem.image && {
+      image: {
+        "@type": "ImageObject",
+        url: portfolioItem.image.url,
+        width: portfolioItem.image.width,
+        height: portfolioItem.image.height,
+      },
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <section className="portfolio-item">
         <div className="portfolio-item__content">
           <div
-            className="portfolio-item__copy"
-            data-aos="fade-in"
-            data-aos-once="true"
+            className="portfolio-item__copy animate-on-scroll"
           >
             <div className="portfolio-item__who">
               {agency ? agency : "Mirum"}
@@ -259,10 +308,8 @@ export default async function PortfolioPage({ params }: Props) {
           <div className="portfolio-info">
             {client && (
               <div
-                className="portfolio-info__item"
-                data-aos="fade-in"
-                data-aos-once="true"
-                data-aos-delay="200"
+                className="portfolio-info__item animate-on-scroll-delayed"
+                data-delay="200"
               >
                 <span>Client</span>
                 <span>
@@ -273,10 +320,8 @@ export default async function PortfolioPage({ params }: Props) {
 
             {completed && (
               <div
-                className="portfolio-info__item"
-                data-aos="fade-in"
-                data-aos-once="true"
-                data-aos-delay="300"
+                className="portfolio-info__item animate-on-scroll-delayed"
+                data-delay="300"
               >
                 <span>Completed</span>
                 <span>
@@ -287,10 +332,8 @@ export default async function PortfolioPage({ params }: Props) {
 
             {timeframe && (
               <div
-                className="portfolio-info__item"
-                data-aos="fade-in"
-                data-aos-once="true"
-                data-aos-delay="400"
+                className="portfolio-info__item animate-on-scroll-delayed"
+                data-delay="400"
               >
                 <span>Timeframe</span>
                 <span>
@@ -301,10 +344,8 @@ export default async function PortfolioPage({ params }: Props) {
 
             {link && (
               <div
-                className="portfolio-info__item"
-                data-aos="fade-in"
-                data-aos-once="true"
-                data-aos-delay="500"
+                className="portfolio-info__item animate-on-scroll-delayed"
+                data-delay="500"
               >
                 <span>Website</span>
                 <span>

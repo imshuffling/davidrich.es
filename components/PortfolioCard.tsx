@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ImageWrapper from "@/components/ImageWrapper";
-import { useRef, useEffect, useState, startTransition } from "react";
+import { useRef, useEffect, useState, startTransition, useCallback } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
 export default function PortfolioCard({
@@ -39,18 +39,18 @@ export default function PortfolioCard({
     return () => observer.disconnect();
   }, [media]);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     if (videoRef.current) {
       videoRef.current.play();
     }
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
-  };
+  }, []);
 
   return (
     <div

@@ -12,7 +12,9 @@
       "Bash(cat:*)",
       "Bash(pnpm add:*)",
       "Bash(pkill:*)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(curl:*)"
     ]
   }
 }

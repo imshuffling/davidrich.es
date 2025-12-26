@@ -141,7 +141,7 @@ export default async function HomePage() {
             key={item.slug}
             index={index}
             item={item}
-            loading="eager"
+            loading={index === 0 ? "eager" : "lazy"}
           />
         ))}
       </div>

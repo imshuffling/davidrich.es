@@ -1,45 +1,52 @@
 "use client";
 
 import React, { useLayoutEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import type { LayoutProps } from "@/types/components";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function Layout({ children }: LayoutProps) {
+  // Replace AOS with lightweight CSS animations + Intersection Observer
+  useScrollAnimation();
+
   useLayoutEffect(() => {
-    // Initialize AOS animations
-    AOS.init({
-      duration: 1000,
-    });
 
     // Use event delegation for card hover effects - more efficient than attaching to each card
-    const handleMouseEvent = (e: MouseEvent) => {
+    // Note: Using mouseover/mouseout instead of mouseenter/mouseleave because they bubble
+    const handleMouseOver = (e: MouseEvent) => {
       const card = (e.target as HTMLElement).closest('.card');
-      if (card) {
-        if (e.type === 'mouseenter') {
-          card.classList.add('hover');
-        } else {
-          card.classList.remove('hover');
-        }
+      if (card && !card.classList.contains('hover')) {
+        card.classList.add('hover');
+      }
+    };
+
+    const handleMouseOut = (e: MouseEvent) => {
+      const card = (e.target as HTMLElement).closest('.card');
+      if (card && !card.contains(e.relatedTarget as Node)) {
+        card.classList.remove('hover');
       }
     };
 
     // Use capture phase for better performance with event delegation
-    document.addEventListener('mouseenter', handleMouseEvent, true);
-    document.addEventListener('mouseleave', handleMouseEvent, true);
+    document.addEventListener('mouseover', handleMouseOver, true);
+    document.addEventListener('mouseout', handleMouseOut, true);
 
     return () => {
-      document.removeEventListener('mouseenter', handleMouseEvent, true);
-      document.removeEventListener('mouseleave', handleMouseEvent, true);
+      document.removeEventListener('mouseover', handleMouseOver, true);
+      document.removeEventListener('mouseout', handleMouseOut, true);
     };
   }, []);
 
   return (
     <div className="container-wrap">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <Header />
-      <div id="page-wrap">{children}</div>
+      <main id="main-content">
+        <div id="page-wrap">{children}</div>
+      </main>
       <Footer />
     </div>
   );
