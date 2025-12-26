@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useLayoutEffect, useCallback } from "react";
+import { useState, useLayoutEffect, useCallback, useEffect } from "react";
 import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
@@ -12,6 +12,11 @@ export default function Header() {
   const toggle = useCallback(() => {
     setToggleState(prev => !prev);
   }, []);
+
+  // Close nav when pathname changes (after route transition)
+  useEffect(() => {
+    setToggleState(false);
+  }, [pathname]);
 
   useLayoutEffect(() => {
     // Synchronously update body position before browser paint to prevent visual flash
@@ -51,7 +56,7 @@ export default function Header() {
       </div>
       <nav className={toggleState ? "open" : ""}>
         <ul id="navigation">
-          <li onClick={() => setToggleState(false)}>
+          <li>
             <Link
               {...(pathname === "/" ? { "aria-current": "page" as const } : {})}
               href="/"
@@ -59,7 +64,7 @@ export default function Header() {
               About me
             </Link>
           </li>
-          <li onClick={() => setToggleState(false)}>
+          <li>
             <Link
               {...(pathname === "/what-i-can-do"
                 ? { "aria-current": "page" as const }
@@ -93,7 +98,7 @@ export default function Header() {
               </svg>
             </a>
           </li>
-          <li onClick={() => setToggleState(false)}>
+          <li>
             <Link href="/contact">Contact</Link>
           </li>
         </ul>

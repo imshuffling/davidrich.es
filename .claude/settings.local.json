@@ -14,7 +14,9 @@
       "Bash(pkill:*)",
       "Bash(pnpm remove:*)",
       "Bash(pnpm dev:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pnpm dlx tailwindcss:*)",
+      "Bash(npx tailwindcss init -p)"
     ]
   }
 }
