@@ -1,4 +1,5 @@
-import PortfolioCard from "@/components/PortfolioCard";
+import { Suspense } from "react";
+import PortfolioSection from "@/components/PortfolioSection";
 import type { Metadata } from "next";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 import { getBlurDataURL } from "@/utils/getBlurDataURL";
@@ -83,8 +84,8 @@ async function getHomeData() {
   };
 }
 
-export default async function HomePage() {
-  const { portfolioCollection, sideProjectsCollection } = await getHomeData();
+export default function HomePage() {
+  const dataPromise = getHomeData();
 
   return (
     <section>
@@ -135,61 +136,27 @@ export default async function HomePage() {
           </a>
         </h3>
       </div>
-      <div id="cards">
-        {portfolioCollection.map((item, index) => (
-          <PortfolioCard
-            key={item.slug}
-            index={index}
-            item={item}
-            loading={index === 0 ? "eager" : "lazy"}
-          />
-        ))}
-      </div>
-
-      {sideProjectsCollection.length > 0 && (
-        <div id="side-projects">
-          <h2>Side projects</h2>
-          <div className="side-projects-wrapper">
-            {sideProjectsCollection.map((node, i) => (
-              <SideProjects key={i} node={node} />
-            ))}
-          </div>
-        </div>
-      )}
+      <Suspense fallback={<PortfolioSkeleton />}>
+        <PortfolioSection dataPromise={dataPromise} />
+      </Suspense>
     </section>
   );
 }
 
-function SideProjects({ node }: { node: SideProject }) {
+function PortfolioSkeleton() {
   return (
-    <div className="item" key={node.id}>
-      <div>
-        <h3 className="item__title">{node.title}</h3>
-        {node.description && (
-          <div
-            className="item__content"
-            dangerouslySetInnerHTML={{
-              __html: node.description,
-            }}
-          />
-        )}
-      </div>
-
-      {node.link && (
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href={node.link}>
-            View Site
-          </a>
-        </span>
-      )}
-
-      {node.githubUrl && !node.link && (
-        <span>
-          <a target="_blank" rel="noopener noreferrer" href={node.githubUrl}>
-            View Repo
-          </a>
-        </span>
-      )}
+    <div id="cards" style={{ opacity: 0.5 }}>
+      {[...Array(6)].map((_, i) => (
+        <div
+          key={i}
+          style={{
+            aspectRatio: "1",
+            background: "var(--text-color)",
+            opacity: 0.1,
+            borderRadius: "4px",
+          }}
+        />
+      ))}
     </div>
   );
 }

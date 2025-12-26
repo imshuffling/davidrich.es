@@ -1,5 +1,6 @@
+import { Suspense } from "react";
+import ServicesSection from "@/components/ServicesSection";
 import fetchContent from "@/utils/fetchContent";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import type { Metadata } from "next";
 import type { Service } from "@/types/contentful";
 
@@ -32,25 +33,57 @@ async function getServicesData() {
   };
 }
 
-export default async function ServicesPage() {
-  const { servicesCollection } = await getServicesData();
+export default function ServicesPage() {
+  const dataPromise = getServicesData();
 
   return (
     <section>
       <h1>What I can do</h1>
-      {servicesCollection && (
-        <ul id="services">
-          {servicesCollection.map((item: Service, i: number) => (
-            <li key={i}>
-              <div className="emoji">{item.emojiImage}</div>
-              <div>
-                <h3>{item.title}</h3>
-                <div>{documentToReactComponents(item.body.json)}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      <Suspense fallback={<ServicesSkeleton />}>
+        <ServicesSection dataPromise={dataPromise} />
+      </Suspense>
     </section>
+  );
+}
+
+function ServicesSkeleton() {
+  return (
+    <ul id="services" style={{ opacity: 0.5 }}>
+      {[...Array(4)].map((_, i) => (
+        <li key={i}>
+          <div
+            className="emoji"
+            style={{
+              width: "60px",
+              height: "60px",
+              background: "var(--text-color)",
+              opacity: 0.1,
+              borderRadius: "50%",
+            }}
+          />
+          <div style={{ flex: 1 }}>
+            <div
+              style={{
+                width: "40%",
+                height: "24px",
+                background: "var(--text-color)",
+                opacity: 0.1,
+                borderRadius: "4px",
+                marginBottom: "12px",
+              }}
+            />
+            <div
+              style={{
+                width: "100%",
+                height: "60px",
+                background: "var(--text-color)",
+                opacity: 0.1,
+                borderRadius: "4px",
+              }}
+            />
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }

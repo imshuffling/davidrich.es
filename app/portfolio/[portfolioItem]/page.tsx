@@ -1,6 +1,7 @@
+import { Suspense } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import PortfolioCard from "@/components/PortfolioCard";
+import PortfolioFooter from "@/components/PortfolioFooter";
 import Blocks from "@/blocks";
 import type { Metadata } from "next";
 import type { PortfolioItem, ContentfulBlock } from "@/types/contentful";
@@ -375,21 +376,30 @@ export default async function PortfolioPage({ params }: Props) {
           </p>
         )}
       </section>
-      {footerCollection && footerCollection.items.length > 0 && (
-        <section className="other-projects">
-          <h3>Other projects</h3>
-          <div id="cards">
-            {footerCollection.items.map((item, index) => (
-              <PortfolioCard
-                key={item.slug}
-                item={item}
-                index={index}
-                loading="lazy"
-              />
-            ))}
-          </div>
-        </section>
-      )}
+      <Suspense fallback={<OtherProjectsSkeleton />}>
+        <PortfolioFooter footerPromise={Promise.resolve(footerCollection)} />
+      </Suspense>
     </>
+  );
+}
+
+function OtherProjectsSkeleton() {
+  return (
+    <section className="other-projects">
+      <h3>Other projects</h3>
+      <div id="cards" style={{ opacity: 0.5 }}>
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            style={{
+              aspectRatio: "1",
+              background: "var(--text-color)",
+              opacity: 0.1,
+              borderRadius: "4px",
+            }}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
