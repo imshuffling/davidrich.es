@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import ImageWrapper from "@/components/ImageWrapper";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, startTransition } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
 export default function PortfolioCard({
@@ -21,7 +21,10 @@ export default function PortfolioCard({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setShouldLoadVideo(true);
+            // Use startTransition for non-urgent state update to avoid blocking more critical renders
+            startTransition(() => {
+              setShouldLoadVideo(true);
+            });
             observer.disconnect();
           }
         });

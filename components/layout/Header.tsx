@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
@@ -14,20 +14,13 @@ export default function Header() {
     setToggleState(!toggleState);
   }
 
-  useEffect(() => {
-    const body = document.body;
-
-    if (toggleState) {
-      // Add inline styles to fix the body's position
-      body.style.position = "fixed";
-    } else {
-      // Remove the styles when menu is closed
-      body.style.position = "";
-    }
+  useLayoutEffect(() => {
+    // Synchronously update body position before browser paint to prevent visual flash
+    document.body.style.position = toggleState ? "fixed" : "";
 
     // Clean up on component unmount
     return () => {
-      body.style.position = "";
+      document.body.style.position = "";
     };
   }, [toggleState]);
 
