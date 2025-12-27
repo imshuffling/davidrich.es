@@ -15,7 +15,6 @@ async function getServicesData() {
       servicesCollection {
         items {
           title
-          emojiImage
           body {
             json
           }

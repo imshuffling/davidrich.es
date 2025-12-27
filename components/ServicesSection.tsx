@@ -19,7 +19,6 @@ export default function ServicesSection({ dataPromise }: ServicesSectionProps) {
         <ul id="services">
           {servicesCollection.map((item: Service, i: number) => (
             <li key={i}>
-              <div className="emoji">{item.emojiImage}</div>
               <div>
                 <h3>{item.title}</h3>
                 <div>{documentToReactComponents(item.body.json)}</div>

@@ -2,45 +2,27 @@
 
 #services {
   display: grid;
-  grid-gap: 1.5rem;
+  grid-gap: 2.5rem;
   margin-top: 2rem;
   margin-bottom: 0;
   grid-template-columns: 1fr;
   @include grid-settings.breakpoint(medium) {
-    grid-gap: 2rem;
+    grid-gap: 4rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
   @include grid-settings.breakpoint(large) {
-    grid-gap: 2.5rem;
+    grid-gap: 5rem;
     margin-top: 4rem;
     margin-bottom: 1rem;
   }
   li {
-    display: flex;
-    gap: 1.25rem;
-    padding: 2rem 0;
+    // padding: 2rem 0;
+    max-width: 100%;
 
     @include grid-settings.breakpoint(medium) {
-      padding: 1.75rem 0;
-    }
-
-    .emoji {
-      @extend .h2 !optional;
-      font-size: 2.5rem;
-      width: 3.5rem;
-      height: 3.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 0;
-
-      @include grid-settings.breakpoint(medium) {
-        font-size: 3rem;
-        width: 4rem;
-        height: 4rem;
-      }
+      // padding: 1.75rem 0;
+      max-width: 70%;
     }
 
     h3 {
@@ -56,5 +38,4 @@
       margin-bottom: 0;
     }
   }
-
 }
