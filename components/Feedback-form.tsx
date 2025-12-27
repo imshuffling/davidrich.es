@@ -15,13 +15,14 @@ export function FeedbackForm() {
       setError(null);
       const myForm = event.currentTarget;
       const formData = new FormData(myForm);
-      const res = await fetch("/__forms.html", {
+      const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
       });
       if (res.status === 200) {
         setStatus("ok");
+        myForm.reset();
       } else {
         setStatus("error");
         setError(`${res.status} ${res.statusText}`);
