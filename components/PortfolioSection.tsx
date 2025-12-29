@@ -22,7 +22,7 @@ export default function PortfolioSection({ dataPromise }: PortfolioSectionProps)
             key={item.slug}
             index={index}
             item={item}
-            loading={index === 0 ? "eager" : "lazy"}
+            priority={index === 0}
           />
         ))}
       </div>

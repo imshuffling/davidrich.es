@@ -1,7 +1,9 @@
+import { unstable_cache } from 'next/cache';
+
 const space = process.env.CONTENTFUL_SPACE_ID;
 const accessToken = process.env.CONTENTFUL_ACCESS_KEY;
 
-export async function fetchContent<T = any>(query: string): Promise<T | undefined> {
+async function fetchContentInternal<T = any>(query: string): Promise<T | undefined> {
   try {
     const res = await fetch(
       `https://graphql.contentful.com/content/v1/spaces/${space}/environments/master`,
@@ -12,7 +14,7 @@ export async function fetchContent<T = any>(query: string): Promise<T | undefine
           authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({ query }),
-        next: { revalidate: 3600 }, // Revalidate every hour
+        next: { revalidate: 3600, tags: ['contentful'] }, // Revalidate every hour with cache tags
       },
     );
 
@@ -28,6 +30,20 @@ export async function fetchContent<T = any>(query: string): Promise<T | undefine
     console.error(error);
     return undefined;
   }
+}
+
+// Wrap with unstable_cache for better caching control
+export async function fetchContent<T = any>(query: string): Promise<T | undefined> {
+  const cachedFetch = unstable_cache(
+    async () => fetchContentInternal<T>(query),
+    ['contentful-query', query],
+    {
+      revalidate: 3600,
+      tags: ['contentful'],
+    }
+  );
+
+  return cachedFetch();
 }
 
 export default fetchContent;

@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import PortfolioSection from "@/components/PortfolioSection";
 import type { Metadata } from "next";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
-import { getBlurDataURL } from "@/utils/getBlurDataURL";
 
 export const metadata: Metadata = {
   title: "About me",
@@ -67,16 +66,15 @@ async function getHomeData() {
 
   const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[];
 
-  // Generate blur data URLs for all portfolio images
-  const portfolioWithBlur = await Promise.all(
-    portfolioItems.map(async (item) => ({
-      ...item,
-      image: {
-        ...item.image,
-        blurDataURL: await getBlurDataURL(item.image.url),
-      },
-    }))
-  );
+  // Use Contentful's built-in image transformation for blur placeholder (non-blocking)
+  const portfolioWithBlur = portfolioItems.map((item) => ({
+    ...item,
+    image: {
+      ...item.image,
+      // Use Contentful's image transformation API for blur placeholder
+      blurDataURL: `${item.image.url}?w=20&q=50`,
+    },
+  }));
 
   return {
     portfolioCollection: portfolioWithBlur,

@@ -14,7 +14,7 @@ export interface LayoutProps {
 // Portfolio Card Props
 export interface PortfolioCardProps {
   item: PortfolioItem;
-  loading?: 'eager' | 'lazy';
+  priority?: boolean;
   index?: number;
 }
 

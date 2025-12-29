@@ -4,7 +4,6 @@ import PortfolioFooter from "@/components/PortfolioFooter";
 import PortfolioContent from "@/components/PortfolioContent";
 import type { Metadata } from "next";
 import type { PortfolioItem, ContentfulBlock } from "@/types/contentful";
-import { getBlurDataURL } from "@/utils/getBlurDataURL";
 
 type Props = {
   params: Promise<{ portfolioItem: string }>;
@@ -124,53 +123,49 @@ async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
   const { data } = await result.json();
   const item = data.portfolioCollection.items[0] as PortfolioItem;
 
-  // Generate blur data URLs for images in blocks
+  // Use Contentful's built-in image transformation for blur placeholders (non-blocking)
   if (item.blocksCollection?.items) {
-    item.blocksCollection.items = await Promise.all(
-      item.blocksCollection.items.map(async (block: ContentfulBlock) => {
-        if (block.__typename === "Image" && block.image) {
-          return {
-            ...block,
-            image: {
-              ...block.image,
-              blurDataURL: await getBlurDataURL(block.image.url),
-            },
-          };
-        }
-        if (block.__typename === "TwoColumn" && block.image) {
-          return {
-            ...block,
-            image: {
-              ...block.image,
-              blurDataURL: await getBlurDataURL(block.image.url),
-            },
-          };
-        }
-        if (block.__typename === "Video" && block.image) {
-          return {
-            ...block,
-            image: {
-              ...block.image,
-              blurDataURL: await getBlurDataURL(block.image.url),
-            },
-          };
-        }
-        return block;
-      })
-    );
+    item.blocksCollection.items = item.blocksCollection.items.map((block: ContentfulBlock) => {
+      if (block.__typename === "Image" && block.image) {
+        return {
+          ...block,
+          image: {
+            ...block.image,
+            blurDataURL: `${block.image.url}?w=20&q=50`,
+          },
+        };
+      }
+      if (block.__typename === "TwoColumn" && block.image) {
+        return {
+          ...block,
+          image: {
+            ...block.image,
+            blurDataURL: `${block.image.url}?w=20&q=50`,
+          },
+        };
+      }
+      if (block.__typename === "Video" && block.image) {
+        return {
+          ...block,
+          image: {
+            ...block.image,
+            blurDataURL: `${block.image.url}?w=20&q=50`,
+          },
+        };
+      }
+      return block;
+    });
   }
 
-  // Generate blur data URLs for footer images
+  // Use Contentful's built-in image transformation for footer blur placeholders
   if (item.footerCollection?.items) {
-    item.footerCollection.items = await Promise.all(
-      item.footerCollection.items.map(async (footerItem) => ({
-        ...footerItem,
-        image: {
-          ...footerItem.image,
-          blurDataURL: await getBlurDataURL(footerItem.image.url),
-        },
-      }))
-    );
+    item.footerCollection.items = item.footerCollection.items.map((footerItem) => ({
+      ...footerItem,
+      image: {
+        ...footerItem.image,
+        blurDataURL: `${footerItem.image.url}?w=20&q=50`,
+      },
+    }));
   }
 
   return item;
@@ -249,27 +244,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PortfolioPage({ params }: Props) {
   const { portfolioItem: slug } = await params;
+  const portfolioItem = await getPortfolioItem(slug);
 
   return (
     <>
       <Suspense fallback={<PortfolioSkeleton />}>
-        <PortfolioContentWrapper slug={slug} />
+        <PortfolioContent dataPromise={Promise.resolve(portfolioItem)} />
       </Suspense>
       <Suspense fallback={<OtherProjectsSkeleton />}>
-        <PortfolioFooterWrapper slug={slug} />
+        <PortfolioFooter footerPromise={Promise.resolve(portfolioItem.footerCollection)} />
       </Suspense>
     </>
   );
-}
-
-async function PortfolioContentWrapper({ slug }: { slug: string }) {
-  const portfolioItem = await getPortfolioItem(slug);
-  return <PortfolioContent dataPromise={Promise.resolve(portfolioItem)} />;
-}
-
-async function PortfolioFooterWrapper({ slug }: { slug: string }) {
-  const portfolioItem = await getPortfolioItem(slug);
-  return <PortfolioFooter footerPromise={Promise.resolve(portfolioItem.footerCollection)} />;
 }
 
 function PortfolioSkeleton() {

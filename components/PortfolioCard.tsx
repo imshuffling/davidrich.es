@@ -7,7 +7,7 @@ import type { PortfolioCardProps } from "@/types/components";
 
 export default function PortfolioCard({
   item,
-  loading = "lazy",
+  priority = false,
 }: PortfolioCardProps) {
   const { title, slug, media, image, industry } = item;
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -64,7 +64,7 @@ export default function PortfolioCard({
           <ImageWrapper
             image={image}
             alt={title}
-            loading={loading}
+            priority={priority}
             quality={80}
             sizes="(min-width: 1960px) 1407px, 71.89vw"
             style={{ objectFit: "cover", height: "100%", width: "100%" }}
