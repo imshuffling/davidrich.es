@@ -13,6 +13,7 @@ export default function PortfolioCard({
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!media);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (!media || !cardRef.current) return;
@@ -61,6 +62,16 @@ export default function PortfolioCard({
     >
       <Link href={"/portfolio/" + slug}>
         <div className="card__image">
+          {!imageLoaded && (
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundColor: "rgba(255, 255, 255, 0.05)",
+                animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              }}
+            />
+          )}
           <ImageWrapper
             image={image}
             alt={title}
@@ -69,6 +80,7 @@ export default function PortfolioCard({
             sizes="(min-width: 1960px) 1407px, 71.89vw"
             style={{ objectFit: "cover", height: "100%", width: "100%" }}
             showGradient={true}
+            onLoad={() => setImageLoaded(true)}
           />
           {media &&
             (shouldLoadVideo ? (

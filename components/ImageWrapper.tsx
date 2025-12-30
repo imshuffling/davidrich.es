@@ -14,6 +14,7 @@ interface ImageWrapperProps {
   className?: string;
   style?: React.CSSProperties;
   showGradient?: boolean;
+  onLoad?: () => void;
 }
 
 export default function ImageWrapper({
@@ -29,6 +30,7 @@ export default function ImageWrapper({
   className,
   style,
   showGradient = false,
+  onLoad,
 }: ImageWrapperProps) {
   return (
     <div style={{ position: "relative", display: "contents" }}>
@@ -46,6 +48,7 @@ export default function ImageWrapper({
         sizes={sizes}
         className={className}
         style={style}
+        onLoad={onLoad}
       />
       {showGradient && (
         <div

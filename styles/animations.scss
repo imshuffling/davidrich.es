@@ -10,6 +10,16 @@
   }
 }
 
+// Pulse animation for skeleton loaders
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
 // Base animation class
 .animate-fade-in {
   animation: fade-in 1s ease-out forwards;
