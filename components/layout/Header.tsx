@@ -4,13 +4,14 @@ import { useState, useLayoutEffect, useCallback, useEffect } from "react";
 import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
   const pathname = usePathname();
 
   const toggle = useCallback(() => {
-    setToggleState(prev => !prev);
+    setToggleState((prev) => !prev);
   }, []);
 
   // Close nav when pathname changes (after route transition)
@@ -20,11 +21,28 @@ export default function Header() {
 
   useLayoutEffect(() => {
     // Synchronously update body position before browser paint to prevent visual flash
-    document.body.style.position = toggleState ? "fixed" : "";
+    if (toggleState) {
+      // Store current scroll position
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = "100%";
+    } else {
+      // Restore scroll position
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || "0") * -1);
+      }
+    }
 
     // Clean up on component unmount
     return () => {
       document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
     };
   }, [toggleState]);
 
@@ -40,19 +58,17 @@ export default function Header() {
         role="button"
         aria-label="Main menu"
         aria-expanded={toggleState}
-        className={toggleState ? "navbutton active" : "navbutton"}
+        className="navbutton"
         onClick={toggle}
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
+          if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             toggle();
           }
         }}
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        {toggleState ? <RxCross2 size={26} /> : <RxHamburgerMenu size={26} />}
       </div>
       <nav className={toggleState ? "open" : ""}>
         <ul id="navigation">

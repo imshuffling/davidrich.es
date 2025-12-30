@@ -25,7 +25,7 @@ body#menu-open {
 
 .theme-changer-wrapper {
   margin-left: auto;
-  margin-right: 1em;
+  margin-right: 0.75rem;
   cursor: pointer;
   z-index: 11;
 }
@@ -123,56 +123,37 @@ html[data-theme="light"] .theme-changer-wrapper {
 
 .navbutton {
   z-index: 12;
-  width: 24px;
-  height: 20px;
-  position: relative;
-  transform: rotate(0deg);
-  transition: 0.5s ease-in-out;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  span {
-    display: block;
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    background: var(--nav-button);
-    border-radius: 9px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: 0.25s ease-in-out;
+  color: var(--nav-button);
+  transition: color 0.2s ease-in-out;
+  border-radius: 4px;
 
-    &:nth-child(1) {
-      top: 0px;
-    }
-
-    &:nth-child(2) {
-      top: 9px;
-    }
-
-    &:nth-child(3) {
-      top: 18px;
-    }
+  svg {
+    width: 26px;
+    height: 26px;
   }
 
-  &.active {
-    span {
-      // background: white;
+  &:hover {
+    opacity: 0.8;
+  }
 
-      &:nth-child(1) {
-        top: 9px;
-        transform: rotate(135deg);
-      }
+  &:focus {
+    outline: 2px solid var(--nav-button);
+    outline-offset: 2px;
+  }
 
-      &:nth-child(2) {
-        opacity: 0;
-        left: -60px;
-      }
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 
-      &:nth-child(3) {
-        top: 9px;
-        transform: rotate(-135deg);
-      }
-    }
+  &:focus-visible {
+    outline: 2px solid var(--nav-button);
+    outline-offset: 2px;
   }
 }
 
