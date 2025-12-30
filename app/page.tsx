@@ -103,7 +103,7 @@ export default function HomePage() {
             from London.
           </span>
           I like making things on the web,{" "}
-          <a href="#cards" style={{ scrollBehavior: 'smooth' }}>
+          <a href="#cards">
             view my portfolio
           </a>{" "}
           or{" "}
