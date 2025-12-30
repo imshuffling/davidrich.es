@@ -24,9 +24,7 @@ export default async function PortfolioContent({ dataPromise }: Props) {
     <section className="portfolio-item">
       <div className="portfolio-item__content">
         <div className="portfolio-item__copy">
-          <div className="portfolio-item__who">
-            {agency ? agency : "Mirum"}
-          </div>
+          <div className="portfolio-item__who">{agency ? agency : "Mirum"}</div>
           <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
           <h2>{documentToReactComponents(body.json)}</h2>
         </div>
@@ -82,12 +80,13 @@ export default async function PortfolioContent({ dataPromise }: Props) {
       {blocksCollection && <Blocks blocksCollection={blocksCollection} />}
       {link && (
         <p>
-          <span role="img" aria-label="Finger">
-            👉{" "}
-          </span>
           <a target="_blank" rel="noopener noreferrer" href={`//${link}`}>
             Visit website
           </a>
+          <span role="img" aria-label="Finger">
+            {" "}
+            👉
+          </span>
         </p>
       )}
     </section>
