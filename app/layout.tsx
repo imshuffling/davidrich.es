@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Karla, Oswald } from "next/font/google";
-import "./globals.scss";
+import "./globals.css";
 import { Providers } from "./providers";
 import Layout from "@/components/layout/Layout";
 

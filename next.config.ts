@@ -6,6 +6,7 @@ const config: NextConfig = {
   cacheComponents: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 80],
     remotePatterns: [
       {
         protocol: "https",

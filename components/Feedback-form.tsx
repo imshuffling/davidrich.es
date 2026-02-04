@@ -37,7 +37,6 @@ export function FeedbackForm() {
     <form
       name="feedback"
       onSubmit={handleFormSubmit}
-      className="text-black flex flex-col gap-3 align-center"
       aria-describedby={status === "error" ? "form-error" : undefined}
     >
       <input type="hidden" name="form-name" value="feedback" />
