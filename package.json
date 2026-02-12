@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@contentful/rich-text-plain-text-renderer": "^17.0.0",
+    "@contentful/rich-text-plain-text-renderer": "^17.1.6",
     "@contentful/rich-text-react-renderer": "^16.1.6",
     "@tailwindcss/postcss": "^4.1.18",
     "ipx": "^3.1.1",
