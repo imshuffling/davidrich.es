@@ -18,14 +18,22 @@ export default function PortfolioSection({ dataPromise }: PortfolioSectionProps)
     <>
       <div className="container">
         <div id="cards">
-          {portfolioCollection.map((item, index) => (
-            <PortfolioCard
-              key={item.slug}
-              index={index}
-              item={item}
-              priority={index === 0}
-            />
-          ))}
+          {portfolioCollection.map((item, index) => {
+            const total = portfolioCollection.length;
+            const remaining = total - 2; // items after first row (8+4)
+            const isLast = index === total - 1;
+            const fillLastRow = isLast && remaining > 0 && remaining % 3 !== 0;
+
+            return (
+              <PortfolioCard
+                key={item.slug}
+                index={index}
+                item={item}
+                priority={index === 0}
+                className={fillLastRow ? "card--fill" : undefined}
+              />
+            );
+          })}
         </div>
       </div>
 

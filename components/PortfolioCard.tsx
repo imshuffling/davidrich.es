@@ -8,7 +8,8 @@ import type { PortfolioCardProps } from "@/types/components";
 export default function PortfolioCard({
   item,
   priority = false,
-}: PortfolioCardProps) {
+  className,
+}: PortfolioCardProps & { className?: string }) {
   const { title, slug, media, image, industry } = item;
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -50,7 +51,7 @@ export default function PortfolioCard({
   return (
     <div
       ref={cardRef}
-      className={`card ${media ? "has-video" : ""}`}
+      className={`card ${media ? "has-video" : ""} ${className || ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

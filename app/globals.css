@@ -435,6 +435,9 @@ html[data-theme="dark"] {
     .card:first-child {
       grid-column: span 8;
     }
+    .card.card--fill {
+      grid-column: 1 / -1;
+    }
   }
 
   .card a {
@@ -543,11 +546,11 @@ html[data-theme="dark"] {
 
   /* Content blocks */
   .section {
-    margin: 2rem 0;
+    margin: 3rem 0;
   }
 
   @media (min-width: 48em) {
-    .section { margin: 4rem 0; }
+    .section { margin: 6rem 0; }
   }
 
   .section ul {
