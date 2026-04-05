@@ -48,72 +48,71 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-xl" style={{ background: "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
-      <nav className="flex justify-between items-center px-6 md:px-8 py-5 max-w-7xl mx-auto">
-        <span onClick={() => setToggleState(false)}>
-          <Link
-            href="/"
-            className="logo-gradient"
-          >
-            David Riches
-          </Link>
-        </span>
+    <>
+      <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
+        <nav className="flex justify-between items-center px-6 md:px-8 py-5 max-w-7xl mx-auto">
+          <span onClick={() => setToggleState(false)}>
+            <Link href="/" className="logo-gradient">
+              David Riches
+            </Link>
+          </span>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-10 font-headline font-medium tracking-tight">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-all duration-300 !border-none !bg-none relative ${
-                  isActive
-                    ? "after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                    : "opacity-70 hover:opacity-100 hover:translate-y-[-1px]"
-                }`}
-                style={{ color: isActive ? "var(--primary-colour)" : "var(--heading-color)" }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <a
-            href="https://resume.davidrich.es/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
-            style={{ color: "var(--heading-color)" }}
-          >
-            Resume
-          </a>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <ThemeChanger />
-          <div
-            role="button"
-            aria-label="Main menu"
-            aria-expanded={toggleState}
-            className="md:hidden cursor-pointer text-primary"
-            onClick={toggle}
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                toggle();
-              }
-            }}
-          >
-            {toggleState ? <RxCross2 size={24} /> : <RxHamburgerMenu size={24} />}
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-10 font-headline font-medium tracking-tight">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-all duration-300 !border-none !bg-none relative ${
+                    isActive
+                      ? "after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
+                      : "opacity-70 hover:opacity-100 hover:translate-y-[-1px]"
+                  }`}
+                  style={{ color: isActive ? "var(--primary-colour)" : "var(--heading-color)" }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+            <a
+              href="https://resume.davidrich.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
+              style={{ color: "var(--heading-color)" }}
+            >
+              Resume
+            </a>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile nav overlay */}
+          <div className="flex items-center gap-4">
+            <ThemeChanger />
+            <div
+              role="button"
+              aria-label="Main menu"
+              aria-expanded={toggleState}
+              className="md:hidden cursor-pointer text-primary"
+              onClick={toggle}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggle();
+                }
+              }}
+            >
+              {toggleState ? <RxCross2 size={24} /> : <RxHamburgerMenu size={24} />}
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile nav overlay — sibling of header so backdrop-blur doesn't trap it */}
       <div
-        className={`fixed inset-0 top-0 z-40 flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
-          toggleState ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 z-[60] flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
+          toggleState ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
         }`}
         style={{ background: "var(--bg)" }}
       >
@@ -144,6 +143,6 @@ export default function Header() {
           </li>
         </ul>
       </div>
-    </header>
+    </>
   );
 }
