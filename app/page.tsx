@@ -53,7 +53,7 @@ async function getHomeData() {
           }
       `,
       }),
-      next: { revalidate: 3600 }, // Revalidate every hour
+      next: { revalidate: 3600 },
     }
   );
 
@@ -66,12 +66,10 @@ async function getHomeData() {
 
   const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[];
 
-  // Use Contentful's built-in image transformation for blur placeholder (non-blocking)
   const portfolioWithBlur = portfolioItems.map((item) => ({
     ...item,
     image: {
       ...item.image,
-      // Use Contentful's image transformation API for blur placeholder
       blurDataURL: `${item.image.url}?w=20&q=50`,
     },
   }));
@@ -86,73 +84,69 @@ export default function HomePage() {
   const dataPromise = getHomeData();
 
   return (
-    <section>
-      <div id="strapline">
-        <h1>
-          Hello I&apos;m David.{" "}
-          <span role="img" aria-label="Waving hand" className="wave">
-            👋
+    <>
+      {/* Hero Section */}
+      <section className="container pt-12 pb-16 md:pt-20 md:pb-24">
+        <div className="max-w-4xl">
+          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-6 block font-label">
+            Available for freelance
           </span>
-        </h1>
-        <h2>
-          <span className="intro">
-            A Front-end developer &amp; part-time hockey player{" "}
-            <span role="img" aria-label="Hockey stick">
-              🏑{" "}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
+            Hello I&apos;m David.{" "}
+            <span role="img" aria-label="Waving hand" className="wave">
+              👋
             </span>
-            from London.
-          </span>
-          I like making things on the web,{" "}
-          <a href="#cards">
-            view my portfolio
-          </a>{" "}
-          or{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.github.com/imshuffling"
-          >
-            follow me on Github.
-          </a>
-        </h2>
-        <h3>
-          This site is built with{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.nextjs.org/"
-          >
-            Next.js
-          </a>{" "}
-          and powered by{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.contentful.com/"
-          >
-            Contentful.
-          </a>
-        </h3>
+          </h1>
+          <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-2xl font-body">
+            I&apos;m a{" "}
+            <span className="text-on-surface font-semibold">Front-end developer</span>{" "}
+            and hockey player based in the UK. I build high-performance digital
+            experiences with a focus on editorial aesthetics.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href="#work" className="btn-primary">
+              View Projects
+            </a>
+            <a
+              href="https://resume.davidrich.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              About Me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <div id="work" className="scroll-mt-28">
+        <div className="container">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">Selected Work</h2>
+              <p className="text-on-surface-variant max-w-md mb-0">
+                A collection of commercial projects built for industry-leading brands.
+              </p>
+            </div>
+          </div>
+        </div>
+        <Suspense fallback={<div className="container"><PortfolioSkeleton /></div>}>
+          <PortfolioSection dataPromise={dataPromise} />
+        </Suspense>
       </div>
-      <Suspense fallback={<PortfolioSkeleton />}>
-        <PortfolioSection dataPromise={dataPromise} />
-      </Suspense>
-    </section>
+    </>
   );
 }
 
 function PortfolioSkeleton() {
   return (
-    <div id="cards" style={{ opacity: 0.5 }}>
+    <div id="cards">
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          style={{
-            aspectRatio: "1",
-            background: "var(--text-color)",
-            opacity: 0.1,
-            borderRadius: "4px",
-          }}
+          className="bg-surface-container-high rounded-xl animate-pulse"
+          style={{ aspectRatio: "1", minHeight: "300px" }}
         />
       ))}
     </div>

@@ -19,9 +19,9 @@ export default function ServicesSection({ dataPromise }: ServicesSectionProps) {
         <ul id="services">
           {servicesCollection.map((item: Service, i: number) => (
             <li key={i}>
-              <div>
-                <h3>{item.title}</h3>
-                <div>{documentToReactComponents(item.body.json)}</div>
+              <h3 className="text-2xl font-headline font-bold">{item.title}</h3>
+              <div className="text-on-surface-variant leading-relaxed">
+                {documentToReactComponents(item.body.json)}
               </div>
             </li>
           ))}

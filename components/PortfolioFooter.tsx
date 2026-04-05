@@ -14,8 +14,8 @@ export default function PortfolioFooter({ footerPromise }: PortfolioFooterProps)
   if (!footerCollection || footerCollection.items.length === 0) return null;
 
   return (
-    <section className="other-projects">
-      <h3>Other projects</h3>
+    <section className="other-projects container">
+      <h3 className="font-headline font-bold">Other projects</h3>
       <div id="cards">
         {footerCollection.items.map((item, index) => (
           <PortfolioCard

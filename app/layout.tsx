@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
-import { Karla, Oswald } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Layout from "@/components/layout/Layout";
 
-const karla = Karla({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-karla",
+  variable: "--font-inter",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-plus-jakarta-sans",
 });
 
 const oswald = Oswald({
@@ -59,7 +65,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${karla.variable} ${oswald.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} ${oswald.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

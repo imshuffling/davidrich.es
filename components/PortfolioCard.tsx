@@ -22,7 +22,6 @@ export default function PortfolioCard({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Use startTransition for non-urgent state update to avoid blocking more critical renders
             startTransition(() => {
               setShouldLoadVideo(true);
             });
@@ -30,20 +29,15 @@ export default function PortfolioCard({
           }
         });
       },
-      {
-        rootMargin: "50px",
-      }
+      { rootMargin: "50px" }
     );
 
     observer.observe(cardRef.current);
-
     return () => observer.disconnect();
   }, [media]);
 
   const handleMouseEnter = useCallback(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
+    if (videoRef.current) videoRef.current.play();
   }, []);
 
   const handleMouseLeave = useCallback(() => {
