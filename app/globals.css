@@ -626,6 +626,7 @@ html[data-theme="dark"] {
   .other-projects #cards {
     display: grid !important;
     grid-template-columns: 1fr !important;
+    grid-auto-rows: auto !important;
     gap: 1.5rem !important;
     margin-bottom: 2rem;
   }
@@ -639,7 +640,8 @@ html[data-theme="dark"] {
   .other-projects .card {
     grid-column: span 1 !important;
     aspect-ratio: 16/10;
-    min-height: 300px;
+    height: auto !important;
+    min-height: auto !important;
   }
 
   /* Services */

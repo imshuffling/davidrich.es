@@ -46,7 +46,7 @@ export default async function PortfolioContent({ dataPromise }: Props) {
 
         {/* Meta bar */}
         {metaItems.length > 0 && (
-          <div className="flex flex-wrap items-center gap-y-4 border-t border-b border-outline-variant/30 py-5">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-4 sm:gap-0 border-t border-b border-outline-variant/30 py-5">
             {metaItems.map((item, i) => (
               <div key={i} className="flex items-center">
                 {i > 0 && (
