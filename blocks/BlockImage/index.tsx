@@ -13,12 +13,14 @@ export default function BlockImage({ image, lazyLoad, aspectRatio = "16/9" }: Bl
 
   return (
     <div
-      className="section image"
+      className="section"
       style={{
         aspectRatio: aspectRatio,
         position: "relative",
         width: "100%",
         maxWidth: "1600px",
+        borderRadius: "0.75rem",
+        overflow: "hidden",
       }}
     >
       <ImageWrapper

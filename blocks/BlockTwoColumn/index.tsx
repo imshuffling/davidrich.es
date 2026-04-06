@@ -8,17 +8,18 @@ export default function BlockTwoColumn({
   imageFirst,
 }: BlockTwoColumnProps) {
   return (
-    <div
-      className={
-        imageFirst ? "section two-column" : "section two-column__reversed"
-      }
-    >
-      <ImageWrapper
-        image={image}
-        quality={80}
-        sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
-      />
-      <div>
+    <div className="section grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className={`rounded-xl overflow-hidden ${imageFirst ? "order-1" : "order-1 md:order-2"}`}>
+        <ImageWrapper
+          image={image}
+          quality={80}
+          sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
+        />
+      </div>
+      <div
+        className={`leading-relaxed text-lg ${imageFirst ? "order-2" : "order-2 md:order-1"}`}
+        style={{ color: "var(--text-color)" }}
+      >
         <ReactMarkdown>{body}</ReactMarkdown>
       </div>
     </div>
