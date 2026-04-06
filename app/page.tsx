@@ -6,7 +6,8 @@ import type { PortfolioItem, SideProject } from "@/types/contentful";
 
 export const metadata: Metadata = {
   title: "About me",
-  description: "Hello I'm David, A Front-end developer and part-time hockey player",
+  description:
+    "Hello I'm David, A Senior Front-end developer and part-time hockey player",
 };
 
 async function getHomeData() {
@@ -58,21 +59,24 @@ async function getHomeData() {
       `,
       }),
       next: { revalidate: 3600 },
-    }
+    },
   );
 
   if (!result.ok) {
     console.error(result);
-    throw new Error('Failed to fetch home data');
+    throw new Error("Failed to fetch home data");
   }
 
   const { data } = await result.json();
 
-  const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[];
+  const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection
+    .items as PortfolioItem[];
 
   const portfolioWithBlur = portfolioItems.map((item) => ({
     ...item,
-    description: item.body ? documentToPlainTextString(item.body.json) : undefined,
+    description: item.body
+      ? documentToPlainTextString(item.body.json)
+      : undefined,
     image: {
       ...item.image,
       blurDataURL: `${item.image.url}?w=20&q=50`,
@@ -104,9 +108,11 @@ export default function HomePage() {
           </h1>
           <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-2xl font-body">
             I&apos;m a{" "}
-            <span className="text-on-surface font-semibold">Front-end developer</span>{" "}
-            and hockey player based in the UK. I build high-performance digital
-            experiences with a focus on editorial aesthetics.
+            <span className="text-on-surface font-semibold">
+              Senior Front-end developer
+            </span>{" "}
+            and hockey player 🏑 based in the UK. I build high-performance
+            digital experiences with a focus on editorial aesthetics.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#work" className="btn-primary">
@@ -129,14 +135,23 @@ export default function HomePage() {
         <div className="container">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">Selected Work</h2>
+              <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">
+                Selected Work
+              </h2>
               <p className="text-on-surface-variant max-w-md mb-0">
-                A collection of commercial projects built for industry-leading brands.
+                A collection of commercial projects built for industry-leading
+                brands.
               </p>
             </div>
           </div>
         </div>
-        <Suspense fallback={<div className="container"><PortfolioSkeleton /></div>}>
+        <Suspense
+          fallback={
+            <div className="container">
+              <PortfolioSkeleton />
+            </div>
+          }
+        >
           <PortfolioSection dataPromise={dataPromise} />
         </Suspense>
       </div>
