@@ -7,10 +7,12 @@ import type { PortfolioCardProps } from "@/types/components";
 
 export default function PortfolioCard({
   item,
+  index,
   priority = false,
   className,
 }: PortfolioCardProps & { className?: string }) {
-  const { title, slug, media, image, industry } = item;
+  const { title, slug, media, image, industry, description } = item;
+  const isLarge = index === 0;
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!media);
@@ -103,6 +105,9 @@ export default function PortfolioCard({
           <div className="card__content">
             {industry && <span>{industry}</span>}
             <h2 dangerouslySetInnerHTML={{ __html: title }}></h2>
+            {isLarge && description && (
+              <p className="card__description">{description}</p>
+            )}
           </div>
         </div>
       </Link>

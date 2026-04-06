@@ -23,37 +23,35 @@ export default async function PortfolioContent({ dataPromise }: Props) {
 
   const metaItems = [
     client && { label: "Client", value: client },
-    industry && { label: "Industry", value: industry },
-    completed && { label: "Completed", value: completed },
-    timeframe && { label: "Timeframe", value: timeframe },
+    industry && { label: "Services", value: industry },
     link && { label: "Website", value: link, isLink: true },
   ].filter(Boolean) as { label: string; value: string; isLink?: boolean }[];
+
+  const badgeText = agency || "Case Study";
 
   return (
     <section className="portfolio-item container">
       {/* Hero */}
       <div className="pt-8 md:pt-12 mb-12 md:mb-16">
         <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-6">
-          {agency || "Case Study"}
+          {agency && <span className="text-on-surface-variant font-normal mr-1">Agency:</span>}
+          {badgeText}
         </span>
         <h1
-          className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-6"
+          className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-8"
           dangerouslySetInnerHTML={{ __html: title }}
         />
-        <div className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl mb-10">
-          {documentToReactComponents(body.json)}
-        </div>
 
-        {/* Meta bar */}
-        {metaItems.length > 0 && (
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap sm:items-center gap-4 sm:gap-0 border-t border-b border-outline-variant/30 py-5">
-            {metaItems.map((item, i) => (
-              <div key={i} className="flex items-center">
-                {i > 0 && (
-                  <div className="w-px h-8 bg-outline-variant/40 mx-8 hidden sm:block" />
-                )}
-                <div>
-                  <p className="font-label text-[0.65rem] uppercase tracking-widest text-primary mb-0.5 font-bold">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">
+          <div className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+            {documentToReactComponents(body.json)}
+          </div>
+
+          {metaItems.length > 0 && (
+            <div className="flex flex-wrap gap-x-10 gap-y-4 md:gap-12 shrink-0">
+              {metaItems.map((item, i) => (
+                <div key={i}>
+                  <p className="font-label text-[0.65rem] uppercase tracking-widest text-primary mb-1 font-bold">
                     {item.label}
                   </p>
                   <p className="font-headline font-semibold text-on-surface mb-0 text-sm">
@@ -70,10 +68,10 @@ export default async function PortfolioContent({ dataPromise }: Props) {
                     )}
                   </p>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       {blocksCollection && <Blocks blocksCollection={blocksCollection} />}

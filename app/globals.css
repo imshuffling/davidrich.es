@@ -182,6 +182,9 @@ html[data-theme="dark"] {
     margin: 0px auto;
     box-sizing: border-box;
     -webkit-text-size-adjust: 100%;
+  }
+
+  html:has(:target) {
     scroll-behavior: smooth;
   }
 
@@ -465,7 +468,7 @@ html[data-theme="dark"] {
     transition: transform 0.7s ease;
   }
 
-  .card:hover .card__image img {
+  .card:not(.has-video):hover .card__image img {
     transform: scale(1.05);
   }
 
@@ -483,13 +486,13 @@ html[data-theme="dark"] {
 
   .card:hover .card__image video {
     opacity: 1;
-    transform: scale(1.05);
   }
 
   .card__image video::-webkit-media-controls { display: none; }
 
   .card.has-video:hover .card__image img {
     opacity: 0;
+    transition: opacity 0.3s ease-in-out 0.15s;
   }
 
   .card__details {
@@ -525,9 +528,22 @@ html[data-theme="dark"] {
     line-height: 1.2;
   }
 
+  .card__description {
+    display: none;
+  }
+
   @media (min-width: 48em) {
     .card__content h2 { font-size: 2rem; }
     .card:first-child .card__content h2 { font-size: 2.5rem; }
+    .card:first-child .card__description {
+      display: block;
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+      line-height: 1.5;
+      max-width: 400px;
+    }
   }
 
   /* Reduced motion */

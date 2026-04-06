@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import PortfolioSection from "@/components/PortfolioSection";
 import type { Metadata } from "next";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
@@ -30,6 +31,9 @@ async function getHomeData() {
                     agency
                     industry
                     otherProjects
+                    body {
+                      json
+                    }
                     media {
                       url
                     }
@@ -68,6 +72,7 @@ async function getHomeData() {
 
   const portfolioWithBlur = portfolioItems.map((item) => ({
     ...item,
+    description: item.body ? documentToPlainTextString(item.body.json) : undefined,
     image: {
       ...item.image,
       blurDataURL: `${item.image.url}?w=20&q=50`,

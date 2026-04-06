@@ -95,6 +95,7 @@ async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
                     slug
                     link
                     agency
+                    industry
                     image {
                       url
                       width
