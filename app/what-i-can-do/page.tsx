@@ -66,6 +66,60 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* My Process */}
+      <section className="container py-20 md:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+          <div className="md:col-span-4">
+            <div className="md:sticky md:top-32">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-4">
+                My Process
+              </h2>
+              <p className="text-on-surface-variant max-w-xs">
+                A disciplined approach to creativity, ensuring quality at every milestone.
+              </p>
+            </div>
+          </div>
+          <div className="md:col-span-8 space-y-16 md:space-y-24">
+            {[
+              {
+                num: "01",
+                title: "Discovery",
+                desc: "We begin by deep-diving into your vision, requirements, and target audience. Understanding the 'why' is crucial for a successful 'how'.",
+              },
+              {
+                num: "02",
+                title: "Design",
+                desc: "Visualizing the concept through wireframes and high-fidelity prototypes. This is where we define the visual language and user flow.",
+              },
+              {
+                num: "03",
+                title: "Development",
+                desc: "Translating designs into clean, pixel-perfect code. I focus on semantic HTML, efficient styling, and interactive robustness.",
+              },
+              {
+                num: "04",
+                title: "Launch",
+                desc: "Final testing, deployment, and ongoing support. Your project is delivered ready to scale and perform in the wild.",
+              },
+            ].map((step) => (
+              <div key={step.num} className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+                <div className="text-5xl md:text-6xl font-headline font-black text-primary/10 leading-none">
+                  {step.num}
+                </div>
+                <div>
+                  <h4 className="text-xl md:text-2xl font-headline font-bold mb-3">
+                    {step.title}
+                  </h4>
+                  <p className="text-on-surface-variant leading-relaxed text-base md:text-lg mb-0">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="container py-20 md:py-28">
         <div className="relative rounded-2xl overflow-hidden p-12 md:p-24 editorial-gradient text-white text-center">
