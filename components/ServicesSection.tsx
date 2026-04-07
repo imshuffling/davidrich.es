@@ -39,6 +39,15 @@ const serviceIcons: Record<string, React.ReactNode> = {
 
 const iconOrder = ["code", "layout", "brush", "database", "zap", "globe"];
 
+const serviceIconColors = [
+  { bg: "rgba(99, 14, 212, 0.15)", color: "#630ed4" },
+  { bg: "rgba(156, 44, 155, 0.15)", color: "#9c2c9b" },
+  { bg: "rgba(0, 84, 121, 0.15)", color: "#005479" },
+  { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
+  { bg: "rgba(0, 109, 156, 0.15)", color: "#006d9c" },
+  { bg: "rgba(186, 26, 26, 0.15)", color: "#ba1a1a" },
+];
+
 function getIcon(index: number) {
   const key = iconOrder[index % iconOrder.length];
   return serviceIcons[key] || serviceIcons.code;
@@ -59,7 +68,7 @@ export default function ServicesSection({ dataPromise }: ServicesSectionProps) {
         <ul id="services">
           {servicesCollection.map((item: Service, i: number) => (
             <li key={i}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-primary" style={{ background: "rgba(99, 14, 212, 0.1)" }}>
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: serviceIconColors[i % serviceIconColors.length].bg, color: serviceIconColors[i % serviceIconColors.length].color }}>
                 {getIcon(i)}
               </div>
               <h3 className="text-2xl font-headline font-bold">{item.title}</h3>

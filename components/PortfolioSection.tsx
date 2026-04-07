@@ -94,16 +94,24 @@ const sideProjectIcons = [
   </svg>,
 ];
 
+const sideProjectIconColors = [
+  { bg: "rgba(99, 14, 212, 0.15)", color: "#630ed4" },
+  { bg: "rgba(156, 44, 155, 0.15)", color: "#9c2c9b" },
+  { bg: "rgba(0, 84, 121, 0.15)", color: "#005479" },
+  { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
+];
+
 function SideProjectCard({ node, index }: { node: SideProject; index: number }) {
   const link = node.link || node.githubUrl;
   const linkLabel = node.link ? "View Project" : "View Repo";
   const icon = sideProjectIcons[index % sideProjectIcons.length];
+  const iconColor = sideProjectIconColors[index % sideProjectIconColors.length];
 
   return (
     <div className="p-8 rounded-xl hover:translate-y-[-4px] transition-all duration-300 group shadow-sm" style={{ background: "var(--card-bg)" }}>
       <div
-        className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:text-white transition-colors"
-        style={{ background: "rgba(99, 14, 212, 0.1)" }}
+        className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
+        style={{ background: iconColor.bg, color: iconColor.color }}
       >
         {icon}
       </div>
@@ -117,8 +125,7 @@ function SideProjectCard({ node, index }: { node: SideProject; index: number }) 
       )}
       {link && (
         <a
-          className="font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all !border-none !bg-none"
-          style={{ color: "var(--heading-color)" }}
+          className="font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all !border-none !bg-none text-primary"
           href={link}
           target="_blank"
           rel="noopener noreferrer"

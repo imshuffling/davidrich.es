@@ -38,23 +38,27 @@ export function ContactClient() {
             </h3>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <svg className="w-5 h-5 text-primary mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(99, 14, 212, 0.15)", color: "#630ed4" }}>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
                 <div>
                   <p className="font-semibold text-lg mb-0" style={{ color: "var(--heading-color)" }}>
                     <a href="mailto:hi@davidrich.es" style={{ color: "var(--heading-color)" }} className="!border-none !bg-none hover:!text-primary">
                       hi@davidrich.es
                     </a>
                   </p>
-                  <p className="text-sm mb-0" style={{ color: "var(--text-color)" }}>Response within 24 hours</p>
+                  <p className="text-sm mb-0" style={{ color: "var(--text-color)" }}>Always happy to chat</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <svg className="w-5 h-5 text-primary mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(0, 84, 121, 0.15)", color: "#005479" }}>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
                 <div>
                   <p className="font-semibold text-lg mb-0" style={{ color: "var(--heading-color)" }}>London, UK</p>
                   <p className="text-sm mb-0" style={{ color: "var(--text-color)" }}>Remote worldwide</p>
