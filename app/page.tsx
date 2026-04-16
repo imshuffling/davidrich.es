@@ -97,22 +97,19 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="container pt-12 pb-16 md:pt-20 md:pb-24">
         <div className="max-w-4xl">
-          <span className="text-primary font-bold tracking-widest text-xs uppercase mb-6 block font-label">
-            Available for freelance
-          </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
-            Hello I&apos;m David.{" "}
+            Hello, I&apos;m David.{" "}
             <span role="img" aria-label="Waving hand" className="wave">
               👋
             </span>
           </h1>
           <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-2xl font-body">
-            I&apos;m a{" "}
             <span className="text-on-surface font-semibold">
-              Senior Front-end developer
+              Senior front-end engineer
             </span>{" "}
-            and hockey player 🏑 based in the UK. I build high-performance
-            digital experiences with a focus on editorial aesthetics.
+            and hockey player 🏑 based in Kent. I build headless commerce and
+            content platforms for brands that care about performance, content,
+            and the teams behind them.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#work" className="btn-primary">
