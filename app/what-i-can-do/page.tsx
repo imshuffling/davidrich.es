@@ -10,7 +10,9 @@ export const metadata: Metadata = {
 };
 
 async function getServicesData() {
-  const response = await fetchContent<{ servicesCollection: { items: Service[] } }>(`
+  const response = await fetchContent<{
+    servicesCollection: { items: Service[] };
+  }>(`
     {
       servicesCollection {
         items {
@@ -24,7 +26,7 @@ async function getServicesData() {
   `);
 
   if (!response) {
-    throw new Error('Failed to fetch services');
+    throw new Error("Failed to fetch services");
   }
 
   return {
@@ -44,16 +46,16 @@ export default function ServicesPage() {
             Services &amp; Craft
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight mb-6">
-            Elevating digital{" "}
-            <span className="text-primary">experiences</span> through code.
+            Headless commerce and content{" "}
+            <span className="text-primary">platforms</span>, built properly.
           </h1>
-          <p className="text-lg md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
-            I bridge the gap between design and development, creating immersive
-            interfaces that don&apos;t just look beautiful but perform flawlessly.
+          <p className="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
+            I help teams ship fast, scalable front-ends on Next.js, BigCommerce
+            and Contentful — with the editorial tooling and performance to back
+            them up.
           </p>
         </div>
       </section>
-
       {/* Services Grid — full bleed bg */}
       <section className="bg-surface-container-low py-20 md:py-28">
         <div className="container">
@@ -65,17 +67,16 @@ export default function ServicesPage() {
           </Suspense>
         </div>
       </section>
-
       {/* My Process */}
       <section className="container py-20 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
           <div className="md:col-span-4">
             <div className="md:sticky md:top-32">
               <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-4">
-                My Process
+                How I Work
               </h2>
               <p className="text-on-surface-variant max-w-xs">
-                A disciplined approach to creativity, ensuring quality at every milestone.
+                A pragmatic approach to shipping platforms that last.
               </p>
             </div>
           </div>
@@ -83,26 +84,29 @@ export default function ServicesPage() {
             {[
               {
                 num: "01",
-                title: "Discovery",
-                desc: "We begin by deep-diving into your vision, requirements, and target audience. Understanding the 'why' is crucial for a successful 'how'.",
+                title: "Understand",
+                desc: "Before writing code, I want to understand the business, the content model, and the team who'll live with what we build. Good architecture starts with good questions.",
               },
               {
                 num: "02",
-                title: "Design",
-                desc: "Visualizing the concept through wireframes and high-fidelity prototypes. This is where we define the visual language and user flow.",
+                title: "Architect",
+                desc: "I work with designers, product and stakeholders to shape the right technical approach — choosing the stack, defining the component model, and planning for scale, performance and editorial flexibility from day one.",
               },
               {
                 num: "03",
-                title: "Development",
-                desc: "Translating designs into clean, pixel-perfect code. I focus on semantic HTML, efficient styling, and interactive robustness.",
+                title: "Build",
+                desc: "Clean, typed, tested code. Component libraries in Storybook, CMS models that editors actually enjoy using, and integrations that don't break when the requirements shift.",
               },
               {
                 num: "04",
-                title: "Launch",
-                desc: "Final testing, deployment, and ongoing support. Your project is delivered ready to scale and perform in the wild.",
+                title: "Ship & Iterate",
+                desc: "Launch is the start, not the end. I care about what happens in production — Core Web Vitals, error budgets, analytics — and about handing over something the team can keep building on.",
               },
             ].map((step) => (
-              <div key={step.num} className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+              <div
+                key={step.num}
+                className="flex flex-col md:flex-row gap-6 md:gap-8 items-start"
+              >
                 <div className="text-5xl md:text-6xl font-headline font-black text-primary/10 leading-none">
                   {step.num}
                 </div>
@@ -119,7 +123,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
+      );
       {/* CTA */}
       <section className="container py-20 md:py-28">
         <div className="relative rounded-2xl overflow-hidden p-12 md:p-24 editorial-gradient text-white text-center">
@@ -140,7 +144,7 @@ export default function ServicesPage() {
             />
           </div>
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 !text-white">
+            <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 text-white!">
               Let&apos;s Work Together
             </h2>
             <p className="text-lg md:text-xl text-primary-fixed leading-relaxed mb-10">
