@@ -5,14 +5,24 @@ import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import useSound from "use-sound";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
   const pathname = usePathname();
+  const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
+  const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
 
   const toggle = useCallback(() => {
-    setToggleState((prev) => !prev);
-  }, []);
+    setToggleState((prev) => {
+      if (prev) {
+        playOff();
+      } else {
+        playOn();
+      }
+      return !prev;
+    });
+  }, [playOn, playOff]);
 
   useEffect(() => {
     setToggleState(false);
