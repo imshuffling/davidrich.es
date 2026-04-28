@@ -103,13 +103,13 @@ export default function HomePage() {
               👋
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-2xl font-body">
+          <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-3xl text-pretty font-body">
             <span className="text-on-surface font-semibold">
               Senior front-end engineer
             </span>{" "}
-            and hockey player 🏑 based in Kent. I build headless commerce and
-            content platforms for brands that care about performance, content,
-            and the teams behind them.
+            and hockey player 🏑 based in Kent.
+            <br /> I build headless commerce and content platforms for brands
+            that care about performance, content, and the teams behind them.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a href="#work" className="btn-primary">
