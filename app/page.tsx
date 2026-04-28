@@ -135,7 +135,7 @@ export default function HomePage() {
               <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">
                 Selected Work
               </h2>
-              <p className="text-on-surface-variant max-w-lg mb-0">
+              <p className="text-on-surface-variant max-w-2xl mb-0">
                 A collection of commercial projects built for industry-leading
                 brands.
               </p>
