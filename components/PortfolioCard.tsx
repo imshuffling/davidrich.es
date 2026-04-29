@@ -75,8 +75,8 @@ export default function PortfolioCard({
             alt={title}
             priority={priority}
             quality={80}
+            fill
             sizes="(min-width: 1960px) 1407px, 71.89vw"
-            style={{ objectFit: "cover", height: "100%", width: "100%" }}
             showGradient={true}
             onLoad={() => setImageLoaded(true)}
           />
