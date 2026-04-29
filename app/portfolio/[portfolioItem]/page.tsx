@@ -1,188 +1,28 @@
 import { Suspense } from "react";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import { notFound } from "next/navigation";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import PortfolioContent from "@/components/PortfolioContent";
-import { enrichBlocks, enrichImage, enrichItems } from "@/utils/contentfulImage";
+import { getOgImageForPortfolio, getPortfolio, getPortfolioSlugs } from "@/utils/contentful";
 import type { Metadata } from "next";
-import type { PortfolioItem } from "@/types/contentful";
 
 type Props = {
   params: Promise<{ portfolioItem: string }>;
 };
 
-async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
-  const result = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-          query GetPortfolioItem($slug: String!) {
-            portfolioCollection(
-              where: {
-                slug: $slug
-              },
-              limit: 1
-            ) {
-              items {
-                title
-                seoTitle
-                body {
-                  json
-                }
-                slug
-                link
-                completed
-                agency
-                client
-                timeframe
-                industry
-                blocksCollection {
-                  items {
-                    __typename
-                    ... on Image {
-                      __typename
-                      image {
-                        url
-                        fileName
-                        width
-                        height
-                      }
-                    }
-                    ... on Video {
-                      __typename
-                      image {
-                        url
-                        fileName
-                        width
-                        height
-                      }
-                      video {
-                        fileName
-                        url
-                      }
-                    }
-                    ... on TextLeft {
-                      __typename
-                      title
-                      body
-                    }
-                    ... on TextArea {
-                      __typename
-                      centerText
-                      title
-                      body
-                    }
-                    ... on TwoColumn {
-                      __typename
-                      image {
-                        url
-                        fileName
-                        width
-                        height
-                      }
-                      imageFirst
-                      body
-                    }
-                  }
-                }
-                footerCollection {
-                  items {
-                    title
-                    slug
-                    link
-                    agency
-                    industry
-                    image {
-                      url
-                      width
-                      height
-                    }
-                    media {
-                      url
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `,
-        variables: { slug },
-      }),
-      next: { revalidate: 3600 }, // Revalidate every hour
-    }
-  );
-
-  if (!result.ok) {
-    console.error(result);
-    throw new Error('Failed to fetch portfolio item');
-  }
-
-  const { data } = await result.json();
-  const item = data.portfolioCollection.items[0] as PortfolioItem;
-
-  if (item.blocksCollection?.items) {
-    item.blocksCollection.items = await enrichBlocks(item.blocksCollection.items);
-  }
-
-  if (item.footerCollection?.items) {
-    item.footerCollection.items = await enrichItems(item.footerCollection.items, "card");
-  }
-
-  return item;
-}
-
 export async function generateStaticParams() {
-  const result = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-          query {
-            portfolioCollection {
-              items {
-                slug
-              }
-            }
-          }
-        `,
-      }),
-    }
-  );
-
-  if (!result.ok) {
-    return [];
-  }
-
-  const { data } = await result.json();
-  const portfolioSlugs = data.portfolioCollection.items;
-
-  return portfolioSlugs.map(({ slug }: { slug: string }) => ({
-    portfolioItem: slug,
-  }));
+  const slugs = await getPortfolioSlugs();
+  return slugs.map((slug) => ({ portfolioItem: slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { portfolioItem: slug } = await params;
-  const portfolioItem = await getPortfolioItem(slug);
+  const portfolioItem = await getPortfolio(slug);
+  if (!portfolioItem) return {};
+
   const plainText = documentToPlainTextString(portfolioItem.body.json);
   const seoDescription = plainText.slice(0, 160);
-
-  const firstImageBlock = portfolioItem.blocksCollection?.items.find(
-    (block) => block.__typename === "Image",
-  );
-  const ogImage = firstImageBlock
-    ? await enrichImage(firstImageBlock.image, "og")
-    : undefined;
+  const ogImage = await getOgImageForPortfolio(portfolioItem);
 
   return {
     title: portfolioItem.seoTitle,
@@ -216,7 +56,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PortfolioPage({ params }: Props) {
   const { portfolioItem: slug } = await params;
-  const portfolioItem = await getPortfolioItem(slug);
+  const portfolioItem = await getPortfolio(slug);
+  if (!portfolioItem) notFound();
 
   return (
     <>

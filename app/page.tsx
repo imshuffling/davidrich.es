@@ -1,9 +1,7 @@
 import { Suspense } from "react";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import PortfolioSection from "@/components/PortfolioSection";
-import { enrichImage } from "@/utils/contentfulImage";
+import { getHome } from "@/utils/contentful";
 import type { Metadata } from "next";
-import type { PortfolioItem, SideProject } from "@/types/contentful";
 
 export const metadata: Metadata = {
   title: "About me",
@@ -11,86 +9,8 @@ export const metadata: Metadata = {
     "Hello I'm David, A Senior Front-end developer and part-time hockey player",
 };
 
-async function getHomeData() {
-  const result = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-          query {
-            featuredProjectsCollection(limit: 10) {
-              items {
-                itemCollection {
-                  items {
-                    title
-                    slug
-                    client
-                    agency
-                    industry
-                    otherProjects
-                    body {
-                      json
-                    }
-                    media {
-                      url
-                    }
-                    image {
-                      url(transform: { width: 800, height: 800 })
-                      width
-                      height
-                    }
-                  }
-                }
-              }
-            }
-            sideProjectsCollection(limit: 10) {
-              items {
-                title
-                description
-                link
-                githubUrl
-              }
-            }
-          }
-      `,
-      }),
-      next: { revalidate: 3600 },
-    },
-  );
-
-  if (!result.ok) {
-    console.error(result);
-    throw new Error("Failed to fetch home data");
-  }
-
-  const { data } = await result.json();
-
-  const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection
-    .items as PortfolioItem[];
-
-  const portfolioWithBlur = await Promise.all(
-    portfolioItems.map(async (item) => ({
-      ...item,
-      description: item.body
-        ? documentToPlainTextString(item.body.json)
-        : undefined,
-      image: await enrichImage(item.image, "card"),
-    })),
-  );
-
-  return {
-    portfolioCollection: portfolioWithBlur,
-    sideProjectsCollection: data.sideProjectsCollection.items as SideProject[],
-  };
-}
-
 export default function HomePage() {
-  const dataPromise = getHomeData();
+  const dataPromise = getHome();
 
   return (
     <>

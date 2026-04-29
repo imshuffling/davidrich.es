@@ -1,8 +1,7 @@
 import { Suspense } from "react";
 import ServicesSection from "@/components/ServicesSection";
-import fetchContent from "@/utils/fetchContent";
+import { getServices } from "@/utils/contentful";
 import type { Metadata } from "next";
-import type { Service } from "@/types/contentful";
 
 export const metadata: Metadata = {
   title: "What I can do",
@@ -10,28 +9,8 @@ export const metadata: Metadata = {
 };
 
 async function getServicesData() {
-  const response = await fetchContent<{
-    servicesCollection: { items: Service[] };
-  }>(`
-    {
-      servicesCollection {
-        items {
-          title
-          body {
-            json
-          }
-        }
-      }
-    }
-  `);
-
-  if (!response) {
-    throw new Error("Failed to fetch services");
-  }
-
-  return {
-    servicesCollection: response.servicesCollection.items,
-  };
+  const servicesCollection = await getServices();
+  return { servicesCollection };
 }
 
 export default function ServicesPage() {
