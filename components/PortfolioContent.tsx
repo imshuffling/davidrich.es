@@ -1,14 +1,16 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { notFound } from "next/navigation";
 import Blocks from "@/blocks";
 import RichText from "@/components/RichText";
 import type { PortfolioItem } from "@/types/contentful";
 
 type Props = {
-  dataPromise: Promise<PortfolioItem>;
+  dataPromise: Promise<PortfolioItem | undefined>;
 };
 
 export default async function PortfolioContent({ dataPromise }: Props) {
   const portfolioItem = await dataPromise;
+  if (!portfolioItem) notFound();
 
   const {
     title,

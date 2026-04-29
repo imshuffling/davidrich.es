@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import { notFound } from "next/navigation";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import PortfolioContent from "@/components/PortfolioContent";
 import { getOgImageForPortfolio, getPortfolio, getPortfolioSlugs } from "@/utils/contentful";
@@ -56,16 +55,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function PortfolioPage({ params }: Props) {
   const { portfolioItem: slug } = await params;
-  const portfolioItem = await getPortfolio(slug);
-  if (!portfolioItem) notFound();
+  const portfolioPromise = getPortfolio(slug);
+  const footerPromise = portfolioPromise.then((p) => p?.footerCollection);
 
   return (
     <>
       <Suspense fallback={<PortfolioSkeleton />}>
-        <PortfolioContent dataPromise={Promise.resolve(portfolioItem)} />
+        <PortfolioContent dataPromise={portfolioPromise} />
       </Suspense>
       <Suspense fallback={<OtherProjectsSkeleton />}>
-        <PortfolioFooter footerPromise={Promise.resolve(portfolioItem.footerCollection)} />
+        <PortfolioFooter footerPromise={footerPromise} />
       </Suspense>
     </>
   );
