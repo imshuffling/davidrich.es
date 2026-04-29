@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import Prose from "@/components/Prose";
 import type { BlockTextArea as BlockTextAreaProps } from "@/types/contentful";
 
 export default function BlockTextArea({ title, body, centerText }: BlockTextAreaProps) {
@@ -17,9 +17,7 @@ export default function BlockTextArea({ title, body, centerText }: BlockTextArea
       >
         {title}
       </h3>
-      <div className="leading-relaxed text-lg" style={{ color: "var(--text-color)" }}>
-        <ReactMarkdown>{body}</ReactMarkdown>
-      </div>
+      <Prose>{body}</Prose>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import Prose from "@/components/Prose";
 import type { BlockTextLeft as BlockTextLeftProps } from "@/types/contentful";
 
 export default function BlockTextLeft({ title, body }: BlockTextLeftProps) {
@@ -10,9 +10,7 @@ export default function BlockTextLeft({ title, body }: BlockTextLeftProps) {
       >
         {title}
       </h3>
-      <div className="leading-relaxed text-lg" style={{ color: "var(--text-color)" }}>
-        <ReactMarkdown>{body}</ReactMarkdown>
-      </div>
+      <Prose>{body}</Prose>
     </div>
   );
 }
