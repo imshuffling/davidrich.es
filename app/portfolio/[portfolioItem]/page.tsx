@@ -72,82 +72,32 @@ export default async function PortfolioPage({ params }: Props) {
 
 function PortfolioSkeleton() {
   return (
-    <section className="portfolio-item" style={{ opacity: 0.5 }}>
-      <div className="portfolio-item__content">
-        <div className="portfolio-item__copy">
-          <div
-            style={{
-              width: "80px",
-              height: "16px",
-              background: "var(--text-color)",
-              opacity: 0.1,
-              borderRadius: "4px",
-              marginBottom: "16px",
-            }}
-          />
-          <div
-            style={{
-              width: "60%",
-              height: "48px",
-              background: "var(--text-color)",
-              opacity: 0.1,
-              borderRadius: "4px",
-              marginBottom: "24px",
-            }}
-          />
-          <div
-            style={{
-              width: "100%",
-              height: "80px",
-              background: "var(--text-color)",
-              opacity: 0.1,
-              borderRadius: "4px",
-            }}
-          />
+    <section className="portfolio-item container animate-pulse">
+      <div className="pt-8 md:pt-12 mb-12 md:mb-16">
+        <div className="inline-block h-6 w-32 rounded-full bg-surface-container-high mb-6" />
+        <div className="space-y-4 mb-8">
+          <div className="h-12 md:h-16 lg:h-20 w-3/4 rounded-md bg-surface-container-high" />
+          <div className="h-12 md:h-16 lg:h-20 w-1/2 rounded-md bg-surface-container-high" />
+        </div>
+        <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">
+          <div className="space-y-3 max-w-2xl flex-1">
+            <div className="h-5 w-full rounded bg-surface-container-high" />
+            <div className="h-5 w-full rounded bg-surface-container-high" />
+            <div className="h-5 w-2/3 rounded bg-surface-container-high" />
+          </div>
+          <div className="flex flex-wrap gap-x-10 gap-y-4 md:gap-12 shrink-0">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="space-y-2">
+                <div className="h-3 w-16 rounded bg-surface-container-high" />
+                <div className="h-4 w-24 rounded bg-surface-container-high" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      <div className="portfolio-wrapper">
-        <div className="portfolio-info">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="portfolio-info__item">
-              <div
-                style={{
-                  width: "60px",
-                  height: "16px",
-                  background: "var(--text-color)",
-                  opacity: 0.1,
-                  borderRadius: "4px",
-                  marginBottom: "8px",
-                }}
-              />
-              <div
-                style={{
-                  width: "100px",
-                  height: "20px",
-                  background: "var(--text-color)",
-                  opacity: 0.1,
-                  borderRadius: "4px",
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div style={{ padding: "40px 0" }}>
+      <div className="space-y-10">
         {[...Array(3)].map((_, i) => (
-          <div
-            key={i}
-            style={{
-              width: "100%",
-              height: "400px",
-              background: "var(--text-color)",
-              opacity: 0.1,
-              borderRadius: "4px",
-              marginBottom: "40px",
-            }}
-          />
+          <div key={i} className="w-full aspect-video rounded-xl bg-surface-container-high" />
         ))}
       </div>
     </section>
