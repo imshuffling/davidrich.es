@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { stableIndex } from "@/utils/visuals";
 import type { Service } from "@/types/contentful";
 
 const serviceIcons: Record<string, React.ReactNode> = {
@@ -48,9 +49,10 @@ const serviceIconColors = [
   { bg: "rgba(186, 26, 26, 0.15)", color: "#ba1a1a" },
 ];
 
-function getIcon(index: number) {
-  const key = iconOrder[index % iconOrder.length];
-  return serviceIcons[key] || serviceIcons.code;
+function visualForService(title: string) {
+  const iconKey = iconOrder[stableIndex(title, iconOrder.length)];
+  const color = serviceIconColors[stableIndex(title, serviceIconColors.length)];
+  return { icon: serviceIcons[iconKey] ?? serviceIcons.code, color };
 }
 
 interface ServicesSectionProps {
@@ -66,17 +68,20 @@ export default function ServicesSection({ dataPromise }: ServicesSectionProps) {
     <>
       {servicesCollection && (
         <ul id="services">
-          {servicesCollection.map((item: Service, i: number) => (
-            <li key={i}>
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: serviceIconColors[i % serviceIconColors.length].bg, color: serviceIconColors[i % serviceIconColors.length].color }}>
-                {getIcon(i)}
-              </div>
-              <h3 className="text-2xl font-headline font-bold">{item.title}</h3>
-              <div className="text-on-surface-variant leading-relaxed">
-                {documentToReactComponents(item.body.json)}
-              </div>
-            </li>
-          ))}
+          {servicesCollection.map((item: Service) => {
+            const { icon, color } = visualForService(item.title);
+            return (
+              <li key={item.title}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ background: color.bg, color: color.color }}>
+                  {icon}
+                </div>
+                <h3 className="text-2xl font-headline font-bold">{item.title}</h3>
+                <div className="text-on-surface-variant leading-relaxed">
+                  {documentToReactComponents(item.body.json)}
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
     </>

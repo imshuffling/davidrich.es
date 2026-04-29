@@ -3,6 +3,7 @@
 import { use } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import { gridLayout } from "@/utils/portfolioGrid";
+import { stableIndex } from "@/utils/visuals";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 
 interface PortfolioSectionProps {
@@ -44,8 +45,8 @@ export default function PortfolioSection({ dataPromise }: PortfolioSectionProps)
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {sideProjectsCollection.map((node, i) => (
-                <SideProjectCard key={i} node={node} index={i} />
+              {sideProjectsCollection.map((node) => (
+                <SideProjectCard key={node.title} node={node} />
               ))}
             </div>
           </div>
@@ -98,11 +99,11 @@ const sideProjectIconColors = [
   { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
 ];
 
-function SideProjectCard({ node, index }: { node: SideProject; index: number }) {
+function SideProjectCard({ node }: { node: SideProject }) {
   const link = node.link || node.githubUrl;
   const linkLabel = node.link ? "View Project" : "View Repo";
-  const icon = sideProjectIcons[index % sideProjectIcons.length];
-  const iconColor = sideProjectIconColors[index % sideProjectIconColors.length];
+  const icon = sideProjectIcons[stableIndex(node.title, sideProjectIcons.length)];
+  const iconColor = sideProjectIconColors[stableIndex(node.title, sideProjectIconColors.length)];
 
   return (
     <div className="p-8 rounded-xl hover:translate-y-[-4px] transition-all duration-300 group shadow-sm" style={{ background: "var(--card-bg)" }}>
