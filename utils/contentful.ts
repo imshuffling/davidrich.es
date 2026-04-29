@@ -3,17 +3,27 @@ import { enrichBlocks, enrichImage, enrichItems } from "@/utils/contentfulImage"
 import type { PortfolioItem, Service, SideProject } from "@/types/contentful";
 
 const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
+const QUERY_TIMEOUT_MS = 8000;
 
 async function query<T>(graphql: string, variables?: Record<string, unknown>): Promise<T> {
-  const res = await fetch(ENDPOINT, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: graphql, variables }),
-    next: { revalidate: 3600, tags: ["contentful"] },
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), QUERY_TIMEOUT_MS);
+
+  let res: Response;
+  try {
+    res = await fetch(ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query: graphql, variables }),
+      signal: controller.signal,
+      next: { revalidate: 3600, tags: ["contentful"] },
+    });
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!res.ok) {
     const body = await res.text().catch(() => "");

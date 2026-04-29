@@ -106,18 +106,14 @@ function PortfolioSkeleton() {
 
 function OtherProjectsSkeleton() {
   return (
-    <section className="other-projects">
-      <h3>Other projects</h3>
-      <div id="cards" style={{ opacity: 0.5 }}>
-        {[...Array(3)].map((_, i) => (
+    <section className="other-projects container animate-pulse">
+      <h3 className="font-headline font-bold">Other projects</h3>
+      <div id="cards">
+        {[...Array(2)].map((_, i) => (
           <div
             key={i}
-            style={{
-              aspectRatio: "1",
-              background: "var(--text-color)",
-              opacity: 0.1,
-              borderRadius: "4px",
-            }}
+            className="rounded-xl bg-surface-container-high"
+            style={{ aspectRatio: "1" }}
           />
         ))}
       </div>
