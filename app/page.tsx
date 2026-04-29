@@ -73,13 +73,15 @@ async function getHomeData() {
   const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection
     .items as PortfolioItem[];
 
-  const portfolioWithBlur = portfolioItems.map((item) => ({
-    ...item,
-    description: item.body
-      ? documentToPlainTextString(item.body.json)
-      : undefined,
-    image: enrichImage(item.image, "card"),
-  }));
+  const portfolioWithBlur = await Promise.all(
+    portfolioItems.map(async (item) => ({
+      ...item,
+      description: item.body
+        ? documentToPlainTextString(item.body.json)
+        : undefined,
+      image: await enrichImage(item.image, "card"),
+    })),
+  );
 
   return {
     portfolioCollection: portfolioWithBlur,

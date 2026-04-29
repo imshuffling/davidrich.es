@@ -126,11 +126,11 @@ async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
   const item = data.portfolioCollection.items[0] as PortfolioItem;
 
   if (item.blocksCollection?.items) {
-    item.blocksCollection.items = enrichBlocks(item.blocksCollection.items);
+    item.blocksCollection.items = await enrichBlocks(item.blocksCollection.items);
   }
 
   if (item.footerCollection?.items) {
-    item.footerCollection.items = enrichItems(item.footerCollection.items, "card");
+    item.footerCollection.items = await enrichItems(item.footerCollection.items, "card");
   }
 
   return item;
@@ -181,7 +181,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     (block) => block.__typename === "Image",
   );
   const ogImage = firstImageBlock
-    ? enrichImage(firstImageBlock.image, "og")
+    ? await enrichImage(firstImageBlock.image, "og")
     : undefined;
 
   return {

@@ -1,3 +1,4 @@
+import { getPlaiceholder } from "plaiceholder";
 import type { ContentfulImage, ContentfulBlock } from "@/types/contentful";
 
 export type ImageIntent = "hero" | "card" | "og" | "poster";
@@ -19,6 +20,9 @@ const ASPECT_HEIGHT: Record<AspectRatio, number> = {
 };
 
 const BLUR_PARAMS: TransformParams = { w: 20, q: 50 };
+
+const TRANSPARENT_PIXEL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
 
 function paramsForIntent(intent: ImageIntent, aspectRatio: AspectRatio): TransformParams {
   switch (intent) {
@@ -43,50 +47,72 @@ function withParams(url: string, params: TransformParams): string {
   return next ? `${base}?${next}` : base;
 }
 
+async function generateBlur(url: string): Promise<string> {
+  try {
+    const blurUrl = withParams(url, BLUR_PARAMS);
+    const response = await fetch(blurUrl);
+    if (!response.ok) return TRANSPARENT_PIXEL;
+    const buffer = Buffer.from(await response.arrayBuffer());
+    const { base64 } = await getPlaiceholder(buffer, { size: 10 });
+    return base64;
+  } catch (error) {
+    console.error("blur generation failed:", error);
+    return TRANSPARENT_PIXEL;
+  }
+}
+
 interface EnrichOptions {
   aspectRatio?: AspectRatio;
 }
 
-export function enrichImage(
+export async function enrichImage(
   image: ContentfulImage,
   intent: ImageIntent,
   options: EnrichOptions = {},
-): ContentfulImage {
+): Promise<ContentfulImage> {
   const aspectRatio = options.aspectRatio ?? "16/9";
+  const blurDataURL = await generateBlur(image.url);
   return {
     ...image,
     url: withParams(image.url, paramsForIntent(intent, aspectRatio)),
-    blurDataURL: withParams(image.url, BLUR_PARAMS),
+    blurDataURL,
   };
 }
 
-export function enrichItems<T extends { image: ContentfulImage }>(
+export async function enrichItems<T extends { image: ContentfulImage }>(
   items: T[],
   intent: ImageIntent,
-): T[] {
-  return items.map((item) => ({ ...item, image: enrichImage(item.image, intent) }));
+): Promise<T[]> {
+  return Promise.all(
+    items.map(async (item) => ({ ...item, image: await enrichImage(item.image, intent) })),
+  );
 }
 
-type BlockEnricher = (block: ContentfulBlock) => ContentfulBlock;
+type BlockEnricher = (block: ContentfulBlock) => Promise<ContentfulBlock>;
 
 const BLOCK_ENRICHERS: Record<string, BlockEnricher> = {
-  Image: (block) => {
+  Image: async (block) => {
     if (block.__typename !== "Image") return block;
-    return { ...block, image: enrichImage(block.image, "hero", { aspectRatio: block.aspectRatio }) };
+    return {
+      ...block,
+      image: await enrichImage(block.image, "hero", { aspectRatio: block.aspectRatio }),
+    };
   },
-  Video: (block) => {
+  Video: async (block) => {
     if (block.__typename !== "Video") return block;
-    return { ...block, image: enrichImage(block.image, "poster") };
+    return { ...block, image: await enrichImage(block.image, "poster") };
   },
-  TwoColumn: (block) => {
+  TwoColumn: async (block) => {
     if (block.__typename !== "TwoColumn") return block;
-    return { ...block, image: enrichImage(block.image, "hero") };
+    return { ...block, image: await enrichImage(block.image, "hero") };
   },
 };
 
-export function enrichBlocks(blocks: ContentfulBlock[]): ContentfulBlock[] {
-  return blocks.map((block) => {
-    const enricher = BLOCK_ENRICHERS[block.__typename];
-    return enricher ? enricher(block) : block;
-  });
+export async function enrichBlocks(blocks: ContentfulBlock[]): Promise<ContentfulBlock[]> {
+  return Promise.all(
+    blocks.map((block) => {
+      const enricher = BLOCK_ENRICHERS[block.__typename];
+      return enricher ? enricher(block) : Promise.resolve(block);
+    }),
+  );
 }
