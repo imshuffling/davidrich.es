@@ -6,7 +6,7 @@ export default function BlockVideo({ video, image }: BlockVideoProps) {
       <video
         controls
         playsInline
-        poster={`${image.url}`}
+        poster={image.url}
         src={video.url}
         aria-label={video.description || "Video recording of the website"}
         style={{ width: "100%", height: "auto", display: "block" }}

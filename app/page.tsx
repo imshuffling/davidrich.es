@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import PortfolioSection from "@/components/PortfolioSection";
+import { enrichImage } from "@/utils/contentfulImage";
 import type { Metadata } from "next";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 
@@ -77,10 +78,7 @@ async function getHomeData() {
     description: item.body
       ? documentToPlainTextString(item.body.json)
       : undefined,
-    image: {
-      ...item.image,
-      blurDataURL: `${item.image.url}?w=20&q=50`,
-    },
+    image: enrichImage(item.image, "card"),
   }));
 
   return {

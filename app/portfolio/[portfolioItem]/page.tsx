@@ -2,8 +2,9 @@ import { Suspense } from "react";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import PortfolioFooter from "@/components/PortfolioFooter";
 import PortfolioContent from "@/components/PortfolioContent";
+import { enrichBlocks, enrichImage, enrichItems } from "@/utils/contentfulImage";
 import type { Metadata } from "next";
-import type { PortfolioItem, ContentfulBlock } from "@/types/contentful";
+import type { PortfolioItem } from "@/types/contentful";
 
 type Props = {
   params: Promise<{ portfolioItem: string }>;
@@ -124,49 +125,12 @@ async function getPortfolioItem(slug: string): Promise<PortfolioItem> {
   const { data } = await result.json();
   const item = data.portfolioCollection.items[0] as PortfolioItem;
 
-  // Use Contentful's built-in image transformation for blur placeholders (non-blocking)
   if (item.blocksCollection?.items) {
-    item.blocksCollection.items = item.blocksCollection.items.map((block: ContentfulBlock) => {
-      if (block.__typename === "Image" && block.image) {
-        return {
-          ...block,
-          image: {
-            ...block.image,
-            blurDataURL: `${block.image.url}?w=20&q=50`,
-          },
-        };
-      }
-      if (block.__typename === "TwoColumn" && block.image) {
-        return {
-          ...block,
-          image: {
-            ...block.image,
-            blurDataURL: `${block.image.url}?w=20&q=50`,
-          },
-        };
-      }
-      if (block.__typename === "Video" && block.image) {
-        return {
-          ...block,
-          image: {
-            ...block.image,
-            blurDataURL: `${block.image.url}?w=20&q=50`,
-          },
-        };
-      }
-      return block;
-    });
+    item.blocksCollection.items = enrichBlocks(item.blocksCollection.items);
   }
 
-  // Use Contentful's built-in image transformation for footer blur placeholders
   if (item.footerCollection?.items) {
-    item.footerCollection.items = item.footerCollection.items.map((footerItem) => ({
-      ...footerItem,
-      image: {
-        ...footerItem.image,
-        blurDataURL: `${footerItem.image.url}?w=20&q=50`,
-      },
-    }));
+    item.footerCollection.items = enrichItems(item.footerCollection.items, "card");
   }
 
   return item;
@@ -213,6 +177,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const plainText = documentToPlainTextString(portfolioItem.body.json);
   const seoDescription = plainText.slice(0, 160);
 
+  const firstImageBlock = portfolioItem.blocksCollection?.items.find(
+    (block) => block.__typename === "Image",
+  );
+  const ogImage = firstImageBlock
+    ? enrichImage(firstImageBlock.image, "og")
+    : undefined;
+
   return {
     title: portfolioItem.seoTitle,
     description: seoDescription,
@@ -224,12 +195,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://davidrich.es/portfolio/${slug}`,
       title: portfolioItem.seoTitle || portfolioItem.title,
       description: seoDescription,
-      images: portfolioItem.image
+      images: ogImage
         ? [
             {
-              url: portfolioItem.image.url,
-              width: portfolioItem.image.width,
-              height: portfolioItem.image.height,
+              url: ogImage.url,
+              width: 1200,
+              height: 630,
               alt: portfolioItem.title,
             },
           ]
