@@ -1,5 +1,6 @@
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { enrichBlocks, enrichImage, enrichItems } from "@/utils/contentfulImage";
+import { sanitize } from "@/utils/sanitize";
 import type { PortfolioItem, Service, SideProject } from "@/types/contentful";
 
 const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
@@ -86,15 +87,19 @@ export async function getHome(): Promise<{
   const portfolioCollection = await Promise.all(
     items.map(async (item) => ({
       ...item,
+      title: sanitize(item.title) ?? item.title,
       description: item.body ? documentToPlainTextString(item.body.json) : undefined,
       image: await enrichImage(item.image, "card"),
     })),
   );
 
-  return {
-    portfolioCollection,
-    sideProjectsCollection: data.sideProjectsCollection.items,
-  };
+  const sideProjectsCollection = data.sideProjectsCollection.items.map((p) => ({
+    ...p,
+    title: sanitize(p.title) ?? p.title,
+    description: sanitize(p.description),
+  }));
+
+  return { portfolioCollection, sideProjectsCollection };
 }
 
 const PORTFOLIO_QUERY = `
@@ -154,11 +159,17 @@ export async function getPortfolio(slug: string): Promise<PortfolioItem | undefi
   const item = data.portfolioCollection.items[0];
   if (!item) return undefined;
 
+  item.title = sanitize(item.title) ?? item.title;
+
   if (item.blocksCollection?.items) {
     item.blocksCollection.items = await enrichBlocks(item.blocksCollection.items);
   }
   if (item.footerCollection?.items) {
-    item.footerCollection.items = await enrichItems(item.footerCollection.items, "card");
+    const enriched = await enrichItems(item.footerCollection.items, "card");
+    item.footerCollection.items = enriched.map((p) => ({
+      ...p,
+      title: sanitize(p.title) ?? p.title,
+    }));
   }
   return item;
 }
