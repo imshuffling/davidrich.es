@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
+import RichText from "@/components/RichText";
 import { gridLayout } from "@/utils/portfolioGrid";
 import { stableIndex } from "@/utils/visuals";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
@@ -115,10 +116,11 @@ function SideProjectCard({ node }: { node: SideProject }) {
       </div>
       <h4 className="text-xl font-headline font-bold mb-3" style={{ color: "var(--heading-color)" }}>{node.title}</h4>
       {node.description && (
-        <p
+        <RichText
+          as="p"
+          html={node.description}
           className="text-sm leading-relaxed mb-6"
           style={{ color: "var(--text-color)" }}
-          dangerouslySetInnerHTML={{ __html: node.description }}
         />
       )}
       {link && (

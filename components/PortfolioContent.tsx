@@ -1,5 +1,6 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Blocks from "@/blocks";
+import RichText from "@/components/RichText";
 import type { PortfolioItem } from "@/types/contentful";
 
 type Props = {
@@ -37,9 +38,10 @@ export default async function PortfolioContent({ dataPromise }: Props) {
           {agency && <span className="text-on-surface-variant font-normal mr-1">Agency:</span>}
           {badgeText}
         </span>
-        <h1
+        <RichText
+          as="h1"
+          html={title}
           className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-8"
-          dangerouslySetInnerHTML={{ __html: title }}
         />
 
         <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">

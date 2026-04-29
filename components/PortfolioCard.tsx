@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ImageWrapper from "@/components/ImageWrapper";
+import RichText from "@/components/RichText";
 import { useRef, useEffect, useState, startTransition, useCallback } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
@@ -104,7 +105,7 @@ export default function PortfolioCard({
         <div className="card__details">
           <div className="card__content">
             {industry && <span>{industry}</span>}
-            <h2 dangerouslySetInnerHTML={{ __html: title }}></h2>
+            <RichText as="h2" html={title} />
             {isLarge && description && (
               <p className="card__description">{description}</p>
             )}
