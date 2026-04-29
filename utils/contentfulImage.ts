@@ -47,16 +47,26 @@ function withParams(url: string, params: TransformParams): string {
   return next ? `${base}?${next}` : base;
 }
 
+function absoluteUrl(url: string): string {
+  if (url.startsWith("//")) return `https:${url}`;
+  return url;
+}
+
 async function generateBlur(url: string): Promise<string> {
+  const blurUrl = absoluteUrl(withParams(url, BLUR_PARAMS));
   try {
-    const blurUrl = withParams(url, BLUR_PARAMS);
-    const response = await fetch(blurUrl);
-    if (!response.ok) return TRANSPARENT_PIXEL;
+    const response = await fetch(blurUrl, {
+      next: { revalidate: 3600, tags: ["contentful", "image-blur"] },
+    });
+    if (!response.ok) {
+      console.error(`blur fetch ${response.status} for ${blurUrl}`);
+      return TRANSPARENT_PIXEL;
+    }
     const buffer = Buffer.from(await response.arrayBuffer());
     const { base64 } = await getPlaiceholder(buffer, { size: 10 });
     return base64;
   } catch (error) {
-    console.error("blur generation failed:", error);
+    console.error(`blur generation failed for ${blurUrl}:`, error);
     return TRANSPARENT_PIXEL;
   }
 }
