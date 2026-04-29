@@ -52,10 +52,16 @@ function absoluteUrl(url: string): string {
   return url;
 }
 
+const BLUR_TIMEOUT_MS = 2500;
+
 async function generateBlur(url: string): Promise<string> {
   const blurUrl = absoluteUrl(withParams(url, BLUR_PARAMS));
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), BLUR_TIMEOUT_MS);
+
   try {
     const response = await fetch(blurUrl, {
+      signal: controller.signal,
       next: { revalidate: 3600, tags: ["contentful", "image-blur"] },
     });
     if (!response.ok) {
@@ -66,8 +72,12 @@ async function generateBlur(url: string): Promise<string> {
     const { base64 } = await getPlaiceholder(buffer, { size: 10 });
     return base64;
   } catch (error) {
-    console.error(`blur generation failed for ${blurUrl}:`, error);
+    if ((error as Error)?.name !== "AbortError") {
+      console.error(`blur generation failed for ${blurUrl}:`, error);
+    }
     return TRANSPARENT_PIXEL;
+  } finally {
+    clearTimeout(timer);
   }
 }
 
