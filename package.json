@@ -12,7 +12,7 @@
     "@contentful/rich-text-react-renderer": "^16.2.1",
     "@tailwindcss/postcss": "^4.2.4",
     "ipx": "^3.1.1",
-    "next": "^16.2.4",
+    "next": "^16.2.6",
     "next-pwa": "^5.6.0",
     "next-themes": "^0.4.6",
     "plaiceholder": "^3.0.0",
@@ -26,11 +26,11 @@
     "use-sound": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.6.1",
     "@types/react": "19.2.14",
     "@types/sanitize-html": "^2.16.1",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.4",
+    "eslint-config-next": "^16.2.6",
     "typescript": "6.0.3"
   },
   "overrides": {
