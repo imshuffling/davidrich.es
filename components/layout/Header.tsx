@@ -60,7 +60,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
-        <nav className="flex justify-between items-center px-8 py-5 max-w-7xl mx-auto">
+        <nav className="container flex justify-between items-center py-5">
           <span onClick={() => setToggleState(false)}>
             <Link href="/" className="logo-gradient">
               David Riches
