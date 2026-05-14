@@ -3,9 +3,25 @@ import ServicesSection from "@/components/ServicesSection";
 import { getServices } from "@/utils/contentful";
 import type { Metadata } from "next";
 
+const PAGE_TITLE = "What I can do";
+const PAGE_DESCRIPTION =
+  "Headless commerce and content platforms, built properly. Front-end engineering on Next.js, BigCommerce and Contentful — with the editorial tooling and performance to back them up.";
+
 export const metadata: Metadata = {
-  title: "What I can do",
-  description: "Want to see what I can do? Check out my services",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/what-i-can-do" },
+  openGraph: {
+    type: "website",
+    url: "/what-i-can-do",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
 };
 
 async function getServicesData() {

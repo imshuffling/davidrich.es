@@ -1,8 +1,16 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import { notFound } from "next/navigation";
 import Blocks from "@/blocks";
 import RichText from "@/components/RichText";
+import { getOgImageForPortfolio } from "@/utils/contentful";
 import type { PortfolioItem } from "@/types/contentful";
+
+const SITE_URL = "https://davidrich.es";
+
+function stripHtml(value: string): string {
+  return value.replace(/<[^>]*>/g, "").trim();
+}
 
 type Props = {
   dataPromise: Promise<PortfolioItem | undefined>;
@@ -14,6 +22,8 @@ export default async function PortfolioContent({ dataPromise }: Props) {
 
   const {
     title,
+    slug,
+    seoTitle,
     link,
     completed,
     agency,
@@ -22,7 +32,39 @@ export default async function PortfolioContent({ dataPromise }: Props) {
     industry,
     body,
     blocksCollection,
+    sys,
   } = portfolioItem;
+
+  const plainTitle = stripHtml(seoTitle || title);
+  const plainDescription = documentToPlainTextString(body.json).slice(0, 160);
+  const ogImage = await getOgImageForPortfolio(portfolioItem);
+  const pageUrl = `${SITE_URL}/portfolio/${slug}`;
+  const datePublished = sys?.firstPublishedAt || sys?.publishedAt;
+  const dateModified = sys?.publishedAt || sys?.firstPublishedAt;
+
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: plainTitle,
+    description: plainDescription,
+    image: ogImage ? [ogImage.url] : undefined,
+    author: { "@id": `${SITE_URL}/#person` },
+    publisher: { "@id": `${SITE_URL}/#person` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    url: pageUrl,
+    datePublished,
+    dateModified,
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/#work` },
+      { "@type": "ListItem", position: 3, name: plainTitle, item: pageUrl },
+    ],
+  };
 
   const metaItems = [
     client && { label: "Client", value: client },
@@ -34,6 +76,14 @@ export default async function PortfolioContent({ dataPromise }: Props) {
 
   return (
     <section className="portfolio-item container">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* Hero */}
       <div className="pt-8 md:pt-12 mb-12 md:mb-16">
         <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-6">

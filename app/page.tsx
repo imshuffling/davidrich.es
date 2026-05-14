@@ -3,10 +3,25 @@ import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import type { Metadata } from "next";
 
+const PAGE_TITLE = "About me - David Riches";
+const PAGE_DESCRIPTION =
+  "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.";
+
 export const metadata: Metadata = {
-  title: "About me",
-  description:
-    "Hello I'm David, A Senior Front-end developer and part-time hockey player",
+  title: { absolute: PAGE_TITLE },
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
 };
 
 export default function HomePage() {

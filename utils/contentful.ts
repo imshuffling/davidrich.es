@@ -116,6 +116,10 @@ const PORTFOLIO_QUERY = `
         client
         timeframe
         industry
+        sys {
+          publishedAt
+          firstPublishedAt
+        }
         blocksCollection {
           items {
             __typename

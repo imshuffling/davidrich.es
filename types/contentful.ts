@@ -34,6 +34,10 @@ export interface PortfolioItem {
   media?: ContentfulVideo;
   image: ContentfulImage;
   body: RichTextDocument;
+  sys?: {
+    publishedAt?: string;
+    firstPublishedAt?: string;
+  };
   blocksCollection?: {
     items: ContentfulBlock[];
   };
