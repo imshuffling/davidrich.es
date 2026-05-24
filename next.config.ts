@@ -15,6 +15,15 @@ const config: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path+/",
+        destination: "/:path+",
+        permanent: true,
+      },
+    ];
+  },
   // Add CSP and security headers
   async headers() {
     return [

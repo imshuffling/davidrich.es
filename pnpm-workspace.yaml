@@ -1,0 +1,9 @@
+allowBuilds:
+  '@parcel/watcher': true
+  sharp: true
+  unrs-resolver: true
+confirmModulesPurge: false
+minimumReleaseAgeExclude:
+  - '@types/node@25.9.0'
+overrides:
+  serialize-javascript: ^7.0.5

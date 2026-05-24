@@ -1,158 +1,104 @@
 import { Suspense } from "react";
 import PortfolioSection from "@/components/PortfolioSection";
+import { getHome } from "@/utils/contentful";
 import type { Metadata } from "next";
-import type { PortfolioItem, SideProject } from "@/types/contentful";
+
+const PAGE_TITLE = "About me - David Riches";
+const PAGE_DESCRIPTION =
+  "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.";
 
 export const metadata: Metadata = {
-  title: "About me",
-  description: "Hello I'm David, A Front-end developer and part-time hockey player",
+  title: { absolute: PAGE_TITLE },
+  description: PAGE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  },
 };
 
-async function getHomeData() {
-  const result = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-          query {
-            featuredProjectsCollection(limit: 10) {
-              items {
-                itemCollection {
-                  items {
-                    title
-                    slug
-                    client
-                    agency
-                    industry
-                    otherProjects
-                    media {
-                      url
-                    }
-                    image {
-                      url(transform: { width: 800, height: 800 })
-                      width
-                      height
-                    }
-                  }
-                }
-              }
-            }
-            sideProjectsCollection(limit: 10) {
-              items {
-                title
-                description
-                link
-                githubUrl
-              }
-            }
-          }
-      `,
-      }),
-      next: { revalidate: 3600 }, // Revalidate every hour
-    }
-  );
-
-  if (!result.ok) {
-    console.error(result);
-    throw new Error('Failed to fetch home data');
-  }
-
-  const { data } = await result.json();
-
-  const portfolioItems = data.featuredProjectsCollection.items[0].itemCollection.items as PortfolioItem[];
-
-  // Use Contentful's built-in image transformation for blur placeholder (non-blocking)
-  const portfolioWithBlur = portfolioItems.map((item) => ({
-    ...item,
-    image: {
-      ...item.image,
-      // Use Contentful's image transformation API for blur placeholder
-      blurDataURL: `${item.image.url}?w=20&q=50`,
-    },
-  }));
-
-  return {
-    portfolioCollection: portfolioWithBlur,
-    sideProjectsCollection: data.sideProjectsCollection.items as SideProject[],
-  };
-}
-
 export default function HomePage() {
-  const dataPromise = getHomeData();
+  const dataPromise = getHome();
 
   return (
-    <section>
-      <div id="strapline">
-        <h1>
-          Hello I&apos;m David.{" "}
-          <span role="img" aria-label="Waving hand" className="wave">
-            👋
-          </span>
-        </h1>
-        <h2>
-          <span className="intro">
-            A Front-end developer &amp; part-time hockey player{" "}
-            <span role="img" aria-label="Hockey stick">
-              🏑{" "}
+    <>
+      {/* Hero Section */}
+      <section className="container pt-12 pb-16 md:pt-20 md:pb-24">
+        <div className="max-w-4xl">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
+            Hello, I&apos;m David.{" "}
+            <span role="img" aria-label="Waving hand" className="wave">
+              👋
             </span>
-            from London.
-          </span>
-          I like making things on the web,{" "}
-          <a href="#cards">
-            view my portfolio
-          </a>{" "}
-          or{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.github.com/imshuffling"
-          >
-            follow me on Github.
-          </a>
-        </h2>
-        <h3>
-          This site is built with{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.nextjs.org/"
-          >
-            Next.js
-          </a>{" "}
-          and powered by{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.contentful.com/"
-          >
-            Contentful.
-          </a>
-        </h3>
+          </h1>
+          <p className="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed max-w-3xl text-pretty font-body">
+            <span className="text-on-surface font-semibold">
+              Senior front-end engineer
+            </span>{" "}
+            and hockey player 🏑 based in Kent.
+            <br /> I build headless commerce and content platforms for brands
+            that care about performance, content, and the teams behind them.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href="#work" className="btn-primary">
+              View Projects
+            </a>
+            <a
+              href="https://resume.davidrich.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              About Me
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <div id="work" className="scroll-mt-28">
+        <div className="container">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">
+                Selected Work
+              </h2>
+              <p className="text-on-surface-variant max-w-2xl mb-0">
+                A collection of commercial projects built for industry-leading
+                brands.
+              </p>
+            </div>
+          </div>
+        </div>
+        <Suspense
+          fallback={
+            <div className="container">
+              <PortfolioSkeleton />
+            </div>
+          }
+        >
+          <PortfolioSection dataPromise={dataPromise} />
+        </Suspense>
       </div>
-      <Suspense fallback={<PortfolioSkeleton />}>
-        <PortfolioSection dataPromise={dataPromise} />
-      </Suspense>
-    </section>
+    </>
   );
 }
 
 function PortfolioSkeleton() {
   return (
-    <div id="cards" style={{ opacity: 0.5 }}>
+    <div id="cards">
       {[...Array(6)].map((_, i) => (
         <div
           key={i}
-          style={{
-            aspectRatio: "1",
-            background: "var(--text-color)",
-            opacity: 0.1,
-            borderRadius: "4px",
-          }}
+          className="bg-surface-container-high rounded-xl animate-pulse"
+          style={{ aspectRatio: "1", minHeight: "300px" }}
         />
       ))}
     </div>

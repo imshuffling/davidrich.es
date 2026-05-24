@@ -29,10 +29,15 @@ export interface PortfolioItem {
   link?: string;
   completed?: string;
   timeframe?: string;
+  description?: string;
   otherProjects?: boolean;
   media?: ContentfulVideo;
   image: ContentfulImage;
   body: RichTextDocument;
+  sys?: {
+    publishedAt?: string;
+    firstPublishedAt?: string;
+  };
   blocksCollection?: {
     items: ContentfulBlock[];
   };

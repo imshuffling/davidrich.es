@@ -2,14 +2,18 @@
 
 import Link from "next/link";
 import ImageWrapper from "@/components/ImageWrapper";
+import RichText from "@/components/RichText";
 import { useRef, useEffect, useState, startTransition, useCallback } from "react";
 import type { PortfolioCardProps } from "@/types/components";
 
 export default function PortfolioCard({
   item,
+  index,
   priority = false,
-}: PortfolioCardProps) {
-  const { title, slug, media, image, industry } = item;
+  className,
+}: PortfolioCardProps & { className?: string }) {
+  const { title, slug, media, image, industry, description } = item;
+  const isLarge = index === 0;
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(!media);
@@ -22,7 +26,6 @@ export default function PortfolioCard({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // Use startTransition for non-urgent state update to avoid blocking more critical renders
             startTransition(() => {
               setShouldLoadVideo(true);
             });
@@ -30,20 +33,15 @@ export default function PortfolioCard({
           }
         });
       },
-      {
-        rootMargin: "50px",
-      }
+      { rootMargin: "50px" }
     );
 
     observer.observe(cardRef.current);
-
     return () => observer.disconnect();
   }, [media]);
 
   const handleMouseEnter = useCallback(() => {
-    if (videoRef.current) {
-      videoRef.current.play();
-    }
+    if (videoRef.current) videoRef.current.play();
   }, []);
 
   const handleMouseLeave = useCallback(() => {
@@ -56,7 +54,7 @@ export default function PortfolioCard({
   return (
     <div
       ref={cardRef}
-      className={`card ${media ? "has-video" : ""}`}
+      className={`card ${media ? "has-video" : ""} ${className || ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -77,8 +75,8 @@ export default function PortfolioCard({
             alt={title}
             priority={priority}
             quality={80}
+            fill
             sizes="(min-width: 1960px) 1407px, 71.89vw"
-            style={{ objectFit: "cover", height: "100%", width: "100%" }}
             showGradient={true}
             onLoad={() => setImageLoaded(true)}
           />
@@ -107,7 +105,10 @@ export default function PortfolioCard({
         <div className="card__details">
           <div className="card__content">
             {industry && <span>{industry}</span>}
-            <h2 dangerouslySetInnerHTML={{ __html: title }}></h2>
+            <RichText as="h2" html={title} />
+            {isLarge && description && (
+              <p className="card__description">{description}</p>
+            )}
           </div>
         </div>
       </Link>

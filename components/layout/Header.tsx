@@ -5,30 +5,36 @@ import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import useSound from "use-sound";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
   const pathname = usePathname();
+  const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
+  const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
 
   const toggle = useCallback(() => {
-    setToggleState((prev) => !prev);
-  }, []);
+    setToggleState((prev) => {
+      if (prev) {
+        playOff();
+      } else {
+        playOn();
+      }
+      return !prev;
+    });
+  }, [playOn, playOff]);
 
-  // Close nav when pathname changes (after route transition)
   useEffect(() => {
     setToggleState(false);
   }, [pathname]);
 
   useLayoutEffect(() => {
-    // Synchronously update body position before browser paint to prevent visual flash
     if (toggleState) {
-      // Store current scroll position
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = "100%";
     } else {
-      // Restore scroll position
       const scrollY = document.body.style.top;
       document.body.style.position = "";
       document.body.style.top = "";
@@ -38,7 +44,6 @@ export default function Header() {
       }
     }
 
-    // Clean up on component unmount
     return () => {
       document.body.style.position = "";
       document.body.style.top = "";
@@ -46,79 +51,108 @@ export default function Header() {
     };
   }, [toggleState]);
 
+  const navLinks = [
+    { href: "/", label: "Work" },
+    { href: "/what-i-can-do", label: "Services" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
-    <header>
-      <span onClick={() => setToggleState(false)}>
-        <Link className="logo" href="/">
-          David Riches
-        </Link>
-      </span>
-      <ThemeChanger />
-      <div
-        role="button"
-        aria-label="Main menu"
-        aria-expanded={toggleState}
-        className="navbutton"
-        onClick={toggle}
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            toggle();
-          }
-        }}
-      >
-        {toggleState ? <RxCross2 size={26} /> : <RxHamburgerMenu size={26} />}
-      </div>
-      <nav className={toggleState ? "open" : ""}>
-        <ul id="navigation">
-          <li>
-            <Link
-              {...(pathname === "/" ? { "aria-current": "page" as const } : {})}
-              href="/"
-            >
-              About me
+    <>
+      <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
+        <nav className="container flex justify-between items-center py-5">
+          <span onClick={() => setToggleState(false)}>
+            <Link href="/" className="logo-gradient">
+              David Riches
             </Link>
-          </li>
-          <li>
-            <Link
-              {...(pathname === "/what-i-can-do"
-                ? { "aria-current": "page" as const }
-                : {})}
-              href="/what-i-can-do"
-            >
-              What I can do
-            </Link>
-          </li>
-          <li>
+          </span>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-10 font-headline font-medium tracking-tight">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`transition-all duration-300 !border-none !bg-none relative ${
+                    isActive
+                      ? "after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
+                      : "opacity-70 hover:opacity-100 hover:translate-y-[-1px]"
+                  }`}
+                  style={{ color: isActive ? "var(--primary-colour)" : "var(--heading-color)" }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <a
+              href="https://resume.davidrich.es/"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://resume.davidrich.es/"
+              className="opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
+              style={{ color: "var(--heading-color)" }}
             >
               Resume
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
+            </a>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <ThemeChanger />
+            <div
+              role="button"
+              aria-label="Main menu"
+              aria-expanded={toggleState}
+              className="md:hidden cursor-pointer text-primary"
+              onClick={toggle}
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  toggle();
+                }
+              }}
+            >
+              {toggleState ? <RxCross2 size={24} /> : <RxHamburgerMenu size={24} />}
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile nav overlay — sibling of header so backdrop-blur doesn't trap it */}
+      <div
+        className={`fixed inset-0 z-[60] flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
+          toggleState ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
+        }`}
+        style={{ background: "var(--bg)" }}
+      >
+        <ul className="flex flex-col items-center gap-8 text-3xl font-headline font-bold">
+          {navLinks.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                onClick={() => setToggleState(false)}
+                className="!border-none !bg-none transition-colors"
+                style={{ color: pathname === link.href ? "var(--primary-colour)" : "var(--heading-color)" }}
               >
-                <path
-                  d="M3 2C2.44772 2 2 2.44772 2 3V12C2 12.5523 2.44772 13 3 13H12C12.5523 13 13 12.5523 13 12V8.5C13 8.22386 12.7761 8 12.5 8C12.2239 8 12 8.22386 12 8.5V12H3V3L6.5 3C6.77614 3 7 2.77614 7 2.5C7 2.22386 6.77614 2 6.5 2H3ZM12.8536 2.14645C12.9015 2.19439 12.9377 2.24964 12.9621 2.30861C12.9861 2.36669 12.9996 2.4303 13 2.497L13 2.5V2.50049V5.5C13 5.77614 12.7761 6 12.5 6C12.2239 6 12 5.77614 12 5.5V3.70711L6.85355 8.85355C6.65829 9.04882 6.34171 9.04882 6.14645 8.85355C5.95118 8.65829 5.95118 8.34171 6.14645 8.14645L11.2929 3H9.5C9.22386 3 9 2.77614 9 2.5C9 2.22386 9.22386 2 9.5 2H12.4999H12.5C12.5678 2 12.6324 2.01349 12.6914 2.03794C12.7504 2.06234 12.8056 2.09851 12.8536 2.14645Z"
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                />
-              </svg>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          <li>
+            <a
+              href="https://resume.davidrich.es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="!border-none !bg-none"
+              style={{ color: "var(--heading-color)" }}
+              onClick={() => setToggleState(false)}
+            >
+              Resume
             </a>
           </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
         </ul>
-      </nav>
-    </header>
+      </div>
+    </>
   );
 }

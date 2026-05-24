@@ -1,5 +1,5 @@
 import ImageWrapper from "@/components/ImageWrapper";
-import ReactMarkdown from "react-markdown";
+import Prose from "@/components/Prose";
 import type { BlockTwoColumn as BlockTwoColumnProps } from "@/types/contentful";
 
 export default function BlockTwoColumn({
@@ -8,19 +8,17 @@ export default function BlockTwoColumn({
   imageFirst,
 }: BlockTwoColumnProps) {
   return (
-    <div
-      className={
-        imageFirst ? "section two-column" : "section two-column__reversed"
-      }
-    >
-      <ImageWrapper
-        image={image}
-        quality={80}
-        sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
-      />
-      <div>
-        <ReactMarkdown>{body}</ReactMarkdown>
+    <div className="section grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className={`rounded-xl overflow-hidden ${imageFirst ? "order-1" : "order-1 md:order-2"}`}>
+        <ImageWrapper
+          image={image}
+          quality={80}
+          sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
+        />
       </div>
+      <Prose className={imageFirst ? "order-2" : "order-2 md:order-1"}>
+        {body}
+      </Prose>
     </div>
   );
 }
