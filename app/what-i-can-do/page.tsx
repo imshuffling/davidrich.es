@@ -42,7 +42,7 @@ export default function ServicesPage() {
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight mb-6">
             Headless commerce and content{" "}
-            <span className="text-primary">platforms</span>, built properly.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">platforms</span>, built properly.
           </h1>
           <p className="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed">
             I help teams ship fast, scalable front-ends on Next.js, BigCommerce
