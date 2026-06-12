@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import type { Metadata } from "next";
@@ -30,7 +31,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="container pt-12 pb-16 md:pt-20 md:pb-24">
+      <section className="container pt-12 pb-16 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
             Hello, I&apos;m David.{" "}
@@ -60,6 +61,14 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+        <Image
+          src="/me.png"
+          alt="Illustration of David carrying his son in a baby carrier"
+          width={460}
+          height={460}
+          priority
+          className="hidden lg:block w-72 xl:w-80 shrink-0 rounded-full"
+        />
       </section>
 
       {/* Portfolio Section */}
