@@ -33,7 +33,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="container pt-12 pb-16 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
         <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
+          <h1 className="text-5xl md:text-7xl xl:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-8">
             Hello, I&apos;m David.{" "}
             <span role="img" aria-label="Waving hand" className="wave">
               👋
