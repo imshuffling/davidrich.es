@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Image from "next/image";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
+import { gridLayout } from "@/utils/portfolioGrid";
 import type { Metadata } from "next";
 
 const PAGE_TITLE = "About me - David Riches";
@@ -61,14 +62,17 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-        <Image
-          src="/me.png"
-          alt="Illustration of David carrying his son in a baby carrier"
-          width={460}
-          height={460}
-          priority
-          className="hidden lg:block w-72 xl:w-80 shrink-0 rounded-full"
-        />
+        {/* Hidden for now — re-enable when ready */}
+        {false && (
+          <Image
+            src="/me.png"
+            alt="Illustration of David carrying his son in a baby carrier"
+            width={460}
+            height={460}
+            priority
+            className="hidden lg:block w-72 xl:w-80 shrink-0 rounded-full"
+          />
+        )}
       </section>
 
       {/* Portfolio Section */}
@@ -101,15 +105,18 @@ export default function HomePage() {
 }
 
 function PortfolioSkeleton() {
+  const count = 6;
   return (
     <div id="cards">
-      {[...Array(6)].map((_, i) => (
-        <div
-          key={i}
-          className="bg-surface-container-high rounded-xl animate-pulse"
-          style={{ aspectRatio: "1", minHeight: "300px" }}
-        />
-      ))}
+      {[...Array(count)].map((_, i) => {
+        const { fill } = gridLayout(count, i);
+        return (
+          <div
+            key={i}
+            className={`card animate-pulse${fill ? " card--fill" : ""}`}
+          />
+        );
+      })}
     </div>
   );
 }
