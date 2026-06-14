@@ -71,7 +71,7 @@ export default function ServicesPage() {
                 How I Work
               </h2>
               <p className="text-on-surface-variant max-w-xs">
-                A pragmatic approach to shipping platforms that last.
+                A pragmatic approach to building platforms that last.
               </p>
             </div>
           </div>
@@ -80,22 +80,22 @@ export default function ServicesPage() {
               {
                 num: "01",
                 title: "Understand",
-                desc: "Before writing code, I want to understand the business, the content model, and the team who'll live with what we build. Good architecture starts with good questions.",
+                desc: "Before any code, I dig into the business, the content model, and the team who'll live with what we build. Good architecture starts with good questions.",
               },
               {
                 num: "02",
                 title: "Architect",
-                desc: "I work with designers, product and stakeholders to shape the right technical approach — choosing the stack, defining the component model, and planning for scale, performance and editorial flexibility from day one.",
+                desc: "Working with design, product and stakeholders, I shape the technical approach — the stack, the component model, and a plan for scale, performance and editorial flexibility from day one.",
               },
               {
                 num: "03",
                 title: "Build",
-                desc: "Clean, typed, tested code. Component libraries in Storybook, CMS models that editors actually enjoy using, and integrations that don't break when the requirements shift.",
+                desc: "Clean, typed, tested code — component libraries in Storybook, CMS models editors actually enjoy, and integrations that survive shifting requirements.",
               },
               {
                 num: "04",
                 title: "Ship & Iterate",
-                desc: "Launch is the start, not the end. I care about what happens in production — Core Web Vitals, error budgets, analytics — and about handing over something the team can keep building on.",
+                desc: "Launch is the start, not the end. I watch what production does — Core Web Vitals, error budgets, analytics — and hand over something the team can keep building on.",
               },
             ].map((step) => (
               <div
@@ -118,7 +118,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      );
       {/* CTA */}
       <section className="container py-20 md:py-28">
         <div className="relative rounded-2xl overflow-hidden p-12 md:p-24 editorial-gradient text-white text-center">
@@ -143,11 +142,11 @@ export default function ServicesPage() {
               Let&apos;s Work Together
             </h2>
             <p className="text-lg md:text-xl text-primary-fixed leading-relaxed mb-10">
-              Have a project in mind or just want to chat about the latest in
-              front-end tech? My inbox is always open.
+              Got a project in mind, or just want to talk front-end? My inbox is
+              always open.
             </p>
             <a href="mailto:hi@davidrich.es" className="btn-white">
-              Start a Project
+              Say hello
             </a>
           </div>
         </div>
