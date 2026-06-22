@@ -9,6 +9,7 @@ import useSound from "use-sound";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
   const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
@@ -27,6 +28,13 @@ export default function Header() {
   useEffect(() => {
     setToggleState(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useLayoutEffect(() => {
     if (toggleState) {
@@ -60,15 +68,15 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
-        <nav className="container flex justify-between items-center py-5">
-          <span onClick={() => setToggleState(false)}>
+        <nav className={`container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2.5" : "py-5"}`}>
+          <span onClick={() => setToggleState(false)} className="md:justify-self-start">
             <Link href="/" className="logo-gradient">
               David Riches
             </Link>
           </span>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-10 font-headline font-medium tracking-tight">
+          <div className={`hidden md:flex items-center justify-center font-headline font-medium tracking-tight transition-all duration-300 ${scrolled ? "gap-7 text-sm" : "gap-10 text-base"}`}>
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -97,7 +105,7 @@ export default function Header() {
             </a>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 md:justify-self-end">
             <ThemeChanger />
             <div
               role="button"

@@ -31,7 +31,7 @@ export function ContactClient() {
         </div>
 
         {/* Sidebar */}
-        <div className="lg:col-span-5 flex flex-col gap-12">
+        <div className="lg:col-span-5 flex flex-col gap-12 lg:sticky lg:top-24 lg:self-start">
           <div>
             <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-label">
               Contact Details
