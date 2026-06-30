@@ -102,7 +102,7 @@ export default function ServicesPage() {
                 key={step.num}
                 className="flex flex-col md:flex-row gap-6 md:gap-8 items-start"
               >
-                <div className="text-5xl md:text-6xl font-headline font-black text-primary/10 leading-none">
+                <div className="step-number text-5xl md:text-6xl font-headline font-black leading-none">
                   {step.num}
                 </div>
                 <div>

@@ -754,7 +754,7 @@ html[data-theme="dark"] {
 
   input::placeholder, textarea::placeholder {
     color: var(--text-color);
-    opacity: 0.5;
+    opacity: 0.8;
   }
 
   textarea {
@@ -785,6 +785,24 @@ html[data-theme="dark"] {
   #contact .email {
     display: block;
     margin: 1rem 0;
+  }
+
+  /* Step numbers (How I Work) — AA-large (>=3:1) on each theme */
+  .step-number {
+    color: rgba(99, 14, 212, 0.55);
+  }
+
+  html[data-theme="dark"] .step-number {
+    color: rgba(210, 187, 255, 0.45);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root .step-number {
+      color: rgba(210, 187, 255, 0.45);
+    }
+    html[data-theme="light"] .step-number {
+      color: rgba(99, 14, 212, 0.55);
+    }
   }
 
   /* Scroll animations */
