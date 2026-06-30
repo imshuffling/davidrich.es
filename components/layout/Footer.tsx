@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
         <div className="flex gap-8 text-sm tracking-wide">
           <a
-            className="!text-on-surface-variant hover:!text-primary !border-none !bg-none transition-colors"
+            className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
             href="https://www.github.com/imshuffling"
             target="_blank"
             rel="noopener noreferrer"
@@ -22,7 +22,7 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            className="!text-on-surface-variant hover:!text-primary !border-none !bg-none transition-colors"
+            className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
             href="https://resume.davidrich.es/"
             target="_blank"
             rel="noopener noreferrer"
@@ -30,7 +30,7 @@ export default function Footer() {
             Resume
           </a>
           <a
-            className="!text-on-surface-variant hover:!text-primary !border-none !bg-none transition-colors"
+            className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
             href="mailto:hi@davidrich.es"
           >
             Email
