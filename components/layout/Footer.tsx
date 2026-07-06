@@ -1,4 +1,5 @@
 import React from "react";
+import { CONTACT, LINKS } from "@/utils/site";
 
 export default function Footer() {
   return (
@@ -15,7 +16,7 @@ export default function Footer() {
         <div className="flex gap-8 text-sm tracking-wide">
           <a
             className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
-            href="https://www.github.com/imshuffling"
+            href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -23,7 +24,7 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
-            href="https://resume.davidrich.es/"
+            href={LINKS.resume}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -31,7 +32,7 @@ export default function Footer() {
           </a>
           <a
             className="text-on-surface-variant hover:text-primary !border-none !bg-none transition-colors"
-            href="mailto:hi@davidrich.es"
+            href={`mailto:${CONTACT.email}`}
           >
             Email
           </a>

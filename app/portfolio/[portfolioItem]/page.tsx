@@ -3,6 +3,7 @@ import { documentToPlainTextString } from "@contentful/rich-text-plain-text-rend
 import PortfolioFooter from "@/components/PortfolioFooter";
 import PortfolioContent from "@/components/PortfolioContent";
 import { getOgImageForPortfolio, getPortfolio, getPortfolioSlugs } from "@/utils/contentful";
+import { buildMetadata } from "@/utils/metadata";
 import type { Metadata } from "next";
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 
 export async function generateStaticParams() {
   const slugs = await getPortfolioSlugs();
-  return slugs.map((slug) => ({ portfolioItem: slug }));
+  return slugs.map(({ slug }) => ({ portfolioItem: slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -23,34 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const seoDescription = plainText.slice(0, 160);
   const ogImage = await getOgImageForPortfolio(portfolioItem);
 
-  return {
-    title: portfolioItem.seoTitle,
+  return buildMetadata({
+    title: portfolioItem.seoTitle || portfolioItem.title,
     description: seoDescription,
-    alternates: {
-      canonical: `https://davidrich.es/portfolio/${slug}`,
-    },
-    openGraph: {
-      type: "website",
-      url: `https://davidrich.es/portfolio/${slug}`,
-      title: portfolioItem.seoTitle || portfolioItem.title,
-      description: seoDescription,
-      images: ogImage
-        ? [
-            {
-              url: ogImage.url,
-              width: 1200,
-              height: 630,
-              alt: portfolioItem.title,
-            },
-          ]
-        : [],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: portfolioItem.seoTitle || portfolioItem.title,
-      description: seoDescription,
-    },
-  };
+    path: `/portfolio/${slug}`,
+    ogImage: ogImage ? { url: ogImage.url, alt: portfolioItem.title } : undefined,
+  });
 }
 
 export default async function PortfolioPage({ params }: Props) {

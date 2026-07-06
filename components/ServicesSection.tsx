@@ -2,7 +2,7 @@
 
 import { use } from "react";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { stableIndex } from "@/utils/visuals";
+import { colorFor, stableIndex } from "@/utils/visuals";
 import type { Service } from "@/types/contentful";
 
 const serviceIcons: Record<string, React.ReactNode> = {
@@ -40,19 +40,9 @@ const serviceIcons: Record<string, React.ReactNode> = {
 
 const iconOrder = ["code", "layout", "brush", "database", "zap", "globe"];
 
-const serviceIconColors = [
-  { bg: "rgba(99, 14, 212, 0.15)", color: "#630ed4" },
-  { bg: "rgba(156, 44, 155, 0.15)", color: "#9c2c9b" },
-  { bg: "rgba(0, 84, 121, 0.15)", color: "#005479" },
-  { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
-  { bg: "rgba(0, 109, 156, 0.15)", color: "#006d9c" },
-  { bg: "rgba(186, 26, 26, 0.15)", color: "#ba1a1a" },
-];
-
 function visualForService(title: string) {
   const iconKey = iconOrder[stableIndex(title, iconOrder.length)];
-  const color = serviceIconColors[stableIndex(title, serviceIconColors.length)];
-  return { icon: serviceIcons[iconKey] ?? serviceIcons.code, color };
+  return { icon: serviceIcons[iconKey] ?? serviceIcons.code, color: colorFor(title) };
 }
 
 interface ServicesSectionProps {

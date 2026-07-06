@@ -3,6 +3,8 @@ import { Inter, Plus_Jakarta_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Layout from "@/components/layout/Layout";
+import { SITE_URL, SITE_NAME, BRAND_TITLE, BRAND_DESCRIPTION } from "@/utils/site";
+import { personJsonLd, websiteJsonLd } from "@/utils/metadata";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,12 +23,6 @@ const oswald = Oswald({
   display: "swap",
   variable: "--font-oswald",
 });
-
-const SITE_URL = "https://davidrich.es";
-const SITE_NAME = "David Riches";
-const BRAND_TITLE = "David Riches - Senior Front-end Engineer";
-const BRAND_DESCRIPTION =
-  "Senior front-end engineer and hockey player based in Kent. Building headless commerce and content platforms on Next.js, BigCommerce and Contentful.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -72,27 +68,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const personLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${SITE_URL}/#person`,
-    name: "David Riches",
-    jobTitle: "Senior Front-end Engineer",
-    description: BRAND_DESCRIPTION,
-    url: SITE_URL,
-    sameAs: ["https://github.com/imshuffling"],
-  };
-
-  const websiteLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": `${SITE_URL}/#website`,
-    name: SITE_NAME,
-    url: SITE_URL,
-    description: BRAND_DESCRIPTION,
-    publisher: { "@id": `${SITE_URL}/#person` },
-    inLanguage: "en-GB",
-  };
+  const personLd = personJsonLd();
+  const websiteLd = websiteJsonLd();
 
   return (
     <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} ${oswald.variable}`} suppressHydrationWarning>

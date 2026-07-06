@@ -3,28 +3,16 @@ import Image from "next/image";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import { gridLayout } from "@/utils/portfolioGrid";
-import type { Metadata } from "next";
+import { buildMetadata } from "@/utils/metadata";
+import { LINKS } from "@/utils/site";
 
-const PAGE_TITLE = "About me - David Riches";
-const PAGE_DESCRIPTION =
-  "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.";
-
-export const metadata: Metadata = {
-  title: { absolute: PAGE_TITLE },
-  description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: "/",
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-  },
-};
+export const metadata = buildMetadata({
+  title: "About me - David Riches",
+  description:
+    "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.",
+  path: "/",
+  absoluteTitle: true,
+});
 
 export default function HomePage() {
   const dataPromise = getHome();
@@ -53,7 +41,7 @@ export default function HomePage() {
               View Projects
             </a>
             <a
-              href="https://resume.davidrich.es/"
+              href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"

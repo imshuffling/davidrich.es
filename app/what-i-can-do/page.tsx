@@ -1,28 +1,15 @@
 import { Suspense } from "react";
 import ServicesSection from "@/components/ServicesSection";
 import { getServices } from "@/utils/contentful";
-import type { Metadata } from "next";
+import { buildMetadata } from "@/utils/metadata";
+import { CONTACT } from "@/utils/site";
 
-const PAGE_TITLE = "What I can do";
-const PAGE_DESCRIPTION =
-  "Headless commerce and content platforms, built properly. Front-end engineering on Next.js, BigCommerce and Contentful — with the editorial tooling and performance to back them up.";
-
-export const metadata: Metadata = {
-  title: PAGE_TITLE,
-  description: PAGE_DESCRIPTION,
-  alternates: { canonical: "/what-i-can-do" },
-  openGraph: {
-    type: "website",
-    url: "/what-i-can-do",
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: PAGE_TITLE,
-    description: PAGE_DESCRIPTION,
-  },
-};
+export const metadata = buildMetadata({
+  title: "What I can do",
+  description:
+    "Headless commerce and content platforms, built properly. Front-end engineering on Next.js, BigCommerce and Contentful — with the editorial tooling and performance to back them up.",
+  path: "/what-i-can-do",
+});
 
 async function getServicesData() {
   const servicesCollection = await getServices();
@@ -145,7 +132,7 @@ export default function ServicesPage() {
               Got a project in mind, or just want to talk front-end? My inbox is
               always open.
             </p>
-            <a href="mailto:hi@davidrich.es" className="btn-white">
+            <a href={`mailto:${CONTACT.email}`} className="btn-white">
               Say hello
             </a>
           </div>

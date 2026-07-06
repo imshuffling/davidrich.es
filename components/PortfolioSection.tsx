@@ -4,7 +4,8 @@ import { use } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import RichText from "@/components/RichText";
 import { gridLayout } from "@/utils/portfolioGrid";
-import { stableIndex } from "@/utils/visuals";
+import { colorFor, stableIndex } from "@/utils/visuals";
+import { CONTACT } from "@/utils/site";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 
 interface PortfolioSectionProps {
@@ -65,7 +66,7 @@ export default function PortfolioSection({ dataPromise }: PortfolioSectionProps)
           <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10 relative z-10">
             I&apos;m currently taking on new projects and would love to hear about yours.
           </p>
-          <a className="btn-white relative z-10" href="mailto:hi@davidrich.es">
+          <a className="btn-white relative z-10" href={`mailto:${CONTACT.email}`}>
             Get in touch
           </a>
         </div>
@@ -104,20 +105,13 @@ const dumbbellIcon = (
   </svg>
 );
 
-const sideProjectIconColors = [
-  { bg: "rgba(99, 14, 212, 0.15)", color: "#630ed4" },
-  { bg: "rgba(156, 44, 155, 0.15)", color: "#9c2c9b" },
-  { bg: "rgba(0, 84, 121, 0.15)", color: "#005479" },
-  { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
-];
-
 function SideProjectCard({ node }: { node: SideProject }) {
   const link = node.link || node.githubUrl;
   const linkLabel = node.link ? "View Project" : "View Repo";
   const icon = node.title.toLowerCase().includes("fitness")
     ? dumbbellIcon
     : sideProjectIcons[stableIndex(node.title, sideProjectIcons.length)];
-  const iconColor = sideProjectIconColors[stableIndex(node.title, sideProjectIconColors.length)];
+  const iconColor = colorFor(node.title, 4);
 
   return (
     <div className="p-8 rounded-xl hover:translate-y-[-4px] transition-all duration-300 group shadow-sm" style={{ background: "var(--card-bg)" }}>

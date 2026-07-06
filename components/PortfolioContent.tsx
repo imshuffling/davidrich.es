@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import Blocks from "@/blocks";
 import RichText from "@/components/RichText";
 import { getOgImageForPortfolio } from "@/utils/contentful";
+import { articleJsonLd, breadcrumbJsonLd } from "@/utils/metadata";
+import { SITE_URL } from "@/utils/site";
 import type { PortfolioItem } from "@/types/contentful";
-
-const SITE_URL = "https://davidrich.es";
 
 function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, "").trim();
@@ -25,10 +25,8 @@ export default async function PortfolioContent({ dataPromise }: Props) {
     slug,
     seoTitle,
     link,
-    completed,
     agency,
     client,
-    timeframe,
     industry,
     body,
     blocksCollection,
@@ -39,32 +37,17 @@ export default async function PortfolioContent({ dataPromise }: Props) {
   const plainDescription = documentToPlainTextString(body.json).slice(0, 160);
   const ogImage = await getOgImageForPortfolio(portfolioItem);
   const pageUrl = `${SITE_URL}/portfolio/${slug}`;
-  const datePublished = sys?.firstPublishedAt || sys?.publishedAt;
-  const dateModified = sys?.publishedAt || sys?.firstPublishedAt;
 
-  const articleLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: plainTitle,
+  const articleLd = articleJsonLd({
+    title: plainTitle,
     description: plainDescription,
-    image: ogImage ? [ogImage.url] : undefined,
-    author: { "@id": `${SITE_URL}/#person` },
-    publisher: { "@id": `${SITE_URL}/#person` },
-    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
-    url: pageUrl,
-    datePublished,
-    dateModified,
-  };
+    pageUrl,
+    ogImage,
+    datePublished: sys?.firstPublishedAt || sys?.publishedAt,
+    dateModified: sys?.publishedAt || sys?.firstPublishedAt,
+  });
 
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/#work` },
-      { "@type": "ListItem", position: 3, name: plainTitle, item: pageUrl },
-    ],
-  };
+  const breadcrumbLd = breadcrumbJsonLd(plainTitle, pageUrl);
 
   const metaItems = [
     client && { label: "Client", value: client },

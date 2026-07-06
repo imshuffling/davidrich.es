@@ -10,11 +10,7 @@ export default function BlockTwoColumn({
   return (
     <div className="section grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div className={`rounded-xl overflow-hidden ${imageFirst ? "order-1" : "order-1 md:order-2"}`}>
-        <ImageWrapper
-          image={image}
-          quality={80}
-          sizes="(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw"
-        />
+        <ImageWrapper image={image} variant="twoColumn" />
       </div>
       <Prose className={imageFirst ? "order-2" : "order-2 md:order-1"}>
         {body}

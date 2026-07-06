@@ -16,10 +16,8 @@ export default function BlockImage({ image, lazyLoad, aspectRatio = "16/9" }: Bl
     >
       <ImageWrapper
         image={image}
-        fill
-        quality={80}
+        variant="hero"
         loading={lazyLoad ? "lazy" : "eager"}
-        sizes="(min-width: 1960px) 1600px, calc(81.83vw + 13px)"
       />
     </div>
   );

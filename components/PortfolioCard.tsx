@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ImageWrapper from "@/components/ImageWrapper";
+import ImageWrapper, { MediaGradient } from "@/components/ImageWrapper";
 import RichText from "@/components/RichText";
 import { useRef, useEffect, useState, startTransition, useCallback } from "react";
 import type { PortfolioCardProps } from "@/types/components";
@@ -72,11 +72,9 @@ export default function PortfolioCard({
           )}
           <ImageWrapper
             image={image}
+            variant="card"
             alt={title}
             priority={priority}
-            quality={80}
-            fill
-            sizes="(min-width: 1960px) 1407px, 71.89vw"
             showGradient={true}
             onLoad={() => setImageLoaded(true)}
           />
@@ -86,19 +84,7 @@ export default function PortfolioCard({
                 <video ref={videoRef} loop muted playsInline preload="metadata">
                   <source src={media.url} type="video/mp4" />
                 </video>
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background:
-                      "linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%)",
-                    pointerEvents: "none",
-                    zIndex: 1,
-                  }}
-                />
+                <MediaGradient zIndex={1} />
               </>
             ) : null)}
         </div>

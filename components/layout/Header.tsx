@@ -6,6 +6,7 @@ import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import useSound from "use-sound";
+import { NAV_LINKS, LINKS } from "@/utils/site";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
@@ -59,12 +60,6 @@ export default function Header() {
     };
   }, [toggleState]);
 
-  const navLinks = [
-    { href: "/", label: "Work" },
-    { href: "/what-i-can-do", label: "Services" },
-    { href: "/contact", label: "Contact" },
-  ];
-
   return (
     <>
       <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
@@ -77,7 +72,7 @@ export default function Header() {
 
           {/* Desktop nav */}
           <div className={`hidden md:flex items-center justify-center font-headline font-medium tracking-tight transition-all duration-300 ${scrolled ? "gap-7 text-sm" : "gap-10 text-base"}`}>
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const isActive = pathname === link.href;
               return (
                 <Link
@@ -95,7 +90,7 @@ export default function Header() {
               );
             })}
             <a
-              href="https://resume.davidrich.es/"
+              href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
               className="opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
@@ -135,7 +130,7 @@ export default function Header() {
         style={{ background: "var(--bg)" }}
       >
         <ul className="flex flex-col items-center gap-8 text-3xl font-headline font-bold">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -149,7 +144,7 @@ export default function Header() {
           ))}
           <li>
             <a
-              href="https://resume.davidrich.es/"
+              href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
               className="!border-none !bg-none"

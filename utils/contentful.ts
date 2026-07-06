@@ -49,7 +49,6 @@ const HOME_QUERY = `
             client
             agency
             industry
-            otherProjects
             body { json }
             media { url }
             image {
@@ -111,10 +110,8 @@ const PORTFOLIO_QUERY = `
         body { json }
         slug
         link
-        completed
         agency
         client
-        timeframe
         industry
         sys {
           publishedAt
@@ -178,16 +175,29 @@ export async function getPortfolio(slug: string): Promise<PortfolioItem | undefi
   return item;
 }
 
-export async function getPortfolioSlugs(): Promise<string[]> {
+export interface PortfolioSlugEntry {
+  slug: string;
+  publishedAt?: string;
+}
+
+export async function getPortfolioSlugs(): Promise<PortfolioSlugEntry[]> {
   try {
-    const data = await query<{ portfolioCollection: { items: { slug: string }[] } }>(`
+    const data = await query<{
+      portfolioCollection: { items: { slug: string; sys?: { publishedAt?: string } }[] };
+    }>(`
       query {
-        portfolioCollection {
-          items { slug }
+        portfolioCollection(limit: 100) {
+          items {
+            slug
+            sys { publishedAt }
+          }
         }
       }
     `);
-    return data.portfolioCollection.items.map((i) => i.slug);
+    return data.portfolioCollection.items.map((i) => ({
+      slug: i.slug,
+      publishedAt: i.sys?.publishedAt,
+    }));
   } catch {
     return [];
   }

@@ -27,10 +27,7 @@ export interface PortfolioItem {
   agency: string;
   industry: string;
   link?: string;
-  completed?: string;
-  timeframe?: string;
   description?: string;
-  otherProjects?: boolean;
   media?: ContentfulVideo;
   image: ContentfulImage;
   body: RichTextDocument;
@@ -58,7 +55,6 @@ export interface SideProject {
 // Service Types
 export interface Service {
   title: string;
-  emojiImage: string;
   body: RichTextDocument;
 }
 

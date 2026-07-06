@@ -6,28 +6,24 @@ import BlockVideo from "./BlockVideo/index";
 import type { BlocksProps } from "@/types/components";
 import type { ContentfulBlock } from "@/types/contentful";
 
-const MODULE_MAP: Record<string, React.ComponentType<any>> = {
-  TextLeft: BlockTextLeft,
-  TextArea: BlockTextArea,
-  Image: BlockImage,
-  Video: BlockVideo,
-  TwoColumn: BlockTwoColumn,
-};
+function renderBlock(block: ContentfulBlock, key: number) {
+  switch (block.__typename) {
+    case "TextLeft":
+      return <BlockTextLeft key={key} {...block} />;
+    case "TextArea":
+      return <BlockTextArea key={key} {...block} />;
+    case "Image":
+      return <BlockImage key={key} {...block} />;
+    case "Video":
+      return <BlockVideo key={key} {...block} />;
+    case "TwoColumn":
+      return <BlockTwoColumn key={key} {...block} />;
+    default:
+      console.warn(`Unknown block type: ${(block as { __typename: string }).__typename}`);
+      return null;
+  }
+}
 
 export default function Blocks({ blocksCollection }: BlocksProps) {
-  return (
-    <div>
-      {blocksCollection.items.map((block: ContentfulBlock, i: number) => {
-        const { __typename: type, ...props } = block;
-        const Component = MODULE_MAP[type];
-
-        if (!Component) {
-          console.warn(`Unknown block type: ${type}`);
-          return null;
-        }
-
-        return <Component key={i} {...props} />;
-      })}
-    </div>
-  );
+  return <div>{blocksCollection.items.map(renderBlock)}</div>;
 }

@@ -1,67 +1,33 @@
-import type { MetadataRoute } from 'next';
-
-async function getPortfolioSlugs() {
-  const result = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query: `
-          query {
-            portfolioCollection(limit: 100) {
-              items {
-                slug
-                sys {
-                  publishedAt
-                }
-              }
-            }
-          }
-        `,
-      }),
-      next: { revalidate: 3600 },
-    }
-  );
-
-  if (!result.ok) {
-    return [];
-  }
-
-  const { data } = await result.json();
-  return data.portfolioCollection.items;
-}
+import type { MetadataRoute } from "next";
+import { getPortfolioSlugs } from "@/utils/contentful";
+import { SITE_URL } from "@/utils/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://davidrich.es';
   const portfolioItems = await getPortfolioSlugs();
 
   return [
     {
-      url: baseUrl,
+      url: SITE_URL,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/what-i-can-do`,
+      url: `${SITE_URL}/what-i-can-do`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${SITE_URL}/contact`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 0.5,
     },
-    ...portfolioItems.map((item: { slug: string; sys: { publishedAt: string } }) => ({
-      url: `${baseUrl}/portfolio/${item.slug}`,
-      lastModified: new Date(item.sys.publishedAt),
-      changeFrequency: 'monthly' as const,
+    ...portfolioItems.map((item) => ({
+      url: `${SITE_URL}/portfolio/${item.slug}`,
+      lastModified: item.publishedAt ? new Date(item.publishedAt) : new Date(),
+      changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
   ];
