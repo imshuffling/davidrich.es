@@ -438,7 +438,7 @@ html[data-theme="dark"] {
     .card:first-child {
       grid-column: span 8;
     }
-    .card.card--fill {
+    #cards > .card:last-child:nth-child(n + 3):not(:nth-child(3n + 2)) {
       grid-column: 1 / -1;
     }
   }

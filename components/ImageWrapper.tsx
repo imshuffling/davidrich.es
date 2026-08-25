@@ -39,7 +39,6 @@ interface ImageWrapperProps {
   className?: string;
   style?: React.CSSProperties;
   showGradient?: boolean;
-  onLoad?: () => void;
 }
 
 export default function ImageWrapper({
@@ -51,28 +50,31 @@ export default function ImageWrapper({
   className,
   style,
   showGradient = false,
-  onLoad,
 }: ImageWrapperProps) {
   const { fill, sizes } = VARIANTS[variant];
 
+  const img = (
+    <Image
+      src={image.url}
+      alt={alt || image.fileName}
+      width={fill ? undefined : image.width}
+      height={fill ? undefined : image.height}
+      fill={fill}
+      blurDataURL={image.blurDataURL}
+      placeholder={image.blurDataURL ? "blur" : "empty"}
+      priority={priority}
+      loading={priority ? undefined : loading}
+      sizes={sizes}
+      className={className}
+      style={style}
+    />
+  );
+
+  if (!fill) return img;
+
   return (
-    <div style={{ position: "relative", display: "contents" }}>
-      <Image
-        src={image.url}
-        alt={alt || image.fileName}
-        width={fill ? undefined : image.width}
-        height={fill ? undefined : image.height}
-        fill={fill}
-        quality={80}
-        blurDataURL={image.blurDataURL}
-        placeholder={image.blurDataURL ? "blur" : "empty"}
-        priority={priority}
-        loading={priority ? undefined : loading}
-        sizes={sizes}
-        className={className}
-        style={style}
-        onLoad={onLoad}
-      />
+    <div style={{ position: "absolute", inset: 0 }}>
+      {img}
       {showGradient && <MediaGradient />}
     </div>
   );

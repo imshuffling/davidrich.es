@@ -1,27 +1,15 @@
-import BlockTextLeft from "./BlockTextLeft/index";
-import BlockTextArea from "./BlockTextArea/index";
-import BlockImage from "./BlockImage/index";
-import BlockTwoColumn from "./BlockTwoColumn/index";
-import BlockVideo from "./BlockVideo/index";
+import { BLOCK_REGISTRY } from "./registry";
 import type { BlocksProps } from "@/types/components";
 import type { ContentfulBlock } from "@/types/contentful";
 
 function renderBlock(block: ContentfulBlock, key: number) {
-  switch (block.__typename) {
-    case "TextLeft":
-      return <BlockTextLeft key={key} {...block} />;
-    case "TextArea":
-      return <BlockTextArea key={key} {...block} />;
-    case "Image":
-      return <BlockImage key={key} {...block} />;
-    case "Video":
-      return <BlockVideo key={key} {...block} />;
-    case "TwoColumn":
-      return <BlockTwoColumn key={key} {...block} />;
-    default:
-      console.warn(`Unknown block type: ${(block as { __typename: string }).__typename}`);
-      return null;
+  const def = BLOCK_REGISTRY[block.__typename];
+  if (!def) {
+    console.warn(`Unknown block type: ${(block as { __typename: string }).__typename}`);
+    return null;
   }
+  const Component = def.Component as (props: ContentfulBlock) => React.ReactNode;
+  return <Component key={key} {...block} />;
 }
 
 export default function Blocks({ blocksCollection }: BlocksProps) {

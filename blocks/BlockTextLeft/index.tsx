@@ -1,6 +1,8 @@
 import Prose from "@/components/Prose";
 import type { BlockTextLeft as BlockTextLeftProps } from "@/types/contentful";
 
+export const fragment = `... on TextLeft { title body }`;
+
 export default function BlockTextLeft({ title, body }: BlockTextLeftProps) {
   return (
     <div className="section max-w-3xl">

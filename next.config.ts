@@ -5,15 +5,8 @@ const config: NextConfig = {
   // Enable Partial Prerendering for faster initial page loads
   cacheComponents: true,
   images: {
-    formats: ["image/avif", "image/webp"],
-    qualities: [75, 80],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.ctfassets.net",
-        pathname: "**",
-      },
-    ],
+    loader: "custom",
+    loaderFile: "./utils/contentfulLoader.ts",
   },
   async redirects() {
     return [

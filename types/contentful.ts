@@ -83,7 +83,6 @@ export interface BlockImage {
   __typename: 'Image';
   image: ContentfulImage;
   lazyLoad?: boolean;
-  aspectRatio?: '16/9' | '4/3' | '1/1';
 }
 
 export interface BlockVideo {

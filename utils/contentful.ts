@@ -1,9 +1,18 @@
+import { cacheLife, cacheTag } from "next/cache";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import { enrichBlocks, enrichImage, enrichItems } from "@/utils/contentfulImage";
+import { BLOCKS_FRAGMENT, enrichBlocks } from "@/blocks/registry";
+import { enrichImage, enrichItems } from "@/utils/contentfulImage";
+import { deriveSeo } from "@/utils/metadata";
 import { sanitize } from "@/utils/sanitize";
-import type { PortfolioItem, Service, SideProject } from "@/types/contentful";
+import type { ContentfulImage, PortfolioItem, Service, SideProject } from "@/types/contentful";
 
-const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`;
+const SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
+const ACCESS_KEY = process.env.CONTENTFUL_ACCESS_KEY;
+if (!SPACE_ID || !ACCESS_KEY) {
+  throw new Error("Missing CONTENTFUL_SPACE_ID or CONTENTFUL_ACCESS_KEY environment variable");
+}
+
+const ENDPOINT = `https://graphql.contentful.com/content/v1/spaces/${SPACE_ID}/environments/master`;
 const QUERY_TIMEOUT_MS = 8000;
 
 async function query<T>(graphql: string, variables?: Record<string, unknown>): Promise<T> {
@@ -15,12 +24,11 @@ async function query<T>(graphql: string, variables?: Record<string, unknown>): P
     res = await fetch(ENDPOINT, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.CONTENTFUL_ACCESS_KEY}`,
+        Authorization: `Bearer ${ACCESS_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ query: graphql, variables }),
       signal: controller.signal,
-      next: { revalidate: 3600, tags: ["contentful"] },
     });
   } finally {
     clearTimeout(timer);
@@ -51,12 +59,7 @@ const HOME_QUERY = `
             industry
             body { json }
             media { url }
-            image {
-              url(transform: { width: 800, height: 800 })
-              fileName
-              width
-              height
-            }
+            image { url fileName width height }
           }
         }
       }
@@ -76,6 +79,10 @@ export async function getHome(): Promise<{
   portfolioCollection: PortfolioItem[];
   sideProjectsCollection: SideProject[];
 }> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("contentful");
+
   const data = await query<{
     featuredProjectsCollection: { items: { itemCollection: { items: PortfolioItem[] } }[] };
     sideProjectsCollection: { items: SideProject[] };
@@ -120,20 +127,7 @@ const PORTFOLIO_QUERY = `
         blocksCollection {
           items {
             __typename
-            ... on Image {
-              image { url fileName width height }
-            }
-            ... on Video {
-              image { url fileName width height }
-              video { fileName url }
-            }
-            ... on TextLeft { title body }
-            ... on TextArea { centerText title body }
-            ... on TwoColumn {
-              image { url fileName width height }
-              imageFirst
-              body
-            }
+            ${BLOCKS_FRAGMENT}
           }
         }
         footerCollection {
@@ -153,6 +147,10 @@ const PORTFOLIO_QUERY = `
 `;
 
 export async function getPortfolio(slug: string): Promise<PortfolioItem | undefined> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("contentful");
+
   const data = await query<{ portfolioCollection: { items: PortfolioItem[] } }>(
     PORTFOLIO_QUERY,
     { slug },
@@ -160,19 +158,21 @@ export async function getPortfolio(slug: string): Promise<PortfolioItem | undefi
   const item = data.portfolioCollection.items[0];
   if (!item) return undefined;
 
-  item.title = sanitize(item.title) ?? item.title;
+  const [blocks, footerItems] = await Promise.all([
+    item.blocksCollection?.items ? enrichBlocks(item.blocksCollection.items) : undefined,
+    item.footerCollection?.items ? enrichItems(item.footerCollection.items, "card") : undefined,
+  ]);
 
-  if (item.blocksCollection?.items) {
-    item.blocksCollection.items = await enrichBlocks(item.blocksCollection.items);
-  }
-  if (item.footerCollection?.items) {
-    const enriched = await enrichItems(item.footerCollection.items, "card");
-    item.footerCollection.items = enriched.map((p) => ({
-      ...p,
-      title: sanitize(p.title) ?? p.title,
-    }));
-  }
-  return item;
+  return {
+    ...item,
+    title: sanitize(item.title) ?? item.title,
+    ...(blocks && { blocksCollection: { items: blocks } }),
+    ...(footerItems && {
+      footerCollection: {
+        items: footerItems.map((p) => ({ ...p, title: sanitize(p.title) ?? p.title })),
+      },
+    }),
+  };
 }
 
 export interface PortfolioSlugEntry {
@@ -181,34 +181,50 @@ export interface PortfolioSlugEntry {
 }
 
 export async function getPortfolioSlugs(): Promise<PortfolioSlugEntry[]> {
-  try {
-    const data = await query<{
-      portfolioCollection: { items: { slug: string; sys?: { publishedAt?: string } }[] };
-    }>(`
-      query {
-        portfolioCollection(limit: 100) {
-          items {
-            slug
-            sys { publishedAt }
-          }
+  "use cache";
+  cacheLife("hours");
+  cacheTag("contentful");
+
+  const data = await query<{
+    portfolioCollection: { items: { slug: string; sys?: { publishedAt?: string } }[] };
+  }>(`
+    query {
+      portfolioCollection(limit: 100) {
+        items {
+          slug
+          sys { publishedAt }
         }
       }
-    `);
-    return data.portfolioCollection.items.map((i) => ({
-      slug: i.slug,
-      publishedAt: i.sys?.publishedAt,
-    }));
-  } catch {
-    return [];
-  }
+    }
+  `);
+  return data.portfolioCollection.items.map((i) => ({
+    slug: i.slug,
+    publishedAt: i.sys?.publishedAt,
+  }));
 }
 
-export async function getOgImageForPortfolio(item: PortfolioItem) {
+export interface PortfolioSeo {
+  plainTitle: string;
+  description: string;
+  pageUrl: string;
+  ogImage?: ContentfulImage;
+}
+
+export async function portfolioSeo(slug: string): Promise<PortfolioSeo | undefined> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("contentful");
+
+  const item = await getPortfolio(slug);
+  if (!item) return undefined;
+
   const firstImageBlock = item.blocksCollection?.items.find(
     (block) => block.__typename === "Image",
   );
-  if (!firstImageBlock) return undefined;
-  return enrichImage(firstImageBlock.image, "og");
+  return {
+    ...deriveSeo(item),
+    ...(firstImageBlock && { ogImage: await enrichImage(firstImageBlock.image, "og") }),
+  };
 }
 
 const SERVICES_QUERY = `
@@ -223,6 +239,10 @@ const SERVICES_QUERY = `
 `;
 
 export async function getServices(): Promise<Service[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag("contentful");
+
   const data = await query<{ servicesCollection: { items: Service[] } }>(SERVICES_QUERY);
   return data.servicesCollection.items;
 }

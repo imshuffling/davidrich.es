@@ -1,12 +1,22 @@
 import ImageWrapper from "@/components/ImageWrapper";
+import { enrichImage } from "@/utils/contentfulImage";
 import type { BlockImage as BlockImageProps } from "@/types/contentful";
 
-export default function BlockImage({ image, lazyLoad, aspectRatio = "16/9" }: BlockImageProps) {
+export const fragment = `... on Image {
+  image { url fileName width height }
+  lazyLoad
+}`;
+
+export async function enrich(block: BlockImageProps): Promise<BlockImageProps> {
+  return { ...block, image: await enrichImage(block.image, "hero") };
+}
+
+export default function BlockImage({ image, lazyLoad }: BlockImageProps) {
   return (
     <div
       className="section"
       style={{
-        aspectRatio: aspectRatio,
+        aspectRatio: "16/9",
         position: "relative",
         width: "100%",
         maxWidth: "1600px",

@@ -11,13 +11,8 @@ export const metadata = buildMetadata({
   path: "/what-i-can-do",
 });
 
-async function getServicesData() {
-  const servicesCollection = await getServices();
-  return { servicesCollection };
-}
-
 export default function ServicesPage() {
-  const dataPromise = getServicesData();
+  const dataPromise = getServices();
 
   return (
     <>

@@ -11,7 +11,6 @@ export interface PortfolioCardProps {
   item: PortfolioItem;
   priority?: boolean;
   index?: number;
-  loading?: 'lazy' | 'eager';
 }
 
 // Blocks Props

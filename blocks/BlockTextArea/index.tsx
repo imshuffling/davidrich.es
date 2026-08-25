@@ -1,6 +1,8 @@
 import Prose from "@/components/Prose";
 import type { BlockTextArea as BlockTextAreaProps } from "@/types/contentful";
 
+export const fragment = `... on TextArea { centerText title body }`;
+
 export default function BlockTextArea({ title, body, centerText }: BlockTextAreaProps) {
   return (
     <div

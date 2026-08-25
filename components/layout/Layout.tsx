@@ -1,23 +1,12 @@
-"use client";
-
-import React, { useEffect } from "react";
-import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
+import ScrollReset from "./ScrollReset";
 import type { LayoutProps } from "@/types/components";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function Layout({ children }: LayoutProps) {
-  const pathname = usePathname();
-
-  useScrollAnimation();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-  }, [pathname]);
-
   return (
     <div className="container-wrap">
+      <ScrollReset />
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>

@@ -1,10 +1,6 @@
-"use client";
-
-import { use } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import RichText from "@/components/RichText";
-import { gridLayout } from "@/utils/portfolioGrid";
-import { colorFor, stableIndex } from "@/utils/visuals";
+import { visualFor } from "@/utils/visuals";
 import { CONTACT } from "@/utils/site";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 
@@ -15,25 +11,16 @@ interface PortfolioSectionProps {
   }>;
 }
 
-export default function PortfolioSection({ dataPromise }: PortfolioSectionProps) {
-  const { portfolioCollection, sideProjectsCollection } = use(dataPromise);
+export default async function PortfolioSection({ dataPromise }: PortfolioSectionProps) {
+  const { portfolioCollection, sideProjectsCollection } = await dataPromise;
 
   return (
     <>
       <div className="container">
         <div id="cards">
-          {portfolioCollection.map((item, index) => {
-            const { fill } = gridLayout(portfolioCollection.length, index);
-            return (
-              <PortfolioCard
-                key={item.slug}
-                index={index}
-                item={item}
-                priority={index === 0}
-                className={fill ? "card--fill" : undefined}
-              />
-            );
-          })}
+          {portfolioCollection.map((item, index) => (
+            <PortfolioCard key={item.slug} index={index} item={item} priority={index === 0} />
+          ))}
         </div>
       </div>
 
@@ -75,43 +62,10 @@ export default function PortfolioSection({ dataPromise }: PortfolioSectionProps)
   );
 }
 
-const sideProjectIcons = [
-  // timer
-  <svg key="timer" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="13" r="8" /><path d="M12 9v4l2 2" /><path d="M5 3L2 6" /><path d="M22 6l-3-3" /><line x1="12" y1="1" x2="12" y2="3" />
-  </svg>,
-  // fork-knife
-  <svg key="fork" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2" /><path d="M7 2v20" /><path d="M21 15V2v0a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" />
-  </svg>,
-  // image
-  <svg key="image" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" />
-  </svg>,
-  // map
-  <svg key="map" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" /><line x1="8" y1="2" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="22" />
-  </svg>,
-];
-
-// dumbbell
-const dumbbellIcon = (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M14.4 14.4 9.6 9.6" />
-    <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z" />
-    <path d="m21.5 21.5-1.4-1.4" />
-    <path d="M3.9 3.9 2.5 2.5" />
-    <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z" />
-  </svg>
-);
-
 function SideProjectCard({ node }: { node: SideProject }) {
   const link = node.link || node.githubUrl;
   const linkLabel = node.link ? "View Project" : "View Repo";
-  const icon = node.title.toLowerCase().includes("fitness")
-    ? dumbbellIcon
-    : sideProjectIcons[stableIndex(node.title, sideProjectIcons.length)];
-  const iconColor = colorFor(node.title, 4);
+  const { icon, ...iconColor } = visualFor(node.title, "sideProject");
 
   return (
     <div className="p-8 rounded-xl hover:translate-y-[-4px] transition-all duration-300 group shadow-sm" style={{ background: "var(--card-bg)" }}>

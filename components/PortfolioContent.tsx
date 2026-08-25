@@ -1,53 +1,28 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
-import { notFound } from "next/navigation";
 import Blocks from "@/blocks";
 import RichText from "@/components/RichText";
-import { getOgImageForPortfolio } from "@/utils/contentful";
 import { articleJsonLd, breadcrumbJsonLd } from "@/utils/metadata";
-import { SITE_URL } from "@/utils/site";
+import type { PortfolioSeo } from "@/utils/contentful";
 import type { PortfolioItem } from "@/types/contentful";
 
-function stripHtml(value: string): string {
-  return value.replace(/<[^>]*>/g, "").trim();
-}
-
 type Props = {
-  dataPromise: Promise<PortfolioItem | undefined>;
+  portfolioItem: PortfolioItem;
+  seo: PortfolioSeo;
 };
 
-export default async function PortfolioContent({ dataPromise }: Props) {
-  const portfolioItem = await dataPromise;
-  if (!portfolioItem) notFound();
-
-  const {
-    title,
-    slug,
-    seoTitle,
-    link,
-    agency,
-    client,
-    industry,
-    body,
-    blocksCollection,
-    sys,
-  } = portfolioItem;
-
-  const plainTitle = stripHtml(seoTitle || title);
-  const plainDescription = documentToPlainTextString(body.json).slice(0, 160);
-  const ogImage = await getOgImageForPortfolio(portfolioItem);
-  const pageUrl = `${SITE_URL}/portfolio/${slug}`;
+export default function PortfolioContent({ portfolioItem, seo }: Props) {
+  const { title, link, agency, client, industry, body, blocksCollection, sys } = portfolioItem;
 
   const articleLd = articleJsonLd({
-    title: plainTitle,
-    description: plainDescription,
-    pageUrl,
-    ogImage,
+    title: seo.plainTitle,
+    description: seo.description,
+    pageUrl: seo.pageUrl,
+    ogImage: seo.ogImage,
     datePublished: sys?.firstPublishedAt || sys?.publishedAt,
     dateModified: sys?.publishedAt || sys?.firstPublishedAt,
   });
 
-  const breadcrumbLd = breadcrumbJsonLd(plainTitle, pageUrl);
+  const breadcrumbLd = breadcrumbJsonLd(seo.plainTitle, seo.pageUrl);
 
   const metaItems = [
     client && { label: "Client", value: client },

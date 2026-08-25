@@ -1,16 +1,11 @@
-"use client";
-
-import { use } from "react";
 import PortfolioCard from "@/components/PortfolioCard";
 import type { PortfolioItem } from "@/types/contentful";
 
 interface PortfolioFooterProps {
-  footerPromise: Promise<{ items: PortfolioItem[] } | undefined>;
+  footerCollection?: { items: PortfolioItem[] };
 }
 
-export default function PortfolioFooter({ footerPromise }: PortfolioFooterProps) {
-  const footerCollection = use(footerPromise);
-
+export default function PortfolioFooter({ footerCollection }: PortfolioFooterProps) {
   if (!footerCollection || footerCollection.items.length === 0) return null;
 
   return (
@@ -18,12 +13,7 @@ export default function PortfolioFooter({ footerPromise }: PortfolioFooterProps)
       <h3 className="font-headline font-bold">Other projects</h3>
       <div id="cards">
         {footerCollection.items.map((item, index) => (
-          <PortfolioCard
-            key={item.slug}
-            item={item}
-            index={index}
-            loading="lazy"
-          />
+          <PortfolioCard key={item.slug} item={item} index={index} />
         ))}
       </div>
     </section>

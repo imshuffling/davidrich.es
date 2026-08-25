@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
-import type { ContentfulImage } from "@/types/contentful";
+import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
+import type { ContentfulImage, PortfolioItem } from "@/types/contentful";
 import { SITE_URL, SITE_NAME, BRAND_DESCRIPTION } from "@/utils/site";
+
+function stripHtml(value: string): string {
+  return value.replace(/<[^>]*>/g, "").trim();
+}
+
+export function deriveSeo(item: Pick<PortfolioItem, "title" | "seoTitle" | "slug" | "body">) {
+  return {
+    plainTitle: stripHtml(item.seoTitle || item.title),
+    description: documentToPlainTextString(item.body.json).slice(0, 160),
+    pageUrl: `${SITE_URL}/portfolio/${item.slug}`,
+  };
+}
 
 interface PageMetadata {
   title: string;

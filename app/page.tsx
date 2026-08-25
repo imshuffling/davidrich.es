@@ -1,8 +1,6 @@
 import { Suspense } from "react";
-import Image from "next/image";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
-import { gridLayout } from "@/utils/portfolioGrid";
 import { buildMetadata } from "@/utils/metadata";
 import { LINKS } from "@/utils/site";
 
@@ -50,17 +48,6 @@ export default function HomePage() {
             </a>
           </div>
         </div>
-        {/* Hidden for now — re-enable when ready */}
-        {false && (
-          <Image
-            src="/me.png"
-            alt="Illustration of David carrying his son in a baby carrier"
-            width={460}
-            height={460}
-            priority
-            className="hidden lg:block w-72 xl:w-80 shrink-0 rounded-full"
-          />
-        )}
       </section>
 
       {/* Portfolio Section */}
@@ -93,18 +80,11 @@ export default function HomePage() {
 }
 
 function PortfolioSkeleton() {
-  const count = 6;
   return (
     <div id="cards">
-      {[...Array(count)].map((_, i) => {
-        const { fill } = gridLayout(count, i);
-        return (
-          <div
-            key={i}
-            className={`card animate-pulse${fill ? " card--fill" : ""}`}
-          />
-        );
-      })}
+      {[...Array(6)].map((_, i) => (
+        <div key={i} className="card animate-pulse" />
+      ))}
     </div>
   );
 }

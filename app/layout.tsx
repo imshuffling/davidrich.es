@@ -4,7 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Layout from "@/components/layout/Layout";
 import { SITE_URL, SITE_NAME, BRAND_TITLE, BRAND_DESCRIPTION } from "@/utils/site";
-import { personJsonLd, websiteJsonLd } from "@/utils/metadata";
+import { buildMetadata, personJsonLd, websiteJsonLd } from "@/utils/metadata";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,22 +21,26 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const oswald = Oswald({
   subsets: ["latin"],
   display: "swap",
+  preload: false,
   variable: "--font-oswald",
 });
 
+const baseMetadata = buildMetadata({
+  title: BRAND_TITLE,
+  description: BRAND_DESCRIPTION,
+  path: "/",
+});
+
 export const metadata: Metadata = {
+  ...baseMetadata,
   metadataBase: new URL(SITE_URL),
   title: {
     default: BRAND_TITLE,
     template: "%s - David Riches",
   },
-  description: BRAND_DESCRIPTION,
   manifest: "/manifest.json",
   authors: [{ name: "David Riches", url: SITE_URL }],
   creator: "David Riches",
-  alternates: {
-    canonical: "/",
-  },
   robots: {
     index: true,
     follow: true,
@@ -49,17 +53,10 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    type: "website",
-    locale: "en_GB",
+    ...baseMetadata.openGraph,
     url: SITE_URL,
+    locale: "en_GB",
     siteName: SITE_NAME,
-    title: BRAND_TITLE,
-    description: BRAND_DESCRIPTION,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: BRAND_TITLE,
-    description: BRAND_DESCRIPTION,
   },
 };
 

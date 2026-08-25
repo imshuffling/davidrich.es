@@ -1,6 +1,17 @@
 import ImageWrapper from "@/components/ImageWrapper";
 import Prose from "@/components/Prose";
+import { enrichImage } from "@/utils/contentfulImage";
 import type { BlockTwoColumn as BlockTwoColumnProps } from "@/types/contentful";
+
+export const fragment = `... on TwoColumn {
+  image { url fileName width height }
+  imageFirst
+  body
+}`;
+
+export async function enrich(block: BlockTwoColumnProps): Promise<BlockTwoColumnProps> {
+  return { ...block, image: await enrichImage(block.image, "twoColumn") };
+}
 
 export default function BlockTwoColumn({
   image,
