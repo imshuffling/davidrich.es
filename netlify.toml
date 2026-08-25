@@ -2,5 +2,8 @@
   command = "pnpm test && pnpm build"
   publish = ".next"
 
+[build.environment]
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/.next/cache/**,.next/cache/**"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
