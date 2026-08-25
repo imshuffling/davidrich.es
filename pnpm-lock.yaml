@@ -26,9 +26,6 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      plaiceholder:
-        specifier: ^3.0.0
-        version: 3.0.0(sharp@0.35.3(@types/node@25.9.5))
       react:
         specifier: 19.2.5
         version: 19.2.5
@@ -41,15 +38,9 @@ importers:
       sanitize-html:
         specifier: ^2.17.7
         version: 2.17.7
-      sharp:
-        specifier: ^0.35.3
-        version: 0.35.3(@types/node@25.9.5)
       tailwindcss:
         specifier: ^4.3.3
         version: 4.3.3
-      use-sound:
-        specifier: ^5.0.0
-        version: 5.0.0(react@19.2.5)
     devDependencies:
       '@types/node':
         specifier: ^25.9.5
@@ -1592,9 +1583,6 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  howler@2.2.4:
-    resolution: {integrity: sha512-iARIBPgcQrwtEr+tALF+rapJ8qSc+Set2GJQl7xT1MQzWaVkFebdJhR3alVlSiUf5U7nAANKuj3aWpwerocD5w==}
-
   html-url-attributes@3.0.1:
     resolution: {integrity: sha512-ol6UPyBWqsrO6EJySPz2O7ZSr856WDrEzM5zMqp+FJJLGMW35cLYmmZnl0vztAZxRUoNZJFTCohfjuIJ8I4QBQ==}
 
@@ -2235,11 +2223,6 @@ packages:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
 
-  plaiceholder@3.0.0:
-    resolution: {integrity: sha512-jwHxxHPnr1BwRzPCeZgEK2BMsEy2327sWynw3qb6XC/oGgGDUTPtR8pFxFQmNArhMBwhkUbUr5OPhhIJpCa8eQ==}
-    peerDependencies:
-      sharp: '>= 0.30.6'
-
   possible-typed-array-names@1.1.0:
     resolution: {integrity: sha512-/+5VFTchJDoVj3bhoqi6UeymcD00DAwb1nJwamzPvHEszJ4FpF6SNNbUbOS8yI56qHzdV8eK0qEfOSiodkTdxg==}
     engines: {node: '>= 0.4'}
@@ -2595,11 +2578,6 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  use-sound@5.0.0:
-    resolution: {integrity: sha512-MNHT3FFC5HxNCrgZtrnpIMJI2cw/0D2xismcrtyht8BTuF5FhFhb57xO/jlQr2xJaFrc/0btzRQvGyHQwB7PVA==}
-    peerDependencies:
-      react: '>=16.8'
-
   vfile-message@4.0.3:
     resolution: {integrity: sha512-QTHzsGd1EhbZs4AsQ20JX1rC3cOlt/IWJruk893DfLRr57lcnOeMaWG4K0JrRta4mIJZKth2Au3mM3u03/JWKw==}
 
@@ -2943,7 +2921,8 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@img/colour@1.1.0': {}
+  '@img/colour@1.1.0':
+    optional: true
 
   '@img/sharp-darwin-arm64@0.35.3':
     optionalDependencies:
@@ -4316,8 +4295,6 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  howler@2.2.4: {}
-
   html-url-attributes@3.0.1: {}
 
   htmlparser2@10.1.0:
@@ -5049,10 +5026,6 @@ snapshots:
 
   picomatch@4.0.5: {}
 
-  plaiceholder@3.0.0(sharp@0.35.3(@types/node@25.9.5)):
-    dependencies:
-      sharp: 0.35.3(@types/node@25.9.5)
-
   possible-typed-array-names@1.1.0: {}
 
   postcss@8.5.23:
@@ -5274,6 +5247,7 @@ snapshots:
       '@img/sharp-win32-ia32': 0.35.3
       '@img/sharp-win32-x64': 0.35.3
       '@types/node': 25.9.5
+    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -5571,11 +5545,6 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
-
-  use-sound@5.0.0(react@19.2.5):
-    dependencies:
-      howler: 2.2.4
-      react: 19.2.5
 
   vfile-message@4.0.3:
     dependencies:

@@ -1,11 +1,10 @@
-import { Suspense } from "react";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
 import { LINKS } from "@/utils/site";
 
 export const metadata = buildMetadata({
-  title: "About me - David Riches",
+  title: "David Riches — Senior Front-End Engineer",
   description:
     "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.",
   path: "/",
@@ -65,26 +64,8 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <Suspense
-          fallback={
-            <div className="container">
-              <PortfolioSkeleton />
-            </div>
-          }
-        >
-          <PortfolioSection dataPromise={dataPromise} />
-        </Suspense>
+        <PortfolioSection dataPromise={dataPromise} />
       </div>
     </>
-  );
-}
-
-function PortfolioSkeleton() {
-  return (
-    <div id="cards">
-      {[...Array(6)].map((_, i) => (
-        <div key={i} className="card animate-pulse" />
-      ))}
-    </div>
   );
 }

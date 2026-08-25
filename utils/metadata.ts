@@ -10,7 +10,9 @@ function stripHtml(value: string): string {
 export function deriveSeo(item: Pick<PortfolioItem, "title" | "seoTitle" | "slug" | "body">) {
   return {
     plainTitle: stripHtml(item.seoTitle || item.title),
-    description: documentToPlainTextString(item.body.json).slice(0, 160),
+    description: item.body
+      ? documentToPlainTextString(item.body.json).slice(0, 160)
+      : BRAND_DESCRIPTION,
     pageUrl: `${SITE_URL}/portfolio/${item.slug}`,
   };
 }

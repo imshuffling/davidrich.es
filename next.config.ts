@@ -4,9 +4,17 @@ const config: NextConfig = {
   reactStrictMode: true,
   // Enable Partial Prerendering for faster initial page loads
   cacheComponents: true,
+  // Contentful transforms all images via the custom loader, so Next's sharp
+  // (and its libvips binaries) never run at runtime — keep them out of the
+  // serverless function bundle
+  outputFileTracingExcludes: {
+    "*": ["node_modules/sharp/**", "node_modules/@img/**"],
+  },
   images: {
     loader: "custom",
     loaderFile: "./utils/contentfulLoader.ts",
+    // Layout caps at 1216px content width; 2432 covers the widest slot at 2x DPR
+    deviceSizes: [640, 780, 1080, 1216, 1606, 1920, 2432],
   },
   async redirects() {
     return [

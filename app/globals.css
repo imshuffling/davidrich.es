@@ -221,6 +221,11 @@ html[data-theme="dark"] {
     transition: color 0.2s ease;
   }
 
+  :focus-visible {
+    outline: 2px solid var(--primary-colour);
+    outline-offset: 2px;
+  }
+
   a:hover {
     color: var(--primary-colour-dark);
   }
@@ -249,7 +254,6 @@ html[data-theme="dark"] {
     appearance: none;
     padding: 12px 30px;
     cursor: pointer;
-    outline: none;
     border-radius: 0.75rem;
     font-size: 16px;
     font-weight: 600;
@@ -323,6 +327,21 @@ html[data-theme="dark"] {
     animation-duration: 2.5s;
     animation-iteration-count: infinite;
     transform-origin: 70% 70%;
+  }
+
+  /* Icon buttons — strip the base button chrome */
+  .icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0.375rem;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .icon-button:hover {
+    transform: none;
   }
 
   /* Theme changer */
@@ -802,26 +821,6 @@ html[data-theme="dark"] {
     }
     html[data-theme="light"] .step-number {
       color: rgba(99, 14, 212, 0.55);
-    }
-  }
-
-  /* Scroll animations */
-  .scroll-animate {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .scroll-animate.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-animate {
-      opacity: 1;
-      transform: none;
-      transition: none;
     }
   }
 }

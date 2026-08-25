@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans, Oswald } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
@@ -21,7 +21,6 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const oswald = Oswald({
   subsets: ["latin"],
   display: "swap",
-  preload: false,
   variable: "--font-oswald",
 });
 
@@ -60,6 +59,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fcf9f8" },
+    { media: "(prefers-color-scheme: dark)", color: "#1c1b1b" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -71,6 +77,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} ${oswald.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://images.ctfassets.net" />
+        <link rel="preconnect" href="https://videos.ctfassets.net" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}

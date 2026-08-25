@@ -1,35 +1,37 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { CONTACT } from "@/utils/site";
 
 type FormStatus = 'idle' | 'pending' | 'ok' | 'error';
 
 export function FeedbackForm() {
   const [status, setStatus] = useState<FormStatus>('idle');
-  const [error, setError] = useState<string | null>(null);
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setStatus("pending");
-      setError(null);
       const myForm = event.currentTarget;
       const formData = new FormData(myForm);
+      const body = new URLSearchParams(
+        Array.from(formData.entries(), ([key, value]) => [key, String(value)])
+      ).toString();
       const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData as any).toString(),
+        body,
       });
-      if (res.status === 200) {
+      if (res.ok) {
         setStatus("ok");
         myForm.reset();
       } else {
         setStatus("error");
-        setError(`${res.status} ${res.statusText}`);
+        console.error(`Form submission failed: ${res.status} ${res.statusText}`);
       }
     } catch (e) {
       setStatus("error");
-      setError(String(e));
+      console.error(e);
     }
   };
 
@@ -103,7 +105,8 @@ export function FeedbackForm() {
         )}
         {status === "error" && (
           <div id="form-error" className="notification text-error" role="alert" aria-live="assertive">
-            Error: {error}
+            Something went wrong sending your message. Please try again, or email
+            me at <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
           </div>
         )}
       </div>

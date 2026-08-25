@@ -3,8 +3,8 @@
   "short_name": "davidrich.es",
   "description": "David Riches personal website",
   "start_url": "/",
-  "background_color": "#ffffff",
-  "theme_color": "#F40088",
+  "background_color": "#fcf9f8",
+  "theme_color": "#630ed4",
   "display": "minimal-ui",
   "orientation": "any",
   "icons": [

@@ -80,7 +80,7 @@ export async function getHome(): Promise<{
   sideProjectsCollection: SideProject[];
 }> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("days");
   cacheTag("contentful");
 
   const data = await query<{
@@ -91,10 +91,13 @@ export async function getHome(): Promise<{
   const items = data.featuredProjectsCollection.items[0]?.itemCollection.items ?? [];
 
   const portfolioCollection = await Promise.all(
-    items.map(async (item) => ({
+    items.map(async (item, index) => ({
       ...item,
+      body: undefined,
       title: sanitize(item.title) ?? item.title,
-      description: item.body ? documentToPlainTextString(item.body.json) : undefined,
+      // Only the first (large) card renders a description
+      description:
+        index === 0 && item.body ? documentToPlainTextString(item.body.json) : undefined,
       image: await enrichImage(item.image, "card"),
     })),
   );
@@ -148,7 +151,7 @@ const PORTFOLIO_QUERY = `
 
 export async function getPortfolio(slug: string): Promise<PortfolioItem | undefined> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("days");
   cacheTag("contentful");
 
   const data = await query<{ portfolioCollection: { items: PortfolioItem[] } }>(
@@ -182,7 +185,7 @@ export interface PortfolioSlugEntry {
 
 export async function getPortfolioSlugs(): Promise<PortfolioSlugEntry[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("days");
   cacheTag("contentful");
 
   const data = await query<{
@@ -212,7 +215,7 @@ export interface PortfolioSeo {
 
 export async function portfolioSeo(slug: string): Promise<PortfolioSeo | undefined> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("days");
   cacheTag("contentful");
 
   const item = await getPortfolio(slug);
@@ -240,7 +243,7 @@ const SERVICES_QUERY = `
 
 export async function getServices(): Promise<Service[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("days");
   cacheTag("contentful");
 
   const data = await query<{ servicesCollection: { items: Service[] } }>(SERVICES_QUERY);

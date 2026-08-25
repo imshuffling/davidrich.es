@@ -1,28 +1,28 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import useSound from "use-sound";
+import { playSound } from "@/utils/sound";
 
 export default function ThemeChanger() {
-  const { setTheme } = useTheme();
-  const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
-  const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
+  const { resolvedTheme, setTheme } = useTheme();
 
-  const handleClick = (theme: "light" | "dark") => {
-    if (theme === "dark") {
-      playOn();
-    } else {
-      playOff();
-    }
-    setTheme(theme);
+  const toggle = () => {
+    const next = resolvedTheme === "dark" ? "light" : "dark";
+    playSound(next === "dark" ? "/sounds/switch-on.mp3" : "/sounds/switch-off.mp3");
+    setTheme(next);
   };
 
   return (
-    <div className="theme-changer-wrapper">
-      <div className="mode-container">
-        <i onClick={() => handleClick("light")} className="gg-sun"></i>
-        <i onClick={() => handleClick("dark")} className="gg-moon"></i>
-      </div>
-    </div>
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label="Toggle dark mode"
+      className="icon-button theme-changer-wrapper"
+    >
+      <span className="mode-container">
+        <i className="gg-sun" aria-hidden="true"></i>
+        <i className="gg-moon" aria-hidden="true"></i>
+      </span>
+    </button>
   );
 }

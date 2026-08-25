@@ -13,7 +13,7 @@ export default function PortfolioFooter({ footerCollection }: PortfolioFooterPro
       <h3 className="font-headline font-bold">Other projects</h3>
       <div id="cards">
         {footerCollection.items.map((item, index) => (
-          <PortfolioCard key={item.slug} item={item} index={index} />
+          <PortfolioCard key={item.slug} item={item} index={index} imageVariant="footerCard" />
         ))}
       </div>
     </section>

@@ -1,33 +1,59 @@
 "use client";
 
-import { useState, useLayoutEffect, useCallback, useEffect } from "react";
+import { useState, useLayoutEffect, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import ThemeChanger from "../ThemeChanger";
 import { usePathname } from "next/navigation";
-import useSound from "use-sound";
+import { playSound } from "@/utils/sound";
 import { NAV_LINKS, LINKS } from "@/utils/site";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  const [playOn] = useSound("/sounds/switch-on.mp3", { volume: 0.5 });
-  const [playOff] = useSound("/sounds/switch-off.mp3", { volume: 0.5 });
+  const overlayRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   const toggle = useCallback(() => {
     setToggleState((prev) => {
-      if (prev) {
-        playOff();
-      } else {
-        playOn();
-      }
+      playSound(prev ? "/sounds/switch-off.mp3" : "/sounds/switch-on.mp3");
       return !prev;
     });
-  }, [playOn, playOff]);
+  }, []);
 
   useEffect(() => {
     setToggleState(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!toggleState) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setToggleState(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const links = overlayRef.current
+        ? Array.from(overlayRef.current.querySelectorAll<HTMLElement>("a[href]"))
+        : [];
+      const focusable = menuButtonRef.current ? [menuButtonRef.current, ...links] : links;
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [toggleState]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -101,19 +127,13 @@ export default function Header() {
 
           <div className="flex items-center gap-4 md:justify-self-end">
             <ThemeChanger />
-            <div
-              role="button"
+            <button
+              type="button"
+              ref={menuButtonRef}
               aria-label="Main menu"
               aria-expanded={toggleState}
-              className="md:hidden cursor-pointer text-primary"
+              className="icon-button md:hidden cursor-pointer text-primary"
               onClick={toggle}
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  toggle();
-                }
-              }}
             >
               {toggleState ? (
                 <svg width={24} height={24} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -134,13 +154,16 @@ export default function Header() {
                   />
                 </svg>
               )}
-            </div>
+            </button>
           </div>
         </nav>
       </header>
 
       {/* Mobile nav overlay — sibling of header so backdrop-blur doesn't trap it */}
-      <div
+      <nav
+        ref={overlayRef}
+        aria-label="Mobile navigation"
+        inert={!toggleState}
         className={`fixed inset-0 z-[60] flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
           toggleState ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
         }`}
@@ -172,7 +195,7 @@ export default function Header() {
             </a>
           </li>
         </ul>
-      </div>
+      </nav>
     </>
   );
 }

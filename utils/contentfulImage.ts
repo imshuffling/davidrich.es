@@ -1,10 +1,9 @@
-import { getPlaiceholder } from "plaiceholder";
 import { INTENTS, withParams, type ImageIntent } from "@/utils/imageParams";
 import type { ContentfulImage } from "@/types/contentful";
 
 export type { ImageIntent } from "@/utils/imageParams";
 
-const BLUR_PARAMS = { w: 20, q: 50 };
+const BLUR_PARAMS = { w: 20, q: 50, fm: "webp" };
 
 const TRANSPARENT_PIXEL =
   "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==";
@@ -28,8 +27,7 @@ async function generateBlur(url: string): Promise<string> {
       return TRANSPARENT_PIXEL;
     }
     const buffer = Buffer.from(await response.arrayBuffer());
-    const { base64 } = await getPlaiceholder(buffer, { size: 10 });
-    return base64;
+    return `data:image/webp;base64,${buffer.toString("base64")}`;
   } catch (error) {
     if ((error as Error)?.name !== "AbortError") {
       console.error(`blur generation failed for ${blurUrl}:`, error);

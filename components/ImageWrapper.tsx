@@ -1,14 +1,30 @@
 import Image from "next/image";
 import type { ContentfulImage } from "@/types/contentful";
 
-type ImageVariant = "card" | "hero" | "twoColumn";
+export type ImageVariant = "card" | "cardLarge" | "footerCard" | "hero" | "twoColumn";
 
+/* Sizes derived from the .container cap (80rem − 2×2rem padding = 1216px content)
+   and the 12-col #cards grid: span-4 ≈ 390px, span-8 ≈ 803px, full-bleed = 1216px. */
 const VARIANTS: Record<ImageVariant, { fill: boolean; sizes: string }> = {
-  card: { fill: true, sizes: "(min-width: 1960px) 1407px, 71.89vw" },
-  hero: { fill: true, sizes: "(min-width: 1960px) 1600px, calc(81.83vw + 13px)" },
+  card: {
+    fill: true,
+    sizes: "(min-width: 80em) 390px, (min-width: 48em) 33vw, calc(100vw - 4rem)",
+  },
+  cardLarge: {
+    fill: true,
+    sizes: "(min-width: 80em) 803px, (min-width: 48em) 66vw, calc(100vw - 4rem)",
+  },
+  footerCard: {
+    fill: true,
+    sizes: "(min-width: 80em) 596px, (min-width: 48em) 50vw, calc(100vw - 4rem)",
+  },
+  hero: {
+    fill: true,
+    sizes: "(min-width: 80em) 1216px, calc(100vw - 4rem)",
+  },
   twoColumn: {
     fill: false,
-    sizes: "(min-width: 1960px) 755px, (min-width: 800px) calc(39.3vw - 20px), 86.04vw",
+    sizes: "(min-width: 80em) 576px, (min-width: 48em) calc(50vw - 4rem), calc(100vw - 4rem)",
   },
 };
 

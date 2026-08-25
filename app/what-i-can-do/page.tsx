@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import ServicesSection from "@/components/ServicesSection";
 import { getServices } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
@@ -39,9 +38,7 @@ export default function ServicesPage() {
           <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-12">
             What I Do
           </h2>
-          <Suspense fallback={<ServicesSkeleton />}>
-            <ServicesSection dataPromise={dataPromise} />
-          </Suspense>
+          <ServicesSection dataPromise={dataPromise} />
         </div>
       </section>
       {/* My Process */}
@@ -134,19 +131,5 @@ export default function ServicesPage() {
         </div>
       </section>
     </>
-  );
-}
-
-function ServicesSkeleton() {
-  return (
-    <ul id="services">
-      {[...Array(3)].map((_, i) => (
-        <li key={i} className="animate-pulse">
-          <div className="w-14 h-14 rounded-xl bg-surface-container-high mb-6" />
-          <div className="h-6 w-48 bg-surface-container-high rounded mb-4" />
-          <div className="h-20 bg-surface-container-high rounded" />
-        </li>
-      ))}
-    </ul>
   );
 }

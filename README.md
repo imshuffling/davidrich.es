@@ -54,12 +54,20 @@ Ensure you have the following installed:
    ```env
    CONTENTFUL_SPACE_ID=your-space-id
    CONTENTFUL_ACCESS_KEY=your-access-token
+   CONTENTFUL_REVALIDATE_SECRET=any-long-random-string
    ```
 
    Replace `your-space-id` and `your-access-token` with your Contentful API credentials.
    These are server-only — never prefix them with `NEXT_PUBLIC_`, which would expose
-   the token to the browser. The same two names must be set in Netlify's environment
+   the token to the browser. The same names must be set in Netlify's environment
    variables for deploys.
+
+   `CONTENTFUL_REVALIDATE_SECRET` guards the `POST /api/revalidate` endpoint, which
+   clears the Contentful data cache on demand. To make published edits appear
+   immediately, add a webhook in Contentful (Settings → Webhooks) pointing at
+   `https://davidrich.es/api/revalidate` with a custom header
+   `x-revalidate-secret: <the same secret>`, triggered on entry publish/unpublish.
+   Without the webhook, content updates appear when the cache expires (days).
 
 ### Running the Development Server
 

@@ -30,7 +30,7 @@ export interface PortfolioItem {
   description?: string;
   media?: ContentfulVideo;
   image: ContentfulImage;
-  body: RichTextDocument;
+  body?: RichTextDocument;
   sys?: {
     publishedAt?: string;
     firstPublishedAt?: string;

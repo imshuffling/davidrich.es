@@ -14,12 +14,24 @@ interface PortfolioSectionProps {
 export default async function PortfolioSection({ dataPromise }: PortfolioSectionProps) {
   const { portfolioCollection, sideProjectsCollection } = await dataPromise;
 
+  const count = portfolioCollection.length;
+  // Mirrors the #cards last-child full-width rule in globals.css:
+  // :last-child:nth-child(n + 3):not(:nth-child(3n + 2))
+  const isFullBleed = (index: number) =>
+    index === count - 1 && count >= 3 && count % 3 !== 2;
+
   return (
     <>
       <div className="container">
         <div id="cards">
           {portfolioCollection.map((item, index) => (
-            <PortfolioCard key={item.slug} index={index} item={item} priority={index === 0} />
+            <PortfolioCard
+              key={item.slug}
+              index={index}
+              item={item}
+              priority={index === 0}
+              imageVariant={isFullBleed(index) ? "hero" : undefined}
+            />
           ))}
         </div>
       </div>
