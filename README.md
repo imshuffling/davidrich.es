@@ -52,11 +52,14 @@ Ensure you have the following installed:
    Create a `.env.local` file in the root directory and add the following variables:
 
    ```env
-   NEXT_PUBLIC_CONTENTFUL_SPACE_ID=your-space-id
-   NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=your-access-token
+   CONTENTFUL_SPACE_ID=your-space-id
+   CONTENTFUL_ACCESS_KEY=your-access-token
    ```
 
    Replace `your-space-id` and `your-access-token` with your Contentful API credentials.
+   These are server-only — never prefix them with `NEXT_PUBLIC_`, which would expose
+   the token to the browser. The same two names must be set in Netlify's environment
+   variables for deploys.
 
 ### Running the Development Server
 
