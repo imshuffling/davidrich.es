@@ -1,4 +1,5 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Link from "next/link";
 import Blocks from "@/blocks";
 import RichText from "@/components/RichText";
 import { articleJsonLd, breadcrumbJsonLd } from "@/utils/metadata";
@@ -44,6 +45,16 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
       />
       {/* Hero */}
       <div className="pt-8 md:pt-12 mb-12 md:mb-16">
+        <Link
+          href="/#work"
+          className="inline-flex items-center gap-2 text-sm font-headline font-semibold text-primary !border-none !bg-none mb-6 group"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform group-hover:-translate-x-0.5">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+          All work
+        </Link>
+        <br />
         <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-6">
           {agency && <span className="text-on-surface-variant font-normal mr-1">Agency:</span>}
           {badgeText}

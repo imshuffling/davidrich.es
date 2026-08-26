@@ -14,6 +14,10 @@ export default function Header() {
   const overlayRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
+  // "Work" (/) also covers the case-study pages
+  const isNavActive = (href: string) =>
+    pathname === href || (href === "/" && pathname.startsWith("/portfolio"));
+
   const toggle = useCallback(() => {
     setToggleState((prev) => {
       playSound(prev ? "/sounds/switch-off.mp3" : "/sounds/switch-on.mp3");
@@ -101,7 +105,7 @@ export default function Header() {
           {/* Desktop nav */}
           <div className={`hidden md:flex items-center justify-center font-headline font-medium tracking-tight transition-all duration-300 ${scrolled ? "gap-7 text-sm" : "gap-10 text-base"}`}>
             {NAV_LINKS.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = isNavActive(link.href);
               return (
                 <Link
                   key={link.href}
@@ -121,10 +125,13 @@ export default function Header() {
               href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
+              className="inline-flex items-center gap-1 opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
               style={{ color: "var(--heading-color)" }}
             >
               Resume
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
             </a>
           </div>
 
@@ -179,7 +186,7 @@ export default function Header() {
                 href={link.href}
                 onClick={() => setToggleState(false)}
                 className="!border-none !bg-none transition-colors"
-                style={{ color: pathname === link.href ? "var(--primary-colour)" : "var(--heading-color)" }}
+                style={{ color: isNavActive(link.href) ? "var(--primary-colour)" : "var(--heading-color)" }}
               >
                 {link.label}
               </Link>
@@ -190,11 +197,14 @@ export default function Header() {
               href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="!border-none !bg-none"
+              className="inline-flex items-center gap-2 !border-none !bg-none"
               style={{ color: "var(--heading-color)" }}
               onClick={() => setToggleState(false)}
             >
               Resume
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7 17L17 7M7 7h10v10" />
+              </svg>
             </a>
           </li>
         </ul>
