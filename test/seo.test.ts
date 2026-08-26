@@ -1,20 +1,21 @@
 import { describe, expect, it } from "vitest";
+import { BLOCKS, type Document } from "@contentful/rich-text-types";
 import { deriveSeo } from "@/utils/metadata";
 import { SITE_URL } from "@/utils/site";
 
-const body = {
-  json: {
-    nodeType: "document",
-    data: {},
-    content: [
-      {
-        nodeType: "paragraph",
-        data: {},
-        content: [{ nodeType: "text", value: "x".repeat(300), marks: [], data: {} }],
-      },
-    ],
-  },
+const json: Document = {
+  nodeType: BLOCKS.DOCUMENT,
+  data: {},
+  content: [
+    {
+      nodeType: BLOCKS.PARAGRAPH,
+      data: {},
+      content: [{ nodeType: "text", value: "x".repeat(300), marks: [], data: {} }],
+    },
+  ],
 };
+
+const body = { json };
 
 describe("deriveSeo", () => {
   it("strips html from the title and prefers seoTitle", () => {

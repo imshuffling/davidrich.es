@@ -14,8 +14,10 @@ export interface ContentfulVideo {
 }
 
 // Rich Text Document Type
+import type { Document } from "@contentful/rich-text-types";
+
 export interface RichTextDocument {
-  json: any; // Contentful rich text JSON structure is complex
+  json: Document;
 }
 
 // Portfolio Types
@@ -26,6 +28,7 @@ export interface PortfolioItem {
   client: string;
   agency: string;
   industry: string;
+  services?: string[];
   link?: string;
   description?: string;
   media?: ContentfulVideo;

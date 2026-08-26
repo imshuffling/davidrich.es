@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function PortfolioContent({ portfolioItem, seo }: Props) {
-  const { title, link, agency, client, industry, body, blocksCollection, sys } = portfolioItem;
+  const { title, link, agency, client, industry, services, body, blocksCollection, sys } = portfolioItem;
 
   const articleLd = articleJsonLd({
     title: seo.plainTitle,
@@ -26,7 +26,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
 
   const metaItems = [
     client && { label: "Client", value: client },
-    industry && { label: "Services", value: industry },
+    industry && { label: "Industry", value: industry },
     link && { label: "Website", value: link, isLink: true },
   ].filter(Boolean) as { label: string; value: string; isLink?: boolean }[];
 
@@ -59,8 +59,8 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
             {body && documentToReactComponents(body.json)}
           </div>
 
-          {metaItems.length > 0 && (
-            <div className="flex flex-wrap gap-x-10 gap-y-4 md:gap-12 shrink-0">
+          {(metaItems.length > 0 || (services && services.length > 0)) && (
+            <div className="flex flex-wrap gap-x-10 gap-y-4 md:gap-12 shrink-0 md:max-w-sm content-start">
               {metaItems.map((item, i) => (
                 <div key={i}>
                   <p className="font-label text-[0.65rem] uppercase tracking-widest text-primary mb-1 font-bold">
@@ -81,6 +81,23 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
                   </p>
                 </div>
               ))}
+              {services && services.length > 0 && (
+                <div className="w-full">
+                  <p className="font-label text-[0.65rem] uppercase tracking-widest text-primary mb-2 font-bold">
+                    Services
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {services.map((service) => (
+                      <span
+                        key={service}
+                        className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-headline font-semibold"
+                      >
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

@@ -21,6 +21,7 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
+    "@contentful/rich-text-types": "^17.2.7",
     "@types/node": "^25.9.5",
     "@types/react": "19.2.14",
     "@types/sanitize-html": "^2.16.1",

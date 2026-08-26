@@ -42,6 +42,9 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
     devDependencies:
+      '@contentful/rich-text-types':
+        specifier: ^17.2.7
+        version: 17.2.7
       '@types/node':
         specifier: ^25.9.5
         version: 25.9.5

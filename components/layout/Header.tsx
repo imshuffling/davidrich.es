@@ -21,9 +21,12 @@ export default function Header() {
     });
   }, []);
 
-  useEffect(() => {
+  // Close the menu when the route changes (adjust-state-during-render pattern)
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
     setToggleState(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (!toggleState) return;
