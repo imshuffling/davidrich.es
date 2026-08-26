@@ -44,7 +44,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       {/* Hero */}
-      <div className="pt-8 md:pt-12 mb-12 md:mb-16">
+      <div className="pt-4 md:pt-12 mb-8 md:mb-16">
         <Link
           href="/#work"
           className="inline-flex items-center gap-2 text-sm font-headline font-semibold text-primary !border-none !bg-none mb-6 group"
