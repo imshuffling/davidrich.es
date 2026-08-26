@@ -179,34 +179,6 @@ export async function getPortfolio(slug: string): Promise<PortfolioItem | undefi
   };
 }
 
-const PORTFOLIO_INDEX_QUERY = `
-  query {
-    portfolioCollection(limit: 50, order: sys_firstPublishedAt_DESC) {
-      items {
-        title
-        slug
-        client
-        agency
-        industry
-        media { url }
-        image { url fileName width height }
-      }
-    }
-  }
-`;
-
-export async function getPortfolioIndex(): Promise<PortfolioItem[]> {
-  "use cache";
-  cacheLife("days");
-  cacheTag("contentful");
-
-  const data = await query<{ portfolioCollection: { items: PortfolioItem[] } }>(
-    PORTFOLIO_INDEX_QUERY,
-  );
-  const items = await enrichItems(data.portfolioCollection.items, "card");
-  return items.map((item) => ({ ...item, title: sanitize(item.title) ?? item.title }));
-}
-
 export interface PortfolioSlugEntry {
   slug: string;
   publishedAt?: string;

@@ -23,6 +23,11 @@ const config: NextConfig = {
         destination: "/:path+",
         permanent: true,
       },
+      {
+        source: "/portfolio",
+        destination: "/",
+        permanent: false,
+      },
     ];
   },
   // Add CSP and security headers

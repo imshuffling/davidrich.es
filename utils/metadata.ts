@@ -117,7 +117,7 @@ export function breadcrumbJsonLd(title: string, pageUrl: string) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/portfolio` },
+      { "@type": "ListItem", position: 2, name: "Work", item: `${SITE_URL}/#work` },
       { "@type": "ListItem", position: 3, name: title, item: pageUrl },
     ],
   };
