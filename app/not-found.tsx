@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="container pt-12 pb-20 md:pt-20 md:pb-32">
+    <section className="container pt-8 pb-14 md:pt-20 md:pb-32">
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight">
         404 –{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">

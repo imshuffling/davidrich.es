@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
         Skip to main content
       </a>
       <Header />
-      <main id="main-content" className="pt-24 md:pt-28">
+      <main id="main-content" className="pt-20 md:pt-28">
         <div id="page-wrap">{children}</div>
       </main>
       <Footer />

@@ -3,7 +3,7 @@ import { CONTACT, LINKS } from "@/utils/site";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-primary/10 py-16 mt-16">
+    <footer className="w-full border-t border-primary/10 py-10 mt-12 md:py-16 md:mt-16">
       <div className="container flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex flex-col items-center md:items-start gap-1">
           <span className="text-lg font-bold text-primary font-headline tracking-tight">

@@ -37,9 +37,9 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
       </div>
 
       {sideProjectsCollection.length > 0 && (
-        <section className="py-20 md:py-28 bg-surface-container-low mt-16">
+        <section className="py-14 md:py-28 bg-surface-container-low mt-12 md:mt-16">
           <div className="container">
-            <div className="mb-12">
+            <div className="mb-8 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">Side Projects</h2>
               <p className="text-on-surface-variant mb-0">
                 Experimenting with tools and APIs to solve small problems.
@@ -55,14 +55,14 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
       )}
 
       {/* CTA Section */}
-      <section className="py-20 md:py-28 text-center container">
-        <div className="bg-primary-container rounded-xl py-16 md:py-24 px-8 text-white relative overflow-hidden">
+      <section className="py-14 md:py-28 text-center container">
+        <div className="bg-primary-container rounded-xl py-12 md:py-24 px-6 md:px-8 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary blur-3xl opacity-20 -mr-20 -mt-20"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white blur-3xl opacity-10 -ml-20 -mb-20"></div>
           <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 relative z-10 !text-white">
             Have a project in mind?
           </h2>
-          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-10 relative z-10">
+          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8 md:mb-10 relative z-10">
             I&apos;m currently taking on new projects and would love to hear about yours.
           </p>
           <a className="btn-white relative z-10" href={`mailto:${CONTACT.email}`}>

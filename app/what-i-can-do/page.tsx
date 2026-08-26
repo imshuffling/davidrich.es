@@ -16,7 +16,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="container pt-12 pb-16 md:pt-20 md:pb-24">
+      <section className="container pt-8 pb-12 md:pt-20 md:pb-24">
         <div className="max-w-4xl">
           <span className="text-primary font-label tracking-widest uppercase text-xs mb-4 block font-bold">
             Services &amp; Craft
@@ -33,17 +33,17 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* Services Grid — full bleed bg */}
-      <section className="bg-surface-container-low py-20 md:py-28">
+      <section className="bg-surface-container-low py-14 md:py-28">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-12">
+          <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-8 md:mb-12">
             What I Do
           </h2>
           <ServicesSection dataPromise={dataPromise} />
         </div>
       </section>
       {/* My Process */}
-      <section className="container py-20 md:py-28">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+      <section className="container py-14 md:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
           <div className="md:col-span-4">
             <div className="md:sticky md:top-32">
               <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-4">
@@ -54,7 +54,7 @@ export default function ServicesPage() {
               </p>
             </div>
           </div>
-          <div className="md:col-span-8 space-y-16 md:space-y-24">
+          <div className="md:col-span-8 space-y-12 md:space-y-24">
             {[
               {
                 num: "01",
@@ -81,7 +81,7 @@ export default function ServicesPage() {
                 key={step.num}
                 className="flex flex-col md:flex-row gap-6 md:gap-8 items-start"
               >
-                <div className="step-number text-5xl md:text-6xl font-headline font-black leading-none">
+                <div className="step-number text-4xl md:text-6xl font-headline font-black leading-none">
                   {step.num}
                 </div>
                 <div>
@@ -98,8 +98,8 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* CTA */}
-      <section className="container py-20 md:py-28">
-        <div className="relative rounded-2xl overflow-hidden p-12 md:p-24 editorial-gradient text-white text-center">
+      <section className="container py-14 md:py-28">
+        <div className="relative rounded-2xl overflow-hidden p-8 md:p-24 editorial-gradient text-white text-center">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div
               className="absolute inset-0"
@@ -120,7 +120,7 @@ export default function ServicesPage() {
             <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 text-white!">
               Let&apos;s Work Together
             </h2>
-            <p className="text-lg md:text-xl text-primary-fixed leading-relaxed mb-10">
+            <p className="text-lg md:text-xl text-primary-fixed leading-relaxed mb-8 md:mb-10">
               Got a project in mind, or just want to talk front-end? My inbox is
               always open.
             </p>

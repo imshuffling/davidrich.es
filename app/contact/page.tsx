@@ -13,7 +13,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <header className="container pt-12 pb-16 md:pt-20 md:pb-24">
+      <header className="container pt-8 pb-12 md:pt-20 md:pb-24">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight">
           Let&apos;s Build{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
@@ -28,10 +28,10 @@ export default function ContactPage() {
       </header>
 
       {/* Content Grid */}
-      <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 pb-20">
+      <div className="container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 pb-14 md:pb-20">
         {/* Form */}
         <div className="lg:col-span-7">
-          <div className="p-8 md:p-12 rounded-xl ambient-shadow" style={{ background: "var(--form-color)" }}>
+          <div className="p-6 md:p-12 rounded-xl ambient-shadow" style={{ background: "var(--form-color)" }}>
             <FeedbackForm />
           </div>
         </div>

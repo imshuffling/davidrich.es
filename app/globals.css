@@ -204,9 +204,9 @@ html[data-theme="dark"] {
     letter-spacing: -0.02em;
   }
 
-  h1 { font-size: 3rem; margin-bottom: 1rem; }
-  h2 { font-size: 1.75rem; margin-bottom: 1rem; }
-  h3 { font-size: 1.375rem; margin-bottom: 0.75rem; }
+  h1 { font-size: 2.25rem; margin-bottom: 1rem; }
+  h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+  h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
   h4 { font-size: 1.125rem; margin-bottom: 0.5rem; }
 
   @media (min-width: 48em) {
@@ -587,7 +587,7 @@ html[data-theme="dark"] {
 
   /* Content blocks */
   .section {
-    margin: 3rem 0;
+    margin: 2rem 0;
   }
 
   @media (min-width: 48em) {
@@ -722,12 +722,16 @@ html[data-theme="dark"] {
       gap: 2rem;
       margin-top: 3rem;
     }
+
+    #services li {
+      padding: 2.5rem;
+    }
   }
 
   #services li {
     background: var(--card-bg, rgba(252, 249, 248, 0.7));
     backdrop-filter: blur(12px);
-    padding: 2.5rem;
+    padding: 1.75rem;
     border-radius: 0.75rem;
     display: flex;
     flex-direction: column;
