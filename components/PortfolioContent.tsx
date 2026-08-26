@@ -62,7 +62,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
         <RichText
           as="h1"
           html={title}
-          className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-8"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-8"
         />
 
         <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">
