@@ -6,7 +6,7 @@ export const fragment = `... on TextArea { centerText title body }`;
 export default function BlockTextArea({ title, body, centerText }: BlockTextAreaProps) {
   return (
     <div
-      className={`section ${centerText ? "text-center mx-auto max-w-3xl" : ""}`}
+      className={`section ${centerText ? "text-center mx-auto max-w-4xl" : ""}`}
       style={{
         background: "var(--card-bg)",
         borderRadius: "0.75rem",
