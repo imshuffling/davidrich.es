@@ -8,23 +8,23 @@ export type ImageVariant = "card" | "cardLarge" | "footerCard" | "hero" | "twoCo
 const VARIANTS: Record<ImageVariant, { fill: boolean; sizes: string }> = {
   card: {
     fill: true,
-    sizes: "(min-width: 80em) 390px, (min-width: 48em) 33vw, calc(100vw - 4rem)",
+    sizes: "(min-width: 80em) 390px, (min-width: 48em) 33vw, calc(100vw - 3rem)",
   },
   cardLarge: {
     fill: true,
-    sizes: "(min-width: 80em) 803px, (min-width: 48em) 66vw, calc(100vw - 4rem)",
+    sizes: "(min-width: 80em) 803px, (min-width: 48em) 66vw, calc(100vw - 3rem)",
   },
   footerCard: {
     fill: true,
-    sizes: "(min-width: 80em) 596px, (min-width: 48em) 50vw, calc(100vw - 4rem)",
+    sizes: "(min-width: 80em) 596px, (min-width: 48em) 50vw, calc(100vw - 3rem)",
   },
   hero: {
     fill: true,
-    sizes: "(min-width: 80em) 1216px, calc(100vw - 4rem)",
+    sizes: "(min-width: 80em) 1216px, calc(100vw - 3rem)",
   },
   twoColumn: {
     fill: false,
-    sizes: "(min-width: 80em) 576px, (min-width: 48em) calc(50vw - 4rem), calc(100vw - 4rem)",
+    sizes: "(min-width: 80em) 576px, (min-width: 48em) calc(50vw - 4rem), calc(100vw - 3rem)",
   },
 };
 
