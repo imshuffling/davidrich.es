@@ -52,7 +52,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform group-hover:-translate-x-0.5">
             <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
-          Back to work
+          Back
         </Link>
         <br />
         <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-6">
