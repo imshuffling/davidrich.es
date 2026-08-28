@@ -8,7 +8,7 @@ interface ProseProps {
 export default function Prose({ children, className }: ProseProps) {
   return (
     <div
-      className={`leading-relaxed text-lg ${className ?? ""}`}
+      className={`leading-relaxed text-base md:text-lg ${className ?? ""}`}
       style={{ color: "var(--text-color)" }}
     >
       <ReactMarkdown>{children}</ReactMarkdown>

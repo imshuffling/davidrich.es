@@ -587,7 +587,7 @@ html[data-theme="dark"] {
 
   /* Content blocks */
   .section {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
   }
 
   @media (min-width: 48em) {
@@ -946,7 +946,6 @@ a.logo-gradient:hover {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: -1.5px;
-  font-size: 1.5rem;
   padding-right: 2px;
   background: linear-gradient(135deg, #630ed4, #f40088) !important;
   background-image: linear-gradient(135deg, #630ed4, #f40088) !important;
@@ -957,4 +956,11 @@ a.logo-gradient:hover {
   color: transparent !important;
   border: none !important;
   text-decoration: none !important;
+}
+
+@media (min-width: 48em) {
+  a.logo-gradient,
+  a.logo-gradient:hover {
+    font-size: 1.5rem;
+  }
 }

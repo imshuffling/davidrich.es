@@ -95,7 +95,7 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
-        <nav className={`container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2.5" : "py-5"}`}>
+        <nav className={`container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
           <span onClick={() => setToggleState(false)} className="md:justify-self-start">
             <Link href="/" className="logo-gradient">
               David Riches

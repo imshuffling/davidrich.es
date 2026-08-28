@@ -66,7 +66,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
         />
 
         <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">
-          <div className="text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
+          <div className="text-base md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
             {body && documentToReactComponents(body.json)}
           </div>
 
