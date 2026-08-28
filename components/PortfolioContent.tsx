@@ -55,14 +55,14 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
           Back
         </Link>
         <br />
-        <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-6">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-label text-xs tracking-widest uppercase font-bold mb-4 md:mb-6">
           {agency && <span className="text-on-surface-variant font-normal mr-1">Agency:</span>}
           {badgeText}
         </span>
         <RichText
           as="h1"
           html={title}
-          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-8"
+          className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-headline font-bold leading-tight tracking-tight mb-4 md:mb-8"
         />
 
         <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-16">
