@@ -56,16 +56,16 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
 
       {/* CTA Section */}
       <section className="py-14 md:py-28 text-center container">
-        <div className="bg-primary-container rounded-xl py-12 md:py-24 px-6 md:px-8 text-white relative overflow-hidden">
+        <div className="bg-primary-container rounded-xl py-10 md:py-24 px-6 md:px-8 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary blur-3xl opacity-20 -mr-20 -mt-20"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white blur-3xl opacity-10 -ml-20 -mb-20"></div>
-          <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 relative z-10 !text-white">
+          <h2 className="text-2xl md:text-5xl font-headline font-bold mb-4 md:mb-6 relative z-10 !text-white">
             Have a project in mind?
           </h2>
-          <p className="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8 md:mb-10 relative z-10">
+          <p className="text-base md:text-xl text-white/80 max-w-xl mx-auto mb-6 md:mb-10 relative z-10">
             I&apos;m currently taking on new projects and would love to hear about yours.
           </p>
-          <a className="btn-white relative z-10" href={`mailto:${CONTACT.email}`}>
+          <a className="btn-white relative z-10 !py-3 !px-6 !text-sm md:!py-5 md:!px-10 md:!text-base" href={`mailto:${CONTACT.email}`}>
             Get in touch
           </a>
         </div>
