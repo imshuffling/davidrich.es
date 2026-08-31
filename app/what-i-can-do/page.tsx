@@ -99,7 +99,7 @@ export default function ServicesPage() {
       </section>
       {/* CTA */}
       <section className="container py-7 md:py-28">
-        <div className="relative rounded-2xl overflow-hidden p-8 md:p-24 editorial-gradient text-white text-center">
+        <div className="relative rounded-2xl overflow-hidden py-10 px-6 md:p-24 editorial-gradient text-white text-center">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div
               className="absolute inset-0"
@@ -117,14 +117,14 @@ export default function ServicesPage() {
             />
           </div>
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-headline font-bold mb-6 text-white!">
+            <h2 className="text-2xl md:text-5xl font-headline font-bold mb-4 md:mb-6 text-white!">
               Let&apos;s Work Together
             </h2>
-            <p className="text-lg md:text-xl text-primary-fixed leading-relaxed mb-8 md:mb-10">
+            <p className="text-base md:text-xl text-primary-fixed leading-relaxed mb-6 md:mb-10">
               Got a project in mind, or just want to talk front-end? My inbox is
               always open.
             </p>
-            <a href={`mailto:${CONTACT.email}`} className="btn-white">
+            <a href={`mailto:${CONTACT.email}`} className="btn-white !py-3 !px-6 !text-sm md:!py-5 md:!px-10 md:!text-base">
               Say hello
             </a>
           </div>
