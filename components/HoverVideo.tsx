@@ -1,42 +1,61 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import { MediaGradient } from "@/components/ImageWrapper";
 
 export default function HoverVideo({ url }: { url: string }) {
   const wrapperRef = useRef<HTMLSpanElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const wantsPlayRef = useRef(false);
   const [shouldLoad, setShouldLoad] = useState(false);
+
+  const play = useCallback(() => {
+    wantsPlayRef.current = true;
+    wrapperRef.current?.closest(".card")?.classList.add("is-playing");
+    const video = videoRef.current;
+    if (video) {
+      // iOS requires muted set before play() for gesture-free playback
+      video.muted = true;
+      void video.play().catch(() => {});
+    }
+  }, []);
+
+  const pause = useCallback(() => {
+    wantsPlayRef.current = false;
+    wrapperRef.current?.closest(".card")?.classList.remove("is-playing");
+    const video = videoRef.current;
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+  }, []);
+
+  // The video mounts lazily — if play was requested before it existed, start it now
+  const videoMounted = useCallback(
+    (video: HTMLVideoElement | null) => {
+      videoRef.current = video;
+      if (video && wantsPlayRef.current) play();
+    },
+    [play]
+  );
 
   useEffect(() => {
     const card = wrapperRef.current?.closest(".card");
     if (!card) return;
 
-    const observer = new IntersectionObserver(
+    const loadObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setShouldLoad(true);
-            observer.disconnect();
+            loadObserver.disconnect();
           }
         });
       },
       { rootMargin: "50px" }
     );
-    observer.observe(card);
+    loadObserver.observe(card);
 
-    const play = () => {
-      card.classList.add("is-playing");
-      videoRef.current?.play().catch(() => {});
-    };
-    const pause = () => {
-      card.classList.remove("is-playing");
-      const video = videoRef.current;
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    };
     card.addEventListener("mouseenter", play);
     card.addEventListener("mouseleave", pause);
 
@@ -55,20 +74,25 @@ export default function HoverVideo({ url }: { url: string }) {
     }
 
     return () => {
-      observer.disconnect();
+      loadObserver.disconnect();
       viewObserver?.disconnect();
       card.removeEventListener("mouseenter", play);
       card.removeEventListener("mouseleave", pause);
     };
-  }, []);
+  }, [play, pause]);
 
   return (
     <span ref={wrapperRef} style={{ display: "contents" }}>
       {shouldLoad && (
         <>
-          <video ref={videoRef} loop muted playsInline preload="metadata">
-            <source src={url} type="video/mp4" />
-          </video>
+          <video
+            ref={videoMounted}
+            src={url}
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          />
           <MediaGradient zIndex={1} />
         </>
       )}
