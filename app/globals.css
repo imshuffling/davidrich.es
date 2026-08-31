@@ -509,13 +509,15 @@ html[data-theme="dark"] {
     transition: opacity 0.3s ease-in-out, transform 0.6s ease-out;
   }
 
-  .card:hover .card__image video {
+  .card:hover .card__image video,
+  .card.is-playing .card__image video {
     opacity: 1;
   }
 
   .card__image video::-webkit-media-controls { display: none; }
 
-  .card.has-video:hover .card__image img {
+  .card.has-video:hover .card__image img,
+  .card.has-video.is-playing .card__image img {
     opacity: 0;
     transition: opacity 0.3s ease-in-out 0.15s;
   }

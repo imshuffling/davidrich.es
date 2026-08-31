@@ -25,8 +25,12 @@ export default function HoverVideo({ url }: { url: string }) {
     );
     observer.observe(card);
 
-    const play = () => videoRef.current?.play();
+    const play = () => {
+      card.classList.add("is-playing");
+      videoRef.current?.play().catch(() => {});
+    };
     const pause = () => {
+      card.classList.remove("is-playing");
       const video = videoRef.current;
       if (video) {
         video.pause();
@@ -36,8 +40,23 @@ export default function HoverVideo({ url }: { url: string }) {
     card.addEventListener("mouseenter", play);
     card.addEventListener("mouseleave", pause);
 
+    // Touch devices have no hover — autoplay while the card is mostly in view
+    const touchOnly = window.matchMedia("(hover: none)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let viewObserver: IntersectionObserver | undefined;
+    if (touchOnly && !reducedMotion) {
+      viewObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => (entry.isIntersecting ? play() : pause()));
+        },
+        { threshold: 0.6 }
+      );
+      viewObserver.observe(card);
+    }
+
     return () => {
       observer.disconnect();
+      viewObserver?.disconnect();
       card.removeEventListener("mouseenter", play);
       card.removeEventListener("mouseleave", pause);
     };
