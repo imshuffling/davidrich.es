@@ -28,7 +28,7 @@ export default function ContactPage() {
       </header>
 
       {/* Content Grid */}
-      <div className="container grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 pb-14 md:pb-20">
+      <div className="container grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-20 pb-7 md:pb-20">
         {/* Form */}
         <div className="lg:col-span-7">
           <div className="p-6 md:p-12 rounded-xl ambient-shadow" style={{ background: "var(--form-color)" }}>
@@ -37,9 +37,9 @@ export default function ContactPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="lg:col-span-5 flex flex-col gap-12 lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:col-span-5 flex flex-col gap-8 lg:gap-12 lg:sticky lg:top-24 lg:self-start">
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-label">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 md:mb-6 font-label">
               Contact Details
             </h3>
             <div className="space-y-6">
@@ -74,7 +74,7 @@ export default function ContactPage() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-6 font-label">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-primary mb-4 md:mb-6 font-label">
               Socials
             </h3>
             <div className="flex flex-wrap gap-3">
