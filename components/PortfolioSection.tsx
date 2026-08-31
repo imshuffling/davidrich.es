@@ -37,7 +37,7 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
       </div>
 
       {sideProjectsCollection.length > 0 && (
-        <section className="py-14 md:py-28 bg-surface-container-low mt-12 md:mt-16">
+        <section className="py-7 md:py-28 bg-surface-container-low mt-6 md:mt-16">
           <div className="container">
             <div className="mb-8 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">Side Projects</h2>
@@ -55,7 +55,7 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
       )}
 
       {/* CTA Section */}
-      <section className="py-14 md:py-28 text-center container">
+      <section className="py-7 md:py-28 text-center container">
         <div className="bg-primary-container rounded-xl py-10 md:py-24 px-6 md:px-8 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-secondary blur-3xl opacity-20 -mr-20 -mt-20"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white blur-3xl opacity-10 -ml-20 -mb-20"></div>

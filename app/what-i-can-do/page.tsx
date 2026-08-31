@@ -33,7 +33,7 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* Services Grid — full bleed bg */}
-      <section className="bg-surface-container-low py-14 md:py-28">
+      <section className="bg-surface-container-low py-7 md:py-28">
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-8 md:mb-12">
             What I Do
@@ -42,7 +42,7 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* My Process */}
-      <section className="container py-14 md:py-28">
+      <section className="container py-7 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
           <div className="md:col-span-4">
             <div className="md:sticky md:top-32">
@@ -98,7 +98,7 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* CTA */}
-      <section className="container py-14 md:py-28">
+      <section className="container py-7 md:py-28">
         <div className="relative rounded-2xl overflow-hidden p-8 md:p-24 editorial-gradient text-white text-center">
           <div className="absolute inset-0 opacity-10 pointer-events-none">
             <div
