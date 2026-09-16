@@ -12,7 +12,7 @@
     "@contentful/rich-text-plain-text-renderer": "^17.2.1",
     "@contentful/rich-text-react-renderer": "^16.2.2",
     "@tailwindcss/postcss": "^4.3.3",
-    "next": "^16.3.2",
+    "next": "^16.3.5",
     "next-themes": "^0.4.6",
     "react": "19.2.5",
     "react-dom": "19.2.5",
@@ -22,11 +22,11 @@
   },
   "devDependencies": {
     "@contentful/rich-text-types": "^17.2.7",
-    "@types/node": "^25.9.5",
+    "@types/node": "^25.9.6",
     "@types/react": "19.2.14",
     "@types/sanitize-html": "^2.16.1",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.2",
+    "eslint-config-next": "^16.3.5",
     "typescript": "6.0.3",
     "vitest": "^4.1.11"
   },
