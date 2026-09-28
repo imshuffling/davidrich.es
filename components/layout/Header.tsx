@@ -94,8 +94,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-[70] backdrop-blur-xl" style={{ background: toggleState ? "var(--bg)" : "color-mix(in srgb, var(--bg) 70%, transparent)", boxShadow: toggleState ? "none" : "0 20px 40px -10px rgba(99,14,212,0.06)" }}>
-        <nav className={`container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
+      <header className={`fixed top-0 w-full z-(--z-header) backdrop-blur-xl ${toggleState ? "bg-surface" : "bg-surface/70 ambient-shadow"}`}>
+        <nav className={`site-container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
           <span onClick={() => setToggleState(false)} className="md:justify-self-start">
             <Link href="/" className="logo-gradient">
               David Riches
@@ -110,12 +110,11 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`transition-all duration-300 !border-none !bg-none relative ${
+                  className={`transition-colors duration-300 relative ${
                     isActive
-                      ? "after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                      : "opacity-70 hover:opacity-100 hover:translate-y-[-1px]"
+                      ? "text-primary after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary"
+                      : "text-on-surface-variant hover:text-on-surface focus-visible:text-on-surface"
                   }`}
-                  style={{ color: isActive ? "var(--primary-colour)" : "var(--heading-color)" }}
                 >
                   {link.label}
                 </Link>
@@ -125,8 +124,7 @@ export default function Header() {
               href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 opacity-70 hover:opacity-100 hover:translate-y-[-1px] transition-all duration-300 !border-none !bg-none"
-              style={{ color: "var(--heading-color)" }}
+              className="inline-flex items-center gap-1 text-on-surface-variant hover:text-on-surface focus-visible:text-on-surface transition-colors duration-300"
             >
               Resume
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -174,10 +172,9 @@ export default function Header() {
         ref={overlayRef}
         aria-label="Mobile navigation"
         inert={!toggleState}
-        className={`fixed inset-0 z-[60] flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
+        className={`fixed inset-0 z-(--z-menu) flex flex-col items-center justify-center transition-all duration-300 md:hidden ${
           toggleState ? "opacity-100 visible pointer-events-auto" : "opacity-0 invisible pointer-events-none"
-        }`}
-        style={{ background: "var(--bg)" }}
+        } bg-surface`}
       >
         <ul className="flex flex-col items-center gap-8 text-3xl font-headline font-bold">
           {NAV_LINKS.map((link) => (
@@ -185,8 +182,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 onClick={() => setToggleState(false)}
-                className="!border-none !bg-none transition-colors"
-                style={{ color: isNavActive(link.href) ? "var(--primary-colour)" : "var(--heading-color)" }}
+                className={`transition-colors ${isNavActive(link.href) ? "text-primary" : "text-on-surface"}`}
               >
                 {link.label}
               </Link>
@@ -197,8 +193,7 @@ export default function Header() {
               href={LINKS.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 !border-none !bg-none"
-              style={{ color: "var(--heading-color)" }}
+              className="inline-flex items-center gap-2 text-on-surface"
               onClick={() => setToggleState(false)}
             >
               Resume

@@ -1,7 +1,7 @@
 import ServicesSection from "@/components/ServicesSection";
 import { getServices } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
-import { CONTACT } from "@/utils/site";
+import CtaBlock from "@/components/CtaBlock";
 
 export const metadata = buildMetadata({
   title: "What I can do",
@@ -16,7 +16,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="container pt-8 pb-12 md:pt-20 md:pb-24">
+      <section className="site-container pt-8 pb-12 md:pt-20 md:pb-24">
         <div className="max-w-4xl">
           <span className="text-primary font-label tracking-widest uppercase text-xs mb-4 block font-bold">
             Services &amp; Craft
@@ -34,7 +34,7 @@ export default function ServicesPage() {
       </section>
       {/* Services Grid — full bleed bg */}
       <section className="bg-surface-container-low py-7 md:py-28">
-        <div className="container">
+        <div className="site-container">
           <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-8 md:mb-12">
             What I Do
           </h2>
@@ -42,10 +42,10 @@ export default function ServicesPage() {
         </div>
       </section>
       {/* My Process */}
-      <section className="container py-7 md:py-28">
+      <section className="site-container py-7 md:py-28">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
           <div className="md:col-span-4">
-            <div className="md:sticky md:top-32">
+            <div className="md:sticky md:top-header">
               <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-4">
                 How I Work
               </h2>
@@ -85,9 +85,9 @@ export default function ServicesPage() {
                   {step.num}
                 </div>
                 <div>
-                  <h4 className="text-xl md:text-2xl font-headline font-bold mb-3">
+                  <h3 className="text-xl md:text-2xl font-headline font-bold mb-3">
                     {step.title}
-                  </h4>
+                  </h3>
                   <p className="text-on-surface-variant leading-relaxed text-base md:text-lg mb-0">
                     {step.desc}
                   </p>
@@ -97,39 +97,11 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      {/* CTA */}
-      <section className="container py-7 md:py-28">
-        <div className="relative rounded-2xl overflow-hidden py-10 px-6 md:p-24 editorial-gradient text-white text-center">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.2) 0%, transparent 50%)",
-              }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 80% 80%, rgba(255,255,255,0.15) 0%, transparent 40%)",
-              }}
-            />
-          </div>
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-2xl md:text-5xl font-headline font-bold mb-4 md:mb-6 text-white!">
-              Let&apos;s Work Together
-            </h2>
-            <p className="text-base md:text-xl text-primary-fixed leading-relaxed mb-6 md:mb-10">
-              Got a project in mind, or just want to talk front-end? My inbox is
-              always open.
-            </p>
-            <a href={`mailto:${CONTACT.email}`} className="btn-white !py-3 !px-6 !text-sm md:!py-5 md:!px-10 md:!text-base">
-              Say hello
-            </a>
-          </div>
-        </div>
-      </section>
+      <CtaBlock
+        title="Let's Work Together"
+        body="Got a project in mind, or just want to talk front-end? My inbox is always open."
+        label="Say hello"
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import PortfolioCard from "@/components/PortfolioCard";
 import RichText from "@/components/RichText";
 import { visualFor } from "@/utils/visuals";
-import { CONTACT } from "@/utils/site";
+import CtaBlock from "@/components/CtaBlock";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
 
 interface PortfolioSectionProps {
@@ -22,7 +22,7 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
 
   return (
     <>
-      <div className="container">
+      <div className="site-container">
         <div id="cards">
           {portfolioCollection.map((item, index) => (
             <PortfolioCard
@@ -38,7 +38,7 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
 
       {sideProjectsCollection.length > 0 && (
         <section className="py-7 md:py-28 bg-surface-container-low mt-6 md:mt-16">
-          <div className="container">
+          <div className="site-container">
             <div className="mb-8 md:mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">Side Projects</h2>
               <p className="text-on-surface-variant mb-0">
@@ -54,22 +54,11 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-7 md:py-28 text-center container">
-        <div className="bg-primary-container rounded-xl py-10 md:py-24 px-6 md:px-8 text-white relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-secondary blur-3xl opacity-20 -mr-20 -mt-20"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-white blur-3xl opacity-10 -ml-20 -mb-20"></div>
-          <h2 className="text-2xl md:text-5xl font-headline font-bold mb-4 md:mb-6 relative z-10 !text-white">
-            Have a project in mind?
-          </h2>
-          <p className="text-base md:text-xl text-white/80 max-w-xl mx-auto mb-6 md:mb-10 relative z-10">
-            I&apos;m currently taking on new projects and would love to hear about yours.
-          </p>
-          <a className="btn-white relative z-10 !py-3 !px-6 !text-sm md:!py-5 md:!px-10 md:!text-base" href={`mailto:${CONTACT.email}`}>
-            Get in touch
-          </a>
-        </div>
-      </section>
+      <CtaBlock
+        title="Have a project in mind?"
+        body="I'm currently taking on new projects and would love to hear about yours."
+        label="Get in touch"
+      />
     </>
   );
 }
@@ -80,25 +69,24 @@ function SideProjectCard({ node }: { node: SideProject }) {
   const { icon, ...iconColor } = visualFor(node.title, "sideProject");
 
   return (
-    <div className="p-8 rounded-xl hover:translate-y-[-4px] transition-all duration-300 group shadow-sm" style={{ background: "var(--card-bg)" }}>
+    <div className="p-8 rounded-xl bg-card motion-safe:hover:-translate-y-1 transition-all duration-300 group shadow-sm">
       <div
         className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
         style={{ background: iconColor.bg, color: iconColor.color }}
       >
         {icon}
       </div>
-      <h4 className="text-xl font-headline font-bold mb-3" style={{ color: "var(--heading-color)" }}>{node.title}</h4>
+      <h3 className="text-xl font-headline font-bold mb-3">{node.title}</h3>
       {node.description && (
         <RichText
           as="p"
           html={node.description}
-          className="text-sm leading-relaxed mb-6"
-          style={{ color: "var(--text-color)" }}
+          className="text-sm leading-relaxed mb-6 text-on-surface-variant"
         />
       )}
       {link && (
         <a
-          className="font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all !border-none !bg-none text-primary"
+          className="font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all text-primary"
           href={link}
           target="_blank"
           rel="noopener noreferrer"

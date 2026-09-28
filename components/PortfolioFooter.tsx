@@ -9,7 +9,7 @@ export default function PortfolioFooter({ footerCollection }: PortfolioFooterPro
   if (!footerCollection || footerCollection.items.length === 0) return null;
 
   return (
-    <section className="other-projects container">
+    <section className="other-projects site-container">
       <h3 className="font-headline font-bold">Other projects</h3>
       <div id="cards">
         {footerCollection.items.map((item, index) => (

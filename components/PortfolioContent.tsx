@@ -34,7 +34,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
   const badgeText = agency || "Case Study";
 
   return (
-    <section className="portfolio-item container">
+    <section className="portfolio-item site-container">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
@@ -47,7 +47,7 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
       <div className="pt-4 md:pt-12 mb-8 md:mb-16">
         <Link
           href="/#work"
-          className="inline-flex items-center gap-2 text-sm font-headline font-semibold text-primary !border-none !bg-none mb-6 group"
+          className="inline-flex items-center gap-2 text-sm font-headline font-semibold text-primary mb-6 group"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="transition-transform group-hover:-translate-x-0.5">
             <path d="M19 12H5M12 19l-7-7 7-7" />

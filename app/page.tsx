@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="container pt-8 pb-12 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
+      <section className="site-container pt-8 pb-12 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
         <div className="max-w-4xl">
           <h1 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-6 md:mb-8">
             Hello, I&apos;m David.{" "}
@@ -50,8 +50,8 @@ export default function HomePage() {
       </section>
 
       {/* Portfolio Section */}
-      <div id="work" className="scroll-mt-28">
-        <div className="container">
+      <div id="work" className="scroll-mt-header">
+        <div className="site-container">
           <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-12 gap-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-headline font-bold mb-3">

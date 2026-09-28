@@ -58,6 +58,8 @@ export default function HoverVideo({ url }: { url: string }) {
 
     card.addEventListener("mouseenter", play);
     card.addEventListener("mouseleave", pause);
+    card.addEventListener("focusin", play);
+    card.addEventListener("focusout", pause);
 
     // Touch devices have no hover — autoplay while the card is mostly in view
     const touchOnly = window.matchMedia("(hover: none)").matches;
@@ -78,6 +80,8 @@ export default function HoverVideo({ url }: { url: string }) {
       viewObserver?.disconnect();
       card.removeEventListener("mouseenter", play);
       card.removeEventListener("mouseleave", pause);
+      card.removeEventListener("focusin", play);
+      card.removeEventListener("focusout", pause);
     };
   }, [play, pause]);
 

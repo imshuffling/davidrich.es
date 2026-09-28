@@ -23,14 +23,9 @@ export default function ScrollToTop() {
       onClick={scrollToTop}
       aria-label="Scroll to top"
       tabIndex={visible ? 0 : -1}
-      className={`icon-button fixed bottom-6 right-6 z-50 !rounded-full w-11 h-11 justify-center shadow-lg backdrop-blur-xl transition-all duration-300 ${
+      className={`icon-button fixed bottom-6 right-6 z-(--z-scroll-top) rounded-full w-11 h-11 justify-center shadow-lg backdrop-blur-xl bg-card text-primary border border-outline-variant transition-all duration-300 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
       }`}
-      style={{
-        background: "var(--card-bg)",
-        color: "var(--primary-colour)",
-        border: "1px solid var(--border-color)",
-      }}
     >
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 19V5M5 12l7-7 7 7" />

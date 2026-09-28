@@ -14,14 +14,18 @@ export interface IconColor {
   color: string;
 }
 
+// Theme tokens (globals.css) so chips lighten in dark mode
 const ICON_PALETTE: IconColor[] = [
-  { bg: "rgba(99, 14, 212, 0.15)", color: "#630ed4" },
-  { bg: "rgba(156, 44, 155, 0.15)", color: "#9c2c9b" },
-  { bg: "rgba(0, 84, 121, 0.15)", color: "#005479" },
-  { bg: "rgba(124, 58, 237, 0.15)", color: "#7c3aed" },
-  { bg: "rgba(0, 109, 156, 0.15)", color: "#006d9c" },
-  { bg: "rgba(186, 26, 26, 0.15)", color: "#ba1a1a" },
-];
+  "--color-primary",
+  "--color-secondary",
+  "--color-tertiary",
+  "--color-violet",
+  "--color-sky",
+  "--color-error",
+].map((token) => ({
+  bg: `color-mix(in srgb, var(${token}) 15%, transparent)`,
+  color: `var(${token})`,
+}));
 
 function colorFor(key: string, paletteSize: number): IconColor {
   const palette = ICON_PALETTE.slice(0, paletteSize);

@@ -21,8 +21,8 @@ describe("visualFor", () => {
     for (const title of ["Alpha", "Beta", "Gamma", "Delta"]) {
       for (const context of ["service", "sideProject"] as const) {
         const visual = visualFor(title, context);
-        expect(visual.bg).toMatch(/^rgba\(/);
-        expect(visual.color).toMatch(/^#/);
+        expect(visual.bg).toMatch(/^color-mix\(.*var\(--color-/);
+        expect(visual.color).toMatch(/^var\(--color-/);
         expect(visual.icon).toBeDefined();
       }
     }

@@ -3,7 +3,7 @@ import type { ContentfulImage } from "@/types/contentful";
 
 export type ImageVariant = "card" | "cardLarge" | "footerCard" | "hero" | "twoColumn";
 
-/* Sizes derived from the .container cap (80rem − 2×2rem padding = 1216px content)
+/* Sizes derived from the .site-container cap (80rem − 2×2rem padding = 1216px content)
    and the 12-col #cards grid: span-4 ≈ 390px, span-8 ≈ 803px, full-bleed = 1216px. */
 const VARIANTS: Record<ImageVariant, { fill: boolean; sizes: string }> = {
   card: {
