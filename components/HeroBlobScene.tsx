@@ -91,10 +91,15 @@ function readTokens() {
   return COLOR_TOKENS.map((token) => styles.getPropertyValue(token).trim());
 }
 
-function Blob() {
+const GROWTH = 1.1;
+const MAX_GROWS = 2;
+
+function Blob({ animate }: { animate: boolean }) {
   const meshRef = useRef<Mesh>(null);
   const materialRef = useRef<ShaderMaterial>(null);
   const hovered = useRef(false);
+  const grows = useRef(0);
+  const scaleVelocity = useRef(0);
   const invalidate = useThree((state) => state.invalidate);
 
   const [initialUniforms] = useState(() => ({
@@ -132,13 +137,36 @@ function Blob() {
     uniforms.uAmp.value += (targetAmp - uniforms.uAmp.value) * Math.min(delta * 3, 1);
     mesh.rotation.y += (pointer.x * 0.5 + uniforms.uTime.value * 0.1 - mesh.rotation.y) * Math.min(delta * 2, 1);
     mesh.rotation.x += (-pointer.y * 0.4 - mesh.rotation.x) * Math.min(delta * 2, 1);
+
+    // Damped spring towards the click-driven target scale, for a little bounce
+    const target = GROWTH ** grows.current;
+    const dt = Math.min(delta, 1 / 30);
+    scaleVelocity.current += (target - mesh.scale.x) * 180 * dt;
+    scaleVelocity.current *= Math.exp(-10 * dt);
+    mesh.scale.setScalar(mesh.scale.x + scaleVelocity.current * dt);
   });
+
+  const handleClick = () => {
+    const mesh = meshRef.current;
+    if (!mesh) return;
+    grows.current = grows.current < MAX_GROWS ? grows.current + 1 : 0;
+    if (animate) return;
+    mesh.scale.setScalar(GROWTH ** grows.current);
+    invalidate();
+  };
 
   return (
     <mesh
       ref={meshRef}
-      onPointerOver={() => (hovered.current = true)}
-      onPointerOut={() => (hovered.current = false)}
+      onClick={handleClick}
+      onPointerOver={(e) => {
+        hovered.current = true;
+        (e.nativeEvent.target as HTMLElement).style.cursor = "pointer";
+      }}
+      onPointerOut={(e) => {
+        hovered.current = false;
+        (e.nativeEvent.target as HTMLElement).style.cursor = "";
+      }}
     >
       <icosahedronGeometry args={[1.3, 48]} />
       <shaderMaterial
@@ -174,7 +202,7 @@ export default function HeroBlobScene({ animate }: { animate: boolean }) {
         gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
         aria-hidden="true"
       >
-        <Blob />
+        <Blob animate={animate} />
       </Canvas>
     </div>
   );
