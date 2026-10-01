@@ -1,3 +1,4 @@
+import HeroBlob from "@/components/HeroBlob";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
@@ -17,8 +18,8 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="site-container pt-8 pb-12 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
-        <div className="max-w-4xl">
+      <section className="site-container relative pt-8 pb-12 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
+        <div className="relative z-10 max-w-4xl">
           <h1 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-6 md:mb-8">
             Hello, I&apos;m David.{" "}
             <span role="img" aria-label="Waving hand" className="wave">
@@ -47,6 +48,7 @@ export default function HomePage() {
             </a>
           </div>
         </div>
+        <HeroBlob />
       </section>
 
       {/* Portfolio Section */}

@@ -109,6 +109,8 @@
   --md-card: rgba(252, 249, 248, 0.7);
   --md-violet: #7c3aed;
   --md-sky: #006d9c;
+  --md-blob-a: var(--md-primary-container);
+  --md-blob-b: var(--md-secondary-container);
 }
 
 /* next-themes always sets data-theme (system preference included) */
@@ -144,6 +146,8 @@ html[data-theme="dark"] {
   --md-card: rgba(71, 70, 70, 0.7);
   --md-violet: #b69df8;
   --md-sky: #7fd0ff;
+  --md-blob-a: #6d28d9;
+  --md-blob-b: #e0479e;
 }
 
 /* ============================================
@@ -337,7 +341,7 @@ html[data-theme="dark"] {
 
   @media (prefers-reduced-motion: no-preference) {
     .wave {
-      animation: wave-animation 2.5s infinite;
+      animation: wave-animation 2.5s 0.5s 1;
     }
   }
 
