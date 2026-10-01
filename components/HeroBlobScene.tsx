@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Color, type Mesh, type ShaderMaterial } from "three";
+import { Color, type Group, type Points, type ShaderMaterial } from "three";
 
 const NOISE = /* glsl */ `
 vec4 permute(vec4 x) { return mod(((x * 34.0) + 1.0) * x, 289.0); }
@@ -55,15 +55,17 @@ float snoise(vec3 v) {
 const vertexShader = /* glsl */ `
 uniform float uTime;
 uniform float uAmp;
-varying vec3 vViewPos;
+uniform float uSize;
 varying float vNoise;
+varying float vFacing;
 ${NOISE}
 void main() {
+  vec3 dir = normalize(position);
   float n = snoise(position * 0.8 + uTime * 0.2);
   vNoise = n;
-  vec3 displaced = position + normal * n * uAmp;
-  vec4 mv = modelViewMatrix * vec4(displaced, 1.0);
-  vViewPos = mv.xyz;
+  vFacing = normalize(normalMatrix * dir).z;
+  vec4 mv = modelViewMatrix * vec4(position + dir * n * uAmp, 1.0);
+  gl_PointSize = uSize * (1.0 + 0.3 * n) / -mv.z;
   gl_Position = projectionMatrix * mv;
 }
 `;
@@ -71,16 +73,16 @@ void main() {
 const fragmentShader = /* glsl */ `
 uniform vec3 uColorA;
 uniform vec3 uColorB;
-varying vec3 vViewPos;
 varying float vNoise;
+varying float vFacing;
 void main() {
-  vec3 normal = normalize(cross(dFdx(vViewPos), dFdy(vViewPos)));
-  vec3 viewDir = normalize(-vViewPos);
-  float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 2.0);
-  float light = max(dot(normal, normalize(vec3(-0.4, 0.8, 0.6))), 0.0);
-  vec3 base = mix(uColorA, uColorB, smoothstep(-0.6, 0.8, vNoise + normal.y * 0.4));
-  vec3 color = base * (0.55 + 0.45 * light) + fresnel * mix(uColorB, vec3(1.0), 0.35);
-  gl_FragColor = vec4(color, 1.0);
+  float d = length(gl_PointCoord - 0.5);
+  if (d > 0.5) discard;
+  // Dots on the far side fade out so the sphere reads as 3D
+  float alpha = smoothstep(0.5, 0.15, d) * mix(0.15, 1.0, vFacing * 0.5 + 0.5);
+  vec3 color = mix(uColorA, uColorB, smoothstep(-0.6, 0.8, vNoise + vFacing * 0.3));
+  gl_FragColor = vec4(color, alpha);
+  #include <colorspace_fragment>
 }
 `;
 
@@ -91,20 +93,38 @@ function readTokens() {
   return COLOR_TOKENS.map((token) => styles.getPropertyValue(token).trim());
 }
 
+const RADIUS = 1.3;
+const POINT_COUNT = 4000;
 const GROWTH = 1.1;
 const MAX_GROWS = 2;
 
-function Blob({ animate }: { animate: boolean }) {
-  const meshRef = useRef<Mesh>(null);
+// Evenly spread points over a sphere (Fibonacci lattice)
+function spherePoints() {
+  const positions = new Float32Array(POINT_COUNT * 3);
+  const golden = Math.PI * (3 - Math.sqrt(5));
+  for (let i = 0; i < POINT_COUNT; i++) {
+    const y = 1 - (i / (POINT_COUNT - 1)) * 2;
+    const r = Math.sqrt(1 - y * y);
+    const theta = golden * i;
+    positions.set([Math.cos(theta) * r * RADIUS, y * RADIUS, Math.sin(theta) * r * RADIUS], i * 3);
+  }
+  return positions;
+}
+
+function ParticleSphere({ animate }: { animate: boolean }) {
+  const groupRef = useRef<Group>(null);
+  const pointsRef = useRef<Points>(null);
   const materialRef = useRef<ShaderMaterial>(null);
   const hovered = useRef(false);
   const grows = useRef(0);
   const scaleVelocity = useRef(0);
   const invalidate = useThree((state) => state.invalidate);
 
+  const [positions] = useState(spherePoints);
   const [initialUniforms] = useState(() => ({
     uTime: { value: 0 },
     uAmp: { value: 0.18 },
+    uSize: { value: 16 * Math.min(window.devicePixelRatio, 1.5) },
     uColorA: { value: new Color() },
     uColorB: { value: new Color() },
   }));
@@ -129,53 +149,64 @@ function Blob({ animate }: { animate: boolean }) {
   }, [invalidate]);
 
   useFrame(({ pointer }, delta) => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
-    const { uniforms } = mesh.material as ShaderMaterial;
+    const group = groupRef.current;
+    const points = pointsRef.current;
+    if (!group || !points) return;
+    const { uniforms } = points.material as ShaderMaterial;
     uniforms.uTime.value += delta;
     const targetAmp = hovered.current ? 0.3 : 0.18;
     uniforms.uAmp.value += (targetAmp - uniforms.uAmp.value) * Math.min(delta * 3, 1);
-    mesh.rotation.y += (pointer.x * 0.5 + uniforms.uTime.value * 0.1 - mesh.rotation.y) * Math.min(delta * 2, 1);
-    mesh.rotation.x += (-pointer.y * 0.4 - mesh.rotation.x) * Math.min(delta * 2, 1);
+    group.rotation.y += (pointer.x * 0.5 + uniforms.uTime.value * 0.1 - group.rotation.y) * Math.min(delta * 2, 1);
+    group.rotation.x += (-pointer.y * 0.4 - group.rotation.x) * Math.min(delta * 2, 1);
 
     // Damped spring towards the click-driven target scale, for a little bounce
     const target = GROWTH ** grows.current;
     const dt = Math.min(delta, 1 / 30);
-    scaleVelocity.current += (target - mesh.scale.x) * 180 * dt;
+    scaleVelocity.current += (target - group.scale.x) * 180 * dt;
     scaleVelocity.current *= Math.exp(-10 * dt);
-    mesh.scale.setScalar(mesh.scale.x + scaleVelocity.current * dt);
+    group.scale.setScalar(group.scale.x + scaleVelocity.current * dt);
   });
 
   const handleClick = () => {
-    const mesh = meshRef.current;
-    if (!mesh) return;
+    const group = groupRef.current;
+    if (!group) return;
     grows.current = grows.current < MAX_GROWS ? grows.current + 1 : 0;
     if (animate) return;
-    mesh.scale.setScalar(GROWTH ** grows.current);
+    group.scale.setScalar(GROWTH ** grows.current);
     invalidate();
   };
 
   return (
-    <mesh
-      ref={meshRef}
-      onClick={handleClick}
-      onPointerOver={(e) => {
-        hovered.current = true;
-        (e.nativeEvent.target as HTMLElement).style.cursor = "pointer";
-      }}
-      onPointerOut={(e) => {
-        hovered.current = false;
-        (e.nativeEvent.target as HTMLElement).style.cursor = "";
-      }}
-    >
-      <icosahedronGeometry args={[1.3, 48]} />
-      <shaderMaterial
-        ref={materialRef}
-        uniforms={initialUniforms}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-      />
-    </mesh>
+    <group ref={groupRef}>
+      <points ref={pointsRef} raycast={() => null}>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        </bufferGeometry>
+        <shaderMaterial
+          ref={materialRef}
+          uniforms={initialUniforms}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          transparent
+          depthWrite={false}
+        />
+      </points>
+      {/* Invisible hit area so hover/click work between the dots */}
+      <mesh
+        onClick={handleClick}
+        onPointerOver={(e) => {
+          hovered.current = true;
+          (e.nativeEvent.target as HTMLElement).style.cursor = "pointer";
+        }}
+        onPointerOut={(e) => {
+          hovered.current = false;
+          (e.nativeEvent.target as HTMLElement).style.cursor = "";
+        }}
+      >
+        <sphereGeometry args={[RADIUS, 24, 24]} />
+        <meshBasicMaterial colorWrite={false} depthWrite={false} />
+      </mesh>
+    </group>
   );
 }
 
@@ -202,7 +233,7 @@ export default function HeroBlobScene({ animate }: { animate: boolean }) {
         gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
         aria-hidden="true"
       >
-        <Blob animate={animate} />
+        <ParticleSphere animate={animate} />
       </Canvas>
     </div>
   );
