@@ -26,7 +26,7 @@ export default function HeroBlob() {
   if (!isDesktop) return null;
 
   return (
-    <div className="hidden xl:block absolute right-0 top-1/2 -translate-y-1/2 aspect-square w-[min(32vw,500px)] translate-x-[8%]">
+    <div className="hidden xl:block absolute right-0 top-1/2 -translate-y-[44%] aspect-square w-[min(29vw,450px)] translate-x-[8%]">
       <HeroBlobScene animate={!reducedMotion} />
     </div>
   );
