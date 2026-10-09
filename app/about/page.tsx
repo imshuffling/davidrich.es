@@ -34,11 +34,11 @@ export default async function AboutPage() {
               About
             </span>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight mb-6 md:mb-8">
-              Front-end engineer,{" "}
+              I build things for{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                hockey player
+                the web
               </span>
-              , Kent local.
+              .
             </h1>
             <div className="space-y-4 text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
               <p>
@@ -61,7 +61,7 @@ export default async function AboutPage() {
           </div>
           {photo && (
             <div className="lg:col-span-5">
-              <div className="relative aspect-[4/5] max-w-md mx-auto rounded-xl overflow-hidden ambient-shadow">
+              <div className="relative aspect-square w-full max-w-sm mx-auto rounded-full overflow-hidden ambient-shadow">
                 <ImageWrapper
                   image={photo}
                   variant="portrait"

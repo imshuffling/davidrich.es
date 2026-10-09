@@ -8,8 +8,8 @@ export default function Footer() {
     <footer className="w-full border-t border-primary/10 py-8 md:py-16 md:mt-16">
       <div className="site-container grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start gap-2">
-          <Link href="/" className="logo-gradient">
-            David Riches
+          <Link href="/" className="logo-gradient" aria-label="David Riches — home">
+            DavidRiches
           </Link>
           <p className="text-on-surface-variant text-sm mb-0">
             Senior front-end engineer · {CONTACT.location}

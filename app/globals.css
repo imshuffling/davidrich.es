@@ -762,7 +762,7 @@ html[data-theme="dark"] {
 
   @media (min-width: 48em) {
     #services {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
       margin-top: 3rem;
     }
@@ -772,15 +772,6 @@ html[data-theme="dark"] {
     }
   }
 
-  @media (min-width: 64em) {
-    #services {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    #services li.is-primary {
-      grid-column: span 2;
-    }
-  }
 
   #services li {
     background: var(--color-card);
@@ -807,12 +798,6 @@ html[data-theme="dark"] {
 
   #services li.is-primary {
     background: color-mix(in srgb, var(--color-primary) 10%, var(--color-card));
-  }
-
-  @media (min-width: 64em) {
-    #services li.is-primary h3 {
-      font-size: 2rem;
-    }
   }
 
   #services li p {

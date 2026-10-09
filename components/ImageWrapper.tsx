@@ -24,7 +24,7 @@ const VARIANTS: Record<ImageVariant, { fill: boolean; sizes: string }> = {
   },
   portrait: {
     fill: true,
-    sizes: "(min-width: 64em) 448px, calc(100vw - 3rem)",
+    sizes: "(min-width: 64em) 384px, calc(100vw - 3rem)",
   },
   twoColumn: {
     fill: false,

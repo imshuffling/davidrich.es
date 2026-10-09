@@ -70,7 +70,6 @@ export interface About {
   photo?: ContentfulImage;
   jobs: Job[];
   skills: string[];
-  clients: string[];
 }
 
 // Service Types

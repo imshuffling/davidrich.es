@@ -1,6 +1,6 @@
 import HeroBlob from "@/components/HeroBlob";
 import PortfolioSection from "@/components/PortfolioSection";
-import { getAbout, getHome } from "@/utils/contentful";
+import { getHome } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
 import Link from "next/link";
 import ClientStrip from "@/components/ClientStrip";
@@ -15,7 +15,6 @@ export const metadata = buildMetadata({
 
 export default function HomePage() {
   const dataPromise = getHome();
-  const aboutPromise = getAbout();
 
   return (
     <>
@@ -52,7 +51,7 @@ export default function HomePage() {
         <HeroBlob />
       </section>
 
-      <ClientStrip dataPromise={aboutPromise} />
+      <ClientStrip />
 
       {/* Portfolio Section */}
       <div id="work" className="scroll-mt-header">

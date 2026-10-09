@@ -2,7 +2,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { visualFor } from "@/utils/visuals";
 import type { Service } from "@/types/contentful";
 
-// Core offerings lead the bento grid at double width
+// Core offerings lead the grid with a tinted card
 const PRIMARY_KEYWORDS = ["commerce", "front-end"];
 
 const isPrimary = (title: string) =>

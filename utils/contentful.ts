@@ -267,13 +267,6 @@ const ABOUT_QUERY = `
     skillsCollection(limit: 1) {
       items { skill }
     }
-    companiesCollection(limit: 1) {
-      items {
-        companiesCollection(limit: 20) {
-          items { title }
-        }
-      }
-    }
   }
 `;
 
@@ -286,7 +279,6 @@ export async function getAbout(): Promise<About> {
     resumeCollection: { items: { image?: ContentfulImage }[] };
     jobCollection: { items: Job[] };
     skillsCollection: { items: { skill?: string[] }[] };
-    companiesCollection: { items: { companiesCollection: { items: { title: string }[] } }[] };
   }>(ABOUT_QUERY);
 
   const photo = data.resumeCollection.items[0]?.image;
@@ -295,6 +287,5 @@ export async function getAbout(): Promise<About> {
     photo: photo ? await enrichImage(photo, "card") : undefined,
     jobs: data.jobCollection.items,
     skills: (data.skillsCollection.items[0]?.skill ?? []).map((s) => s.trim()).filter(Boolean),
-    clients: data.companiesCollection.items[0]?.companiesCollection.items.map((c) => c.title) ?? [],
   };
 }

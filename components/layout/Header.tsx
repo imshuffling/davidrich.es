@@ -97,8 +97,8 @@ export default function Header() {
       <header className={`fixed top-0 w-full z-(--z-header) backdrop-blur-xl ${toggleState ? "bg-surface" : "bg-surface/70 ambient-shadow"}`}>
         <nav className={`site-container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
           <span onClick={() => setToggleState(false)} className="md:justify-self-start">
-            <Link href="/" className="logo-gradient">
-              David Riches
+            <Link href="/" className="logo-gradient" aria-label="David Riches — home">
+              DavidRiches
             </Link>
           </span>
 
