@@ -10,7 +10,8 @@ export default function PortfolioCard({
   priority = false,
   imageVariant,
 }: PortfolioCardProps) {
-  const { title, slug, media, image, industry, description } = item;
+  const { title, slug, media, image, industry, description, services } = item;
+  const tags = services?.slice(0, 3);
   const isLarge = index === 0;
   const variant = imageVariant ?? (isLarge ? "cardLarge" : "card");
 
@@ -33,6 +34,13 @@ export default function PortfolioCard({
             <RichText as="h2" html={title} />
             {isLarge && description && (
               <p className="card__description">{description}</p>
+            )}
+            {tags && tags.length > 0 && (
+              <ul className="card__tags" aria-label="Tech stack">
+                {tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
             )}
           </div>
         </div>

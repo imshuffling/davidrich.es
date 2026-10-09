@@ -21,9 +21,8 @@ export default function ContactPage() {
           </span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed">
-          Currently looking for new challenges and creative collaborations. If
-          you have a project in mind or just want to chat, feel free to reach
-          out.
+          {CONTACT.status}. If you have a project in mind or just want to
+          chat, feel free to reach out.
         </p>
       </header>
 
@@ -85,6 +84,14 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
               >
                 GitHub
+              </a>
+              <a
+                className="btn-secondary py-3 px-6 text-sm"
+                href={LINKS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
               </a>
               <a
                 className="btn-secondary py-3 px-6 text-sm"

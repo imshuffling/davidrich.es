@@ -4,7 +4,7 @@ import { BLOCKS_FRAGMENT, enrichBlocks } from "@/blocks/registry";
 import { enrichImage, enrichItems } from "@/utils/contentfulImage";
 import { deriveSeo } from "@/utils/metadata";
 import { sanitize } from "@/utils/sanitize";
-import type { ContentfulImage, PortfolioItem, Service, SideProject } from "@/types/contentful";
+import type { About, ContentfulImage, Job, PortfolioItem, Service, SideProject } from "@/types/contentful";
 
 const SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
 const ACCESS_KEY = process.env.CONTENTFUL_ACCESS_KEY;
@@ -57,6 +57,7 @@ const HOME_QUERY = `
             client
             agency
             industry
+            services
             body { json }
             media { url }
             image { url fileName width height }
@@ -123,6 +124,8 @@ const PORTFOLIO_QUERY = `
         agency
         client
         industry
+        timeframe
+        completed
         services
         sys {
           publishedAt
@@ -249,4 +252,49 @@ export async function getServices(): Promise<Service[]> {
 
   const data = await query<{ servicesCollection: { items: Service[] } }>(SERVICES_QUERY);
   return data.servicesCollection.items;
+}
+
+const ABOUT_QUERY = `
+  {
+    resumeCollection(limit: 1) {
+      items {
+        image { url fileName width height }
+      }
+    }
+    jobCollection(order: date_DESC, limit: 20) {
+      items { title company companyLink date to }
+    }
+    skillsCollection(limit: 1) {
+      items { skill }
+    }
+    companiesCollection(limit: 1) {
+      items {
+        companiesCollection(limit: 20) {
+          items { title }
+        }
+      }
+    }
+  }
+`;
+
+export async function getAbout(): Promise<About> {
+  "use cache";
+  cacheLife("days");
+  cacheTag("contentful");
+
+  const data = await query<{
+    resumeCollection: { items: { image?: ContentfulImage }[] };
+    jobCollection: { items: Job[] };
+    skillsCollection: { items: { skill?: string[] }[] };
+    companiesCollection: { items: { companiesCollection: { items: { title: string }[] } }[] };
+  }>(ABOUT_QUERY);
+
+  const photo = data.resumeCollection.items[0]?.image;
+
+  return {
+    photo: photo ? await enrichImage(photo, "card") : undefined,
+    jobs: data.jobCollection.items,
+    skills: (data.skillsCollection.items[0]?.skill ?? []).map((s) => s.trim()).filter(Boolean),
+    clients: data.companiesCollection.items[0]?.companiesCollection.items.map((c) => c.title) ?? [],
+  };
 }

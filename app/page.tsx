@@ -1,8 +1,9 @@
 import HeroBlob from "@/components/HeroBlob";
 import PortfolioSection from "@/components/PortfolioSection";
-import { getHome } from "@/utils/contentful";
+import { getAbout, getHome } from "@/utils/contentful";
 import { buildMetadata } from "@/utils/metadata";
-import { LINKS } from "@/utils/site";
+import Link from "next/link";
+import ClientStrip from "@/components/ClientStrip";
 
 export const metadata = buildMetadata({
   title: "David Riches — Senior Front-End Engineer",
@@ -14,6 +15,7 @@ export const metadata = buildMetadata({
 
 export default function HomePage() {
   const dataPromise = getHome();
+  const aboutPromise = getAbout();
 
   return (
     <>
@@ -38,18 +40,19 @@ export default function HomePage() {
             <a href="#work" className="btn-primary">
               View Projects
             </a>
-            <a
-              href={LINKS.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-secondary"
-            >
+            <Link href="/about" className="btn-secondary">
               About Me
-            </a>
+            </Link>
           </div>
         </div>
+        <div
+          className="xl:hidden pointer-events-none absolute -top-10 -right-24 w-72 h-72 md:w-[28rem] md:h-[28rem] rounded-full blur-3xl opacity-25 bg-gradient-to-br from-primary to-secondary"
+          aria-hidden="true"
+        />
         <HeroBlob />
       </section>
+
+      <ClientStrip dataPromise={aboutPromise} />
 
       {/* Portfolio Section */}
       <div id="work" className="scroll-mt-header">

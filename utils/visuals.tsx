@@ -58,6 +58,16 @@ const serviceIcons: Record<string, ReactNode> = {
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
     </svg>
   ),
+  plug: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22v-5" /><path d="M9 8V2" /><path d="M15 8V2" /><path d="M18 8v5a4 4 0 01-4 4h-4a4 4 0 01-4-4V8z" />
+    </svg>
+  ),
+  cart: (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+    </svg>
+  ),
   database: (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
@@ -66,6 +76,17 @@ const serviceIcons: Record<string, ReactNode> = {
 };
 
 const iconOrder = ["code", "layout", "brush", "database", "zap", "globe"];
+
+// First matching keyword wins; unmatched titles fall back to the hash
+const serviceIconKeywords: [string, string][] = [
+  ["commerce", "cart"],
+  ["content", "database"],
+  ["integration", "plug"],
+  ["perform", "zap"],
+  ["ux", "brush"],
+  ["design", "brush"],
+  ["front-end", "code"],
+];
 
 const sideProjectIcons: ReactNode[] = [
   // timer
@@ -80,10 +101,24 @@ const sideProjectIcons: ReactNode[] = [
   <svg key="image" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M21 15l-5-5L5 21" />
   </svg>,
+  // play
+  <svg key="play" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" />
+  </svg>,
   // map
   <svg key="map" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" /><line x1="8" y1="2" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="22" />
   </svg>,
+];
+
+const [timerIcon, forkIcon, imageIcon, playIcon, mapIcon] = sideProjectIcons;
+
+const sideProjectIconKeywords: [string, ReactNode][] = [
+  ["timer", timerIcon],
+  ["lorem", forkIcon],
+  ["meme", imageIcon],
+  ["video", playIcon],
+  ["map", mapIcon],
 ];
 
 // dumbbell
@@ -103,15 +138,20 @@ export interface Visual extends IconColor {
 
 export function visualFor(title: string, context: "service" | "sideProject"): Visual {
   if (context === "service") {
-    const iconKey = iconOrder[stableIndex(title, iconOrder.length)];
+    const lower = title.toLowerCase();
+    const iconKey =
+      serviceIconKeywords.find(([keyword]) => lower.includes(keyword))?.[1] ??
+      iconOrder[stableIndex(title, iconOrder.length)];
     return {
       icon: serviceIcons[iconKey] ?? serviceIcons.code,
       ...colorFor(title, ICON_PALETTE.length),
     };
   }
 
-  const icon = title.toLowerCase().includes("fitness")
+  const lower = title.toLowerCase();
+  const icon = lower.includes("fitness")
     ? dumbbellIcon
-    : sideProjectIcons[stableIndex(title, sideProjectIcons.length)];
+    : sideProjectIconKeywords.find(([keyword]) => lower.includes(keyword))?.[1] ??
+      sideProjectIcons[stableIndex(title, sideProjectIcons.length)];
   return { icon, ...colorFor(title, 4) };
 }

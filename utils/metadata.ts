@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import type { ContentfulImage, PortfolioItem } from "@/types/contentful";
-import { SITE_URL, SITE_NAME, BRAND_DESCRIPTION } from "@/utils/site";
+import { SITE_URL, SITE_NAME, BRAND_DESCRIPTION, LINKS } from "@/utils/site";
 
 function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, "").trim();
@@ -62,7 +62,7 @@ export function personJsonLd() {
     jobTitle: "Senior Front-end Engineer",
     description: BRAND_DESCRIPTION,
     url: SITE_URL,
-    sameAs: ["https://github.com/imshuffling"],
+    sameAs: [LINKS.github, LINKS.linkedin],
   };
 }
 

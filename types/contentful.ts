@@ -28,6 +28,8 @@ export interface PortfolioItem {
   client: string;
   agency: string;
   industry: string;
+  timeframe?: string;
+  completed?: string;
   services?: string[];
   link?: string;
   description?: string;
@@ -53,6 +55,22 @@ export interface SideProject {
   description?: string;
   link?: string;
   githubUrl?: string;
+}
+
+// About Types
+export interface Job {
+  title: string;
+  company: string;
+  companyLink?: string;
+  date: string;
+  to?: string;
+}
+
+export interface About {
+  photo?: ContentfulImage;
+  jobs: Job[];
+  skills: string[];
+  clients: string[];
 }
 
 // Service Types

@@ -43,6 +43,11 @@ export function FeedbackForm() {
       aria-describedby={status === "error" ? "form-error" : undefined}
     >
       <input type="hidden" name="form-name" value="feedback" />
+      <p hidden>
+        <label>
+          Don&apos;t fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+        </label>
+      </p>
 
       <div>
         <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-primary mb-3 font-label">
@@ -52,7 +57,7 @@ export function FeedbackForm() {
           id="name"
           name="name"
           type="text"
-          placeholder="John Doe"
+          placeholder="Your name"
           required
           aria-required="true"
           aria-invalid={status === "error"}

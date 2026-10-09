@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function PortfolioContent({ portfolioItem, seo }: Props) {
-  const { title, link, agency, client, industry, services, body, blocksCollection, sys } = portfolioItem;
+  const { title, link, agency, client, industry, timeframe, completed, services, body, blocksCollection, sys } = portfolioItem;
 
   const articleLd = articleJsonLd({
     title: seo.plainTitle,
@@ -28,6 +28,8 @@ export default function PortfolioContent({ portfolioItem, seo }: Props) {
   const metaItems = [
     client && { label: "Client", value: client },
     industry && { label: "Industry", value: industry },
+    timeframe && { label: "Timeline", value: timeframe },
+    completed && { label: "Completed", value: completed },
     link && { label: "Website", value: link, isLink: true },
   ].filter(Boolean) as { label: string; value: string; isLink?: boolean }[];
 

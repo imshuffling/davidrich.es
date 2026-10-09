@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { ContentfulImage } from "@/types/contentful";
 
-export type ImageVariant = "card" | "cardLarge" | "footerCard" | "hero" | "twoColumn";
+export type ImageVariant = "card" | "cardLarge" | "footerCard" | "hero" | "portrait" | "twoColumn";
 
 /* Sizes derived from the .site-container cap (80rem − 2×2rem padding = 1216px content)
    and the 12-col #cards grid: span-4 ≈ 390px, span-8 ≈ 803px, full-bleed = 1216px. */
@@ -21,6 +21,10 @@ const VARIANTS: Record<ImageVariant, { fill: boolean; sizes: string }> = {
   hero: {
     fill: true,
     sizes: "(min-width: 80em) 1216px, calc(100vw - 3rem)",
+  },
+  portrait: {
+    fill: true,
+    sizes: "(min-width: 64em) 448px, calc(100vw - 3rem)",
   },
   twoColumn: {
     fill: false,

@@ -1,8 +1,9 @@
 <html>
   <head></head>
   <body>
-    <form name="feedback" data-netlify="true" hidden>
+    <form name="feedback" data-netlify="true" netlify-honeypot="bot-field" hidden>
       <input type="hidden" name="form-name" value="feedback" />
+      <input name="bot-field" />
       <input name="name" type="text" />
       <input name="email" type="text" />
       <textarea name="message" type="text" />
