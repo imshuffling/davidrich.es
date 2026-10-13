@@ -1,18 +1,17 @@
 import { cacheLife, cacheTag } from "next/cache";
 import {
   loadAbout,
+  loadCaseStudy,
   loadHome,
-  loadPortfolio,
-  loadPortfolioSeo,
   loadPortfolioSlugs,
   loadServices,
-  type PortfolioSeo,
+  type CaseStudy,
   type PortfolioSlugEntry,
 } from "./loaders";
 import { graphqlSource } from "./source";
 import type { About, PortfolioItem, Service, SideProject } from "@/types/contentful";
 
-export type { PortfolioSeo, PortfolioSlugEntry } from "./loaders";
+export type { CaseStudy, PortfolioSeo, PortfolioSlugEntry } from "./loaders";
 
 export async function getHome(): Promise<{
   portfolioCollection: PortfolioItem[];
@@ -25,12 +24,12 @@ export async function getHome(): Promise<{
   return loadHome(graphqlSource);
 }
 
-export async function getPortfolio(slug: string): Promise<PortfolioItem | undefined> {
+export async function getCaseStudy(slug: string): Promise<CaseStudy | undefined> {
   "use cache";
   cacheLife("days");
   cacheTag("contentful");
 
-  return loadPortfolio(graphqlSource, slug);
+  return loadCaseStudy(graphqlSource, slug);
 }
 
 export async function getPortfolioSlugs(): Promise<PortfolioSlugEntry[]> {
@@ -39,16 +38,6 @@ export async function getPortfolioSlugs(): Promise<PortfolioSlugEntry[]> {
   cacheTag("contentful");
 
   return loadPortfolioSlugs(graphqlSource);
-}
-
-export async function portfolioSeo(slug: string): Promise<PortfolioSeo | undefined> {
-  "use cache";
-  cacheLife("days");
-  cacheTag("contentful");
-
-  const item = await getPortfolio(slug);
-  if (!item) return undefined;
-  return loadPortfolioSeo(graphqlSource, item);
 }
 
 export async function getServices(): Promise<Service[]> {

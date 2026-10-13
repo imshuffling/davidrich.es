@@ -1,7 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { BLOCKS, type Document } from "@contentful/rich-text-types";
-import { loadAbout, loadHome, loadPortfolio, loadPortfolioSeo } from "@/utils/contentful/loaders";
-import { ABOUT_QUERY, HOME_QUERY, PORTFOLIO_QUERY } from "@/utils/contentful/queries";
+import {
+  loadAbout,
+  loadCaseStudy,
+  loadHome,
+  loadPortfolio,
+  loadPortfolioSeo,
+} from "@/utils/contentful/loaders";
+import {
+  ABOUT_QUERY,
+  FEATURED_ORDER_QUERY,
+  HOME_QUERY,
+  PORTFOLIO_QUERY,
+} from "@/utils/contentful/queries";
 import { ASSET_BYTES, fixtureSource } from "./stubs/contentfulSource";
 import type { ContentfulBlock, PortfolioItem } from "@/types/contentful";
 
@@ -164,5 +175,65 @@ describe("loadPortfolioSeo", () => {
   it("omits the og image when there is no Image block", async () => {
     const seo = await loadPortfolioSeo(fixtureSource({}), item([blocks[0]]));
     expect(seo.ogImage).toBeUndefined();
+  });
+});
+
+describe("loadCaseStudy", () => {
+  const featured = (slugs: string[]) => ({
+    [FEATURED_ORDER_QUERY]: {
+      featuredProjectsCollection: {
+        items: [{ itemCollection: { items: slugs.map((slug) => ({ slug, title: `<em>${slug}</em><script>x</script>` })) } }],
+      },
+    },
+  });
+
+  const caseStudy = (slug: string, featuredSlugs: string[], sys?: PortfolioItem["sys"]) =>
+    loadCaseStudy(
+      fixtureSource({
+        ...portfolio([{ ...card(slug), seoTitle: "", sys, blocksCollection: { items: blocks } }]),
+        ...featured(featuredSlugs),
+      }),
+      slug,
+    );
+
+  it("returns undefined for an unknown slug", async () => {
+    const source = fixtureSource({ ...portfolio([]), ...featured(["a", "b"]) });
+    expect(await loadCaseStudy(source, "nope")).toBeUndefined();
+  });
+
+  it("links prev and next neighbours in featured order", async () => {
+    const { pager } = (await caseStudy("b", ["a", "b", "c"]))!;
+    expect(pager.prev?.slug).toBe("a");
+    expect(pager.next?.slug).toBe("c");
+  });
+
+  it("wraps around at both ends", async () => {
+    const first = (await caseStudy("a", ["a", "b", "c"]))!.pager;
+    const last = (await caseStudy("c", ["a", "b", "c"]))!.pager;
+    expect([first.prev?.slug, first.next?.slug]).toEqual(["c", "b"]);
+    expect([last.prev?.slug, last.next?.slug]).toEqual(["b", "a"]);
+  });
+
+  it("gives non-featured items and single-item lists no pager", async () => {
+    expect((await caseStudy("x", ["a", "b"]))!.pager).toEqual({});
+    expect((await caseStudy("a", ["a"]))!.pager).toEqual({});
+  });
+
+  it("sanitizes pager titles", async () => {
+    const { pager } = (await caseStudy("a", ["a", "b"]))!;
+    expect(pager.next?.title).toBe("<em>b</em>");
+  });
+
+  it("includes seo with og image and publish dates", async () => {
+    const { seo } = (await caseStudy("a", ["a"], { publishedAt: "2026-02-01", firstPublishedAt: "2025-01-01" }))!;
+    expect(seo.ogImage?.url).toContain("w=1200&h=630");
+    expect(seo.datePublished).toBe("2025-01-01");
+    expect(seo.dateModified).toBe("2026-02-01");
+  });
+
+  it("falls back to whichever publish date exists", async () => {
+    const { seo } = (await caseStudy("a", ["a"], { publishedAt: "2026-02-01" }))!;
+    expect(seo.datePublished).toBe("2026-02-01");
+    expect(seo.dateModified).toBe("2026-02-01");
   });
 });

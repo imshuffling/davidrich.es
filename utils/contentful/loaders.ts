@@ -5,6 +5,7 @@ import { deriveSeo } from "@/utils/metadata";
 import { sanitize } from "@/utils/sanitize";
 import {
   ABOUT_QUERY,
+  FEATURED_ORDER_QUERY,
   HOME_QUERY,
   PORTFOLIO_QUERY,
   PORTFOLIO_SLUGS_QUERY,
@@ -13,16 +14,28 @@ import {
 import type { ContentfulSource } from "./source";
 import type { About, ContentfulImage, Job, PortfolioItem, Service, SideProject } from "@/types/contentful";
 
+type FeaturedData<T> = {
+  featuredProjectsCollection: { items: { itemCollection: { items: T[] } }[] };
+};
+
+function featuredItems<T>(data: FeaturedData<T>): T[] {
+  return data.featuredProjectsCollection.items[0]?.itemCollection.items ?? [];
+}
+
+const sanitizeTitle = <T extends { title: string }>(item: T): T => ({
+  ...item,
+  title: sanitize(item.title) ?? item.title,
+});
+
 export async function loadHome(source: ContentfulSource): Promise<{
   portfolioCollection: PortfolioItem[];
   sideProjectsCollection: SideProject[];
 }> {
-  const data = await source.query<{
-    featuredProjectsCollection: { items: { itemCollection: { items: PortfolioItem[] } }[] };
-    sideProjectsCollection: { items: SideProject[] };
-  }>(HOME_QUERY);
+  const data = await source.query<
+    FeaturedData<PortfolioItem> & { sideProjectsCollection: { items: SideProject[] } }
+  >(HOME_QUERY);
 
-  const items = data.featuredProjectsCollection.items[0]?.itemCollection.items ?? [];
+  const items = featuredItems(data);
 
   const portfolioCollection = await Promise.all(
     items.map(async (item, index) => ({
@@ -62,14 +75,9 @@ export async function loadPortfolio(
   ]);
 
   return {
-    ...item,
-    title: sanitize(item.title) ?? item.title,
+    ...sanitizeTitle(item),
     ...(blocks && { blocksCollection: { items: blocks } }),
-    ...(footerItems && {
-      footerCollection: {
-        items: footerItems.map((p) => ({ ...p, title: sanitize(p.title) ?? p.title })),
-      },
-    }),
+    ...(footerItems && { footerCollection: { items: footerItems.map(sanitizeTitle) } }),
   };
 }
 
@@ -88,12 +96,7 @@ export async function loadPortfolioSlugs(source: ContentfulSource): Promise<Port
   }));
 }
 
-export interface PortfolioSeo {
-  plainTitle: string;
-  description: string;
-  pageUrl: string;
-  ogImage?: ContentfulImage;
-}
+export type PortfolioSeo = ReturnType<typeof deriveSeo> & { ogImage?: ContentfulImage };
 
 export async function loadPortfolioSeo(
   source: ContentfulSource,
@@ -105,6 +108,41 @@ export async function loadPortfolioSeo(
   return {
     ...deriveSeo(item),
     ...(firstImageBlock && { ogImage: await enrichImage(source, firstImageBlock.image, "og") }),
+  };
+}
+
+type PagerLink = Pick<PortfolioItem, "slug" | "title">;
+
+export interface CaseStudy {
+  item: PortfolioItem;
+  seo: PortfolioSeo;
+  pager: { prev?: PagerLink; next?: PagerLink };
+}
+
+// Prev/next cycle through the featured order; non-featured items get no pager
+function pagerFor(featured: PagerLink[], slug: string): CaseStudy["pager"] {
+  const index = featured.findIndex((link) => link.slug === slug);
+  if (index === -1 || featured.length < 2) return {};
+  return {
+    prev: featured[(index - 1 + featured.length) % featured.length],
+    next: featured[(index + 1) % featured.length],
+  };
+}
+
+export async function loadCaseStudy(
+  source: ContentfulSource,
+  slug: string,
+): Promise<CaseStudy | undefined> {
+  const [item, featured] = await Promise.all([
+    loadPortfolio(source, slug),
+    source.query<FeaturedData<PagerLink>>(FEATURED_ORDER_QUERY).then(featuredItems),
+  ]);
+  if (!item) return undefined;
+
+  return {
+    item,
+    seo: await loadPortfolioSeo(source, item),
+    pager: pagerFor(featured.map(sanitizeTitle), slug),
   };
 }
 

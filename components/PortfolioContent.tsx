@@ -12,15 +12,15 @@ type Props = {
 };
 
 export default function PortfolioContent({ portfolioItem, seo }: Props) {
-  const { title, link, agency, client, industry, timeframe, completed, services, body, blocksCollection, sys } = portfolioItem;
+  const { title, link, agency, client, industry, timeframe, completed, services, body, blocksCollection } = portfolioItem;
 
   const articleLd = articleJsonLd({
     title: seo.plainTitle,
     description: seo.description,
     pageUrl: seo.pageUrl,
     ogImage: seo.ogImage,
-    datePublished: sys?.firstPublishedAt || sys?.publishedAt,
-    dateModified: sys?.publishedAt || sys?.firstPublishedAt,
+    datePublished: seo.datePublished,
+    dateModified: seo.dateModified,
   });
 
   const breadcrumbLd = breadcrumbJsonLd(seo.plainTitle, seo.pageUrl);
