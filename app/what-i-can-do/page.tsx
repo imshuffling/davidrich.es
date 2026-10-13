@@ -1,14 +1,9 @@
 import ServicesSection from "@/components/ServicesSection";
 import { getServices } from "@/utils/contentful";
-import { buildMetadata } from "@/utils/metadata";
+import { pageMetadata } from "@/utils/metadata";
 import CtaBlock from "@/components/CtaBlock";
 
-export const metadata = buildMetadata({
-  title: "What I can do",
-  description:
-    "Headless commerce and content platforms, built properly. Front-end engineering on Next.js, BigCommerce and Contentful — with the editorial tooling and performance to back them up.",
-  path: "/what-i-can-do",
-});
+export const metadata = pageMetadata("services");
 
 export default function ServicesPage() {
   const dataPromise = getServices();
