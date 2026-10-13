@@ -22,18 +22,38 @@ describe("cardLayout featured grid", () => {
     }
   });
 
-  // 12 cols: large = 8, standard = 4, full = 12. Matches the old nth-child rule;
-  // 4 and 7 cards still leave a gap before the full-width card.
   it.each([
     [1, ["large"]],
     [2, ["large", "standard"]],
     [3, ["large", "standard", "full"]],
-    [4, ["large", "standard", "standard", "full"]],
+    [4, ["large", "standard", "standard", "large"]],
     [5, ["large", "standard", "standard", "standard", "standard"]],
     [6, ["large", "standard", "standard", "standard", "standard", "full"]],
-    [7, ["large", "standard", "standard", "standard", "standard", "standard", "full"]],
+    [7, ["large", "standard", "standard", "standard", "standard", "standard", "large"]],
+    [8, ["large", "standard", "standard", "standard", "standard", "standard", "standard", "standard"]],
   ])("lays out %i cards", (count, expected) => {
     expect(sizes(count)).toEqual(expected);
+  });
+
+  // 12 cols: large = 8, standard = 4, full = 12
+  it("fills every row to 12 columns for 2+ cards", () => {
+    const span = { standard: 4, large: 8, full: 12 } as const;
+    for (let count = 2; count <= 12; count++) {
+      let row = 0;
+      for (const size of sizes(count)) {
+        if (row + span[size] > 12) {
+          expect(row, `count ${count}`).toBe(12);
+          row = 0;
+        }
+        row += span[size];
+        if (row === 12) row = 0;
+      }
+      expect(row, `count ${count} last row`).toBe(0);
+    }
+  });
+
+  it("does not prioritise or describe a stretched last card", () => {
+    expect(cardLayout("featured", 3, 4)).toMatchObject({ priority: false, showDescription: false });
   });
 
   it("uses the hero image variant for full-width cards", () => {
