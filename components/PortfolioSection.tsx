@@ -1,5 +1,6 @@
 import PortfolioCard from "@/components/PortfolioCard";
 import RichText from "@/components/RichText";
+import { cardLayout } from "@/utils/cardLayout";
 import { visualFor } from "@/utils/visuals";
 import CtaBlock from "@/components/CtaBlock";
 import type { PortfolioItem, SideProject } from "@/types/contentful";
@@ -14,12 +15,6 @@ interface PortfolioSectionProps {
 export default async function PortfolioSection({ dataPromise }: PortfolioSectionProps) {
   const { portfolioCollection, sideProjectsCollection } = await dataPromise;
 
-  const count = portfolioCollection.length;
-  // Mirrors the #cards last-child full-width rule in globals.css:
-  // :last-child:nth-child(n + 3):not(:nth-child(3n + 2))
-  const isFullBleed = (index: number) =>
-    index === count - 1 && count >= 3 && count % 3 !== 2;
-
   return (
     <>
       <div className="site-container">
@@ -27,10 +22,8 @@ export default async function PortfolioSection({ dataPromise }: PortfolioSection
           {portfolioCollection.map((item, index) => (
             <PortfolioCard
               key={item.slug}
-              index={index}
               item={item}
-              priority={index === 0}
-              imageVariant={isFullBleed(index) ? "hero" : undefined}
+              slot={cardLayout("featured", index, portfolioCollection.length)}
             />
           ))}
         </div>

@@ -481,10 +481,10 @@ html[data-theme="dark"] {
       grid-column: span 4;
       height: auto;
     }
-    .card:first-child {
+    .card--large {
       grid-column: span 8;
     }
-    #cards > .card:last-child:nth-child(n + 3):not(:nth-child(3n + 2)) {
+    .card--full {
       grid-column: 1 / -1;
     }
   }
@@ -604,8 +604,8 @@ html[data-theme="dark"] {
 
   @media (min-width: 48em) {
     .card__content h2 { font-size: 2rem; }
-    .card:first-child .card__content h2 { font-size: 2.5rem; }
-    .card:first-child .card__description {
+    .card--large .card__content h2 { font-size: 2.5rem; }
+    .card--large .card__description {
       display: block;
       font-size: 1rem;
       color: rgba(255,255,255,0.7);

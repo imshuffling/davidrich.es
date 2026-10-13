@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { PortfolioItem, ContentfulBlock } from './contentful';
-import type { ImageVariant } from '@/components/ImageWrapper';
+import type { CardSlot } from '@/utils/cardLayout';
 
 // Layout Component Props
 export interface LayoutProps {
@@ -10,9 +10,7 @@ export interface LayoutProps {
 // Portfolio Card Props
 export interface PortfolioCardProps {
   item: PortfolioItem;
-  priority?: boolean;
-  index?: number;
-  imageVariant?: ImageVariant;
+  slot: CardSlot;
 }
 
 // Blocks Props

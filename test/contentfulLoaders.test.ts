@@ -54,12 +54,11 @@ const home = (items: unknown[], featured = true) => ({
 });
 
 describe("loadHome", () => {
-  it("gives only the first card a description and drops body", async () => {
+  it("turns body into a plain-text description and drops body", async () => {
     const { portfolioCollection } = await loadHome(
       fixtureSource(home([card("one"), card("two")])),
     );
-    expect(portfolioCollection[0].description).toBe("about one");
-    expect(portfolioCollection[1].description).toBeUndefined();
+    expect(portfolioCollection.map((p) => p.description)).toEqual(["about one", "about two"]);
     expect(portfolioCollection.every((p) => p.body === undefined)).toBe(true);
   });
 

@@ -38,13 +38,11 @@ export async function loadHome(source: ContentfulSource): Promise<{
   const items = featuredItems(data);
 
   const portfolioCollection = await Promise.all(
-    items.map(async (item, index) => ({
+    items.map(async (item) => ({
       ...item,
       body: undefined,
       title: sanitize(item.title) ?? item.title,
-      // Only the first (large) card renders a description
-      description:
-        index === 0 && item.body ? documentToPlainTextString(item.body.json) : undefined,
+      description: item.body ? documentToPlainTextString(item.body.json) : undefined,
       image: await enrichImage(source, item.image, "card"),
     })),
   );
