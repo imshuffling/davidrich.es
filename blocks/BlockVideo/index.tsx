@@ -1,4 +1,5 @@
 import { enrichImage } from "@/utils/contentfulImage";
+import type { ContentfulSource } from "@/utils/contentful/source";
 import type { BlockVideo as BlockVideoProps } from "@/types/contentful";
 
 export const fragment = `... on Video {
@@ -6,8 +7,8 @@ export const fragment = `... on Video {
   video { fileName url description }
 }`;
 
-export async function enrich(block: BlockVideoProps): Promise<BlockVideoProps> {
-  return { ...block, image: await enrichImage(block.image, "poster") };
+export async function enrich(block: BlockVideoProps, source: ContentfulSource): Promise<BlockVideoProps> {
+  return { ...block, image: await enrichImage(source, block.image, "poster") };
 }
 
 export default function BlockVideo({ video, image }: BlockVideoProps) {

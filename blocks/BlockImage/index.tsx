@@ -1,5 +1,6 @@
 import ImageWrapper from "@/components/ImageWrapper";
 import { enrichImage } from "@/utils/contentfulImage";
+import type { ContentfulSource } from "@/utils/contentful/source";
 import type { BlockImage as BlockImageProps } from "@/types/contentful";
 
 export const fragment = `... on Image {
@@ -7,8 +8,8 @@ export const fragment = `... on Image {
   lazyLoad
 }`;
 
-export async function enrich(block: BlockImageProps): Promise<BlockImageProps> {
-  return { ...block, image: await enrichImage(block.image, "hero") };
+export async function enrich(block: BlockImageProps, source: ContentfulSource): Promise<BlockImageProps> {
+  return { ...block, image: await enrichImage(source, block.image, "hero") };
 }
 
 export default function BlockImage({ image, lazyLoad }: BlockImageProps) {
