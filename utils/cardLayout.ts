@@ -16,8 +16,9 @@ const FOOTER_SLOT: CardSlot = {
   showDescription: false,
 };
 
-/* Featured grid is 12 columns at md+: the first card spans 8, the rest 4.
-   A last card that would sit alone in a row with a gap goes full width. */
+/* Featured grid is 12 columns at md+: the first card spans 8 next to one
+   standard card, then rows of three 4-column cards. The last card stretches
+   to close a short final row: alone → full width, after one other → span 8. */
 export function cardLayout(grid: CardGrid, index: number, count: number): CardSlot {
   if (grid === "footer") return FOOTER_SLOT;
 
@@ -26,8 +27,12 @@ export function cardLayout(grid: CardGrid, index: number, count: number): CardSl
   }
 
   const isLast = index === count - 1;
-  if (isLast && count >= 3 && count % 3 !== 2) {
+  const lastRowCount = (count - 2) % 3;
+  if (isLast && count >= 3 && lastRowCount === 1) {
     return { size: "full", variant: "hero", priority: false, showDescription: false };
+  }
+  if (isLast && count >= 3 && lastRowCount === 2) {
+    return { size: "large", variant: "cardLarge", priority: false, showDescription: false };
   }
 
   return { size: "standard", variant: "card", priority: false, showDescription: false };
