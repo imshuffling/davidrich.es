@@ -1,13 +1,8 @@
 import { FeedbackForm } from "@/components/Feedback-form";
-import { buildMetadata } from "@/utils/metadata";
+import { pageMetadata } from "@/utils/metadata";
 import { CONTACT, LINKS } from "@/utils/site";
 
-export const metadata = buildMetadata({
-  title: "Contact",
-  description:
-    "Get in touch about headless commerce, Next.js or content platform work — or just to chat about the latest in front-end tech.",
-  path: "/contact",
-});
+export const metadata = pageMetadata("contact");
 
 export default function ContactPage() {
   return (

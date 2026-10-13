@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { documentToPlainTextString } from "@contentful/rich-text-plain-text-renderer";
 import type { ContentfulImage, PortfolioItem } from "@/types/contentful";
-import { SITE_URL, SITE_NAME, BRAND_DESCRIPTION, LINKS } from "@/utils/site";
+import { SITE_URL, SITE_NAME, BRAND_DESCRIPTION, LINKS, PAGES, type PageEntry, type PageKey } from "@/utils/site";
 
 function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, "").trim();
@@ -55,6 +55,11 @@ export function buildMetadata({
       description,
     },
   };
+}
+
+export function pageMetadata(key: PageKey): Metadata {
+  const { title, description, path, absoluteTitle }: PageEntry = PAGES[key];
+  return buildMetadata({ title, description, path, absoluteTitle });
 }
 
 export function personJsonLd() {

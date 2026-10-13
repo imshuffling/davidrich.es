@@ -1,16 +1,11 @@
 import ImageWrapper from "@/components/ImageWrapper";
 import CtaBlock from "@/components/CtaBlock";
 import { getAbout } from "@/utils/contentful";
-import { buildMetadata } from "@/utils/metadata";
+import { pageMetadata } from "@/utils/metadata";
 import { LINKS } from "@/utils/site";
 import type { Job } from "@/types/contentful";
 
-export const metadata = buildMetadata({
-  title: "About",
-  description:
-    "Senior front-end engineer based in Kent, building headless commerce and content platforms since 2010 — currently leading the front-end of Master of Malt's replatform.",
-  path: "/about",
-});
+export const metadata = pageMetadata("about");
 
 const year = (date: string) => date.slice(0, 4);
 

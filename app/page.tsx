@@ -1,17 +1,11 @@
 import HeroBlob from "@/components/HeroBlob";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
-import { buildMetadata } from "@/utils/metadata";
+import { pageMetadata } from "@/utils/metadata";
 import Link from "next/link";
 import ClientStrip from "@/components/ClientStrip";
 
-export const metadata = buildMetadata({
-  title: "David Riches — Senior Front-End Engineer",
-  description:
-    "I'm David — a senior front-end engineer and hockey player based in Kent, building headless commerce and content platforms for performance-focused brands.",
-  path: "/",
-  absoluteTitle: true,
-});
+export const metadata = pageMetadata("home");
 
 export default function HomePage() {
   const dataPromise = getHome();
