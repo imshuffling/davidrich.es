@@ -4,26 +4,22 @@ import RichText from "@/components/RichText";
 import HoverVideo from "@/components/HoverVideo";
 import type { PortfolioCardProps } from "@/types/components";
 
-export default function PortfolioCard({
-  item,
-  index,
-  priority = false,
-  imageVariant,
-}: PortfolioCardProps) {
+const SIZE_CLASS = { standard: "", large: "card--large", full: "card--full" } as const;
+
+export default function PortfolioCard({ item, slot }: PortfolioCardProps) {
   const { title, slug, media, image, industry, description, services } = item;
   const tags = services?.slice(0, 3);
-  const isLarge = index === 0;
-  const variant = imageVariant ?? (isLarge ? "cardLarge" : "card");
+  const classes = ["card", SIZE_CLASS[slot.size], media && "has-video"].filter(Boolean).join(" ");
 
   return (
-    <div className={`card ${media ? "has-video" : ""}`}>
+    <div className={classes}>
       <Link href={"/portfolio/" + slug}>
         <div className="card__image">
           <ImageWrapper
             image={image}
-            variant={variant}
+            variant={slot.variant}
             alt={title}
-            priority={priority}
+            priority={slot.priority}
             showGradient={true}
           />
           {media && <HoverVideo url={media.url} />}
@@ -32,7 +28,7 @@ export default function PortfolioCard({
           <div className="card__content">
             {industry && <span>{industry}</span>}
             <RichText as="h2" html={title} />
-            {isLarge && description && (
+            {slot.showDescription && description && (
               <p className="card__description">{description}</p>
             )}
             {tags && tags.length > 0 && (

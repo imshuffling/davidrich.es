@@ -1,4 +1,5 @@
 import PortfolioCard from "@/components/PortfolioCard";
+import { cardLayout } from "@/utils/cardLayout";
 import type { PortfolioItem } from "@/types/contentful";
 
 interface PortfolioFooterProps {
@@ -13,7 +14,11 @@ export default function PortfolioFooter({ footerCollection }: PortfolioFooterPro
       <h3 className="font-headline font-bold">Other projects</h3>
       <div id="cards">
         {footerCollection.items.map((item, index) => (
-          <PortfolioCard key={item.slug} item={item} index={index} imageVariant="footerCard" />
+          <PortfolioCard
+            key={item.slug}
+            item={item}
+            slot={cardLayout("footer", index, footerCollection.items.length)}
+          />
         ))}
       </div>
     </section>
