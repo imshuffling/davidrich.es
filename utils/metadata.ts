@@ -7,13 +7,17 @@ function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, "").trim();
 }
 
-export function deriveSeo(item: Pick<PortfolioItem, "title" | "seoTitle" | "slug" | "body">) {
+export function deriveSeo(
+  item: Pick<PortfolioItem, "title" | "seoTitle" | "slug" | "body" | "sys">,
+) {
   return {
     plainTitle: stripHtml(item.seoTitle || item.title),
     description: item.body
       ? documentToPlainTextString(item.body.json).slice(0, 160)
       : BRAND_DESCRIPTION,
     pageUrl: `${SITE_URL}/portfolio/${item.slug}`,
+    datePublished: item.sys?.firstPublishedAt || item.sys?.publishedAt,
+    dateModified: item.sys?.publishedAt || item.sys?.firstPublishedAt,
   };
 }
 

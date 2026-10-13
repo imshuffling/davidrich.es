@@ -30,6 +30,21 @@ export const HOME_QUERY = `
   }
 `;
 
+export const FEATURED_ORDER_QUERY = `
+  query {
+    featuredProjectsCollection(limit: 10) {
+      items {
+        itemCollection {
+          items {
+            title
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const PORTFOLIO_QUERY = `
   query GetPortfolioItem($slug: String!) {
     portfolioCollection(where: { slug: $slug }, limit: 1) {
