@@ -3,6 +3,7 @@ import CtaBlock from "@/components/CtaBlock";
 import { getAbout } from "@/utils/contentful";
 import { pageMetadata } from "@/utils/metadata";
 import { LINKS } from "@/utils/site";
+import { skillIcon } from "@/utils/skillIcons";
 import type { Job } from "@/types/contentful";
 
 export const metadata = pageMetadata("about");
@@ -28,12 +29,14 @@ export default async function AboutPage() {
             <span className="text-primary font-label tracking-widest uppercase text-xs mb-4 block font-bold">
               About
             </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight mb-6 md:mb-8">
+            <h1 className="text-4xl md:text-6xl lg:text-6xl xl:text-7xl font-headline font-extrabold tracking-tighter leading-tight mb-6 md:mb-8">
               I build things for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                the web
+              <span className="whitespace-nowrap">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                  the web
+                </span>
+                .
               </span>
-              .
             </h1>
             <div className="space-y-4 text-lg md:text-xl text-on-surface-variant leading-relaxed max-w-2xl">
               <p>
@@ -122,14 +125,22 @@ export default async function AboutPage() {
             Toolkit
           </h2>
           <ul className="flex flex-wrap gap-3">
-            {skills.map((skill) => (
-              <li
-                key={skill}
-                className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-headline font-semibold"
-              >
-                {skill}
-              </li>
-            ))}
+            {skills.map((skill) => {
+              const icon = skillIcon(skill);
+              return (
+                <li
+                  key={skill}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-headline font-semibold"
+                >
+                  {icon && (
+                    <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0" fill="currentColor" aria-hidden="true">
+                      <path d={icon.path} />
+                    </svg>
+                  )}
+                  {skill}
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}
