@@ -1,9 +1,5 @@
 import { ImageResponse } from "next/og";
 import { PAGES, type PageKey } from "@/utils/site";
-import { BRAND_GRADIENT, LOGO, logoSvg } from "@/utils/logo";
-
-const LOGO_SRC = `data:image/svg+xml,${encodeURIComponent(logoSvg({ badge: "#ffffff", letters: BRAND_GRADIENT[0] }))}`;
-const LOGO_HEIGHT = 72;
 
 export const OG_SIZE = { width: 1200, height: 630 } as const;
 export const OG_CONTENT_TYPE = "image/png" as const;
@@ -84,9 +80,8 @@ export function renderOgImage({ eyebrow, title, subtitle }: OgCardProps) {
             opacity: 0.95,
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
-          <img src={LOGO_SRC} width={(LOGO.width / LOGO.height) * LOGO_HEIGHT} height={LOGO_HEIGHT} />
           <div style={{ display: "flex" }}>davidrich.es</div>
+          <div style={{ display: "flex" }}>David Riches</div>
         </div>
       </div>
     ),
