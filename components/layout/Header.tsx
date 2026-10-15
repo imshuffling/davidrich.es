@@ -98,7 +98,7 @@ export default function Header() {
         <nav className={`site-container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
           <span onClick={() => setToggleState(false)} className="md:justify-self-start">
             <Link href="/" className="logo-gradient" aria-label="David Riches — home">
-              DavidRiches
+              David Riches
             </Link>
           </span>
 

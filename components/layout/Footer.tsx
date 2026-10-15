@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="site-container grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start gap-2">
           <Link href="/" className="logo-gradient" aria-label="David Riches — home">
-            DavidRiches
+            David Riches
           </Link>
           <p className="text-on-surface-variant text-sm mb-0">
             Senior front-end engineer · {CONTACT.location}
