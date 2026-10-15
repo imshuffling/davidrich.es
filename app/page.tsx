@@ -1,4 +1,5 @@
 import HeroBlob from "@/components/HeroBlob";
+import HeroBlobStatic from "@/components/HeroBlobStatic";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import { pageMetadata } from "@/utils/metadata";
@@ -38,10 +39,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <div
-          className="xl:hidden pointer-events-none absolute -top-10 -right-24 w-72 h-72 md:w-[28rem] md:h-[28rem] rounded-full blur-3xl opacity-25 bg-gradient-to-br from-primary to-secondary"
-          aria-hidden="true"
-        />
+        <HeroBlobStatic className="xl:hidden pointer-events-none absolute -top-6 -right-20 w-64 h-64 md:-right-16 md:w-[26rem] md:h-[26rem] opacity-40 md:opacity-60" />
         <HeroBlob />
       </section>
 
