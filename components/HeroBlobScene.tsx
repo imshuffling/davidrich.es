@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Color, type Group, type Points, type ShaderMaterial } from "three";
+import { fibonacciSphere } from "@/utils/fibonacciSphere";
 
 const NOISE = /* glsl */ `
 vec4 permute(vec4 x) { return mod(((x * 34.0) + 1.0) * x, 289.0); }
@@ -98,17 +99,8 @@ const POINT_COUNT = 4000;
 const GROWTH = 1.1;
 const MAX_GROWS = 2;
 
-// Evenly spread points over a sphere (Fibonacci lattice)
 function spherePoints() {
-  const positions = new Float32Array(POINT_COUNT * 3);
-  const golden = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < POINT_COUNT; i++) {
-    const y = 1 - (i / (POINT_COUNT - 1)) * 2;
-    const r = Math.sqrt(1 - y * y);
-    const theta = golden * i;
-    positions.set([Math.cos(theta) * r * RADIUS, y * RADIUS, Math.sin(theta) * r * RADIUS], i * 3);
-  }
-  return positions;
+  return Float32Array.from(fibonacciSphere(POINT_COUNT).flat(), (v) => v * RADIUS);
 }
 
 function ParticleSphere({ animate }: { animate: boolean }) {
