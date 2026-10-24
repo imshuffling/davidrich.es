@@ -19,7 +19,7 @@
     "react": "19.2.5",
     "react-dom": "19.2.5",
     "react-markdown": "^10.1.0",
-    "sanitize-html": "^2.18.0",
+    "sanitize-html": "^2.18.1",
     "simple-icons": "^16.35.0",
     "tailwindcss": "^4.3.3",
     "three": "^0.186.1"
