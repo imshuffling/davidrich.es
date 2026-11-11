@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Oswald, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import Layout from "@/components/layout/Layout";
@@ -16,6 +16,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-plus-jakarta-sans",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-oswald",
 });
 
 const baseMetadata = buildMetadata({
@@ -76,7 +83,7 @@ export default function RootLayout({
   const websiteLd = websiteJsonLd();
 
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable} ${oswald.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://images.ctfassets.net" />
         <link rel="preconnect" href="https://videos.ctfassets.net" />

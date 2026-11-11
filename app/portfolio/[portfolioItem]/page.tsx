@@ -37,6 +37,7 @@ export default async function PortfolioPage({ params }: Props) {
 
   return (
     <>
+      <div className="scroll-progress" aria-hidden="true" />
       <PortfolioContent portfolioItem={item} seo={seo} />
       <ProjectPager prev={pager.prev} next={pager.next} />
       <PortfolioFooter footerCollection={item.footerCollection} />

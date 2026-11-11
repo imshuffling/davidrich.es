@@ -1,5 +1,3 @@
-import HeroBlob from "@/components/HeroBlob";
-import HeroBlobStatic from "@/components/HeroBlobStatic";
 import PortfolioSection from "@/components/PortfolioSection";
 import { getHome } from "@/utils/contentful";
 import { pageMetadata } from "@/utils/metadata";
@@ -15,7 +13,7 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="site-container relative pt-8 pb-12 md:pt-20 md:pb-24 flex items-center justify-between gap-12">
-        <div className="relative z-10 max-w-4xl">
+        <div className="hero-fade relative z-10 max-w-4xl">
           <h1 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-headline font-extrabold tracking-tight leading-tight mb-6 md:mb-8">
             Hello, I&apos;m David.{" "}
             <span role="img" aria-label="Waving hand" className="wave">
@@ -39,8 +37,6 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <HeroBlobStatic className="xl:hidden pointer-events-none absolute -top-6 -right-20 w-64 h-64 md:-right-16 md:w-[26rem] md:h-[26rem] opacity-40 md:opacity-60" />
-        <HeroBlob />
       </section>
 
       <ClientStrip />

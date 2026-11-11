@@ -13,7 +13,7 @@
   --font-headline: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
   --font-body: var(--font-inter), "Inter", sans-serif;
   --font-label: var(--font-inter), "Inter", sans-serif;
-  --font-logo: var(--font-plus-jakarta-sans), "Plus Jakarta Sans", sans-serif;
+  --font-logo: var(--font-oswald), "Oswald", sans-serif;
 
   --spacing-header: 7rem; /* sticky / scroll offset clearing the fixed header */
 }
@@ -109,8 +109,7 @@
   --md-card: rgba(252, 249, 248, 0.7);
   --md-violet: #7c3aed;
   --md-sky: #006d9c;
-  --md-blob-a: var(--md-primary-container);
-  --md-blob-b: var(--md-secondary-container);
+  --logo-fill: radial-gradient(farthest-corner at 50% 0%, rgb(244, 0, 136), #651fff);
 }
 
 /* next-themes always sets data-theme (system preference included) */
@@ -146,8 +145,7 @@ html[data-theme="dark"] {
   --md-card: rgba(71, 70, 70, 0.7);
   --md-violet: #b69df8;
   --md-sky: #7fd0ff;
-  --md-blob-a: #6d28d9;
-  --md-blob-b: #b8459f;
+  --logo-fill: linear-gradient(hsla(0, 0%, 100%, 0.6), hsla(0, 0%, 100%, 0.6));
 }
 
 /* ============================================
@@ -288,7 +286,7 @@ html[data-theme="dark"] {
     display: flex;
     flex-direction: column;
     background: var(--color-surface);
-    /* Decorative hero blobs bleed past the viewport; clip keeps sticky working */
+    /* Clip horizontal bleed without breaking sticky */
     overflow-x: clip;
   }
 
@@ -944,12 +942,14 @@ html[data-theme="dark"] {
   /* Logo */
   .logo-gradient,
   .logo-gradient:hover {
-    font-size: 1.25rem;
+    font-size: 1.8rem;
+    line-height: 1;
     font-family: var(--font-logo);
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: -1.5px;
     padding-right: 2px;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: var(--logo-fill);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -959,7 +959,7 @@ html[data-theme="dark"] {
   @media (min-width: 48em) {
     .logo-gradient,
     .logo-gradient:hover {
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
   }
 }
@@ -987,5 +987,161 @@ html[data-theme="dark"] {
 
   .ambient-shadow {
     box-shadow: var(--shadow-ambient);
+  }
+}
+
+/* ============================================
+   SCROLL-DRIVEN ANIMATIONS
+   Progressive enhancement: unsupported browsers and reduced-motion
+   users get the static end state.
+   ============================================ */
+
+@layer components {
+  .header-nav {
+    --header-pad: 0.75rem;
+    --header-pad-shrunk: 0.5rem;
+    padding-block: var(--header-pad);
+  }
+
+  .header-links {
+    gap: 2.5rem;
+    font-size: 1rem;
+  }
+
+  @media (min-width: 48em) {
+    .header-nav {
+      --header-pad: 1.25rem;
+      --header-pad-shrunk: 0.625rem;
+    }
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+}
+
+@keyframes header-shrink {
+  to { padding-block: var(--header-pad-shrunk); }
+}
+
+@keyframes header-links-shrink {
+  to { gap: 1.75rem; font-size: 0.875rem; }
+}
+
+@keyframes fade-up-out {
+  to { opacity: 0; transform: translateY(-3rem); }
+}
+
+/* Individual translate/scale so hover `transform` lifts still apply */
+@keyframes reveal-up {
+  from { opacity: 0; translate: 0 2.5rem; scale: 0.97; }
+}
+
+@keyframes reveal-side {
+  from { opacity: 0; transform: translateX(4rem); }
+}
+
+@keyframes number-in {
+  from { opacity: 0; scale: 0.5; }
+}
+
+@keyframes chip-in {
+  from { opacity: 0; scale: 0.6; translate: 0 1rem; }
+}
+
+@keyframes pop-in {
+  from { transform: scale(0); }
+}
+
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header-nav {
+      animation: header-shrink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+
+    .header-links {
+      animation: header-links-shrink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+
+    .hero-fade {
+      animation: fade-up-out linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+
+    .reveal-up {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    .reveal-side {
+      animation: reveal-side linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    /* Timeline rows: text slides in from the right, dot pops on the line */
+    .timeline-item {
+      view-timeline: --timeline-item;
+    }
+
+    .timeline-item > * {
+      animation: reveal-side linear both;
+      animation-timeline: --timeline-item;
+      animation-range: entry 10% cover 35%;
+    }
+
+    .timeline-item > .timeline-dot {
+      animation-name: pop-in;
+      animation-range: cover 20% cover 30%;
+    }
+
+    /* Process steps: number grows in, copy slides from the right */
+    .process-step {
+      view-timeline: --process-step;
+    }
+
+    .process-step > * {
+      animation: reveal-side linear both;
+      animation-timeline: --process-step;
+      animation-range: entry 10% cover 35%;
+    }
+
+    .process-step > .step-number {
+      animation-name: number-in;
+      transform-origin: left center;
+    }
+
+    /* Toolkit chips: staggered by index along the list's shared timeline */
+    .chip-group {
+      view-timeline: --chips;
+    }
+
+    .chip-group > li {
+      animation: chip-in linear both;
+      animation-timeline: --chips;
+      animation-range: entry calc(var(--i, 0) * 4%) entry calc(var(--i, 0) * 4% + 40%);
+    }
+
+    .scroll-progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      z-index: calc(var(--z-header) + 1);
+      background: var(--gradient-brand);
+      transform-origin: left;
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
   }
 }

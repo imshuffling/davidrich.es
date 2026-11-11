@@ -9,7 +9,7 @@ const SIZE_CLASS = { standard: "", large: "card--large", full: "card--full" } as
 export default function PortfolioCard({ item, slot }: PortfolioCardProps) {
   const { title, slug, media, image, industry, description, services } = item;
   const tags = services?.slice(0, 3);
-  const classes = ["card", SIZE_CLASS[slot.size], media && "has-video"].filter(Boolean).join(" ");
+  const classes = ["card", "reveal-up", SIZE_CLASS[slot.size], media && "has-video"].filter(Boolean).join(" ");
 
   return (
     <div className={classes}>

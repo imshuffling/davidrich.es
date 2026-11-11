@@ -27,7 +27,7 @@ export default async function ServicesSection({ dataPromise }: ServicesSectionPr
       {ordered.map((item) => {
         const { icon, bg, color } = visualFor(item.title, "service");
         return (
-          <li key={item.title} className={isPrimary(item.title) ? "is-primary" : undefined}>
+          <li key={item.title} className={isPrimary(item.title) ? "reveal-up is-primary" : "reveal-up"}>
             <div
               className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
               style={{ background: bg, color }}

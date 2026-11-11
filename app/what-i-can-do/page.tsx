@@ -74,7 +74,7 @@ export default function ServicesPage() {
             ].map((step) => (
               <div
                 key={step.num}
-                className="flex flex-col md:flex-row gap-6 md:gap-8 items-start"
+                className="process-step flex flex-col md:flex-row gap-6 md:gap-8 items-start"
               >
                 <div className="step-number text-4xl md:text-6xl font-headline font-black leading-none">
                   {step.num}
