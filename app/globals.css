@@ -1000,6 +1000,7 @@ html[data-theme="dark"] {
   .header-nav {
     --header-pad: 0.75rem;
     --header-pad-shrunk: 0.5rem;
+    --logo-size-shrunk: 1.4rem;
     padding-block: var(--header-pad);
   }
 
@@ -1012,6 +1013,7 @@ html[data-theme="dark"] {
     .header-nav {
       --header-pad: 1.25rem;
       --header-pad-shrunk: 0.625rem;
+      --logo-size-shrunk: 1.5rem;
     }
   }
 
@@ -1022,6 +1024,10 @@ html[data-theme="dark"] {
 
 @keyframes header-shrink {
   to { padding-block: var(--header-pad-shrunk); }
+}
+
+@keyframes logo-shrink {
+  to { font-size: var(--logo-size-shrunk); }
 }
 
 @keyframes header-links-shrink {
@@ -1061,6 +1067,12 @@ html[data-theme="dark"] {
   @media (prefers-reduced-motion: no-preference) {
     .header-nav {
       animation: header-shrink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 80px;
+    }
+
+    .header-nav .logo-gradient {
+      animation: logo-shrink linear both;
       animation-timeline: scroll(root);
       animation-range: 0 80px;
     }
