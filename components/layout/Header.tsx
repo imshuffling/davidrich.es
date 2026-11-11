@@ -9,7 +9,6 @@ import { NAV_LINKS, LINKS } from "@/utils/site";
 
 export default function Header() {
   const [toggleState, setToggleState] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const overlayRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -62,13 +61,6 @@ export default function Header() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [toggleState]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   useLayoutEffect(() => {
     if (toggleState) {
       const scrollY = window.scrollY;
@@ -95,7 +87,7 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 w-full z-(--z-header) backdrop-blur-xl ${toggleState ? "bg-surface" : "bg-surface/70 ambient-shadow"}`}>
-        <nav className={`site-container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${scrolled ? "py-2 md:py-2.5" : "py-3 md:py-5"}`}>
+        <nav className="header-nav site-container flex items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
           <span onClick={() => setToggleState(false)} className="md:justify-self-start">
             <Link href="/" className="logo-gradient" aria-label="David Riches — home">
               David Riches
@@ -103,7 +95,7 @@ export default function Header() {
           </span>
 
           {/* Desktop nav */}
-          <div className={`hidden md:flex items-center justify-center font-headline font-medium tracking-tight transition-all duration-300 ${scrolled ? "gap-7 text-sm" : "gap-10 text-base"}`}>
+          <div className="header-links hidden md:flex items-center justify-center font-headline font-medium tracking-tight">
             {NAV_LINKS.map((link) => {
               const isActive = isNavActive(link.href);
               return (

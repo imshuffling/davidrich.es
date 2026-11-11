@@ -5,6 +5,7 @@ import { pageMetadata } from "@/utils/metadata";
 import { LINKS } from "@/utils/site";
 import { skillIcon } from "@/utils/skillIcons";
 import type { Job } from "@/types/contentful";
+import type { CSSProperties } from "react";
 
 export const metadata = pageMetadata("about");
 
@@ -93,9 +94,9 @@ export default async function AboutPage() {
             </div>
             <ol className="md:col-span-8 border-l border-outline-variant">
               {jobs.map((job) => (
-                <li key={`${job.company}-${job.date}`} className="relative pl-6 md:pl-10 pb-10 last:pb-0">
+                <li key={`${job.company}-${job.date}`} className="timeline-item relative pl-6 md:pl-10 pb-10 last:pb-0">
                   <span
-                    className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-primary"
+                    className="timeline-dot absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-primary"
                     aria-hidden="true"
                   />
                   <p className="font-label text-xs uppercase tracking-widest text-primary font-bold mb-2">
@@ -124,12 +125,13 @@ export default async function AboutPage() {
           <h2 className="text-3xl md:text-4xl font-headline font-bold tracking-tight mb-8 md:mb-12">
             Toolkit
           </h2>
-          <ul className="flex flex-wrap gap-3">
-            {skills.map((skill) => {
+          <ul className="chip-group flex flex-wrap gap-3">
+            {skills.map((skill, index) => {
               const icon = skillIcon(skill);
               return (
                 <li
                   key={skill}
+                  style={{ "--i": index } as CSSProperties}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-headline font-semibold"
                 >
                   {icon && (

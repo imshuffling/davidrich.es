@@ -62,7 +62,7 @@ function SideProjectCard({ node }: { node: SideProject }) {
   const { icon, ...iconColor } = visualFor(node.title, "sideProject");
 
   return (
-    <div className="p-8 rounded-xl bg-card motion-safe:hover:-translate-y-1 transition-all duration-300 group shadow-sm">
+    <div className="reveal-side p-8 rounded-xl bg-card motion-safe:hover:-translate-y-1 transition-all duration-300 group shadow-sm">
       <div
         className="w-12 h-12 rounded-lg flex items-center justify-center mb-6"
         style={{ background: iconColor.bg, color: iconColor.color }}
