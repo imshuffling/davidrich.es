@@ -9,10 +9,13 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <header className="site-container pt-8 pb-12 md:pt-20 md:pb-24">
+        <span className="text-primary font-label tracking-widest uppercase text-xs mb-4 block font-bold">
+          Contact
+        </span>
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-extrabold tracking-tighter leading-tight">
-          Let&apos;s Build{" "}
+          Let&apos;s build{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-            Something Great
+            something great
           </span>
         </h1>
         <p className="mt-6 text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed">

@@ -148,7 +148,7 @@ export default async function AboutPage() {
       )}
 
       <CtaBlock
-        title="Let's Work Together"
+        title="Let's work together"
         body="Got a project in mind, or just want to talk front-end? My inbox is always open."
         label="Say hello"
       />

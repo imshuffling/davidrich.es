@@ -11,7 +11,7 @@ export default function PortfolioFooter({ footerCollection }: PortfolioFooterPro
 
   return (
     <section className="other-projects site-container">
-      <h3 className="font-headline font-bold">Other projects</h3>
+      <h2 className="font-headline font-bold text-xl md:text-[1.75rem]">Other projects</h2>
       <div id="cards">
         {footerCollection.items.map((item, index) => (
           <PortfolioCard
