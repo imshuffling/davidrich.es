@@ -725,7 +725,7 @@ html[data-theme="dark"] {
     padding-top: 2rem;
   }
 
-  .other-projects h3 {
+  .other-projects h2 {
     margin-bottom: 1.5rem;
   }
 
@@ -903,8 +903,13 @@ html[data-theme="dark"] {
 
   .btn-secondary,
   .btn-secondary:hover {
-    background: var(--color-surface-container-highest);
+    background: transparent;
     color: var(--color-on-surface);
+    box-shadow: inset 0 0 0 1px var(--color-outline-variant);
+  }
+
+  .btn-secondary:hover {
+    background: var(--color-surface-container-high);
   }
 
   /* White button sits on the brand gradient in both themes */
@@ -1095,12 +1100,6 @@ html[data-theme="dark"] {
       animation-range: entry 0% cover 30%;
     }
 
-    .reveal-side {
-      animation: reveal-side linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
-
     /* Timeline rows: text slides in from the right, dot pops on the line */
     .timeline-item {
       view-timeline: --timeline-item;
@@ -1150,7 +1149,7 @@ html[data-theme="dark"] {
       inset: 0 0 auto;
       height: 3px;
       z-index: calc(var(--z-header) + 1);
-      background: var(--gradient-brand);
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
       transform-origin: left;
       animation: grow-x linear both;
       animation-timeline: scroll(root);
