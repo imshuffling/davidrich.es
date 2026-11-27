@@ -2,11 +2,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ScrollReset from "./ScrollReset";
 import ScrollToTop from "@/components/ScrollToTop";
+import AmbientBackground from "@/components/webgl/AmbientBackground";
 import type { LayoutProps } from "@/types/components";
 
 export default function Layout({ children }: LayoutProps) {
   return (
     <div className="container-wrap">
+      <AmbientBackground />
       <ScrollReset />
       <a href="#main-content" className="skip-link">
         Skip to main content

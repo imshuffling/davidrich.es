@@ -2,6 +2,7 @@ import Link from "next/link";
 import ImageWrapper from "@/components/ImageWrapper";
 import RichText from "@/components/RichText";
 import HoverVideo from "@/components/HoverVideo";
+import CardShader from "@/components/webgl/CardShader";
 import type { PortfolioCardProps } from "@/types/components";
 
 const SIZE_CLASS = { standard: "", large: "card--large", full: "card--full" } as const;
@@ -21,8 +22,9 @@ export default function PortfolioCard({ item, slot }: PortfolioCardProps) {
             alt={title}
             priority={slot.priority}
             showGradient={true}
+            crossOrigin={media ? undefined : "anonymous"}
           />
-          {media && <HoverVideo url={media.url} />}
+          {media ? <HoverVideo url={media.url} /> : <CardShader />}
         </div>
         <div className="card__details">
           <div className="card__content">

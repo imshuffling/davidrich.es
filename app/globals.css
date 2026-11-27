@@ -288,6 +288,35 @@ html[data-theme="dark"] {
     background: var(--color-surface);
     /* Clip horizontal bleed without breaking sticky */
     overflow-x: clip;
+    /* Own stacking context so the ambient layers sit above this background but below content */
+    isolation: isolate;
+  }
+
+  /* Static ambient fallback — shown until the shader is ready, or when it never loads */
+  .container-wrap::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 85% 0%, color-mix(in srgb, var(--color-primary) 10%, transparent), transparent),
+      radial-gradient(50% 45% at 0% 100%, color-mix(in srgb, var(--color-secondary) 8%, transparent), transparent);
+  }
+
+  .ambient-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+
+  .ambient-canvas.is-ready {
+    opacity: 1;
   }
 
   /* Skip link */
@@ -515,6 +544,19 @@ html[data-theme="dark"] {
   .card:not(.has-video):hover .card__image img,
   .card:not(.has-video):focus-within .card__image img {
     transform: scale(1.05);
+  }
+
+  /* WebGL hover canvas does its own zoom */
+  .card.has-shader:hover .card__image img {
+    transform: none;
+  }
+
+  .card-shader {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
   .card__image video {

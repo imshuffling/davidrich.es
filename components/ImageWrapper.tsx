@@ -59,6 +59,7 @@ interface ImageWrapperProps {
   className?: string;
   style?: React.CSSProperties;
   showGradient?: boolean;
+  crossOrigin?: "anonymous";
 }
 
 export default function ImageWrapper({
@@ -70,6 +71,7 @@ export default function ImageWrapper({
   className,
   style,
   showGradient = false,
+  crossOrigin,
 }: ImageWrapperProps) {
   const { fill, sizes } = VARIANTS[variant];
 
@@ -85,6 +87,7 @@ export default function ImageWrapper({
       priority={priority}
       loading={priority ? undefined : loading}
       sizes={sizes}
+      crossOrigin={crossOrigin}
       className={className}
       style={style}
     />
